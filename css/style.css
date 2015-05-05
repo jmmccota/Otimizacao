@@ -36,18 +36,11 @@ a {
     text-decoration: none;
     transition: background-color .4s linear, color .4s linear;
 }
-
     a:hover,
     a:focus {
         text-decoration: none;
-        color: #01b2fe;
+  color:#01b2fe;	
     }
-
-blockquote {
-    border-left: 2px solid #384452;
-    background: #f5f5f5;
-    font-style: italic;
-}
 
 /*-------------------------------------------------------------
 	 Modificações no Bootstrap
