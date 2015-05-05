@@ -1,32 +1,103 @@
-
-       
-<div class="jumbotron" >
-                <div class="container">
-                    <h1>Branch and Bound</h1>
-                    <p >Resolvendo MILP(Mixed-Integer Linear Problems) usando modelo Branch and Bound.</p>
+﻿<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+<div id="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>
+                    Branch-Bound
+                    <p class="lead">Programação Linear Inteira Mista(PLIM)</p>
+                </h1>
+            </div>
+			<a href="#" id="back" onClick="backIndex()" >
+            <div class="col-md-2 col-md-offset-3">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <img src="img/back.png" class="img-responsive">
+                        </div>
+                        <div class="col-sm-4">
+                            Voltar
+                        </div>
+                    </div>
                 </div>
+				</a>
             </div>
-            <div class="container">
-               
-                <blockquote> <h2>O Modelo</h2>
-                    <p>A partir do resulu��o de MILPs usando o m�todo Simplex obtemos partes de x = ( x1, x2, ..., xn) que n</p>
-                </blockquote>
-
-
-
-                O problema com a resolu��o de MILPs usando o m�todo Simplex Revisto � que ele
-                frequentemente retorna partes de x = (x 1 , x 2 , . . . xn ) que n�o est�o em forma de n�mero inteiro , como � o caso
-                no exemplo anterior (1,1 ) . Existem v�rios m�todos que podemos usar para encontrar x ? Z
-                + ,
-                um dos quais � chamado o Poder e m�todo vinculado . Para resolver usando Ramos e
-                Obrigado que primeiro resolver o problema com o relaxamento , o que significa que resolv�-lo usando
-                Revisado o Simplex como se n�o houvesse restri��es inteiros. Deste obtemos z :
-                z = cx
-                3
-                Este � um limite superior na PLIM uma vez que estamos maximizando ao longo de um conjunto maior
-                que engloba todas as solu��es inteiras . Em seguida, escolher uma vari�vel n�o inteiro e
-                ramo nele. Mais comumente n�s ramificar na vari�vel mais fracionada , a um
-                mais pr�ximo de metade do caminho entre o piso eo teto , ou mais distante de um n�mero inteiro . se
-                ramifica��es em mais fracionada n�s escolhemos xj</p>
+        </div>
+    </div><!--/container-->
+</div><!--/masthead-->
+<!--main-->
+<div class="container">
+    <div class="row">
+        <!--left-->
+        <div class="col-md-3" id="leftCol">
+            <ul class="nav nav-stacked" id="sidebar">
+                <li><a href="#sec0">Introdução</a></li>
+                <li><a href="#sec1">Resolvendo PLIM	</a></li>
+                <li><a href="#sec2">Section 2</a></li>
+                <li><a href="#sec3">Section 3</a></li>
+                <li><a href="#sec4">Section 4</a></li>
+            </ul>
+        </div><!--/left-->
+        <!--right-->
+        <div class="col-md-9">
+            <h2 id="sec0">Introdução </h2>
+            <hr>
+            <p>	
+                A programação Linear Inteira Mista tem uma grande vantagem em relação a Programação Inteira que é permitir que sejam incluídos
+                na análise os custos fixos, bem como diferentes níveis de custos variáveis para as instalãções.
+                Estes problemas possuem soluções mais complexa em relação aqueles que utilizam a Programação Linear. Contudo na Programação Linear, 
+				existem condições necessárias e suficientes de otimização teoricamente provadas que podem ser 
+				utilizadas para testar eficientemente se uma dada solução viável é uma solução ótima ou não. 
+            </p>
+			<p>
+			A Programação Linear está preocupado com a maximização ou minimização um
+			equação sobre certos critérios ou restrições. Abaixo temos um exemplo:
+			</p>
+			<hr>
+			<div class="row">
+			<div class="col-md-6 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4> Exemplo:</h4></div>
+                        <div class="panel-body">
+							<!-- <script type="math/asciimath" id="MathJax-Element-1">max : z = 3x_1 − x_2 + 5x_3</script><br>
+							<script type="math/asciimath" id="MathJax-Element-2">such that x_1 + 2x_2 − 4x_3 ≤ 7</script><br>
+							<script type="math/asciimath" id="MathJax-Element-3">7x_1 − 5x_2 − x_3 ≤ 2</script><br>
+							<script type="math/asciimath" id="MathJax-Element-4">−x_1 + 3x_2 + 9x_3 ≤ 13</script><br>
+							<script type="math/asciimath" id="MathJax-Element-5">x_i ≥ 0, i = 1, . . . , 3</script><br> -->
+                            <img src="img/exemplo1.png" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-6 col-sm-6">
+				<blockquote>
+					<p> Este problema pode ser reolvido pelo Método Simplex ou Simplex duas Fases. A solução ótima se encontra abaixo: </p>
+					<center><script type="math/asciimath" id="MathJax-Element-2">x = (x_1,x_2,x_3) = (0.5,0,1.5)</script></center>
+				</blockquote>
+				</div>
+				
             </div>
+			<blockquote>
+			<p> 
+			Problemas como estes são utilizados em todas as empresas para minimizar o desperdício , maximizar lucro, ou otimizar a outros aspectos do negócio .
+			No entanto, algumas partes da solução pode ser limitada a números inteiros , <script type="math/asciimath" id="MathJax-Element-3">x in Z^+</script>.
+			</p> 
+			<p>Programação linear inteira mista é uma PL(Programação Linear) que existe alguma ou todas as variáveis ​​não inteiras. Portanto precisamos de encontrar uma 
+			nova solução ótima para evitarmos casos de numeros parciais. Simplesmente arredondando a solução, muitas vezes, compromete-se a otimalidade da solução, se é feito o 
+			arredondamento a solução pode não estar na região viável.
+			</p>
+			</blockquote>
 			
+	<br>
+            <h2 id="sec1">Resolvendo PLIM Usando Branch-Bound</h2><hr>
+            <p>
+                O problema com a resolução de PLIMs usando o método Simplex é que ele
+frequentemente retorna partes de <script type="math/asciimath" id="MathJax-Element-4">x = (x_1,x_2,x_3)</script> que não estão em forma de número inteiro. 
+
+        </div><!--/right-->
+    </div><!--/row-->
+</div><!--/container-->
+<!-- script references -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/scripts.js"></script>
+

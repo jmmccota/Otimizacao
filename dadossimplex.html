@@ -12,29 +12,30 @@ and open the template in the editor.
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
-    </head>
+    
     <script>
         function enviar() {
             var variaveis = document.getElementById('numvariaveis').value;
 
             $('#tab_logic').append("<thead><tr>");
             for (var i = 0; i < (variaveis + 3); i++) {
-                if (i == 0) {
+                if (i === 0) {
                     $('#tab_logic').append("<th class='text-center'>#</th>");
                 }
                 if (i > 0 && i <= variaveis) {
                     $('#tab_logic').append("<th class='text-center'>x" + i + "</th>");
                 }
-                if (i == (variaveis + 1)) {
+                if (i === (variaveis + 1)) {
                     $('#tab_logic').append("<th class='text-center'>Relação</th>");
                 }
-                if (i == (variaveis + 2)) {
+                if (i === (variaveis + 2)) {
                     $('#tab_logic').append("<th class='text-center'>Direito</th>");
                 }
             }
             $('#tab_logic').append("</tr></thead>");
         }
     </script>
+    </head>
     <body>
         <h5>Operação: </h5>
         <label><select class="form-control" id="operacao">
