@@ -148,3 +148,11 @@ a:focus {
 #footerwrap i:hover {
 	color: #00b3fe
 }
+
+#add {
+        margin-left: 70px;
+}
+
+#myTableData {
+        width: 1000px;
+}
