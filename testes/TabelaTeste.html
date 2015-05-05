@@ -3,29 +3,35 @@
     <head>
         <title>HTML dynamic table using JavaScript</title>
         <script type="text/javascript">
-            function manyRows(){
+            var controle = 0;
+            function manyRows() {
                 var qVariaveis = document.getElementById("variaveis");
-                for(i = 0; i<qVariaveis.value; i++ ){
-                   addRow();    
+                for (i = 0; i < qVariaveis.value; i++) {
+                    addRow();
                 }
             }
             function addRow() {
+                controle++;
+                if (controle < 10) {
+                    var qVariaveis = document.getElementById("variaveis");
+                    var restricoes = document.getElementById("restricoes");
+                    var table = document.getElementById("myTableData");
 
-                var qVariaveis = document.getElementById("variaveis");
-                var restricoes = document.getElementById("restricoes");
-                var table = document.getElementById("myTableData");
+                    var rowCount = table.rows.length;
+                    var row = table.insertRow(rowCount);
 
-                var rowCount = table.rows.length;
-                var row = table.insertRow(rowCount);
-
-                row.insertCell(0).innerHTML = '<input type="button" value = "Delete" onClick="Javacsript:deleteRow(this)">';
-                row.insertCell(1).innerHTML = '<input type="text" value = "0" >';
-                row.insertCell(2).innerHTML ='<input type="text" value = "0" >';
+                    row.insertCell(0).innerHTML = '<input type="button" value = "Delete" onClick="Javacsript:deleteRow(this)">';
+                    row.insertCell(1).innerHTML = '<input type="text" value = "0" >';
+                    row.insertCell(2).innerHTML = '<input type="text" value = "0" >';
+                    row.insertCell(3).innerHTML = '<input type="button" value = "Add" onClick="Javacsript:addRow(this)">';
+                } else {
+                    alert("Ultrapassou o limite maximo");
+                }
 
             }
 
             function deleteRow(obj) {
-
+                controle--;
                 var index = obj.parentNode.parentNode.rowIndex;
                 var table = document.getElementById("myTableData");
                 table.deleteRow(index);
