@@ -8,21 +8,21 @@
 
     <title>Branch-Bound</title>
 
-	 <link href="css/bootstrap.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="css/vis.css" rel="stylesheet">
-	
-    <script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
     <script src="js/vis.js"></script>
 
     <script type="text/javascript">
-		function backIndex()
-		{
-				$("#content").hide();
-			    $("#headerwrap").fadeIn(1000);
-                
-		}
+        function backIndex() {
+            $("#content").hide();
+            $("#headerwrap").fadeIn(1000);
+
+        }
         $(document).ready(function () {
 
             $("#start").click(function () {
@@ -36,16 +36,7 @@
                 });
                 return false;
             });
-		
-            
-            //$("#maisSobre").click(function () {
-            // $('#content').load("modelo.html", function () {
-            //   $("#content").fadeIn(1000);
-            //});
-            //$("#headerwrap").fadeOut(1000);
-            //});
-
-
+            //Start Tree
             var nodes = [
                 { id: 1, label: 'S', level: 0 },
                 { id: 2, label: 'S1', level: 1 },
@@ -116,9 +107,7 @@
         </div>
     </div>
 
-    <!-- *****************************************************************************************************************
-            HEADER - INFO
-     ***************************************************************************************************************** -->
+    <!-- HEADER - INFO-->
     <div id="content" style="display: none;">
     </div>
     <div id="headerwrap">
@@ -142,10 +131,7 @@
             </div>
         </div>
     </div><!-- /headerwrap style="display: none;" -->
-    
-    <!-- *****************************************************************************************************************
-     FOOTER
-     ***************************************************************************************************************** -->
+    <!--  FOOTER  -->
     <div id="footerwrap">
         <div class="container">
             <div class="row">
