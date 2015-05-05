@@ -154,5 +154,10 @@ a:focus {
 }
 
 #myTableData {
-        width: 1000px;
+        width: 1100px;
+}
+
+#myTableData2 {
+        width: 800px;
+        margin-top: 30px;
 }
