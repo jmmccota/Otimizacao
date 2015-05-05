@@ -1,6 +1,6 @@
 $(function () {
 
-    $(document).ready(function () {//documento pronto
+    $(document).ready(function () {
 
         var start;
         var logNode = document.getElementById("log");
@@ -16,7 +16,6 @@ $(function () {
 
         function run(source) {
 
-
             start = new Date();
             logNode.innerText = "";
             var lp = glp_create_prob();
@@ -25,7 +24,6 @@ $(function () {
             glp_scale_prob(lp, GLP_SF_AUTO);
 
             if (glp_get_num_int(lp) == 0 && glp_get_num_bin(lp) == 0) {
-
 
                 var smcp = new SMCP({presolve: GLP_ON});
                 r = glp_simplex(lp, smcp);
@@ -124,16 +122,9 @@ $(function () {
                         case GLP_ESTOP:
                             log("");
 
-
                     }
-
-
-
-
-
                 }
             }
-
         }
 
         function $_GET(q) {
@@ -361,7 +352,7 @@ $(function () {
                 var $item = $this.find("td");
                 restricoes[i] = [];
                 $.each($item, function (n, e) {
-                    var valor = $(this).text()
+                    var valor = $(this).text();
                     if (!isNaN($(this).text())) {
                         restricoes[i][j] = $(this).text();
                     } else {
@@ -444,7 +435,6 @@ $(function () {
                 alert("Apenas Números são Aceitos!!!");
             }
         });
-
     });
-
 });
+
