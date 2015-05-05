@@ -98,7 +98,7 @@ a:focus {
 	padding-bottom: 0px;
 }
 #content h1 {
-	font-size: 50px;]
+	font-size: 50px;
 }
 
 #headerwrap h3 {
@@ -147,4 +147,12 @@ a:focus {
 
 #footerwrap i:hover {
 	color: #00b3fe
+}
+
+#add {
+        margin-left: 70px;
+}
+
+#myTableData {
+        width: 1000px;
 }
