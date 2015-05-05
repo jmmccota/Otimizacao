@@ -1,90 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>Branch-Bound</title>
+        <title>Branch-Bound</title>
 
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<script src="js/jquery.min.js"></script>
-  </head>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/vis.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/vis.js"></script>
 
-  <body>
+        <script type="text/javascript">
+            $(document).ready(function () {
 
-    <!-- Navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">Branch-Bound</a>
+                $("#start").click(function () {
+                    $("#headerwrap").fadeOut(1000);
+                });
+                //$("#maisSobre").click(function () {
+                   // $('#content').load("modelo.html", function () {
+                     //   $("#content").fadeIn(1000);
+                    //});
+                    //$("#headerwrap").fadeOut(1000);
+                //});
+
+
+                var nodes = [
+                    {id: 1, label: 'S', level: 0},
+                    {id: 2, label: 'S1', level: 1},
+                    {id: 3, label: 'S2', level: 1},
+                    {id: 4, label: 'S11', level: 2},
+                    {id: 5, label: 'S12', level: 2}
+                ];
+                // create an array with edges
+                var edges = [
+                    {from: 1, to: 2},
+                    {from: 1, to: 3},
+                    {from: 2, to: 4},
+                    {from: 2, to: 5}
+                ];
+                // create a network
+                var container = document.getElementById('mynetwork');
+                var data = {
+                    nodes: nodes,
+                    edges: edges,
+                };
+                var options = {
+                    height: '200px',
+                    edges: {
+                        width: 2
+                    },
+                    physics: {
+                        hierarchicalRepulsion: {
+                            centralGravity: 0.5,
+                            springLength: 50,
+                            springConstant: 0.05,
+                            nodeDistance: 120,
+                            damping: 0.09
+                        }
+                    },
+                    hierarchicalLayout: {
+                        enabled: true,
+                        levelSeparation: 50,
+                        nodeSpacing: 5,
+                        direction: "UD",
+                        layout: "direction"
+                    }
+
+                };
+                var network = new vis.Network(container, data, options);
+                //network.on('select', function (properties) {
+                // document.getElementById('info').innerHTML += 'Z: ' + JSON.stringify(properties) + '<br>';
+                //});
+                // set initial selection (id's of some nodes)
+                network.selectNodes([1, 2, 4]);
+            });</script>
+    </head>
+
+    <body>
+
+        <!-- Navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Branch-Bound</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">INÍCIO</a></li>
+                        <li><a href="#">AJUDA</a></li>
+                        <li><a href="#">CONTATO</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="navbar-collapse collapse navbar-right">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">INÍCIO</a></li>
-            <li><a href="about.html">AJUDA</a></li>
-            <li><a href="contact.html">CONTATO</a></li>
-          </ul>
+
+        <!-- *****************************************************************************************************************
+                HEADER - INFO
+         ***************************************************************************************************************** -->
+        <div id="headerwrap">
+            <div class="container-fluid">
+                <div class="col-lg-12">
+                    <div  class="row">
+                        <h3>Modelo para Otimização de Programação Linear</h3>
+                        <h1>Branch-Bound</h1>
+                        <h5>Branch and bound é um algoritmo para encontrar soluções ótimas para vários problemas de otimização. </h5>
+                        <h5>O método foi proposto por A. H. Land e A. G. Doig em 1960 para programação discreta.</h5>				
+                    </div>
+                    <div class="row" style="padding-top:2%;">
+                        <a href="#" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Começar</a>
+                        <a href="#" id="maisSobre" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Mais sobre o modelo</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-4" id="mynetwork">
+                        </div>
+                    </div>
+                    <div id="info"></div>
+                </div>	
+            </div>
+        </div><!-- /headerwrap style="display: none;" -->
+        <div id="content" style="display: none;">
         </div>
-      </div>
-    </div>
-
-	<!-- *****************************************************************************************************************
-		HEADER - INFO
-	 ***************************************************************************************************************** -->
-	<div id="headerwrap">
-		<div class="container-fluid">
-			<div class="col-lg-12">
-				<div  class="row">
-					<h3>Modelo para Otimização de Programação Linear</h3>
-					<h1>Branch-Bound</h1>
-					<h5>Branch and bound é um algoritmo para encontrar soluções ótimas para vários problemas de otimização. </h5>
-					<h5>O método foi proposto por A. H. Land e A. G. Doig em 1960 para programação discreta.</h5>				
-				</div>
-				<div class="row" style="padding-top:2%;">
-					<a href="#" id="show"class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Começar</a>
-					<a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Mais sobre o modelo</a>
-				</div>
-				<div class="row"><br><br><br><br><br><br>
-					<h1><a href="#"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Animação</a></h1>
-				<br><br><br><br><br>
-			</div>
-			</div>	
-				
-		</div>
-		 
-	</div><!-- /headerwrap -->
-
-	<!-- *****************************************************************************************************************
-	 FOOTER
-	 ***************************************************************************************************************** -->
-	 <div id="footerwrap">
-	 	<div class="container">
-		 	<div class="row">
-		 		<div class="col-lg-4">
-		 			<h4>Realizado por</h4>
-		 			<div class="hline-w"></div>
-		 			<p>Alunos de Engenharia de Computação, estudantes do CEFET-MG Campus VII</p>
-		 		</div>	 		
-		 		<div class="col-lg-4">
-		 			<h4>Endereço</h4>
-		 			<div class="hline-w"></div>
-		 			<p> R. Oito de Dezembro, Centro<br>
-		 				Timoteo, MG<br/>
-		 			</p>
-		 		</div>
-		 	</div>
-	 	</div>
-	 </div>
-  </body>
-	<script>
-	$(document).ready(function(){
-		$("#show").click(function(){
-			$("#headerwrap").fadeOut(1000);
-		});
-	});
-	</script>
-
+        <!-- *****************************************************************************************************************
+         FOOTER
+         ***************************************************************************************************************** -->
+        <div id="footerwrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4>Realizado por</h4>
+                        <div class="hline-w"></div>
+                        <p>Alunos de Engenharia de Computação, estudantes do CEFET-MG Campus VII</p>
+                    </div>	 		
+                    <div class="col-lg-4">
+                        <h4>Endereço</h4>
+                        <div class="hline-w"></div>
+                        <p> R. Oito de Dezembro, Centro<br>
+                            Timoteo, MG<br/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
