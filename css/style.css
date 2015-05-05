@@ -44,10 +44,11 @@ a {
     }
 
 blockquote {
-    border-left: 2px solid #00b3fe;
+    border-left: 2px solid #384452;
     background: #f5f5f5;
     font-style: italic;
 }
+
 /*-------------------------------------------------------------
 	 Modificações no Bootstrap
 ---------------------------------------------------------------*/
@@ -85,6 +86,25 @@ blockquote {
 .navbar-default {
     background-color: #384452;
     border-color: transparent;
+}
+
+panel-primary {
+  border-color: #384452;
+}
+.panel-primary > .panel-heading {
+  color: #fff;
+  background-color: #384452;
+  border-color: #384452;
+}
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #384452;
+}
+.panel-primary > .panel-heading .badge {
+  color: #384452;
+  background-color: #fff;
+}
+.panel-primary > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #384452;
 }
 
 /*	################################################################
