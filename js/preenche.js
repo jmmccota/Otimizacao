@@ -26,9 +26,9 @@ var controle = -1;
                     row = table.insertRow(rowCount);
                     row.insertCell(0).innerHTML = '&nbsp;';
                     for (i = 1; i <= qVariaveis.value; i++) {
-                        row.insertCell(i).innerHTML = '<b>x' + (i) + '</b>';
+                        row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
                     }
-                    row.insertCell().innerHTML = '<b>Rela&ccedil;&atilde;o</b>';
+                    row.insertCell().innerHTML = '<b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b>';
                     row.insertCell().innerHTML = '<b>Lado Direito</b>';
                 }
                 controle++;
