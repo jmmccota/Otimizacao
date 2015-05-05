@@ -5,29 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-
         <title>Branch-Bound</title>
-
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/vis.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
         <script src="js/vis.js"></script>
-
         <script type="text/javascript">
             $(document).ready(function () {
-
                 $("#start").click(function () {
                     $("#headerwrap").fadeOut(1000);
                 });
                 //$("#maisSobre").click(function () {
-                   // $('#content').load("modelo.html", function () {
-                     //   $("#content").fadeIn(1000);
-                    //});
-                    //$("#headerwrap").fadeOut(1000);
+                // $('#content').load("modelo.html", function () {
+                // $("#content").fadeIn(1000);
                 //});
-
-
+                //$("#headerwrap").fadeOut(1000);
+                //});
                 var nodes = [
                     {id: 1, label: 'S', level: 0},
                     {id: 2, label: 'S1', level: 1},
@@ -69,7 +63,6 @@
                         direction: "UD",
                         layout: "direction"
                     }
-
                 };
                 var network = new vis.Network(container, data, options);
                 //network.on('select', function (properties) {
@@ -79,9 +72,7 @@
                 network.selectNodes([1, 2, 4]);
             });</script>
     </head>
-
     <body>
-
         <!-- Navbar -->
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -97,18 +88,17 @@
                 </div>
             </div>
         </div>
-
         <!-- *****************************************************************************************************************
-                HEADER - INFO
-         ***************************************************************************************************************** -->
+        HEADER - INFO
+        ***************************************************************************************************************** -->
         <div id="headerwrap">
             <div class="container-fluid">
                 <div class="col-lg-12">
-                    <div  class="row">
+                    <div class="row">
                         <h3>Modelo para Otimização de Programação Linear</h3>
                         <h1>Branch-Bound</h1>
                         <h5>Branch and bound é um algoritmo para encontrar soluções ótimas para vários problemas de otimização. </h5>
-                        <h5>O método foi proposto por A. H. Land e A. G. Doig em 1960 para programação discreta.</h5>				
+                        <h5>O método foi proposto por A. H. Land e A. G. Doig em 1960 para programação discreta.</h5>
                     </div>
                     <div class="row" style="padding-top:2%;">
                         <a href="#" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Começar</a>
@@ -119,14 +109,14 @@
                         </div>
                     </div>
                     <div id="info"></div>
-                </div>	
+                </div>
             </div>
         </div><!-- /headerwrap style="display: none;" -->
         <div id="content" style="display: none;">
         </div>
         <!-- *****************************************************************************************************************
-         FOOTER
-         ***************************************************************************************************************** -->
+        FOOTER
+        ***************************************************************************************************************** -->
         <div id="footerwrap">
             <div class="container">
                 <div class="row">
@@ -134,7 +124,7 @@
                         <h4>Realizado por</h4>
                         <div class="hline-w"></div>
                         <p>Alunos de Engenharia de Computação, estudantes do CEFET-MG Campus VII</p>
-                    </div>	 		
+                    </div>
                     <div class="col-lg-4">
                         <h4>Endereço</h4>
                         <div class="hline-w"></div>
