@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML dynamic table using JavaScript</title>
+        <script type="text/javascript">
+            var controle = 0;
+            function manyRows() {
+                var qVariaveis = document.getElementById("variaveis");
+                for (i = 0; i < qVariaveis.value; i++) {
+                    addRow();
+                }
+            }
+            function addRow() {
+                controle++;
+                if (controle < 10) {
+                    var qVariaveis = document.getElementById("variaveis");
+                    var restricoes = document.getElementById("restricoes");
+                    var table = document.getElementById("myTableData");
+
+                    var rowCount = table.rows.length;
+                    var row = table.insertRow(rowCount);
+
+                    row.insertCell(0).innerHTML = '<input type="button" value = "Delete" onClick="Javacsript:deleteRow(this)">';
+                    row.insertCell(1).innerHTML = '<input type="text" value = "0" >';
+                    row.insertCell(2).innerHTML = '<input type="text" value = "0" >';
+                    row.insertCell(3).innerHTML = '<input type="button" value = "Add" onClick="Javacsript:addRow(this)">';
+                } else {
+                    alert("Ultrapassou o limite maximo");
+                }
+
+            }
+
+            function deleteRow(obj) {
+                controle--;
+                var index = obj.parentNode.parentNode.rowIndex;
+                var table = document.getElementById("myTableData");
+                table.deleteRow(index);
+
+            }
+
+            function addTable() {
+
+                var myTableDiv = document.getElementById("myDynamicTable");
+
+                var table = document.createElement('TABLE');
+                table.border = '1';
+
+                var tableBody = document.createElement('TBODY');
+                table.appendChild(tableBody);
+
+                for (var i = 0; i < 3; i++) {
+                    var tr = document.createElement('TR');
+                    tableBody.appendChild(tr);
+
+                    for (var j = 0; j < 4; j++) {
+                        var td = document.createElement('TD');
+                        td.width = '75';
+                        td.appendChild(document.createTextNode("Cell " + i + "," + j));
+                        tr.appendChild(td);
+                    }
+                }
+                myTableDiv.appendChild(table);
+
+            }
+
+            function load() {
+
+                console.log("Prestricoes load finished");
+
+            }
+        </script>
+    </head>
+    <body onload="load()">
+        <div id="myform">
+            <b>Simple form with variaveis and restricoes ...</b>
+            <table>
+                <tr>
+                    <td>Variaveis:</td>
+                    <td><input type="number" min="1" max="10" id="variaveis"></td>
+                </tr>
+                <tr>
+                    <td>Restricoes:</td>
+                    <td><input type="number" min="1" max="10" id="restricoes">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="add" value="Add" onclick="Javascript:manyRows()"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div id="mydata">
+            <b>Current data in the system ...</b>
+            <table id="myTableData"  border="0" cellpadding="2">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><b>Name</b></td>
+                    <td><b>Age</b></td>
+                </tr>
+            </table>
+            &nbsp;
+
+        </div>
+        <div id="myDynamicTable">
+            <input type="button" id="create" value="Click here" onclick="Javascript:addTable()">
+            to create a Table and add some data using JavaScript
+        </div>
+    </body>
+</html>

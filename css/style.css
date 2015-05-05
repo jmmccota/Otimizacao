@@ -93,6 +93,14 @@ a:focus {
 	text-align: center;
 }
 
+#content {
+	padding-top: 70px;
+	padding-bottom: 0px;
+}
+#content h1 {
+	font-size: 50px;]
+}
+
 #headerwrap h3 {
 	font-size: 35px;
 	color: white;
