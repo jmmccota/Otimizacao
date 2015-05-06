@@ -25,17 +25,18 @@
         }
         $(document).ready(function () {
 
-            $("#start").click(function () {
-                $("#headerwrap").fadeOut(1000);
-            });
-            $('#modelo').click(function () {
-                $("#headerwrap").fadeOut(1000);
+            //$("#start").click(function () {
+              //  $("#headerwrap").fadeOut(1000);
+            //});
+            $('#modelo,#start').click(function () {  
                 var link = $(this).attr("href");
                 $('#content').load(link, function () {
                     $("#content").fadeIn(1000);
                 });
+				$("#headerwrap").hide(200);
                 return false;
             });
+			
             //Start Tree
             var nodes = [
                 { id: 1, label: 'S', level: 0 },
@@ -120,7 +121,7 @@
                     <h5>O método foi proposto por A. H. Land e A. G. Doig em 1960 para programação discreta.</h5>
                 </div>
                 <div class="row" style="padding-top:2%;">
-                    <a href="#" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Começar</a>
+                    <a href="start.html" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Começar</a>
                     <a href="modelo.html" id="modelo" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Mais sobre o modelo</a>
                 </div>
                 <div class="row">

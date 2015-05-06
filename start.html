@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML dynamic table using JavaScript</title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/preenche.js"></script>
+    </head>
+    <body onload="load()">
+        <div id="myform">
+            <center><div id="tabela1"><table>
+                        <tr>
+                            <td>N&uacute;mero de Vari&aacute;veis:&nbsp;&nbsp;&nbsp;</td>
+                            <td><select class="form-control" id="variaveis">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="btn btn-primary" id="add" value="Gerar"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table></div></center>
+        </div>
+        <div id="mydata">
+            <center><table id="myTableData"  class="table table-hover table-striped">
+                </table></center>
+            &nbsp;
+            <center><input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()"></center>
+            
+            <center><table id="myTableData2"  class="table table-hover table-striped">
+                </table></center>
+            <center><input type="button" class="btn btn-primary" id="executar" value="Executar">
+                <a href="TabelaTeste.html"><input type="button" class="btn btn-primary" id="limpar" value="Limpar"></a></center>
+            
+
+        </div>
+    </body>
+</html>
