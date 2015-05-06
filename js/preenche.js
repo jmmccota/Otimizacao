@@ -11,7 +11,7 @@ function addRow1() {
         for (i = 1; i <= qVariaveis.value; i++) {
             row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
         }
-        row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" id="operacao"><option><=</option><option>=</option><option>>=</option></select>';
+        row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control"><option><=</option><option>=</option><option>>=</option></select>';
         row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
     }
     else {
@@ -28,8 +28,8 @@ function addRow() {
         for (i = 1; i <= qVariaveis.value; i++) {
             row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
         }
-        row.insertCell().innerHTML = '<b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b>';
-        row.insertCell().innerHTML = '<b>Lado Direito</b>';
+        row.insertCell().innerHTML = '<center><b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b></center>';
+        row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
     }
     controle++;
     //var qVariaveis = document.getElementById("variaveis");
@@ -48,8 +48,8 @@ function addRow() {
     for (i = 1; i <= qVariaveis.value; i++) {
         row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
     }
-    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" id="operacao"><option><=</option><option>=</option><option>>=</option></select>';
-    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
+    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
+    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" >';
 
 }
 function addRow2() {
