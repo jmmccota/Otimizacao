@@ -1,3 +1,42 @@
+$('#executar').bind('click', function(){
+    
+    //Determinando qtd de variaveis e restricoes
+    var nvariaveis = $('#variaveis').val();
+    var nrestricoes;
+    for(i = 1; i <= 100; i++){
+        if($("x0" + i).length)
+            nrestricoes = i;
+        else
+            break;
+    }
+    
+    //Lendo dados do modelo
+    objetivo = [];
+    restricoes = [];
+    relacoes = [];
+    rhs = [];
+    lower = [];
+    upper = [];
+    for(i = 0; i < nvariaveis; i++){
+        
+        objetivo[i] = $('x0' + i).val();
+        
+        for(j = 1; j <= nrestricoes; j++){
+            restricoes[j] = [];
+            if(!isNaN($('x' + j + i).val()))
+                restricoes[j][i] =  $('x' + j + i).val();
+            else{
+                alert("Restricoes devem conter somente numeros");
+                return;
+            }
+        }
+        
+        
+        
+    }
+});
+
+
 $(function () {
 
     $(document).ready(function () {

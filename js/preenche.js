@@ -9,10 +9,10 @@ function addRow1() {
         row = table.insertRow(rowCount);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
         for (i = 1; i <= qVariaveis.value; i++) {
-            row.insertCell(i).innerHTML = '<input id=x"' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
+            row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
         }
         row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" id="operacao"><option><=</option><option>=</option><option>>=</option></select>';
-        row.insertCell().innerHTML = '<input id=ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
+        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
     }
     else {
         alert("Estorou limite de Restricoes!")
@@ -39,17 +39,17 @@ function addRow() {
 
     row.insertCell(0).innerHTML = '<b>Objetivo</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id=x0"' + (i - 1) + '" type="number" class="form-control">';
+        row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="form-control">';
     }
     row.insertCell().innerHTML = '&nbsp;';
     row.insertCell().innerHTML = '&nbsp;';
     row = table.insertRow(rowCount + 1);
     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id=x"' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
+        row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
     }
     row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" id="operacao"><option><=</option><option>=</option><option>>=</option></select>';
-    row.insertCell().innerHTML = '<input id=ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
+    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
 
 }
 function addRow2() {
