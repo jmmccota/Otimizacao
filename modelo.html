@@ -49,10 +49,10 @@
                 utilizadas para testar eficientemente se uma dada solução viável é uma solução ótima ou não.
             </p>
             <p>
-                A Programação Linear está preocupado com a maximização ou minimização um
+                A Programação Linear está preocupada com a maximização ou minimização de uma
                 equação sobre certos critérios ou restrições. Abaixo temos um exemplo:
             </p>
-            <hr>
+           
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="panel panel-primary secondary ">
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <blockquote>
-                        <p> Este problema pode ser reolvido pelo Método Simplex ou Simplex duas Fases. A solução ótima se encontra abaixo: </p>
+                        <p> Este problema pode ser resolvido pelo Método Simplex ou Simplex duas Fases. A solução ótima se encontra abaixo: </p>
                         <center>
                             <script type="math/asciimath" id="MathJax-Element-2">
                                 x = (x_1,x_2,x_3) = (0.5,0,1.5)
@@ -74,21 +74,18 @@
                 </div>
 
             </div>
-            <blockquote>
                 <p>
-                    Problemas como estes são utilizados em todas as empresas para minimizar o desperdício , maximizar lucro, ou otimizar a outros aspectos do negócio .
+                    Problemas como estes são utilizados em todas as empresas para minimizar o desperdício, maximizar lucro, ou otimizar a outros aspectos do negócio .
                     No entanto, algumas partes da solução pode ser limitada a números inteiros,
                     <script type="math/asciimath" id="MathJax-Element-3">
                         x in Z^+
                     </script>.
                 </p>
                 <p>
-                    Programação linear inteira mista é uma PL(Programação Linear) que existe alguma ou todas as variáveis ??não inteiras. Portanto precisamos de encontrar uma
-                    nova solução ótima para evitarmos casos de numeros parciais. Simplesmente arredondando a solução, muitas vezes, compromete-se a otimalidade da solução, se é feito o
-                    arredondamento a solução pode não estar na região viável.
-                </p>
-            </blockquote>
-
+                    Programação linear inteira mista é uma PL(Programação Linear) que existe alguma ou todas as variáveis não inteiras. Portanto precisamos de encontrar uma
+                    nova solução ótima para evitarmos casos de números parciais. Simplesmente com o arredondamento, a solução muitas vezes pode sair da região viável, comprometendo a otimalidade.
+					</p>
+            
             <br>
             <h2 id="sec1">Resolvendo PLIM Usando Branch-Bound</h2><hr>
             <p>

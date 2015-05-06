@@ -22,9 +22,9 @@ h1, h2, h3, h4, h5, h6 {
 p {
     padding: 0;
     margin-bottom: 12px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 24px;
     color: #384452;
     margin-top: 10px;
@@ -41,10 +41,17 @@ a {
         text-decoration: none;
   color:#01b2fe;	
     }
+	
+	blockquote{
+		 border-left: 6px solid #ccc;
+		font-style: italic;
+		background-color: #f9f9f9;
+	}
 
 /*-------------------------------------------------------------
 	 Modificações no Bootstrap
 ---------------------------------------------------------------*/
+
 .navbar {
     min-height: 70px;
     padding-top: 10px;

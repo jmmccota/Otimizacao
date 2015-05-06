@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Branch-Bound</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+   
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+    <script src="js/vis.js"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	 <style>
+      #map-container { 
+		height: 300px;
+		border: 2px solid #f5f5f5;
+	  }
+    </style>
+    <script>	
+ 
+      function init_map() {
+		var var_location = new google.maps.LatLng(-19.539029,-42.650381);
+ 
+        var var_mapoptions = {
+          center: var_location,
+          zoom: 14
+        };
+ 
+		var var_marker = new google.maps.Marker({
+			position: var_location,
+			map: var_map,
+			title:"Venice"});
+ 
+        var var_map = new google.maps.Map(document.getElementById("map-container"),
+            var_mapoptions);
+ 
+		var_marker.setMap(var_map);	
+ 
+      }
+ 
+      google.maps.event.addDomListener(window, 'load', init_map);
+ 
+    </script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Branch-Bound</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">INÍCIO</a></li>
+                    <li><a href="#">AJUDA</a></li>
+                    <li><a href="#">CONTATO</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> 
+<div id="content">
+<div id="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>
+                   Contato
+                    <p class="lead">Entre em contato conosto, sugestões são bem vindas!</p>
+                </h1>
+            </div>
+        </div>
+    </div><!--/container-->
+</div><!--/masthead-->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="well well-sm">
+                <form>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="name">
+                                Nome</label>
+                            <input type="text" class="form-control" id="name" placeholder="Nome" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Email</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email" class="form-control" id="email" placeholder="Email" required="required" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">
+                                Assunto</label>
+                            <select id="subject" name="subject" class="form-control" required="required">
+                                <option value="na" selected="">Escolha uma opção</option>
+                                <option value="geral">Geral</option>
+                                <option value="sugestao">Sugestões</option>
+                                <option value="suporte">Suporte</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="name">
+                                Mensagem</label>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                placeholder="Escreva a Mensagem"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                            Enviar Mensagem</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+       
+    </div>
+	<div class="row" style="margin-bottom: 40px;">
+	 <div class="col-lg-3">
+            <form>
+            <legend><span class="glyphicon glyphicon-globe"></span> Endereço</legend>
+            <address>
+                <strong>CEFET-MG, Campus VII.</strong><br>
+                R. Dezenove de Novembro, 121 - Centro<br>
+                Timoteo, MG<br>
+                
+            </address>
+            
+            </form>
+        </div>
+		<div class="col-lg-9" >
+		<div id="map-container" class="well well-lg">
+		</div>
+		</div>
+	
+ 
+    
+	</div>
+</div>
+
+		<!--  FOOTER  -->
+    <div id="footerwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>Realizado por</h4>
+                    <div class="hline-w"></div>
+                    <p>Alunos de Engenharia de Computação, estudantes do CEFET-MG Campus VII</p>
+                </div>
+                <div class="col-lg-4">
+                    <h4>Endereço</h4>
+                    <div class="hline-w"></div>
+                    <p>
+                        R. Oito de Dezembro, Centro<br>
+                        Timoteo, MG<br />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>	
+</body>
+</html>
