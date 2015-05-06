@@ -36,17 +36,18 @@ a {
     text-decoration: none;
     transition: background-color .4s linear, color .4s linear;
 }
+
     a:hover,
     a:focus {
         text-decoration: none;
-  color:#01b2fe;	
+        color: #01b2fe;
     }
-	
-	blockquote{
-		 border-left: 6px solid #ccc;
-		font-style: italic;
-		background-color: #f9f9f9;
-	}
+
+blockquote {
+    border-left: 6px solid #ccc;
+    font-style: italic;
+    background-color: #f9f9f9;
+}
 
 /*-------------------------------------------------------------
 	 Modificações no Bootstrap
@@ -89,22 +90,26 @@ a {
 }
 
 panel-primary {
-  border-color: #384452;
+    border-color: #384452;
 }
+
 .panel-primary > .panel-heading {
-  color: #fff;
-  background-color: #384452;
-  border-color: #384452;
+    color: #fff;
+    background-color: #384452;
+    border-color: #384452;
 }
-.panel-primary > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #384452;
-}
-.panel-primary > .panel-heading .badge {
-  color: #384452;
-  background-color: #fff;
-}
+
+    .panel-primary > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #384452;
+    }
+
+    .panel-primary > .panel-heading .badge {
+        color: #384452;
+        background-color: #fff;
+    }
+
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #384452;
+    border-bottom-color: #384452;
 }
 
 /*	################################################################
@@ -177,16 +182,15 @@ panel-primary {
         }
 
 #add {
-    margin-left: 70px;
 }
 
 #myTableData {
-        width: 1100px;
+    width: 1100px;
 }
 
 #myTableData2 {
-        width: 800px;
-        margin-top: 30px;
+    width: 800px;
+    margin-top: 30px;
 }
 
 
@@ -216,4 +220,3 @@ panel-primary {
     border: 0 #00b3fe solid;
     border-right-width: 6px;
 }
-
