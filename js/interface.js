@@ -1,22 +1,28 @@
 $('#executar').bind('click', function(){
-    
+    solver = BranchBound(leituraParametros());
+    solver.executar();
+});
+
+
+leituraParametros = function(){
     //Determinando qtd de variaveis e restricoes
     var nvariaveis = $('#variaveis').val();
     var nrestricoes;
     for(i = 1; i <= 100; i++){
-        if($("x0" + i).length)
+        if($("x" + i + "0").length)
             nrestricoes = i;
         else
             break;
     }
     
     //Lendo dados do modelo
+    problema = $('problema').val();
     objetivo = [];
     restricoes = [];
     relacoes = [];
     rhs = [];
-    lower = [];
     upper = [];
+    lower = [];
     for(i = 0; i < nvariaveis; i++){
         
         objetivo[i] = $('x0' + i).val();
@@ -29,13 +35,26 @@ $('#executar').bind('click', function(){
                 alert("Restricoes devem conter somente numeros");
                 return;
             }
+            
+            relacoes[j] = $('relacao' + j).val();
+            
+            rhs[j] = $('ladoDir' + j).val();
         }
         
-        
-        
+        upper[i] = $('limSupx' + i).val();
+        lower[i] = $('limInfx' + i).val();
     }
-});
-
+    
+    return {
+        problema: problema,
+        objetivo: objetivo,
+        restricoes: restricoes,
+        relacoes: relacoes,
+        rhs: rhs,
+        upper: upper,
+        lower: lower
+    };
+};
 
 $(function () {
 

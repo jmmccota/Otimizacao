@@ -1,17 +1,14 @@
-function BranchBound(/* Parametros do simplex */) {
+function BranchBound(modelo) {
     /*
      Classe que controlara a chamada do simplex
      */
-
-    /* Parametros do simplex em variaveis privadas*/
-    include("caminho do simplex");
+    
+    include("glpk.min.js");
     include("heap.js");
     
-    this.preparaSource = function(){
-        
-    };
+    this.heap = Heap(Nodo(0, modelo));
 
-    this.passoAPasso = function () {
+    this.passoAPasso = function (nodo) {
 
     };
 
@@ -19,7 +16,7 @@ function BranchBound(/* Parametros do simplex */) {
 
     };
 
-    this.resolve = function (source) {
+    this.executar = function (source) {
 
         start = new Date();
         logNode.innerText = "";
@@ -134,7 +131,8 @@ function BranchBound(/* Parametros do simplex */) {
     this.getHeap = function () {
         return this.array;
     };
-
+    
+    return this;
 }
 
 
@@ -145,5 +143,4 @@ function include(path) {
     aux.type = "text/javascript";
     aux.src = path;
     document.body.appendChild(aux);
-}
-;
+};
