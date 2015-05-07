@@ -5,13 +5,11 @@ function deleteRow1() {
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
-        alert("Nao pode")
+        alert("O problema deve haver pelo menos uma restrição!")
     } else {
         table.deleteRow(controle + 2);
         controle--;
     }
-
-
 }
 function addRow1() {
     var qVariaveis = document.getElementById("variaveis");
@@ -28,7 +26,7 @@ function addRow1() {
         row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
     }
     else {
-
+        controle--;
         alert("Estorou limite de Restricoes!")
     }
 }
@@ -95,7 +93,7 @@ function load() {
     console.log("Prestricoes load finished");
 }
 $(document).ready(function () {
-
+    $('#add2').hide('fast');
     $('#add1').hide('fast');
     $('#sub1').hide('fast');
     $('#executar').hide('fast');
@@ -124,6 +122,7 @@ $(document).ready(function () {
                             addRow();
                             addRow2();
                             $('#add1').show('fast');
+                            $('#sub1').show('fast');
                             $('#executar').show('fast');
                             $('#limpar').show('fast');
                             $('#excluir1').show('fast');
@@ -137,7 +136,9 @@ $(document).ready(function () {
         else {
             addRow();
             addRow2();
+            $('#add2').show('fast');
             $('#add1').show('fast');
+            $('#sub1').show('fast');
             $('#executar').show('fast');
             $('#limpar').show('fast');
             $('#excluir1').show('fast');
