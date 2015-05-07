@@ -124,6 +124,7 @@ $(document).ready(function () {
                             addRow();
                             addRow2();
                             $('#add1').show('fast');
+                            $('#sub1').show('fast');
                             $('#executar').show('fast');
                             $('#limpar').show('fast');
                             $('#excluir1').show('fast');
@@ -138,6 +139,7 @@ $(document).ready(function () {
             addRow();
             addRow2();
             $('#add1').show('fast');
+            $('#sub1').show('fast');
             $('#executar').show('fast');
             $('#limpar').show('fast');
             $('#excluir1').show('fast');
