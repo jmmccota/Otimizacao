@@ -105,7 +105,7 @@ $(document).ready(function () {
 
         if (controle != -1) {
             bootbox.dialog({
-                title: 'Aviso',
+                title: '<center><b>Aviso</b></center>',
                 message: '<center><p>Todas as informações serão perdidas.</p></center>' +
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
