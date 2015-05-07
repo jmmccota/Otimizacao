@@ -1,4 +1,4 @@
-var controle = -1;
+﻿var controle = -1;
 var row;
 function addRow1() {
     var qVariaveis = document.getElementById("variaveis");
@@ -48,7 +48,7 @@ function addRow() {
     for (i = 1; i <= qVariaveis.value; i++) {
         row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
     }
-    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
+    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
     row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" >';
 
 }
@@ -81,17 +81,50 @@ function load() {
     console.log("Prestricoes load finished");
 }
 $(document).ready(function () {
+
     $('#add1').hide('fast');
     $('#executar').hide('fast');
     $('#limpar').hide('fast');
     $('#excluir1').hide('fast');
     $("#add").click(function () {
-        addRow();
-        addRow2();
-        $('#add1').show('fast');
-        $('#executar').show('fast');
-        $('#limpar').show('fast');
-        $('#tabela1').hide('fast');
-        $('#excluir1').show('fast');
+        if (controle != -1) {
+            bootbox.dialog({
+                title: 'Aviso',
+                message: '<center><p>Todas as informações serão perdidas.</p></center>' +
+                        '<center><p>Tem certeza disso? </p></center>',
+                buttons: {
+                    main: {
+                        label: "Cacelar",
+                        className: "btn-default",
+                    },
+
+                    success: {
+                        label: "Sim",
+                        className: "btn-success",
+                        callback: function () {
+                            $("#myTableData").empty();
+                            $("#myTableData2").empty();
+                            controle = -1;
+                            addRow();
+                            addRow2();
+                            $('#add1').show('fast');
+                            $('#executar').show('fast');
+                            $('#limpar').show('fast');
+                            $('#excluir1').show('fast');
+                        }
+                    }
+                }
+            }
+        );
+
+        }
+        else {
+            addRow();
+            addRow2();
+            $('#add1').show('fast');
+            $('#executar').show('fast');
+            $('#limpar').show('fast');
+            $('#excluir1').show('fast');
+        }
     });
 });
