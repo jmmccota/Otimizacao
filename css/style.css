@@ -190,7 +190,7 @@ panel-primary {
 }
 
 #myTableData2 {
-    width: 800px;
+    width: 75%;
     margin-top: 30px;
 }
 
@@ -220,4 +220,23 @@ panel-primary {
 #sidebar li.active {
     border: 0 #00b3fe solid;
     border-right-width: 6px;
+}
+.alert
+{
+    position: fixed;
+    bottom: 25%;
+    right: 0;
+    margin-bottom: 0;
+    font-size: 1.2em;
+	padding: 1em 8em;
+    z-index: 2000;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.alert--finch
+{
+    display: block;
+    font-weight: bold;
+    text-align: center;
 }

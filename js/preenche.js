@@ -5,7 +5,7 @@ function deleteRow1() {
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
-        alert("O problema deve haver pelo menos uma restrição!")
+		showAlert('warning','O problema deve haver pelo menos uma restrição!')       
     } else {
         table.deleteRow(controle + 2);
         controle--;
@@ -27,7 +27,7 @@ function addRow1() {
     }
     else {
         controle--;
-        alert("Estorou limite de Restricoes!")
+		showAlert('warning','Limite de restrições máximo atingido: 20!')     
     }
 }
 function addRow() {
@@ -92,6 +92,13 @@ function load() {
 
     console.log("Prestricoes load finished");
 }
+function showAlert(type, message) {
+    $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
+	window.setTimeout(closeAlert, 3000);
+}
+function closeAlert() {
+    $('#alert').fadeOut();
+}
 $(document).ready(function () {
     $('#add2').hide('fast');
     $('#add1').hide('fast');
@@ -100,8 +107,7 @@ $(document).ready(function () {
     $('#limpar').hide('fast');
     $('#excluir1').hide('fast');
     $("#add").click(function () {
-
-        if (controle != -1) {
+	    if (controle != -1) {
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
                 message: '<center><p>Todas as informações serão perdidas.</p></center>' +
@@ -111,14 +117,13 @@ $(document).ready(function () {
                         label: "Cancelar",
                         className: "btn-default",
                     },
-
                     success: {
                         label: "Sim",
                         className: "btn-success",
                         callback: function () {
                             $("#myTableData").empty();
                             $("#myTableData2").empty();
-                            controle = -1;
+						    controle = -1;
                             addRow();
                             addRow2();
                             $('#add1').show('fast');
@@ -126,6 +131,7 @@ $(document).ready(function () {
                             $('#executar').show('fast');
                             $('#limpar').show('fast');
                             $('#excluir1').show('fast');
+							showAlert('success','Nova tabela gerada com sucesso!')
                         }
                     }
                 }
