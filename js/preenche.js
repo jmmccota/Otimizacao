@@ -5,7 +5,7 @@ function deleteRow1() {
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
-        alert("Nao pode")
+        alert("O problema deve haver pelo menos uma restrição!")
     } else {
         table.deleteRow(controle + 2);
         controle--;
