@@ -28,7 +28,7 @@ function addRow1() {
         row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
     }
     else {
-
+        controle--;
         alert("Estorou limite de Restricoes!")
     }
 }
