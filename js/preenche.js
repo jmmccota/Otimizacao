@@ -7,10 +7,7 @@ function deleteRow1() {
     if (controle < 1) {
         alert("O problema deve haver pelo menos uma restrição!")
     } else {
-        if(controle<=19)
-            table.deleteRow(controle + 2);
-        if(controle==20)
-            table.deleteRow(controle + 1);
+        table.deleteRow(controle + 2);
         controle--;
     }
 
