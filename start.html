@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1>
+                    <h1> 
                         Branch-Bound
                         <p class="lead">Programação Linear Inteira Mista(PLIM)</p>
                     </h1>
@@ -79,7 +79,10 @@
                         <table id="myTableData" class="table table-hover table-striped"></table>
 
                         &nbsp;
-                        <center><input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()"></center>
+                        <center>
+                            <input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()">
+                            <input type="button" class="btn btn-primary" id="sub1" value="Excluir Restri&ccedil;&atilde;o" onclick="Javascript:deleteRow1()">
+                        </center>
 
                         <center>
                             <table id="myTableData2" class="table table-hover table-striped"></table>
@@ -112,6 +115,7 @@
 </body>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<script type="text/javascript" src="js/bootbox.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootbox.min.js"></script>

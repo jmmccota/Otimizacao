@@ -1,5 +1,18 @@
 ﻿var controle = -1;
 var row;
+function deleteRow1() {
+    //var obj = document.getElementById("myTableData").rows[controle];
+    var index = obj.parentNode.parentNode.rowIndex;
+    var table = document.getElementById("myTableData");
+    if (controle < 1) {
+        alert("Nao pode")
+    } else {
+        table.deleteRow(controle + 2);
+        controle--;
+    }
+
+
+}
 function addRow1() {
     var qVariaveis = document.getElementById("variaveis");
     controle++;
@@ -15,6 +28,7 @@ function addRow1() {
         row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
     }
     else {
+
         alert("Estorou limite de Restricoes!")
     }
 }
@@ -83,10 +97,12 @@ function load() {
 $(document).ready(function () {
 
     $('#add1').hide('fast');
+    $('#sub1').hide('fast');
     $('#executar').hide('fast');
     $('#limpar').hide('fast');
     $('#excluir1').hide('fast');
     $("#add").click(function () {
+<<<<<<< HEAD
         if (controle != -1) {
             bootbox.dialog({
                 title: 'Aviso',
@@ -128,3 +144,16 @@ $(document).ready(function () {
         }
     });
 });
+=======
+        addRow();
+        addRow2();
+        $('#add1').show('fast');
+        $('#sub1').show('fast');
+        $('#executar').show('fast');
+        $('#limpar').show('fast');
+        $('#tabela1').hide('fast');
+        $('#excluir1').show('fast');
+    });
+    
+});
+>>>>>>> 177dcd78e63137d0a15fbbd8b0ea919b197a6d07
