@@ -1,8 +1,6 @@
-<body onload="load()">
- 
-        <span id="alert" style="display:none;">The examples populate this alert with dummy content</span>
-   
-	<div id="masthead">
+<body>
+    <span id="alert" style="display:none;"></span>
+    <div id="masthead">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
@@ -36,77 +34,79 @@
         <div class="tab-content well">
             <div id="sectionA" class="tab-pane fade in active">
                 <div class="container-fluid">
-                    
-                        <div id="tabela1">
-                            <form>
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <label class="control-label">Problema:</label>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <select class="form-control" id="problema">
-                                            <option>Maximização</option>
-                                            <option>Minimização</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row" style="padding-top:10px;">
-                                    <div class="col-lg-2">
-                                        <label class="control-label">Número de Variáveis:</label>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <select class="form-control" id="variaveis" style="width:80px;">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row" style="padding-top:10px;">
-                                    <div class="col-lg-4">
-										<button type="button" id="add" class="btn btn-primary" style="width: 100%;" >
-										  <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema de Otimização
-										</button>
-                                        
-                                    </div>
-                                </div>
 
-                            </form>
-                        </div>
-                   
+                    <div id="tabela1">
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label class="control-label">Problema:</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <select class="form-control" id="problema">
+                                        <option>Maximização</option>
+                                        <option>Minimização</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:10px;">
+                                <div class="col-lg-2">
+                                    <label class="control-label">Número de Variáveis:</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <select class="form-control" id="variaveis" style="width:80px;">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:10px;">
+                                <div class="col-lg-4">
+                                    <button type="button" id="add" class="btn btn-primary" style="width: 100%;">
+                                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema de Otimização
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
                     <div id="mydata" style="margin-top: 20px;">
                         <table id="myTableData" class="table table-hover table-striped"></table>
-                      
-                        <center><input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()">
-                            <input type="button" class="btn btn-danger" id="add2" value="Excluir Restri&ccedil;&atilde;o" onclick="Javascript:deleteRow1()"></center>
+
+                        <center>
+                            <input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()">
+                            <input type="button" class="btn btn-danger" id="add2" value="Excluir Restri&ccedil;&atilde;o" onclick="Javascript:deleteRow1()">
+                        </center>
 
 
                         <center>
                             <table id="myTableData2" class="table table-hover table-striped"></table>
                         </center>
                         <center>
-						<button type="button"class="btn btn-success" id="salvar" >
-						  <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
-						</button>
-						<button type="button"class="btn btn-primary" id="executar" >
-						  <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
-						</button>
-						<button type="button"class="btn btn-info" id="executarPasso" >
-						  <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
-						</button>
-						<button type="button" class="btn btn-default" id="limpar" >
-						  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Limpar Tudo
-						</button>
-							
-                           
-							
+                            <button type="button" class="btn btn-success" id="salvar">
+                                <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
+                            </button>
+                            <button type="button" class="btn btn-primary" id="executar">
+                                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
+                            </button>
+                            <button type="button" class="btn btn-info" id="executarPasso">
+                                <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
+                            </button>
+                            <button type="button" class="btn btn-default" id="limpar">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Limpar Tudo
+                            </button>
+
+
+
                         </center>
                     </div>
 
@@ -129,6 +129,12 @@
 
         </div>
     </div>
+    <div class="scroll-top-wrapper ">
+        <span class="scroll-top-inner">
+            <i class="glyphicon glyphicon-arrow-up"></i>
+        </span>
+    </div>
+
 </body>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
