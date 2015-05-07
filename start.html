@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1> 
+                    <h1>
                         Branch-Bound
                         <p class="lead">Programação Linear Inteira Mista(PLIM)</p>
                     </h1>
@@ -27,62 +27,59 @@
     </div><!--/masthead-->
     <div class="container">
         <ul class="nav nav-tabs nav-justified">
-            <li class="active"><a data-toggle="tab" href="#sectionA"><span class="glyphicon glyphicon-list-alt"></span> <b> Criar novo Problema de Otimização</b></a></li>
-            <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-upload"></span> <b>Carregar Problema de Otimização </b></a></li>
+            <li class="active"><a data-toggle="tab" href="#sectionA"><span class="glyphicon glyphicon-list-alt"></span> Criar novo Problema de Otimização</a></li>
+            <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-upload"></span> Carregar Problema de Otimização</a></li>
         </ul>
         <div class="tab-content well">
             <div id="sectionA" class="tab-pane fade in active">
                 <div>
-                    <div id="tabela1">
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <label class="control-label">Problema:</label>
+                    <div id="myform">
+                        <div id="tabela1">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label class="control-label">Problema:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <select class="form-control" id="problema">
+                                            <option>Maximização</option>
+                                            <option>Minimização</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <select class="form-control" id="problema">
-                                        <option>Maximização</option>
-                                        <option>Minimização</option>
-                                    </select>
+                                <div class="row" style="padding-top:10px;">
+                                    <div class="col-lg-2">
+                                        <label class="control-label">Número de Variáveis:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <select class="form-control" id="variaveis" style="width:80px;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row" style="padding-top:10px;">
-                                <div class="col-lg-2">
-                                    <label class="control-label">Número de Variáveis:</label>
+                                <div class="row" style="padding-top:10px;">
+                                    <div class="col-lg-4 col-lg-offset-0">
+                                        <button type="button" id="add" class="btn btn-primary" style="width: 100%;">Gerar</button>
+                                    </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <select class="form-control" id="variaveis" style="width:80px;">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                        <option>10</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row" style="padding-top:10px;">
-                                <div class="col-lg-4 col-lg-offset-0">
-                                    <button type="button" id="add" class="btn btn-primary" style="width: 100%;">Gerar</button>
-                                </div>
-                            </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                    <!-- Button trigger modal -->
-
                     <div id="mydata" style="margin-top: 20px; margin-bottom: 20px;">
                         <table id="myTableData" class="table table-hover table-striped"></table>
 
                         &nbsp;
-                        <center>
-                            <input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()">
-                            <input type="button" class="btn btn-primary" id="sub1" value="Excluir Restri&ccedil;&atilde;o" onclick="Javascript:deleteRow1()">
-                        </center>
+                        <center><input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()"></center>
 
                         <center>
                             <table id="myTableData2" class="table table-hover table-striped"></table>
@@ -115,9 +112,7 @@
 </body>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<script type="text/javascript" src="js/bootbox.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootbox.min.js"></script>
 <script type="text/javascript" src="js/preenche.js"></script>
-

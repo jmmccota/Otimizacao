@@ -102,7 +102,7 @@ $(document).ready(function () {
     $('#limpar').hide('fast');
     $('#excluir1').hide('fast');
     $("#add").click(function () {
-<<<<<<< HEAD
+
         if (controle != -1) {
             bootbox.dialog({
                 title: 'Aviso',
@@ -110,7 +110,7 @@ $(document).ready(function () {
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
                     main: {
-                        label: "Cacelar",
+                        label: "Cancelar",
                         className: "btn-default",
                     },
 
@@ -144,16 +144,4 @@ $(document).ready(function () {
         }
     });
 });
-=======
-        addRow();
-        addRow2();
-        $('#add1').show('fast');
-        $('#sub1').show('fast');
-        $('#executar').show('fast');
-        $('#limpar').show('fast');
-        $('#tabela1').hide('fast');
-        $('#excluir1').show('fast');
-    });
-    
-});
->>>>>>> 177dcd78e63137d0a15fbbd8b0ea919b197a6d07
+
