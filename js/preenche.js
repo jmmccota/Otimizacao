@@ -93,20 +93,56 @@ function load() {
     console.log("Prestricoes load finished");
 }
 function showAlert(type, message) {
+	$('#alert').removeClass();
     $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
 	window.setTimeout(closeAlert, 3000);
 }
 function closeAlert() {
     $('#alert').fadeOut();
 }
+function hideFormProblema()
+{
+	$('#add2').hide();
+    $('#add1').hide();
+    $('#sub1').hide();
+    $('#executar').hide();
+	$('#salvar').hide();
+	$('#executarPasso').hide();
+    $('#limpar').hide();
+    $('#excluir1').hide();
+}
+
 $(document).ready(function () {
-    $('#add2').hide('fast');
-    $('#add1').hide('fast');
-    $('#sub1').hide('fast');
-    $('#executar').hide('fast');
-    $('#limpar').hide('fast');
-    $('#excluir1').hide('fast');
+	hideFormProblema();
+	$("#limpar").click(function () {
+		    bootbox.dialog({
+                title: '<center><b>Aviso</b></center>',
+                message: '<center><p>Todas as informações serão perdidas.</p></center>' +
+                        '<center><p>Tem certeza disso? </p></center>',
+                buttons: {
+                    main: {
+                        label: "Cancelar",
+                        className: "btn-default",
+                    },
+                    success: {
+                        label: "Sim",
+                        className: "btn-success",
+                        callback: function () {
+                            $("#myTableData").empty();
+                            $("#myTableData2").empty();
+						    controle = -1;
+                            addRow();
+                            addRow2();
+							showAlert('success','Limpeza realizada com Sucesso!')
+                        }
+                    }
+                }
+            }
+        );
+	 });
+    
     $("#add").click(function () {
+		
 	    if (controle != -1) {
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
@@ -126,11 +162,6 @@ $(document).ready(function () {
 						    controle = -1;
                             addRow();
                             addRow2();
-                            $('#add1').show('fast');
-                            $('#sub1').show('fast');
-                            $('#executar').show('fast');
-                            $('#limpar').show('fast');
-                            $('#excluir1').show('fast');
 							showAlert('success','Nova tabela gerada com sucesso!')
                         }
                     }
@@ -146,7 +177,9 @@ $(document).ready(function () {
             $('#add1').show('fast');
             $('#sub1').show('fast');
             $('#executar').show('fast');
-            $('#limpar').show('fast');
+			$('#executarPasso').show('fast');
+			$('#salvar').show('fast');
+			$('#limpar').show('fast');
             $('#excluir1').show('fast');
         }
     });

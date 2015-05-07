@@ -30,7 +30,7 @@
     </div><!--/masthead-->
     <div class="container">
         <ul class="nav nav-tabs nav-justified">
-            <li class="active"><a data-toggle="tab" href="#sectionA"><span class="glyphicon glyphicon-file"></span><b> Criar novo Problema de Otimização</b></a></li>
+            <li class="active"><a data-toggle="tab" href="#sectionA"><span class="glyphicon glyphicon-new-window"></span><b> Criar novo Problema de Otimização</b></a></li>
             <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-upload"></span> <b>Carregar Problema de Otimização</b></a></li>
         </ul>
         <div class="tab-content well">
@@ -70,8 +70,11 @@
                                     </div>
                                 </div>
                                 <div class="row" style="padding-top:10px;">
-                                    <div class="col-lg-4 col-lg-offset-0">
-                                        <button type="button" id="add" class="btn btn-primary" style="width: 100%;">Gerar</button>
+                                    <div class="col-lg-4">
+										<button type="button" id="add" class="btn btn-primary" style="width: 100%;" >
+										  <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema de Otimização
+										</button>
+                                        
                                     </div>
                                 </div>
 
@@ -89,8 +92,21 @@
                             <table id="myTableData2" class="table table-hover table-striped"></table>
                         </center>
                         <center>
-                            <input type="button" class="btn btn-primary" id="executar" value="Executar">
-                            <a href="index.html"><input type="button" class="btn btn-primary" id="limpar" value="Voltar"></a>
+						<button type="button"class="btn btn-success" id="salvar" >
+						  <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
+						</button>
+						<button type="button"class="btn btn-primary" id="executar" >
+						  <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
+						</button>
+						<button type="button"class="btn btn-info" id="executarPasso" >
+						  <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
+						</button>
+						<button type="button" class="btn btn-default" id="limpar" >
+						  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Limpar Tudo
+						</button>
+							
+                           
+							
                         </center>
                     </div>
 
