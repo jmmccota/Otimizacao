@@ -1,7 +1,7 @@
 ﻿var controle = -1;
 var row;
 function deleteRow1() {
-    //var obj = document.getElementById("myTableData").rows[controle];
+    var obj = document.getElementById("myTableData").rows[controle];
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
