@@ -95,7 +95,7 @@ function load() {
     console.log("Prestricoes load finished");
 }
 $(document).ready(function () {
-
+    $('#add2').hide('fast');
     $('#add1').hide('fast');
     $('#sub1').hide('fast');
     $('#executar').hide('fast');
@@ -138,6 +138,7 @@ $(document).ready(function () {
         else {
             addRow();
             addRow2();
+            $('#add2').show('fast');
             $('#add1').show('fast');
             $('#sub1').show('fast');
             $('#executar').show('fast');
