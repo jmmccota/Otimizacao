@@ -1,7 +1,7 @@
 include("glpk.min.js");
 include("jquery.min.js");
 
-Nodo = function (id, pai, altura, modelo) {
+Nodo = function (id, pai, altura, modelo, z, x) {
     /* 
      * Classe que sera usada como elemento do heap.
      * Contem as informacoes necessarias para a execucao do metodo simplex
@@ -19,6 +19,8 @@ Nodo = function (id, pai, altura, modelo) {
     this.rhs = modelo["rhs"];
     this.upper = modelo["upper"];
     this.lower = modelo["lower"];
+    this.z = z;
+    this.x = x;
 
 
     this.toSource = function () {
@@ -63,7 +65,7 @@ Nodo = function (id, pai, altura, modelo) {
     return this;
 };
 
-Heap = function (Nodo) {
+Heap = function (nodo) {
     /*
      * Classe que sera usada como "arvore" para o metodo branch and bound.
      * this.array contem o vetor com o heap.
@@ -72,26 +74,57 @@ Heap = function (Nodo) {
      * Inicializa com Nodo como elemento raiz
      */
     this.array = new Array(0);
-    this.array[1] = Nodo;
-
-    this.insereElementos = function (pai, esq, dir) {
+    this.array[1] = nodo;
+    
+    //EXCLUIR ?????
+    this.insereModelos = function (pai, mEsq, mDir){
         /*
          * pai eh o indice do elemento pai de esq e dir.
-         * esq eh o objeto tipo nodo que sera o filho a esquerda de pai.
+         * esq eh o modelo que sera o filho a esquerda de pai.
          * se esq for 'null' adiciona somente o elemento a direita.
-         * dir eh o objeto tipo nodo que sera o filho a direita de pai.
+         * dir eh o modelo que sera o filho a direita de pai.
          * se dir for 'null' adiciona somente o elemento a esquerda.
          */
-        if (esq != null)
-            this.array[pai * 2] = esq;
-        if (dir != null)
-            this.array[pai * 2 + 1] = dir;
+        
+        if (mEsq != null){
+            esq = Nodo(pai*2, pai, array[pai].altura+1, mEsq, 0, 0);
+            this.array[esq.id] = esq;
+        }
+        if (mDir != null){
+            dir = Nodo(pai*2+1, pai, array[pai].altura+1, mDir, 0, 0);
+            this.array[dir.id] = dir;
+        }
+    };
+    
+    this.insereNodos = function (pai, esq, dir){
+        /*
+         * pai eh o indice do elemento pai de esq e dir.
+         * esq eh o nodo que sera o filho a esquerda de pai.
+         * se esq for 'null' adiciona somente o elemento a direita.
+         * dir eh o nodo que sera o filho a direita de pai.
+         * se dir for 'null' adiciona somente o elemento a esquerda.
+         */
+        if (esq != null){
+            esq.id = pai*2;
+            esq.pai = pai;
+            esq.altura = this.array[pai].altura + 1;
+            this.array[esq.id] = esq;
+        }
+        if (dir != null){
+            dir.id = pai*2+1;
+            dir.pai = pai;
+            dir.altura = this.array[pai].altura + 1;
+            this.array[dir.id] = dir;
+        }
     };
 
     this.busca = function (nodo) {
         /*
          * Retorna o indice em que o objeto 'nodo' esta no heap.
          * Retorna 0 caso nao esteja.
+         * 
+         * SUBSTITUIR POR INDEX OF ?????
+         * 
          */
         for (i = 1; i < this.array.length; i++)
             if (i in this.array && this.array[i] === nodo)
@@ -108,13 +141,6 @@ Heap = function (Nodo) {
             this.array[indice] = novo;
     };
 
-    this.getNodosAltura = function (altura) {
-        /*
-         * Retorna um vetor contendo os nodos do heap a uma certa 'altura'
-         */
-
-    };
-
     this.getPai = function (nodo) {
         /*
          * Nodo e o indice de um elemento
@@ -126,29 +152,86 @@ Heap = function (Nodo) {
     return this;
 };
 
-BranchBound = function (modelo) {
+BranchBound = function () {
     /*
      * Classe que controla a chamada do simplex
      * Usa um heap para simular a arvore de possibilidades
      */
 
-
-    this.heap = Heap(Nodo(0, modelo));
-
-    this.inicializa = function () {
+    
+    this.inicializa = function (){
+        /*
+         * "Construtor" da classe BranchBound
+         * Resolve o simplex para o modelo inicial e retorna o nodo
+         */
+        var modelo = leituraParametros();
         
+        var nodo = Nodo(1, 1, 0, modelo, 0, 0);
+        this.heap = Heap(nodo);
+        this.atual = 1;
+        this.fila = [1];
+        
+        var res = simplex(this.heap.array[1].toSource());
+        
+        this.heap.array[1].z = res['z'];
+        this.heap.array[1].x = res['x'];
+        
+        return this.heap.array[1];
     };
-
-    this.proximoPasso = function () {
+    
+    this.terminou = function (){
+        //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
+        return heap.fila === [];
+    };
+    
+    this.proximoPasso = function(xi){
+    /*
+     * xi eh o id do x que sera alterado
+     * executa uma iteracao do branch and bound:
+     *     gera os proximos branchs e resolve o proximo da fila
+     *     retorna o nodo que foi resolvido
+     */
+        //se heap[atual].x[xi] for fracionario
+        var x = heap.array[atual].x[xi];
+        if(x != Math.floor(x)){
+            //adiciona restricao de heap[atual].x[xi], gerando 2 modelos
+            var esq = heap.array[atual];
+            var dir = heap.array[atual];
+            
+            dir.lower[xi] = Math.ceil(x);
+            esq.upper[xi] = Math.floor(x);
+            
+            //insere 2 nodos no heap e na fila
+            heap.insereNodos(atual, esq, dir);
+            fila.push(atual*2);
+            fila.push(atual*2+1);
+        }
         
+        var nodo = null;
+        
+        //se nao terminou
+        if(!terminou()){
+            //retira o 1o da fila
+            nodo = heap.array[fila.shift()];
+            //atual = 1o da fila
+            atual = nodo.id;
+            //resolve o simplex
+            var res = simplex(nodo);
+            //completa o nodo e retorna
+            nodo.x = res["x"];
+            nodo.z = res["z"];
+        }
+        
+        return nodo;
     };
     
     this.passoAPasso = function (){
-        
+        //le variavel q o usuario clicou
+        return proximoPasso(/*indice do x q o usuario escolheu*/);
     };
     
     this.executar = function (){
-        
+        return proximoPasso(escolheVariavel(this.heap.array[this.atual].x));
     };
     
     this.escolheVariavel = function(x){
@@ -160,13 +243,17 @@ BranchBound = function (modelo) {
         for(i = 0; i < x.lenght; i++){
             if(x[i] !== Math.floor(x[i])){
                 //Se for fracionario
-                
-                if(Math.abs( x[i] - Math.floor(x[i]) - 0.5 ) < minval)
+                if(Math.abs( x[i] - Math.floor(x[i]) - 0.5 ) < minval){
                     mini = i;
                     minval = Math.abs( x[i] - Math.floor(x[i]) - 0.5 );
+                }
             }
         }
         return mini;
+    };
+    
+    this.melhorSolucao = function (){
+        //retornar o id do nodo com maior/menor Z se numero
     };
     
     return this;
