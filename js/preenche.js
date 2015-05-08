@@ -1,4 +1,4 @@
-﻿var controle = -1;
+var controle = -1;
 var row;
 function deleteRow1() {
     var obj = document.getElementById("myTableData").rows[controle];
@@ -23,7 +23,7 @@ function addRow1() {
             row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number"  class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         }
         row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control"><option><=</option><option>=</option><option>>=</option></select>';
-        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" onkeypress="return isNumberKey(event)" required>';
+        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     }
     else {
         controle--;
@@ -61,7 +61,7 @@ function addRow() {
         row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     }
     row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
-    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" required>';
+    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" required  step="any">';
 
 }
 function addRow2() {
