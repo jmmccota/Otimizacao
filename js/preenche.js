@@ -88,10 +88,6 @@ function addRow2() {
     }
 
 }
-function load() {
-
-    console.log("Prestricoes load finished");
-}
 
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -153,6 +149,14 @@ $(document).ready(function () {
             }
         }
     );
+    });
+    $("#mpl").click(function () {
+        $('#modelo').addClass('mpl').fadeIn();
+    });
+    $("#close").click(function () {
+        $('#modelo').fadeOut(500);
+        //$('#modelo').empty();
+
     });
 
     $("#add").click(function () {
