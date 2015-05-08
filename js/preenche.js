@@ -98,8 +98,6 @@ function isNumberKey(evt) {
         return false;
 
     }
-
-
     return true;
 }
 
@@ -152,6 +150,19 @@ $(document).ready(function () {
     });
     $("#mpl").click(function () {
         $('#modelo').addClass('mpl').fadeIn();
+        var tipoProblema = $("#problema").val();
+        var content = document.getElementById("contentModelo");
+        var bodyModel = "";
+
+        if (tipoProblema == "Maximize") {
+            bodyModel += '<span>max:</span>';
+        } else {
+            bodyModel += '<span>min:</span>';
+        }
+        bodyModel += "<br><span>sujeito a:</span>"
+        content.innerHTML = bodyModel;
+
+
     });
     $("#close").click(function () {
         $('#modelo').fadeOut(500);
