@@ -54,7 +54,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         for (i = 0; i < objetivo.length; i++)
             source += "x" + i + "\n";
 
-        source += "\nEnd";
+        source += "\nEnd\n";
 
         return source;
     };
@@ -168,7 +168,7 @@ BranchBound = function () {
         this.atual = 1;
         this.fila = [1];
         
-        var res = simplex(this.heap.array[1].toSource());
+        var res = simplex(this.heap.array[1]);
         
         this.heap.array[1].z = res['z'];
         this.heap.array[1].x = res['x'];
@@ -195,8 +195,8 @@ BranchBound = function () {
             var esq = heap.array[atual];
             var dir = heap.array[atual];
             
-            dir.lower[xi] = Math.ceil(x);
-            esq.upper[xi] = Math.floor(x);
+            dir.lower[xi] = Math.floor(x);
+            esq.upper[xi] = Math.ceil(x);
             
             //insere 2 nodos no heap e na fila
             heap.insereNodos(atual, esq, dir);
@@ -235,9 +235,9 @@ BranchBound = function () {
         /*
          * Retorna o indice da variavel mais fracionaria de x
          */
-        mini = 0;
-        minval = 1;
-        for(i = 0; i < x.lenght; i++){
+        var mini = 0;
+        var minval = 1;
+        for(var i = 0; i < x.lenght; i++){
             if(x[i] !== Math.floor(x[i])){
                 //Se for fracionario
                 if(Math.abs( x[i] - Math.floor(x[i]) - 0.5 ) < minval){
@@ -280,7 +280,7 @@ simplex = function (Nodo) {
         z = glp_get_obj_val(lp);
         x = [];
         for (var i = 0; i < glp_get_num_cols(lp); i++) {
-            x[i] = glp_get_col_prim(lp, i);
+            x[i] = glp_get_col_prim(lp, i+1);
         }
         return {z: z,
                 x: x};
