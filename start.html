@@ -130,12 +130,17 @@
             <div id="sectionB" class="tab-pane fade">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-2">
-                            <label class="control-label">Selecione Arquivo:</label>
-                        </div>
-                        <div class="col-lg-3">
-                            <input type="file" id="exampleInputFile">
-                        </div>
+                        <form id="formUpload" action="" method="get" name="formulario">
+                            <div class="col-lg-2">
+                                <label class="control-label">Selecione Arquivo:</label>
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="file" id="exampleInputFile">
+                            </div>
+                            <button type="submit" class="btn btn-success" id="salvar">
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -155,5 +160,5 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootbox.min.js"></script>
 <script type="text/javascript" src="js/preenche.js"></script>
-
-
+<script type="text/javascript" src="js/branchbound.js"></script>
+<script type="text/javascript" src="js/FileSaver.min.js"></script>
