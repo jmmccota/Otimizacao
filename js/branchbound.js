@@ -22,7 +22,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
 
     this.toSource = function () {
         var source = "";
-        
+
         source = problema + '\n';
         source += "obj: ";
         for (i = 0; i < objetivo.length; i++) {
@@ -32,7 +32,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         source += "\n\n" + "Subject To" + "\n";
 
         for (i = 0; i < restricoes.length; i++) {
-            source += "res_" + (i+1) + ":";
+            source += "res_" + (i + 1) + ":";
             for (j = 0; j < objetivo.length; j++) {
                 source += (restricoes[i][j] >= 0) ? " +" : " ";
                 source += restricoes[i][j] + " x" + j;
@@ -72,9 +72,9 @@ Heap = function (nodo) {
      */
     this.array = new Array(0);
     this.array[1] = nodo;
-    
+
     //EXCLUIR ?????
-    this.insereModelos = function (pai, mEsq, mDir){
+    this.insereModelos = function (pai, mEsq, mDir) {
         /*
          * pai eh o indice do elemento pai de esq e dir.
          * esq eh o modelo que sera o filho a esquerda de pai.
@@ -82,18 +82,18 @@ Heap = function (nodo) {
          * dir eh o modelo que sera o filho a direita de pai.
          * se dir for 'null' adiciona somente o elemento a esquerda.
          */
-        
-        if (mEsq != null){
-            esq = Nodo(pai*2, pai, array[pai].altura+1, mEsq, 0, 0);
+
+        if (mEsq != null) {
+            esq = Nodo(pai * 2, pai, array[pai].altura + 1, mEsq, 0, 0);
             this.array[esq.id] = esq;
         }
-        if (mDir != null){
-            dir = Nodo(pai*2+1, pai, array[pai].altura+1, mDir, 0, 0);
+        if (mDir != null) {
+            dir = Nodo(pai * 2 + 1, pai, array[pai].altura + 1, mDir, 0, 0);
             this.array[dir.id] = dir;
         }
     };
-    
-    this.insereNodos = function (pai, esq, dir){
+
+    this.insereNodos = function (pai, esq, dir) {
         /*
          * pai eh o indice do elemento pai de esq e dir.
          * esq eh o nodo que sera o filho a esquerda de pai.
@@ -101,14 +101,14 @@ Heap = function (nodo) {
          * dir eh o nodo que sera o filho a direita de pai.
          * se dir for 'null' adiciona somente o elemento a esquerda.
          */
-        if (esq != null){
-            esq.id = pai*2;
+        if (esq != null) {
+            esq.id = pai * 2;
             esq.pai = pai;
             esq.altura = this.array[pai].altura + 1;
             this.array[esq.id] = esq;
         }
-        if (dir != null){
-            dir.id = pai*2+1;
+        if (dir != null) {
+            dir.id = pai * 2 + 1;
             dir.pai = pai;
             dir.altura = this.array[pai].altura + 1;
             this.array[dir.id] = dir;
@@ -155,59 +155,59 @@ BranchBound = function () {
      * Usa um heap para simular a arvore de possibilidades
      */
 
-    
-    this.inicializa = function (){
+
+    this.inicializa = function () {
         /*
          * "Construtor" da classe BranchBound
          * Resolve o simplex para o modelo inicial e retorna o nodo
          */
         var modelo = leituraParametros();
-        
+
         var nodo = Nodo(1, 1, 0, modelo, 0, 0);
         this.heap = Heap(nodo);
         this.atual = 1;
         this.fila = [1];
-        
+
         var res = simplex(this.heap.array[1]);
-        
+
         this.heap.array[1].z = res['z'];
         this.heap.array[1].x = res['x'];
-        
+
         return this.heap.array[1];
     };
-    
-    this.terminou = function (){
+
+    this.terminou = function () {
         //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
         return heap.fila === [];
     };
-    
-    this.proximoPasso = function(xi){
-    /*
-     * xi eh o id do x que sera alterado
-     * executa uma iteracao do branch and bound:
-     *     gera os proximos branchs e resolve o proximo da fila
-     *     retorna o nodo que foi resolvido
-     */
+
+    this.proximoPasso = function (xi) {
+        /*
+         * xi eh o id do x que sera alterado
+         * executa uma iteracao do branch and bound:
+         *     gera os proximos branchs e resolve o proximo da fila
+         *     retorna o nodo que foi resolvido
+         */
         //se heap[atual].x[xi] for fracionario
         var x = heap.array[atual].x[xi];
-        if(x != Math.floor(x)){
+        if (x != Math.floor(x)) {
             //adiciona restricao de heap[atual].x[xi], gerando 2 modelos
             var esq = heap.array[atual];
             var dir = heap.array[atual];
-            
+
             dir.lower[xi] = Math.floor(x);
             esq.upper[xi] = Math.ceil(x);
-            
+
             //insere 2 nodos no heap e na fila
             heap.insereNodos(atual, esq, dir);
-            fila.push(atual*2);
-            fila.push(atual*2+1);
+            fila.push(atual * 2);
+            fila.push(atual * 2 + 1);
         }
-        
+
         var nodo = null;
-        
+
         //se nao terminou
-        if(!terminou()){
+        if (!terminou()) {
             //retira o 1o da fila
             nodo = heap.array[fila.shift()];
             //atual = 1o da fila
@@ -218,41 +218,41 @@ BranchBound = function () {
             nodo.x = res["x"];
             nodo.z = res["z"];
         }
-        
+
         return nodo;
     };
-    
-    this.passoAPasso = function (){
+
+    this.passoAPasso = function () {
         //le variavel q o usuario clicou
         return proximoPasso(/*indice do x q o usuario escolheu*/);
     };
-    
-    this.executar = function (){
+
+    this.executar = function () {
         return proximoPasso(escolheVariavel(this.heap.array[this.atual].x));
     };
-    
-    this.escolheVariavel = function(x){
+
+    this.escolheVariavel = function (x) {
         /*
          * Retorna o indice da variavel mais fracionaria de x
          */
         var mini = 0;
         var minval = 1;
-        for(var i = 0; i < x.lenght; i++){
-            if(x[i] !== Math.floor(x[i])){
+        for (var i = 0; i < x.lenght; i++) {
+            if (x[i] !== Math.floor(x[i])) {
                 //Se for fracionario
-                if(Math.abs( x[i] - Math.floor(x[i]) - 0.5 ) < minval){
+                if (Math.abs(x[i] - Math.floor(x[i]) - 0.5) < minval) {
                     mini = i;
-                    minval = Math.abs( x[i] - Math.floor(x[i]) - 0.5 );
+                    minval = Math.abs(x[i] - Math.floor(x[i]) - 0.5);
                 }
             }
         }
         return mini;
     };
-    
-    this.melhorSolucao = function (){
+
+    this.melhorSolucao = function () {
         //retornar o id do nodo com maior/menor Z se numero
     };
-    
+
     return this;
 };
 
@@ -280,10 +280,10 @@ simplex = function (Nodo) {
         z = glp_get_obj_val(lp);
         x = [];
         for (var i = 0; i < glp_get_num_cols(lp); i++) {
-            x[i] = glp_get_col_prim(lp, i+1);
+            x[i] = glp_get_col_prim(lp, i + 1);
         }
         return {z: z,
-                x: x};
+            x: x};
     }
     else {
         //Caso tenha acontecido algum erro
@@ -331,9 +331,9 @@ simplex = function (Nodo) {
             case GLP_ENODFS:
                 alert("Não tem solução viável dual. ");
         }
-        
+
         return {z: "erro",
-                x: []};
+            x: []};
     }
 //    }
     /*else {
@@ -383,60 +383,71 @@ leituraParametros = function () {
     /*
      * Le as informacoes da pagina de entrada de dados
      */
-    /*
-    //Determinando qtd de variaveis e restricoes
-    var nvariaveis = $('#variaveis').val();
-    var nrestricoes;
-    for (i = 1; i <= 100; i++) {
-        if ($("x" + i + "0").length)
-            nrestricoes = i;
-        else
-            break;
-    }
-
-    //Lendo dados do modelo
-    problema = $('problema').val();
-    objetivo = [];
-    restricoes = [];
-    relacoes = [];
-    rhs = [];
-    upper = [];
-    lower = [];
-    for (i = 0; i < nvariaveis; i++) {
-
-        objetivo[i] = $('x0' + i).val();
-
-        for (j = 0; j < nrestricoes; j++) {
-            restricoes[j] = [];
-            restricoes[j][i] = $('x' + (j+1) + i).val();
-
-            relacoes[j] = $('relacao' + (j+1)).val();
-
-            rhs[j] = $('ladoDir' + (j+1)).val();
-        }
-
-        upper[i] = $('limSupx' + i).val();
-        lower[i] = $('limInfx' + i).val();
-    }
-
-    //retornando modelo [formato gurobi]
-    return {
-        problema: problema,
-        objetivo: objetivo,
-        restricoes: restricoes,
-        relacoes: relacoes,
-        rhs: rhs,
-        upper: upper,
-        lower: lower
-    };
-    */
+//    
+//     //Determinando qtd de variaveis e restricoes
+//     var nvariaveis = $('#variaveis').val();
+//     var nrestricoes;
+//     for (i = 1; i <= 100; i++) {
+//     if ($("x" + i + "0").length)
+//     nrestricoes = i;
+//     else
+//     break;
+//     }
+//     
+//     //Lendo dados do modelo
+//     problema = $('problema').val();
+//     objetivo = [];
+//     restricoes = [];
+//     relacoes = [];
+//     rhs = [];
+//     upper = [];
+//     lower = [];
+//     for (i = 0; i < nvariaveis; i++) {
+//     
+//     objetivo[i] = $('x0' + i).val();
+//     
+//     for (j = 0; j < nrestricoes; j++) {
+//     restricoes[j] = [];
+//     restricoes[j][i] = $('x' + (j+1) + i).val();
+//     
+//     relacoes[j] = $('relacao' + (j+1)).val();
+//     
+//     rhs[j] = $('ladoDir' + (j+1)).val();
+//     }
+//     
+//     upper[i] = $('limSupx' + i).val();
+//     lower[i] = $('limInfx' + i).val();
+//     }
+//     
+//     //retornando modelo [formato gurobi]
+//     return {
+//     problema: problema,
+//     objetivo: objetivo,
+//     restricoes: restricoes,
+//     relacoes: relacoes,
+//     rhs: rhs,
+//     upper: upper,
+//     lower: lower
+//     };
+//     
     return {
         problema: 'Maximize',
         objetivo: [4, -1],
-        restricoes: [[7, -2],[0, 1], [2, -2]],
-        relacoes: ['<=','<=', '<='],
-        rhs: [14,3,3],
+        restricoes: [[7, -2], [0, 1], [2, -2]],
+        relacoes: ['<=', '<=', '<='],
+        rhs: [14, 3, 3],
         upper: ['Inf', 'Inf'],
         lower: [0, 0]
     };
 };
+
+$('#salvar').bind('click', function () {
+    try {
+        var source = "";
+        source = Nodo(0, 0, 0, leituraParametros(), 0, 0).toSource();
+        var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+        saveAs(blob, "modelo.txt");
+    } catch (err) {
+        console.write("biblioteca faltante, FileSaver.js")
+    }
+});

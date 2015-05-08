@@ -249,3 +249,48 @@ function scrollToTop() {
     offsetTop = offset.top;
     $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
 }
+
+
+function fileUpload(arq) {
+    var string = "";
+    //o parametro arq é o endereço do txt
+    //carrega o txt
+    var arquivo = dados.OpenTextFile(arq, 1, true);
+    //varre o arquivo
+    while (!arquivo.AtEndOfStream) {
+        string += arquivo.ReadAll();
+    }
+    //fecha o txt
+    arquivo.Close();
+}
+
+window.onload = function () {
+    var col;
+    var row;
+    var source = "";
+    var fileInput = document.getElementById('exampleInputFile');
+    fileInput.addEventListener('change', function (e) {
+        var file = fileInput.files[0];
+        var textType = /text.*/;
+
+        if (file.type.match(textType)) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                source = reader.result;
+                alert(source);
+                var lp = glp_create_prob();
+                glp_read_lp_from_string(lp, null, source);
+                row = glp_get_num_rows(lp);
+                col = glp_get_num_cols(lp);
+                run(source);
+            }
+
+            reader.readAsText(file);
+
+        } else {
+            alert("Erro no Carregamento");
+        }
+    });
+    //document.getElementById('start#sectionA').click();
+};
+
