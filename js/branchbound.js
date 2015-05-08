@@ -1,6 +1,3 @@
-include("glpk.min.js");
-include("jquery.min.js");
-
 Nodo = function (id, pai, altura, modelo, z, x) {
     /* 
      * Classe que sera usada como elemento do heap.
@@ -25,28 +22,28 @@ Nodo = function (id, pai, altura, modelo, z, x) {
 
     this.toSource = function () {
         var source = "";
-
-        source = problema + "\n";
+        
+        source = problema + '\n';
         source += "obj: ";
         for (i = 0; i < objetivo.length; i++) {
             source += objetivo[i] >= 0 ? " +" : "";
-            source += objetivo[i] + " x" + i;
+            source += objetivo[i] + " x" + i + " ";
         }
         source += "\n\n" + "Subject To" + "\n";
 
-        for (i = 1; i <= restricoes.length; i++) {
-            source += "res_" + i + ": ";
+        for (i = 0; i < restricoes.length; i++) {
+            source += "res_" + (i+1) + ":";
             for (j = 0; j < objetivo.length; j++) {
-                source += (restricoes[i][j] >= 0) ? " + " : "";
+                source += (restricoes[i][j] >= 0) ? " +" : " ";
                 source += restricoes[i][j] + " x" + j;
             }
-            source += " " + relacoes[j] + " " + rhs[j];
+            source += " " + relacoes[i] + " " + rhs[i];
             source += "\n";
         }
 
         source += "\nBounds\n";
 
-        for (i = 0; i <= objetivo.length; i++) {
+        for (i = 0; i < objetivo.length; i++) {
             source += (upper[i].toString().toUpperCase() === "INF") ? "x" + i + ">=" + lower[i] :
                     lower[i] + "<=" + "x" + i + "<=" + upper[i];
             source += "\n";
@@ -54,7 +51,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
 
         source += "\nGenerals \n";
 
-        for (i = 0; i <= objetivo.length; i++)
+        for (i = 0; i < objetivo.length; i++)
             source += "x" + i + "\n";
 
         source += "\nEnd";
@@ -386,7 +383,7 @@ leituraParametros = function () {
     /*
      * Le as informacoes da pagina de entrada de dados
      */
-
+    /*
     //Determinando qtd de variaveis e restricoes
     var nvariaveis = $('#variaveis').val();
     var nrestricoes;
@@ -409,13 +406,13 @@ leituraParametros = function () {
 
         objetivo[i] = $('x0' + i).val();
 
-        for (j = 1; j <= nrestricoes; j++) {
+        for (j = 0; j < nrestricoes; j++) {
             restricoes[j] = [];
-            restricoes[j][i] = $('x' + j + i).val();
+            restricoes[j][i] = $('x' + (j+1) + i).val();
 
-            relacoes[j] = $('relacao' + j).val();
+            relacoes[j] = $('relacao' + (j+1)).val();
 
-            rhs[j] = $('ladoDir' + j).val();
+            rhs[j] = $('ladoDir' + (j+1)).val();
         }
 
         upper[i] = $('limSupx' + i).val();
@@ -432,14 +429,14 @@ leituraParametros = function () {
         upper: upper,
         lower: lower
     };
-};
-
-
-
-include = function (path) {
-    //funcao auxiliar para incluir scripts externos a este
-    var aux = document.createElement("script");
-    aux.type = "text/javascript";
-    aux.src = path;
-    document.body.appendChild(aux);
+    */
+    return {
+        problema: 'Maximize',
+        objetivo: [4, -1],
+        restricoes: [[7, -2],[0, 1], [2, -2]],
+        relacoes: ['<=','<=', '<='],
+        rhs: [14,3,3],
+        upper: ['Inf', 'Inf'],
+        lower: [0, 0]
+    };
 };
