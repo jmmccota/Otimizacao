@@ -23,35 +23,36 @@ Nodo = function (id, pai, altura, modelo, z, x) {
     this.toSource = function () {
         var source = "";
         
-        source = problema + '\n';
+        source = this.problema + '\n';
         source += "obj: ";
-        for (i = 0; i < objetivo.length; i++) {
-            source += objetivo[i] >= 0 ? " +" : "";
-            source += objetivo[i] + " x" + i + " ";
+        for (var i = 0; i < this.objetivo.length; i++) {
+            source += this.objetivo[i] >= 0 ? " +" : "";
+            source += this.objetivo[i] + " x" + i + " ";
         }
         source += "\n\n" + "Subject To" + "\n";
 
         for (i = 0; i < restricoes.length; i++) {
             source += "res_" + (i+1) + ":";
-            for (j = 0; j < objetivo.length; j++) {
-                source += (restricoes[i][j] >= 0) ? " +" : " ";
-                source += restricoes[i][j] + " x" + j;
+            for (var j = 0; j < objetivo.length; j++) {
+                source += (this.restricoes[i][j] >= 0) ? " +" : " ";
+                source += this.restricoes[i][j] + " x" + j;
             }
-            source += " " + relacoes[i] + " " + rhs[i];
+            source += " " + this.relacoes[i] + " " + this.rhs[i];
             source += "\n";
         }
 
         source += "\nBounds\n";
 
         for (i = 0; i < objetivo.length; i++) {
-            source += (upper[i].toString().toUpperCase() === "INF") ? "x" + i + ">=" + lower[i] :
-                    lower[i] + "<=" + "x" + i + "<=" + upper[i];
+            var aux = this.upper[i].toString().toUpperCase();
+            source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
+                    this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
             source += "\n";
         }
 
         source += "\nGenerals \n";
 
-        for (i = 0; i < objetivo.length; i++)
+        for (i = 0; i < this.objetivo.length; i++)
             source += "x" + i + "\n";
 
         source += "\nEnd\n";
@@ -84,11 +85,11 @@ Heap = function (nodo) {
          */
         
         if (mEsq != null){
-            esq = Nodo(pai*2, pai, array[pai].altura+1, mEsq, 0, 0);
+            var esq = Nodo(pai*2, pai, array[pai].altura+1, mEsq, 0, 0);
             this.array[esq.id] = esq;
         }
         if (mDir != null){
-            dir = Nodo(pai*2+1, pai, array[pai].altura+1, mDir, 0, 0);
+            var dir = Nodo(pai*2+1, pai, array[pai].altura+1, mDir, 0, 0);
             this.array[dir.id] = dir;
         }
     };
@@ -123,7 +124,7 @@ Heap = function (nodo) {
          * SUBSTITUIR POR INDEX OF ?????
          * 
          */
-        for (i = 1; i < this.array.length; i++)
+        for (var i = 1; i < this.array.length; i++)
             if (i in this.array && this.array[i] === nodo)
                 return i;
         return 0;
@@ -166,7 +167,7 @@ BranchBound = function () {
         var nodo = Nodo(1, 1, 0, modelo, 0, 0);
         this.heap = Heap(nodo);
         this.atual = 1;
-        this.fila = [1];
+        this.fila = [];
         
         var res = simplex(this.heap.array[1]);
         
@@ -192,11 +193,15 @@ BranchBound = function () {
         var x = heap.array[atual].x[xi];
         if(x != Math.floor(x)){
             //adiciona restricao de heap[atual].x[xi], gerando 2 modelos
-            var esq = heap.array[atual];
-            var dir = heap.array[atual];
+            if(heap.array[atual].problema == "Maximize")
+                heap.array[atual].z = "-Inf";
+            else
+                heap.array[atual].z = "Inf";
+            var esq = jQuery.extend(true, {}, heap.array[atual]);
+            var dir = jQuery.extend(true, {}, heap.array[atual]);
             
-            dir.lower[xi] = Math.floor(x);
-            esq.upper[xi] = Math.ceil(x);
+            dir.lower[xi] = Math.ceil(x);
+            esq.upper[xi] = Math.floor(x);
             
             //insere 2 nodos no heap e na fila
             heap.insereNodos(atual, esq, dir);
@@ -228,7 +233,7 @@ BranchBound = function () {
     };
     
     this.executar = function (){
-        return proximoPasso(escolheVariavel(this.heap.array[this.atual].x));
+        return proximoPasso(escolheVariavel(heap.array[atual].x));
     };
     
     this.escolheVariavel = function(x){
@@ -250,7 +255,24 @@ BranchBound = function () {
     };
     
     this.melhorSolucao = function (){
-        //retornar o id do nodo com maior/menor Z se numero
+        //retornar o nodo com maior/menor Z se numero
+        var otimVal = heap.array[1].z;
+        var otimi = 1;
+        for(var i = 2; i<heap.array.length; i++){
+            if(heap.array[1].problema === 'Maximize' && 
+               !isNaN(heap.array[i].z) &&
+               heap.array[i].z > otimVal){
+                otimVal= heap.array[i].z;
+                otimi = i;
+            }
+            else if(heap.array[1].problema === 'Minimize' &&
+                    !isNaN(heap.array[i].z) &&
+                    heap.array[i].z < otimVal){
+                otimVal= heap.array[i].z;
+                otimi = i;
+            }
+        }
+        return heap.array[otimi];
     };
     
     return this;
@@ -262,7 +284,7 @@ simplex = function (Nodo) {
      * modelo de um determinado nodo
      */
 
-    source = Nodo.toSource();
+    var source = Nodo.toSource();
 
     var lp = glp_create_prob();
     glp_read_lp_from_string(lp, null, source);
@@ -272,13 +294,13 @@ simplex = function (Nodo) {
 //    if (glp_get_num_int(lp) === 0 && glp_get_num_bin(lp) === 0) {
 
     var smcp = new SMCP({presolve: GLP_ON});
-    r = glp_simplex(lp, smcp);
+    var r = glp_simplex(lp, smcp);
 
     if (r === 0) {
         //Caso tenha encontrado uma solucao otima
-        //alert("SoluÃ§Ã£o Ã“tima encontrada por Simplex");
-        z = glp_get_obj_val(lp);
-        x = [];
+        //alert("Solução Ótima encontrada por Simplex");
+        var z = glp_get_obj_val(lp);
+        var x = [];
         for (var i = 0; i < glp_get_num_cols(lp); i++) {
             x[i] = glp_get_col_prim(lp, i+1);
         }
@@ -289,19 +311,19 @@ simplex = function (Nodo) {
         //Caso tenha acontecido algum erro
         switch (r) {
             case GLP_EBADB:
-                alert("NÃºmero de variÃ¡veis bÃ¡sicas nÃ£o Ã© o mesmo que o nÃºmero de linhas do objeto do problema. ");
+                alert("Número de variáveis básicas não é o mesmo que o número de linhas do objeto do problema. ");
                 break;
 
             case GLP_ESING:
-                alert("O modelo contÃ©m apenas uma matriz base dentro do modelo. ");
+                alert("O modelo contém apenas uma matriz base dentro do modelo. ");
                 break;
 
             case GLP_ECOND:
-                alert("NÃºmero de condiÃ§Ã£o muito grande para a matriz base inicial. ");
+                alert("Número de condição muito grande para a matriz base inicial. ");
                 break;
 
             case GLP_EBOUND:
-                alert("VariÃ¡veis limitadas reais com limites incorretos. ");
+                alert("Variáveis limitadas reais com limites incorretos. ");
                 break;
 
             case GLP_EFAIL:
@@ -309,15 +331,15 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_EOBJLL:
-                alert("A funÃ§Ã£o objetivo que era pra ser maximizada atingiu seu menor valor e continua diminuindo. ");
+                alert("A função objetivo que era pra ser maximizada atingiu seu menor valor e continua diminuindo. ");
                 break;
 
             case GLP_EOBJUL:
-                alert("A funÃ§Ã£o objetivo que era pra ser minimizada atingiu seu maior valor e continua aumentando. ");
+                alert("A função objetivo que era pra ser minimizada atingiu seu maior valor e continua aumentando. ");
                 break;
 
             case GLP_EITLIM:
-                alert("A iteraÃ§Ã£o do simplex excedeu o limite. ");
+                alert("A iteração do simplex excedeu o limite. ");
                 break;
 
             case GLP_ETMLIM:
@@ -325,11 +347,11 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_ENOPFS:
-                alert("NÃ£o tem soluÃ§Ã£o viÃ¡vel primal. ");
+                alert("Não tem solução viável primal. ");
                 break;
 
             case GLP_ENODFS:
-                alert("NÃ£o tem soluÃ§Ã£o viÃ¡vel dual. ");
+                alert("Não tem solução viável dual. ");
         }
         
         return {z: "erro",
@@ -341,7 +363,7 @@ simplex = function (Nodo) {
      var iocp = new IOCP({presolve: GLP_ON});
      r = glp_intopt(lp, iocp);
      if (r === 0) {
-     alert("SoluÃ§Ã£o Ã“tima encontrada por mÃ©todo Branch-and-Cut");
+     alert("Solução Ótima encontrada por método Branch-and-Cut");
      z = glp_mip_obj_val(lp);
      x = [];
      for (var i = o; i < glp_get_num_cols(lp); i++) {
@@ -353,15 +375,15 @@ simplex = function (Nodo) {
      switch (r) {
      
      case GLP_EBOUND:
-     alert("Algumas variÃ¡veis reais ou inteiras estÃ£o com os limites incorretos. ");
+     alert("Algumas variáveis reais ou inteiras estão com os limites incorretos. ");
      case GLP_EROOT:
-     alert("Base ideal para o problema de PL nÃ£o Ã© fornecido. ");
+     alert("Base ideal para o problema de PL não é fornecido. ");
      
      case GLP_ENOPFS:
-     alert("NÃ£o tem soluÃ§Ã£o viÃ¡vel primal. ");
+     alert("Não tem solução viável primal. ");
      
      case GLP_ENODFS:
-     alert("NÃ£o tem soluÃ§Ã£o viÃ¡vel dual, hÃ¡ pelo menos uma soluÃ§Ã£o viÃ¡vel primitiva, a soluÃ§Ã£o Ã© ilimitada. ");
+     alert("Não tem solução viável dual, há pelo menos uma solução viável primitiva, a solução é ilimitada. ");
      
      case GLP_EFAIL:
      alert("Falha do solver. ");
