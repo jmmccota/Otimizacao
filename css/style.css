@@ -53,6 +53,7 @@ blockquote {
 	 Modificações no Bootstrap
 ---------------------------------------------------------------*/
 
+
 .navbar {
     min-height: 70px;
     padding-top: 10px;
@@ -189,7 +190,7 @@ panel-primary {
 }
 
 #myTableData2 {
-    width: 800px;
+    width: 75%;
     margin-top: 30px;
 }
 
@@ -220,3 +221,60 @@ panel-primary {
     border: 0 #00b3fe solid;
     border-right-width: 6px;
 }
+
+.alert {
+    position: fixed;
+    bottom: 25%;
+    right: 0;
+    margin-bottom: 0;
+    font-size: 1.2em;
+    padding: 1em 8em;
+    z-index: 2000;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.alert--finch {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+}
+
+.scroll-top-wrapper {
+    cursor: pointer;
+    position: fixed;
+    bottom: 26px;
+    right: 10px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    z-index: 1001;
+    border-radius: 48px;
+    font-size: 20px;
+    opacity: 0.8;
+    color: #fff;
+    background: #00b3fe;
+    visibility: hidden;
+    overflow: hidden;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+    .scroll-top-wrapper:hover {
+        background-color: #5bc0de;
+        color: #666;
+    }
+
+    .scroll-top-wrapper.show {
+        visibility: visible;
+        cursor: pointer;
+        opacity: 1.0;
+    }
+
+    .scroll-top-wrapper i.fa {
+        line-height: inherit;
+    }

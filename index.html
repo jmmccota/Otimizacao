@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
@@ -26,17 +26,17 @@
         $(document).ready(function () {
 
             //$("#start").click(function () {
-              //  $("#headerwrap").fadeOut(1000);
+            //  $("#headerwrap").fadeOut(1000);
             //});
-            $('#modelo,#start').click(function () {  
+            $('#modelo,#start').click(function () {
                 var link = $(this).attr("href");
                 $('#content').load(link, function () {
                     $("#content").fadeIn(1000);
                 });
-				$("#headerwrap").fadeOut(1000);
+                $("#headerwrap").fadeOut(1000);
                 return false;
             });
-			
+
             //Start Tree
             var nodes = [
                 { id: 1, label: 'S', level: 0 },
@@ -87,7 +87,7 @@
             //});
             // set initial selection (id's of some nodes)
             network.selectNodes([1, 2, 4]);
-        }); </script>
+}); </script>
 </head>
 
 <body>

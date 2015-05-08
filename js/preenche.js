@@ -1,5 +1,16 @@
-var controle = -1;
+﻿var controle = -1;
 var row;
+function deleteRow1() {
+    var obj = document.getElementById("myTableData").rows[controle];
+    var index = obj.parentNode.parentNode.rowIndex;
+    var table = document.getElementById("myTableData");
+    if (controle < 1) {
+        showAlert('warning', 'O problema deve haver pelo menos uma restrição!')
+    } else {
+        table.deleteRow(controle + 2);
+        controle--;
+    }
+}
 function addRow1() {
     var qVariaveis = document.getElementById("variaveis");
     controle++;
@@ -9,13 +20,14 @@ function addRow1() {
         row = table.insertRow(rowCount);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
         for (i = 1; i <= qVariaveis.value; i++) {
-            row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
+            row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number"  class="xRest form-control" onkeypress="return isNumberKey(event)">';
         }
         row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control"><option><=</option><option>=</option><option>>=</option></select>';
-        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" >';
+        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" onkeypress="return isNumberKey(event)" >';
     }
     else {
-        alert("Estorou limite de Restricoes!")
+        controle--;
+        showAlert('warning', 'Limite de restrições máximo atingido: 20!')
     }
 }
 function addRow() {
@@ -39,17 +51,17 @@ function addRow() {
 
     row.insertCell(0).innerHTML = '<b>Objetivo</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="form-control">';
+        row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)">';
     }
     row.insertCell().innerHTML = '&nbsp;';
     row.insertCell().innerHTML = '&nbsp;';
     row = table.insertRow(rowCount + 1);
     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="form-control" >';
+        row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)">';
     }
-    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
-    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" >';
+    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
+    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" >';
 
 }
 function addRow2() {
@@ -80,18 +92,145 @@ function load() {
 
     console.log("Prestricoes load finished");
 }
+
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        if (charCode >= 44 && charCode <= 46) {
+            return true;
+        }
+        return false;
+
+    }
+
+
+    return true;
+}
+
+function showAlert(type, message) {
+    $('#alert').removeClass();
+    $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
+    window.setTimeout(closeAlert, 3000);
+}
+function closeAlert() {
+    $('#alert').fadeOut();
+}
+function hideFormProblema() {
+    $('#add2').hide();
+    $('#add1').hide();
+    $('#sub1').hide();
+    $('#executar').hide();
+    $('#salvar').hide();
+    $('#executarPasso').hide();
+    $('#limpar').hide();
+    $('#excluir1').hide();
+}
+
 $(document).ready(function () {
-    $('#add1').hide('fast');
-    $('#executar').hide('fast');
-    $('#limpar').hide('fast');
-    $('#excluir1').hide('fast');
+    hideFormProblema();
+    $("#limpar").click(function () {
+        bootbox.dialog({
+            title: '<center><b>Aviso</b></center>',
+            message: '<center><p>Todas as informações serão perdidas.</p></center>' +
+                    '<center><p>Tem certeza disso? </p></center>',
+            buttons: {
+                main: {
+                    label: "Cancelar",
+                    className: "btn-default",
+                },
+                success: {
+                    label: "Sim",
+                    className: "btn-success",
+                    callback: function () {
+                        $("#myTableData").empty();
+                        $("#myTableData2").empty();
+                        controle = -1;
+                        addRow();
+                        addRow2();
+                        showAlert('success', 'Limpeza realizada com Sucesso!')
+                    }
+                }
+            }
+        }
+    );
+    });
+
     $("#add").click(function () {
-        addRow();
-        addRow2();
-        $('#add1').show('fast');
-        $('#executar').show('fast');
-        $('#limpar').show('fast');
-        $('#tabela1').hide('fast');
-        $('#excluir1').show('fast');
+
+        if (controle != -1) {
+            var qVariaveis = document.getElementById("variaveis").value;
+            bootbox.dialog({
+                title: '<center><b>Aviso</b></center>',
+                message: '<center><p>Todas as informações serão perdidas.</p></center>' +
+                         '<center><p>Será criado uma nova tabela com<b> ' + qVariaveis + ' </b>variáveis</p></center>' +
+                        '<center><p>Tem certeza disso? </p></center>',
+                buttons: {
+                    main: {
+                        label: "Cancelar",
+                        className: "btn-default",
+                    },
+                    success: {
+                        label: "Sim",
+                        className: "btn-success",
+                        callback: function () {
+                            $("#myTableData").empty();
+                            $("#myTableData2").empty();
+                            controle = -1;
+                            addRow();
+                            addRow2();
+                            showAlert('success', 'Nova tabela gerada com sucesso! ' + qVariaveis + ' variáveis criadas.');
+                        }
+                    }
+                }
+            }
+        );
+
+        }
+        else {
+            addRow();
+            addRow2();
+            $('#add2').show('fast');
+            $('#add1').show('fast');
+            $('#sub1').show('fast');
+            $('#executar').show('fast');
+            $('#executarPasso').show('fast');
+            $('#salvar').show('fast');
+            $('#limpar').show('fast');
+            $('#excluir1').show('fast');
+        }
     });
 });
+
+$(function () {
+
+    $(document).on('scroll', function () {
+
+        if ($(window).scrollTop() > 100) {
+            $('.scroll-top-wrapper').addClass('show');
+        } else {
+            $('.scroll-top-wrapper').removeClass('show');
+        }
+    });
+});
+
+$(function () {
+
+    $(document).on('scroll', function () {
+
+        if ($(window).scrollTop() > 100) {
+            $('.scroll-top-wrapper').addClass('show');
+        } else {
+            $('.scroll-top-wrapper').removeClass('show');
+        }
+    });
+
+    $('.scroll-top-wrapper').on('click', scrollToTop);
+});
+
+function scrollToTop() {
+    verticalOffset = typeof (verticalOffset) != 'undefined' ? verticalOffset : 0;
+    element = $('body');
+    offset = element.offset();
+    offsetTop = offset.top;
+    $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+}
