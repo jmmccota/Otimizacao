@@ -222,6 +222,41 @@ panel-primary {
     border-right-width: 6px;
 }
 
+.mpl {
+    position: fixed;
+    bottom: 50%;
+    right: 0;
+    margin-bottom: 0;
+    font-size: 1.2em;
+    padding: 1em 8em;
+    z-index: 2000;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid #384452;
+    width: 200px;
+    height: 200px;
+    overflow: scroll;
+    -moz-box-shadow: 0 0 5px #5bc0de;
+    -webkit-box-shadow: 0 0 5px #5bc0de;
+    box-shadow: 0 0 5px #5bc0de;
+}
+#close{
+  position:absolute;
+  background:black;
+  color:white;
+  left:0;
+  top:0;
+  border-radius:30%;
+  width:30px;
+  height:30px;
+  line-height:30px;
+  text-align:center;
+  font-size:8px;
+  font-weight:bold;
+  font-family:'Arial Black', Arial, sans-serif;
+  cursor:pointer;
+  box-shadow:0 0 10px 0 #000;
+}
 .alert {
     position: fixed;
     bottom: 25%;
