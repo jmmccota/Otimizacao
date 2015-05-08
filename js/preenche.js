@@ -20,7 +20,7 @@ function addRow1() {
         row = table.insertRow(rowCount);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
         for (i = 1; i <= qVariaveis.value; i++) {
-            row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number"  class="xRest form-control" onkeypress="return isNumberKey(event)" required>';
+            row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number"  class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         }
         row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control"><option><=</option><option>=</option><option>>=</option></select>';
         row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" onkeypress="return isNumberKey(event)" required>';
@@ -51,14 +51,14 @@ function addRow() {
 
     row.insertCell(0).innerHTML = '<b>Objetivo</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required>';
+        row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     }
     row.insertCell().innerHTML = '&nbsp;';
     row.insertCell().innerHTML = '&nbsp;';
     row = table.insertRow(rowCount + 1);
     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required>';
+        row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     }
     row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
     row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" required>';
@@ -79,12 +79,12 @@ function addRow2() {
 
     row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" class="form-control" required>';
+        row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" class="form-control" required  step="any">';
     }
     row = table.insertRow(rowCount + 1);
     row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" class="form-control" required>';
+        row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" class="form-control" required  step="any">';
     }
 
 }
