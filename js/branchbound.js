@@ -216,28 +216,7 @@ BranchBound = function () {
          * retorna o nodo com maior/menor Z
          * retorna null caso nao haja solucao inteira viavels
          */
-        /*
-        var otimVal = this.heap.array[1].z;
-        var otim = this.heap.array[1];
-        for (nodo in this.heap.array) {
-            if (otim.problema === 'Maximize' &&
-                    !isNaN(nodo.z) &&
-                    nodo.z > otimVal) {
-                otimVal = nodo.z;
-                otim = nodo;
-            }
-            else if (otim.problema === 'Minimize' &&
-                    !isNaN(nodo.z) &&
-                    nodo.z < otimVal) {
-                otimVal = nodo.z;
-                otim = nodo;
-            }
-        }
-        if(!isNaN(otim.z))
-            return otim;
-        else
-            return null;
-        */
+        
         //procura a 1a solucao inteira viavel
         //    se nao houver nenhuma retorna null
         //    se encontrar seta como otima
@@ -355,72 +334,126 @@ simplex = function (Nodo) {
 };
 
 leituraParametros = function () {
+    var contObj = 0;
+    var contRel = 0;
+    var contRhs = 0;
+    var contUp = 0;
+    var contLow = 0;
+    var contRes = 0;
+
+    var problema = document.getElementById("problema").value;
+
+    objetivo = [];
+    restricoes = [];
+    relacoes = [];
+    rhs = [];
+    upper = [];
+    lower = [];
+
+    //Pegando dados da Tabela
+    $(".fObj").each(function () {
+        objetivo[contObj] = $(this).val();
+        contObj++;
+    });
+    $(".xRest").each(function () {
+        restricoes[contRes] = $(this).val();
+        contRes++;
+    });
+    $(".relacao").each(function () {
+        relacoes[contRel] = $(this).val();
+        contRel++;
+    });
+    $(".ladoDir").each(function () {
+        rhs[contRhs] = $(this).val();
+        contRhs++;
+    });
+    $(".limSup").each(function () {
+        upper[contUp] = $(this).val();
+        contUp++;
+    });
+    $(".limInf").each(function () {
+        lower[contLow] = $(this).val();
+        contLow++;
+    });
+
+    return {
+        problema: problema,
+        objetivo: objetivo,
+        restricoes: restricoes,
+        relacoes: relacoes,
+        rhs: rhs,
+        upper: upper,
+        lower: lower
+    };
+
+
+
     /*
      * Le as informacoes da pagina de entrada de dados
      */
-//    
-//     //Determinando qtd de variaveis e restricoes
-//     var nvariaveis = $('#variaveis').val();
-//     var nrestricoes;
-//     for (i = 1; i <= 100; i++) {
-//     if ($("x" + i + "0").length)
-//     nrestricoes = i;
-//     else
-//     break;
-//     }
-//     
-//     //Lendo dados do modelo
-//     problema = $('problema').val();
-//     objetivo = [];
-//     restricoes = [];
-//     relacoes = [];
-//     rhs = [];
-//     upper = [];
-//     lower = [];
-//     for (i = 0; i < nvariaveis; i++) {
-//     
-//     objetivo[i] = $('x0' + i).val();
-//     
-//     for (j = 0; j < nrestricoes; j++) {
-//     restricoes[j] = [];
-//     restricoes[j][i] = $('x' + (j+1) + i).val();
-//     
-//     relacoes[j] = $('relacao' + (j+1)).val();
-//     
-//     rhs[j] = $('ladoDir' + (j+1)).val();
-//     }
-//     
-//     upper[i] = $('limSupx' + i).val();
-//     lower[i] = $('limInfx' + i).val();
-//     }
-//     
-//     //retornando modelo [formato gurobi]
-//     return {
-//     problema: problema,
-//     objetivo: objetivo,
-//     restricoes: restricoes,
-//     relacoes: relacoes,
-//     rhs: rhs,
-//     upper: upper,
-//     lower: lower
-//     };
-//     
-    return {
-        problema: 'Maximize',
-        objetivo: [8, 16, 20, 12, 6, 10, 4],
-        restricoes: [[3, 7, 9, 6, 3, 5, 2]],
-        relacoes: ['<='],
-        rhs: [17],
-        upper: ['Inf', 'Inf', 'Inf', 'Inf', 'Inf', 'Inf', 'Inf'],
-        lower: [0, 0, 0, 0, 0, 0, 0]
-    };
+    //    
+    //     //Determinando qtd de variaveis e restricoes
+    //     var nvariaveis = $('#variaveis').val();
+    //     var nrestricoes;
+    //     for (i = 1; i <= 100; i++) {
+    //     if ($("x" + i + "0").length)
+    //     nrestricoes = i;
+    //     else
+    //     break;
+    //     }
+    //     
+    //     //Lendo dados do modelo
+    //     problema = $('problema').val();
+    //     objetivo = [];
+    //     restricoes = [];
+    //     relacoes = [];
+    //     rhs = [];
+    //     upper = [];
+    //     lower = [];
+    //     for (i = 0; i < nvariaveis; i++) {
+    //     
+    //     objetivo[i] = $('x0' + i).val();
+    //     
+    //     for (j = 0; j < nrestricoes; j++) {
+    //     restricoes[j] = [];
+    //     restricoes[j][i] = $('x' + (j+1) + i).val();
+    //     
+    //     relacoes[j] = $('relacao' + (j+1)).val();
+    //     
+    //     rhs[j] = $('ladoDir' + (j+1)).val();
+    //     }
+    //     
+    //     upper[i] = $('limSupx' + i).val();
+    //     lower[i] = $('limInfx' + i).val();
+    //     }
+    //     
+    //retornando modelo [formato gurobi]
+    //return {
+    //    problema: problema,
+    //    objetivo: objetivo,
+    //    //restricoes: restricoes,
+    //    relacoes: relacoes,
+    //    //rhs: rhs,
+    //    //upper: upper,
+    //    //lower: lower
+    //};
+
+    //return {
+    //    problema: 'Maximize',
+    //    objetivo: [4, -1],
+    //    restricoes: [[7, -2], [0, 1], [2, -2]],
+    //    relacoes: ['<=', '<=', '<='],
+    //    rhs: [14, 3, 3],
+    //    upper: ['Inf', 'Inf'],
+    //    lower: [0, 0]
+    //};
 };
 
 $('#salvar').bind('click', function () {
     try {
         var source = "";
         source = Nodo(0, 0, 0, leituraParametros(), 0, 0).toSource();
-        var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+        var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
         saveAs(blob, "modelo.txt");
     } catch (err) {
         console.write("biblioteca faltante, FileSaver.js")

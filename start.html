@@ -1,8 +1,8 @@
 <body>
 
     <div id="modelo" style="display:none;">
-        <div id="close">X</div>
-
+        <div id="close">x</div>
+        <div id="contentModelo"></div>
     </div>
 
 
@@ -41,88 +41,96 @@
         <div class="tab-content well">
             <div id="sectionA" class="tab-pane fade in active">
                 <div class="container-fluid">
-                    <div id="tabela1" class="col-lg-6">
-                        <form>
+                    <div class="row">
+                        <div id="tabela1" class="col-lg-6">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-4" style="padding-top:7px;">
+                                        <label class="control-label">Problema:</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="problema">
+                                            <option value="Maximize">Maximização</option>
+                                            <option value="Minimize">Minimização</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:10px;">
+                                    <div class="col-lg-4" style="padding-top:7px;">
+                                        <label class="control-label">Número de Variáveis:</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="variaveis" style="max-width:40%;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:10px; padding-bottom:10px;">
+                                    <div class="col-lg-10">
+                                        <button type="button" id="add" class="btn btn-primary" style="width: 100%;">
+                                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema de Otimização
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6">
                             <div class="row">
-                                <div class="col-lg-4" style="padding-top:7px;">
-                                    <label class="control-label">Problema:</label>
-                                </div>
-                                <div class="col-lg-6">
-                                    <select class="form-control" id="problema">
-                                        <option value="Maximize">Maximização</option>
-                                        <option value="Minimize">Minimização</option>
-                                    </select>
+                                <div class="col-lg-12">
+                                    <button id="mpl" type="button" class="btn btn-default" style="width:100%;">
+                                        Mostrar Modelo de Programação Linear
+                                    </button>
                                 </div>
                             </div>
                             <div class="row" style="padding-top:10px;">
-                                <div class="col-lg-4" style="padding-top:7px;">
-                                    <label class="control-label">Número de Variáveis:</label>
-                                </div>
-                                <div class="col-lg-6">
-                                    <select class="form-control" id="variaveis" style="max-width:40%;">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                        <option>10</option>
-                                    </select>
+                                <div class="col-lg-12">
+                                    <button id="mple" type="button" class="btn btn-default" style="width:100%;">
+                                        Mostrar Modelo de Programação Linear Extendido
+                                    </button>
                                 </div>
                             </div>
-                            <div class="row" style="padding-top:10px;">
-                                <div class="col-lg-10">
-                                    <button type="button" id="add" class="btn btn-primary" style="width: 100%;">
-                                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema de Otimização
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form>
+                            <div id="mydata" style="margin-top: 20px;">
+                                <table id="myTableData" class="table table-hover table-striped"></table>
+                                <center>
+                                    <button type="button" class="btn btn-primary" id="add1" value="" onclick="Javascript:addRow1()">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Restrição
+                                    </button>
+                                    <button type="button" class="btn btn-danger" id="add2" onclick="Javascript:deleteRow1()">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  Excluir Restrição
                                     </button>
 
-                                </div>
-                            </div>
+                                    <table id="myTableData2" class="table table-hover table-striped"></table>
 
+                                    <button type="submit" class="btn btn-success" id="salvar">
+                                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" id="executar">
+                                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
+                                    </button>
+                                    <button type="submit" class="btn btn-info" id="executarPasso">
+                                        <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
+                                    </button>
+                                    <button type="button" class="btn btn-default" id="limpar">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Limpar Tudo
+                                    </button>
+                                </center>
+                            </div>
                         </form>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <button id="mpl" type="button" class="btn btn-default" style="width:100%;">
-                                Mostrar Modelo de Programação Linear
-                            </button>
-                        </div>
-                        <div class="row" style="padding-top:10px;">
-                            <button id="mple" type="button" class="btn btn-default" style="width:100%;">
-                                Mostrar Modelo de Programação Linear Extendido
-                            </button>
-                        </div>
-                    </div>
-                    <form>
-                        <div id="mydata" style="margin-top: 20px;">
-                            <table id="myTableData" class="table table-hover table-striped"></table>
-                            <center>
-
-                                <input type="button" class="btn btn-primary" id="add1" value="Adicionar Restri&ccedil;&atilde;o" onclick="Javascript:addRow1()">
-                                <input type="button" class="btn btn-danger" id="add2" value="Excluir Restri&ccedil;&atilde;o" onclick="Javascript:deleteRow1()">
-                            </center>
-                            <center>
-                                <table id="myTableData2" class="table table-hover table-striped"></table>
-                            </center>
-                            <center>
-                                <button type="submit" class="btn btn-success" id="salvar">
-                                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
-                                </button>
-                                <button type="submit" class="btn btn-primary" id="executar">
-                                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
-                                </button>
-                                <button type="submit" class="btn btn-info" id="executarPasso">
-                                    <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
-                                </button>
-                                <button type="button" class="btn btn-default" id="limpar">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Limpar Tudo
-                                </button>
-                            </center>
-                        </div>
-                    </form>
                 </div>
 
 
@@ -162,3 +170,5 @@
 <script type="text/javascript" src="js/preenche.js"></script>
 <script type="text/javascript" src="js/branchbound.js"></script>
 <script type="text/javascript" src="js/FileSaver.min.js"></script>
+<script type="text/javascript" src="js/ASCIIMathML.js"></script>
+<script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>

@@ -22,8 +22,8 @@ function addRow1() {
         for (i = 1; i <= qVariaveis.value; i++) {
             row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number"  class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         }
-        row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control"><option><=</option><option>=</option><option>>=</option></select>';
-        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+        row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="relacao form-control"><option><=</option><option>=</option><option>>=</option></select>';
+        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     }
     else {
         controle--;
@@ -51,7 +51,7 @@ function addRow() {
 
     row.insertCell(0).innerHTML = '<b>Objetivo</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+        row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     }
     row.insertCell().innerHTML = '&nbsp;';
     row.insertCell().innerHTML = '&nbsp;';
@@ -60,8 +60,8 @@ function addRow() {
     for (i = 1; i <= qVariaveis.value; i++) {
         row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     }
-    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
-    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" required  step="any">';
+    row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="relacao form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
+    row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="ladoDir form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" required  step="any">';
 
 }
 function addRow2() {
@@ -79,12 +79,12 @@ function addRow2() {
 
     row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" class="form-control" required  step="any">';
+        row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" class="limSup form-control" required  step="any">';
     }
     row = table.insertRow(rowCount + 1);
     row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
     for (i = 1; i <= qVariaveis.value; i++) {
-        row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" class="form-control" required  step="any">';
+        row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" class="limInf form-control" required  step="any">';
     }
 
 }
@@ -98,10 +98,98 @@ function isNumberKey(evt) {
         return false;
 
     }
-
-
     return true;
 }
+
+function getTableValues() {
+    var contObj = 0;
+    var contRel = 0;
+    var contRhs = 0;
+    var contUp = 0;
+    var contLow = 0;
+    var contRes = 0;
+
+    var problema = document.getElementById("problema").value;
+
+    objetivo = [];
+    restricoes = [];
+    relacoes = [];
+    rhs = [];
+    upper = [];
+    lower = [];
+
+    //Pegando dados da Tabela
+    $(".fObj").each(function () {
+        objetivo[contObj] = $(this).val();
+        contObj++;
+    });
+    $(".xRest").each(function () {
+        restricoes[contRes] = $(this).val();
+        contRes++;
+    });
+    $(".relacao").each(function () {
+        relacoes[contRel] = $(this).val();
+        contRel++;
+    });
+    $(".ladoDir").each(function () {
+        rhs[contRhs] = $(this).val();
+        contRhs++;
+    });
+    $(".limSup").each(function () {
+        upper[contUp] = $(this).val();
+        contUp++;
+    });
+    $(".limInf").each(function () {
+        lower[contLow] = $(this).val();
+        contLow++;
+    });
+
+    return {
+        problema: problema,
+        objetivo: objetivo,
+        restricoes: restricoes,
+        relacoes: relacoes,
+        rhs: rhs,
+        upper: upper,
+        lower: lower
+    };
+
+
+
+
+
+    //var qVariaveis = document.getElementById("variaveis").value;
+    ////var i = new Array();
+    ////var j = new Array();
+    //var fObj = new Array();
+    //var xRest = new Array();
+    //var relacao = new Array();
+    //var ladoDir = new Array();
+
+    //var valores = [];
+
+    //var cont = 1;
+
+    //$(".fObj").each(function () {
+    //    fObj.push($(this).val());
+    //});
+    ////valores.push(fObj);
+    //$(".xRest").each(function () {
+    //    xRest.push($(this).val());
+    //});
+    ////valores.push(xRest);
+    //$(".relacao").each(function () {
+    //    relacao.push($(this).val());
+    //});
+    ////valores.push(relacao);
+    //$(".ladoDir").each(function () {
+    //    ladoDir.push($(this).val());
+    //});
+    ////valores.push(ladoDir);
+
+
+}
+
 
 function showAlert(type, message) {
     $('#alert').removeClass();
@@ -152,6 +240,19 @@ $(document).ready(function () {
     });
     $("#mpl").click(function () {
         $('#modelo').addClass('mpl').fadeIn();
+        var tipoProblema = $("#problema").val();
+        var content = document.getElementById("contentModelo");
+        var bodyModel = "";
+
+        if (tipoProblema == "Maximize") {
+            bodyModel += '<span>max:</span>';
+        } else {
+            bodyModel += '<span>min:</span>';
+        }
+        bodyModel += "<br><span>sujeito a:</span>"
+        var x = getTableValues();
+        alert(x["objetivo"]);
+        content.innerHTML = bodyModel;
     });
     $("#close").click(function () {
         $('#modelo').fadeOut(500);

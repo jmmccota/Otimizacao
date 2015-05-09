@@ -226,37 +226,44 @@ panel-primary {
     position: fixed;
     bottom: 50%;
     right: 0;
-    margin-bottom: 0;
-    font-size: 1.2em;
-    padding: 1em 8em;
     z-index: 2000;
-    font-weight: bold;
-    font-size: 18px;
-    border: 2px solid #384452;
-    width: 200px;
+    padding-left: 20px;
+    padding-top: 18px;
+    width: 500px;
     height: 200px;
     overflow: scroll;
-    -moz-box-shadow: 0 0 5px #5bc0de;
-    -webkit-box-shadow: 0 0 5px #5bc0de;
-    box-shadow: 0 0 5px #5bc0de;
+    -moz-box-shadow: 0 0 20px #5bc0de;
+    -webkit-box-shadow: 0 0 10px #5bc0de;
+    box-shadow: 0 0 20px #5bc0de;
+    background-color: #5bc0de;
+    border-radius: 8px;
 }
-#close{
-  position:absolute;
-  background:black;
-  color:white;
-  left:0;
-  top:0;
-  border-radius:30%;
-  width:30px;
-  height:30px;
-  line-height:30px;
-  text-align:center;
-  font-size:8px;
-  font-weight:bold;
-  font-family:'Arial Black', Arial, sans-serif;
-  cursor:pointer;
-  box-shadow:0 0 10px 0 #000;
+
+    .mpl span {
+        text-align: left;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+#close {
+    position: absolute;
+    background: black;
+    color: white;
+    left: 1px;
+    top: 1px;
+    border-radius: 8px;
+    width: 15px;
+    height: 15px;
+    line-height: 13px;
+    text-align: center;
+    color: red;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Arial Black', Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 #000;
 }
+
 .alert {
     position: fixed;
     bottom: 25%;
