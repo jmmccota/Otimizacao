@@ -10,9 +10,8 @@
         <script type="text/javascript">
         $(document).ready(function (){
             var b = BranchBound();
-            var x = b.inicializa();
             while (!b.terminou()){
-                x = b.proximoPasso(b.escolheVariavel(x.x));
+                x = b.executar();
             }
             x = b.melhorSolucao();
             alert()
