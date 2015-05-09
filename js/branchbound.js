@@ -385,68 +385,6 @@ leituraParametros = function () {
         upper: upper,
         lower: lower
     };
-
-
-
-    /*
-     * Le as informacoes da pagina de entrada de dados
-     */
-    //    
-    //     //Determinando qtd de variaveis e restricoes
-    //     var nvariaveis = $('#variaveis').val();
-    //     var nrestricoes;
-    //     for (i = 1; i <= 100; i++) {
-    //     if ($("x" + i + "0").length)
-    //     nrestricoes = i;
-    //     else
-    //     break;
-    //     }
-    //     
-    //     //Lendo dados do modelo
-    //     problema = $('problema').val();
-    //     objetivo = [];
-    //     restricoes = [];
-    //     relacoes = [];
-    //     rhs = [];
-    //     upper = [];
-    //     lower = [];
-    //     for (i = 0; i < nvariaveis; i++) {
-    //     
-    //     objetivo[i] = $('x0' + i).val();
-    //     
-    //     for (j = 0; j < nrestricoes; j++) {
-    //     restricoes[j] = [];
-    //     restricoes[j][i] = $('x' + (j+1) + i).val();
-    //     
-    //     relacoes[j] = $('relacao' + (j+1)).val();
-    //     
-    //     rhs[j] = $('ladoDir' + (j+1)).val();
-    //     }
-    //     
-    //     upper[i] = $('limSupx' + i).val();
-    //     lower[i] = $('limInfx' + i).val();
-    //     }
-    //     
-    //retornando modelo [formato gurobi]
-    //return {
-    //    problema: problema,
-    //    objetivo: objetivo,
-    //    //restricoes: restricoes,
-    //    relacoes: relacoes,
-    //    //rhs: rhs,
-    //    //upper: upper,
-    //    //lower: lower
-    //};
-
-    //return {
-    //    problema: 'Maximize',
-    //    objetivo: [4, -1],
-    //    restricoes: [[7, -2], [0, 1], [2, -2]],
-    //    relacoes: ['<=', '<=', '<='],
-    //    rhs: [14, 3, 3],
-    //    upper: ['Inf', 'Inf'],
-    //    lower: [0, 0]
-    //};
 };
 
 $('#salvar').bind('click', function () {

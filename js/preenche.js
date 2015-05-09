@@ -1,11 +1,11 @@
-var controle = -1;
+﻿var controle = -1;
 var row;
 function deleteRow1() {
     var obj = document.getElementById("myTableData").rows[controle];
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
-        showAlert('warning', 'O problema deve haver pelo menos uma restrição!')
+        showAlert('warning', 'O problema deve haver pelo menos uma restriÃ§Ã£o!')
     } else {
         table.deleteRow(controle + 2);
         controle--;
@@ -27,7 +27,7 @@ function addRow1() {
     }
     else {
         controle--;
-        showAlert('warning', 'Limite de restrições máximo atingido: 20!')
+        showAlert('warning', 'Limite de restriÃ§Ãµes mÃ¡ximo atingido: 20!')
     }
 }
 function addRow() {
@@ -153,41 +153,6 @@ function getTableValues() {
         upper: upper,
         lower: lower
     };
-
-
-
-
-
-    //var qVariaveis = document.getElementById("variaveis").value;
-    ////var i = new Array();
-    ////var j = new Array();
-    //var fObj = new Array();
-    //var xRest = new Array();
-    //var relacao = new Array();
-    //var ladoDir = new Array();
-
-    //var valores = [];
-
-    //var cont = 1;
-
-    //$(".fObj").each(function () {
-    //    fObj.push($(this).val());
-    //});
-    ////valores.push(fObj);
-    //$(".xRest").each(function () {
-    //    xRest.push($(this).val());
-    //});
-    ////valores.push(xRest);
-    //$(".relacao").each(function () {
-    //    relacao.push($(this).val());
-    //});
-    ////valores.push(relacao);
-    //$(".ladoDir").each(function () {
-    //    ladoDir.push($(this).val());
-    //});
-    ////valores.push(ladoDir);
-
-
 }
 
 
@@ -215,7 +180,7 @@ $(document).ready(function () {
     $("#limpar").click(function () {
         bootbox.dialog({
             title: '<center><b>Aviso</b></center>',
-            message: '<center><p>Todas as informações serão perdidas.</p></center>' +
+            message: '<center><p>Todas as informaÃ§Ãµes serÃ£o perdidas.</p></center>' +
                     '<center><p>Tem certeza disso? </p></center>',
             buttons: {
                 main: {
@@ -239,24 +204,89 @@ $(document).ready(function () {
     );
     });
     $("#mpl").click(function () {
-        $('#modelo').addClass('mpl').fadeIn();
-        var tipoProblema = $("#problema").val();
-        var content = document.getElementById("contentModelo");
-        var bodyModel = "";
 
-        if (tipoProblema == "Maximize") {
+
+        //------------------------ Load MathJax ---------------------------------------
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "js/ASCIIMathML.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+
+        var script2 = document.createElement("script");
+        script2.type = "text/javascript";
+        script2.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
+        document.getElementsByTagName("head")[0].appendChild(script2);
+        //------------------------------------------------------------------------------
+
+
+        $('#modelo').addClass('mpl').fadeIn();
+        var content = document.getElementById("contentModelo");
+
+
+        var bodyModel = "";
+        var x = getTableValues();
+        var obj = "";
+        var lim = "";
+
+        bodyModel += '<div class="row">'
+        bodyModel += '<div class="col-lg-1">';
+        if (x["problema"] == "Maximize") {
             bodyModel += '<span>max:</span>';
         } else {
             bodyModel += '<span>min:</span>';
         }
-        bodyModel += "<br><span>sujeito a:</span>"
-        var x = getTableValues();
-        alert(x["objetivo"]);
+        bodyModel += '</div>'
+        bodyModel += '<div class="col-lg-11">';
+        for (i = 1; i <= x["objetivo"].length; i++) {
+            var num = x["objetivo"][i - 1];
+            if (num.length > 0) {
+                if (num >= 0 && i != 1) {
+                    obj += "+" + num + " x_" + i;
+                }
+                else {
+                    obj += num + " x_" + i;
+                }
+            }
+        }
+
+        bodyModel += "`" + obj + "`";
+        bodyModel += '</div>'
+        bodyModel += '</div>'
+
+
+        bodyModel += '<div class="row" style="padding-top: 5px;">'
+        bodyModel += '<div class="col-lg-3">';
+        bodyModel += "<span>sujeito a:</span>";
+        bodyModel += '</div>';
+        bodyModel += '</div>';
+        bodyModel += '<div class="row" style="padding-top: 5px;">'
+        bodyModel += '<div class="col-lg-1">'
+        bodyModel += "<span>e:</span>";
+        bodyModel += '</div>';
+        bodyModel += '<div class="col-lg-11" >';
+
+        for (i = 1; i <= x["lower"].length; i++) {
+            var numL = x["lower"][i - 1];
+            var numUp = x["upper"][i - 1];
+            if (numL.length > 0 && numUp > 0) {
+                lim += numL + " <= " + "x_" + i + " <= " + numUp + ";";
+            }
+            else {
+                if (numL.length > 0) {
+                    lim += "x_" + i + " >= " + numL + "; ";
+                }
+                if (numUp.length > 0) {
+                    lim += "x_" + i + " <= " + numUp + "; ";
+                }
+            }
+        }
+        bodyModel += "`" + lim + "`";
+        bodyModel += '</div>';
+        bodyModel += '</div>';
         content.innerHTML = bodyModel;
     });
     $("#close").click(function () {
         $('#modelo').fadeOut(500);
-        //$('#modelo').empty();
 
     });
 
@@ -266,8 +296,8 @@ $(document).ready(function () {
             var qVariaveis = document.getElementById("variaveis").value;
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
-                message: '<center><p>Todas as informações serão perdidas.</p></center>' +
-                         '<center><p>Será criado uma nova tabela com<b> ' + qVariaveis + ' </b>variáveis</p></center>' +
+                message: '<center><p>Todas as informaÃ§Ãµes serÃ£o perdidas.</p></center>' +
+                         '<center><p>SerÃ¡ criado uma nova tabela com<b> ' + qVariaveis + ' </b>variÃ¡veis</p></center>' +
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
                     main: {
@@ -283,7 +313,7 @@ $(document).ready(function () {
                             controle = -1;
                             addRow();
                             addRow2();
-                            showAlert('success', 'Nova tabela gerada com sucesso! ' + qVariaveis + ' variáveis criadas.');
+                            showAlert('success', 'Nova tabela gerada com sucesso! ' + qVariaveis + ' variÃ¡veis criadas.');
                         }
                     }
                 }
@@ -343,7 +373,7 @@ function scrollToTop() {
 
 function fileUpload(arq) {
     var string = "";
-    //o parametro arq � o endere�o do txt
+    //o parametro arq é o endereço do txt
     //carrega o txt
     var arquivo = dados.OpenTextFile(arq, 1, true);
     //varre o arquivo

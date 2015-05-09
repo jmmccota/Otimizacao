@@ -229,7 +229,7 @@ panel-primary {
     z-index: 2000;
     padding-left: 20px;
     padding-top: 18px;
-    width: 500px;
+    width: 420px;
     height: 200px;
     overflow: scroll;
     -moz-box-shadow: 0 0 20px #5bc0de;
@@ -242,7 +242,7 @@ panel-primary {
     .mpl span {
         text-align: left;
         font-weight: bold;
-        font-size: 12px;
+        font-size: 14px;
     }
 
 #close {
