@@ -5,7 +5,7 @@ function deleteRow1() {
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
-        showAlert('warning', 'O problema deve haver pelo menos uma restriÃ§Ã£o!')
+        showAlert('warning', 'O problema deve haver pelo menos uma restrição!')
     } else {
         table.deleteRow(controle + 2);
         controle--;
@@ -27,7 +27,7 @@ function addRow1() {
     }
     else {
         controle--;
-        showAlert('warning', 'Limite de restriÃ§Ãµes mÃ¡ximo atingido: 20!')
+        showAlert('warning', 'Limite máximo de restrições atingido: 20!')
     }
 }
 function addRow() {
@@ -44,7 +44,6 @@ function addRow() {
         row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
     }
     controle++;
-    //var qVariaveis = document.getElementById("variaveis");
     var table = document.getElementById("myTableData");
     var rowCount = table.rows.length;
     row = table.insertRow(rowCount);
@@ -101,61 +100,6 @@ function isNumberKey(evt) {
     return true;
 }
 
-function getTableValues() {
-    var contObj = 0;
-    var contRel = 0;
-    var contRhs = 0;
-    var contUp = 0;
-    var contLow = 0;
-    var contRes = 0;
-
-    var problema = document.getElementById("problema").value;
-
-    objetivo = [];
-    restricoes = [];
-    relacoes = [];
-    rhs = [];
-    upper = [];
-    lower = [];
-
-    //Pegando dados da Tabela
-    $(".fObj").each(function () {
-        objetivo[contObj] = $(this).val();
-        contObj++;
-    });
-    $(".xRest").each(function () {
-        restricoes[contRes] = $(this).val();
-        contRes++;
-    });
-    $(".relacao").each(function () {
-        relacoes[contRel] = $(this).val();
-        contRel++;
-    });
-    $(".ladoDir").each(function () {
-        rhs[contRhs] = $(this).val();
-        contRhs++;
-    });
-    $(".limSup").each(function () {
-        upper[contUp] = $(this).val();
-        contUp++;
-    });
-    $(".limInf").each(function () {
-        lower[contLow] = $(this).val();
-        contLow++;
-    });
-
-    return {
-        problema: problema,
-        objetivo: objetivo,
-        restricoes: restricoes,
-        relacoes: relacoes,
-        rhs: rhs,
-        upper: upper,
-        lower: lower
-    };
-}
-
-
 function showAlert(type, message) {
     $('#alert').removeClass();
     $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
@@ -180,7 +124,7 @@ $(document).ready(function () {
     $("#limpar").click(function () {
         bootbox.dialog({
             title: '<center><b>Aviso</b></center>',
-            message: '<center><p>Todas as informaÃ§Ãµes serÃ£o perdidas.</p></center>' +
+            message: '<center><p>Todas as informações serão perdidas.</p></center>' +
                     '<center><p>Tem certeza disso? </p></center>',
             buttons: {
                 main: {
@@ -203,92 +147,7 @@ $(document).ready(function () {
         }
     );
     });
-    $("#mpl").click(function () {
 
-
-        //------------------------ Load MathJax ---------------------------------------
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "js/ASCIIMathML.js";
-        document.getElementsByTagName("head")[0].appendChild(script);
-
-        var script2 = document.createElement("script");
-        script2.type = "text/javascript";
-        script2.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
-        document.getElementsByTagName("head")[0].appendChild(script2);
-        //------------------------------------------------------------------------------
-
-
-        $('#modelo').addClass('mpl').fadeIn();
-        var content = document.getElementById("contentModelo");
-
-
-        var bodyModel = "";
-        var x = getTableValues();
-        var obj = "";
-        var lim = "";
-
-        bodyModel += '<div class="row">'
-        bodyModel += '<div class="col-lg-1">';
-        if (x["problema"] == "Maximize") {
-            bodyModel += '<span>max:</span>';
-        } else {
-            bodyModel += '<span>min:</span>';
-        }
-        bodyModel += '</div>'
-        bodyModel += '<div class="col-lg-11">';
-        for (i = 1; i <= x["objetivo"].length; i++) {
-            var num = x["objetivo"][i - 1];
-            if (num.length > 0) {
-                if (num >= 0 && i != 1) {
-                    obj += "+" + num + " x_" + i;
-                }
-                else {
-                    obj += num + " x_" + i;
-                }
-            }
-        }
-
-        bodyModel += "`" + obj + "`";
-        bodyModel += '</div>'
-        bodyModel += '</div>'
-
-
-        bodyModel += '<div class="row" style="padding-top: 5px;">'
-        bodyModel += '<div class="col-lg-3">';
-        bodyModel += "<span>sujeito a:</span>";
-        bodyModel += '</div>';
-        bodyModel += '</div>';
-        bodyModel += '<div class="row" style="padding-top: 5px;">'
-        bodyModel += '<div class="col-lg-1">'
-        bodyModel += "<span>e:</span>";
-        bodyModel += '</div>';
-        bodyModel += '<div class="col-lg-11" >';
-
-        for (i = 1; i <= x["lower"].length; i++) {
-            var numL = x["lower"][i - 1];
-            var numUp = x["upper"][i - 1];
-            if (numL.length > 0 && numUp > 0) {
-                lim += numL + " <= " + "x_" + i + " <= " + numUp + ";";
-            }
-            else {
-                if (numL.length > 0) {
-                    lim += "x_" + i + " >= " + numL + "; ";
-                }
-                if (numUp.length > 0) {
-                    lim += "x_" + i + " <= " + numUp + "; ";
-                }
-            }
-        }
-        bodyModel += "`" + lim + "`";
-        bodyModel += '</div>';
-        bodyModel += '</div>';
-        content.innerHTML = bodyModel;
-    });
-    $("#close").click(function () {
-        $('#modelo').fadeOut(500);
-
-    });
 
     $("#add").click(function () {
 
@@ -296,8 +155,8 @@ $(document).ready(function () {
             var qVariaveis = document.getElementById("variaveis").value;
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
-                message: '<center><p>Todas as informaÃ§Ãµes serÃ£o perdidas.</p></center>' +
-                         '<center><p>SerÃ¡ criado uma nova tabela com<b> ' + qVariaveis + ' </b>variÃ¡veis</p></center>' +
+                message: '<center><p>Todas as informações serão perdidas.</p></center>' +
+                         '<center><p>Será criado uma nova tabela com<b> ' + qVariaveis + ' </b>variáveis</p></center>' +
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
                     main: {
@@ -313,7 +172,7 @@ $(document).ready(function () {
                             controle = -1;
                             addRow();
                             addRow2();
-                            showAlert('success', 'Nova tabela gerada com sucesso! ' + qVariaveis + ' variÃ¡veis criadas.');
+                            showAlert('success', 'Nova tabela gerada com sucesso! ' + qVariaveis + ' variáveis criadas.');
                         }
                     }
                 }
