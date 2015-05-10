@@ -5,7 +5,7 @@ function deleteRow1() {
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
-        showAlert('warning', 'O problema deve haver pelo menos uma restriÃ§Ã£o!')
+        showAlert('warning', 'O problema deve haver pelo menos uma restrição!');
     } else {
         table.deleteRow(controle + 2);
         controle--;
@@ -27,7 +27,7 @@ function addRow1() {
     }
     else {
         controle--;
-        showAlert('warning', 'Limite de restriÃ§Ãµes mÃ¡ximo atingido: 20!')
+        showAlert('warning', 'Limite de restrições máximo atingido: 20!')
     }
 }
 function addRow() {
@@ -180,7 +180,7 @@ $(document).ready(function () {
     $("#limpar").click(function () {
         bootbox.dialog({
             title: '<center><b>Aviso</b></center>',
-            message: '<center><p>Todas as informaÃ§Ãµes serÃ£o perdidas.</p></center>' +
+            message: '<center><p>Todas as informações serão perdidas.</p></center>' +
                     '<center><p>Tem certeza disso? </p></center>',
             buttons: {
                 main: {
@@ -413,4 +413,3 @@ window.onload = function () {
     });
     //document.getElementById('start#sectionA').click();
 };
-

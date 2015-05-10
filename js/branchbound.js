@@ -271,7 +271,7 @@ simplex = function (Nodo) {
 
     if (r === 0) {
         //Caso tenha encontrado uma solucao otima
-        //alert("Solução Ótima encontrada por Simplex");
+        //alert("SoluÃ§Ã£o Ã“tima encontrada por Simplex");
         var z = glp_get_obj_val(lp);
         var x = [];
         for (var i = 0; i < glp_get_num_cols(lp); i++) {
@@ -285,19 +285,19 @@ simplex = function (Nodo) {
         var z = "";
         switch (r) {
             case GLP_EBADB:
-                z = "Número de variáveis básicas não é o mesmo que o número de linhas do objeto do problema. ";
+                z = "NÃºmero de variÃ¡veis bÃ¡sicas nÃ£o Ã© o mesmo que o nÃºmero de linhas do objeto do problema. ";
                 break;
 
             case GLP_ESING:
-                z = "O modelo contém apenas uma matriz base dentro do modelo. ";
+                z = "O modelo contÃ©m apenas uma matriz base dentro do modelo. ";
                 break;
 
             case GLP_ECOND:
-                z = "Número de condição muito grande para a matriz base inicial. ";
+                z = "NÃºmero de condiÃ§Ã£o muito grande para a matriz base inicial. ";
                 break;
 
             case GLP_EBOUND:
-                z = "Variáveis limitadas reais com limites incorretos. ";
+                z = "VariÃ¡veis limitadas reais com limites incorretos. ";
                 break;
 
             case GLP_EFAIL:
@@ -305,15 +305,15 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_EOBJLL:
-                z = "A função objetivo que era pra ser maximizada atingiu seu menor valor e continua diminuindo. ";
+                z = "A funÃ§Ã£o objetivo que era pra ser maximizada atingiu seu menor valor e continua diminuindo. ";
                 break;
 
             case GLP_EOBJUL:
-                z = "A função objetivo que era pra ser minimizada atingiu seu maior valor e continua aumentando. ";
+                z = "A funÃ§Ã£o objetivo que era pra ser minimizada atingiu seu maior valor e continua aumentando. ";
                 break;
 
             case GLP_EITLIM:
-                z = "A iteração do simplex excedeu o limite. ";
+                z = "A iteraÃ§Ã£o do simplex excedeu o limite. ";
                 break;
 
             case GLP_ETMLIM:
@@ -321,11 +321,11 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_ENOPFS:
-                z = "Não tem solução viável primal. ";
+                z = "NÃ£o tem soluÃ§Ã£o viÃ¡vel primal. ";
                 break;
 
             case GLP_ENODFS:
-                z = "Não tem solução viável dual. ";
+                z = "NÃ£o tem soluÃ§Ã£o viÃ¡vel dual. ";
         }
 
         return {z: z,
@@ -334,48 +334,54 @@ simplex = function (Nodo) {
 };
 
 leituraParametros = function () {
-    var contObj = 0;
-    var contRel = 0;
-    var contRhs = 0;
-    var contUp = 0;
-    var contLow = 0;
-    var contRes = 0;
+    /*
+     * Le os dados informados na tabela de entrada e deixa no formato utilizado
+     * em Nodo.
+     */
 
     var problema = document.getElementById("problema").value;
 
-    objetivo = [];
-    restricoes = [];
-    relacoes = [];
-    rhs = [];
-    upper = [];
-    lower = [];
+    var objetivo = [];
+    var restricoes = [];
+    var relacoes = [];
+    var rhs = [];
+    var upper = [];
+    var lower = [];
 
     //Pegando dados da Tabela
     $(".fObj").each(function () {
-        objetivo[contObj] = $(this).val();
-        contObj++;
+        objetivo.push($(this).val());
     });
+    
+    var i = 0;
+    var nRest = 0;
+    var nVar = objetivo.length;
+    restricoes[0] = [];
     $(".xRest").each(function () {
-        restricoes[contRes] = $(this).val();
-        contRes++;
+        restricoes[nRest].push($(this).val());
+        i++;
+        if(i === nVar-1){
+            i = 0;
+            nRest++;
+            restricoes[nRest] = [];
+        }
     });
+    
     $(".relacao").each(function () {
-        relacoes[contRel] = $(this).val();
-        contRel++;
+        relacoes.push($(this).val());
     });
     $(".ladoDir").each(function () {
-        rhs[contRhs] = $(this).val();
-        contRhs++;
+        rhs.push($(this).val());
     });
     $(".limSup").each(function () {
-        upper[contUp] = $(this).val();
-        contUp++;
+        upper.push($(this).val());
     });
     $(".limInf").each(function () {
-        lower[contLow] = $(this).val();
-        contLow++;
+        lower.push($(this).val());
     });
-
+    
+    console.write(restricoes);
+    
     return {
         problema: problema,
         objetivo: objetivo,
