@@ -53,15 +53,15 @@ function getTableValues() {
     };
 }
 function mpl() {
+
+    $('#div_mpl').fadeIn("fast");
+    var mp = document.getElementById("div_mpl");
+
     var body;
     var bodyContent;
     var x = getTableValues();
     var obj = "";
     var lim = "";
-
-
-    var myWindow = window.open("", "_blank", " scrollbars=yes, resizable=yes,width=600, height=400, top=200px, left=200px");
-    //myWindow.document.title = "Modelo de Programação Linear";
 
     bodyContent = '<div class="row">'
     bodyContent += '<div class="col-xs-1">';
@@ -126,36 +126,8 @@ function mpl() {
             }
         }
     }
-    bodyContent += "`" + lim + "`";
+    bodyContent += "` " + lim + " `";
     bodyContent += '</div>';
     bodyContent += '</div>';
-
-    //Painel para criar nova pagina
-
-    body = '<head><link href="css/bootstrap.css" rel="stylesheet">'
-            + ' <script type="text/javascript" src="js/jquery.min.js"></script>'
-+ '<script>(function () {'
-   + ' var script = document.createElement("script");'
-+ 'script.type = "text/javascript";'
- + 'script.src  = "js/MathJax/MathJax.js?config=AM_HTMLorMML";'
-  + 'document.getElementsByTagName("head")[0].appendChild(script);'
-
-    + ' var script2 = document.createElement("script");'
-+ 'script2.type = "text/javascript";'
- + 'script2.src  = "js/ASCIIMathML.js";'
-  + 'document.getElementsByTagName("head")[0].appendChild(script2);'
-  + '})();</script>'
-            + '</head>';
-    body += '<div class="panel panel-primary">' +
-      '<div class="panel-heading">' +
-        '<h3 class="panel-title" id="panel-title">Modelo de Programação Linear<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a></h3>' +
-      '</div>' +
-      '<div class="panel-body">' +
-       bodyContent +
-      '</div>' +
-   ' </div>';
-
-
-    myWindow.document.write(body);
-    //myWindow.opener.document.write("<p>This is the source window!</p>");
+    mp.innerHTML = bodyContent;
 }
