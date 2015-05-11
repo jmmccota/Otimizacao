@@ -3,7 +3,6 @@ Nodo = function (id, pai, altura, modelo, z, x) {
      * Classe que sera usada como elemento do heap.
      * Contem as informacoes necessarias para a execucao do metodo simplex
      * e as informacoes necessarias para desenha-lo na arvore.
-     * ...
      */
 
     this.id = id;
@@ -72,7 +71,6 @@ Heap = function (nodo) {
      * Classe que sera usada como "arvore" para o metodo branch and bound.
      * this.array contem o vetor com o heap.
      * Obs: Indices do array comecam em 1.
-     * ...
      * Inicializa com Nodo como elemento raiz
      */
     this.array = new Array(0);
