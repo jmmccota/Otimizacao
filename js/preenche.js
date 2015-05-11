@@ -1,5 +1,4 @@
-alert();
-﻿var controle = -1;
+var controle = -1;
 var row;
 function deleteRow1() {
     var obj = document.getElementById("myTableData").rows[controle];
