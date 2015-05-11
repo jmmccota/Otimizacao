@@ -4,22 +4,24 @@ Nodo = function (id, pai, altura, modelo, z, x) {
      * Contem as informacoes necessarias para a execucao do metodo simplex
      * e as informacoes necessarias para desenha-lo na arvore.
      */
+    
+    var n = {};
 
-    this.id = id;
-    this.pai = pai;
-    this.altura = altura;
-    this.problema = modelo["problema"];
-    this.objetivo = modelo["objetivo"];
-    this.restricoes = modelo["restricoes"];
-    this.relacoes = modelo["relacoes"];
-    this.rhs = modelo["rhs"];
-    this.upper = modelo["upper"];
-    this.lower = modelo["lower"];
-    this.z = z;
-    this.x = x;
+    n.id = id;
+    n.pai = pai;
+    n.altura = altura;
+    n.problema = modelo["problema"];
+    n.objetivo = modelo["objetivo"];
+    n.restricoes = modelo["restricoes"];
+    n.relacoes = modelo["relacoes"];
+    n.rhs = modelo["rhs"];
+    n.upper = modelo["upper"];
+    n.lower = modelo["lower"];
+    n.z = z;
+    n.x = x;
 
 
-    this.toSource = function () {
+    n.toSource = function () {
         var source = "";
 
         source = this.problema + '\n';
@@ -59,7 +61,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         return source;
     };
 
-    return this;
+    return n;
 };
 
 
@@ -73,10 +75,12 @@ Heap = function (nodo) {
      * Obs: Indices do array comecam em 1.
      * Inicializa com Nodo como elemento raiz
      */
-    this.array = new Array(0);
-    this.array[1] = nodo;
+    var h = {};
+    
+    h.array = new Array(0);
+    h.array[1] = nodo;
 
-    this.insereNodos = function (pai, esq, dir) {
+    h.insereNodos = function (pai, esq, dir) {
         /*
          * pai eh o indice do elemento pai de esq e dir.
          * esq eh o nodo que sera o filho a esquerda de pai.
@@ -98,7 +102,7 @@ Heap = function (nodo) {
         }
     };
 
-    return this;
+    return h;
 };
 
 
@@ -110,19 +114,21 @@ BranchBound = function () {
      * Classe que controla a chamada do simplex
      * Usa um heap para simular a arvore de possibilidades
      */
+    var b = {};
+    
     var modelo = leituraParametros();
-
+    
     var nodo = Nodo(1, 1, 0, modelo, 0, 0);
-    this.heap = Heap(nodo);
-    this.atual = 1;
-    this.fila = [1];
+    b.heap = Heap(nodo);
+    b.atual = 1;
+    b.fila = [1];
 
-    this.terminou = function () {
+    b.terminou = function () {
         //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
         return (this.fila.length == undefined || this.fila.length == 0);
     };
 
-    this.proximoPasso = function (escolhaVariavel) {
+    b.proximoPasso = function (escolhaVariavel) {
         /*
          * escolhaVariavel eh uma funcao para escolher qual xi sofrera a bifurcacao.
          *     para executar normalmente se passa this.escolheVariavel.
@@ -174,16 +180,16 @@ BranchBound = function () {
         return nodo;
     };
 
-    this.passoAPasso = function () {
+    b.passoAPasso = function () {
         //le variavel q o usuario clicou
         return proximoPasso(/*indice do x q o usuario escolheu*/);
     };
 
-    this.executar = function () {
+    b.executar = function () {
         return proximoPasso(this.escolheVariavel);
     };
 
-    this.escolheVariavel = function () {
+    b.escolheVariavel = function () {
         /*
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
@@ -209,7 +215,7 @@ BranchBound = function () {
         return mini;
     };
 
-    this.melhorSolucao = function () {
+    b.melhorSolucao = function () {
         /*
          * retorna o nodo com maior/menor Z
          * retorna null caso nao haja solucao inteira viavels
@@ -242,7 +248,7 @@ BranchBound = function () {
         return otim;
     };
 
-    return this;
+    return b;
 };
 
 
