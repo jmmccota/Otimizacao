@@ -97,7 +97,6 @@ $(document).ready(function () {
 
     //Por padrao os botoes estao escondidos
     hideFormProblema();
-
     t = Tabela();
 
     //Novo problema de otimizacao
@@ -108,8 +107,8 @@ $(document).ready(function () {
             var nVariaveis = document.getElementById("variaveis").value;
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
-                message: '<center><p>Todas as informações serão perdidas.</p></center>' +
-                        '<center><p>Será criado uma nova tabela com<b> ' + nVariaveis + ' </b>variáveis</p></center>' +
+                message: '<center><p>Todas as informa&ccedil;&otilde;es ser&atilde;o perdidas.</p></center>' +
+                        '<center><p>Ser&aacute; criado uma nova tabela com<b> ' + nVariaveis + ' </b>vari&aacute;veis</p></center>' +
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
                     main: {
@@ -123,7 +122,7 @@ $(document).ready(function () {
                             $("#myTableData").empty();
                             $("#myTableData2").empty();
                             t.novo();
-                            showAlert('success', 'Nova tabela gerada com sucesso! ' + nVariaveis + ' variáveis criadas.');
+                            showAlert('success', 'Nova tabela gerada com sucesso! ' + nVariaveis + ' vari&aacute;veis criadas.');
                         }
                     }
                 }
@@ -150,7 +149,7 @@ $(document).ready(function () {
     $("#limpar").click(function () {
         bootbox.dialog({
             title: '<center><b>Aviso</b></center>',
-            message: '<center><p>Todas as informações serão perdidas.</p></center>' +
+            message: '<center><p>Todas as informa&ccedil;&otilde;es ser&atilde;o perdidas.</p></center>' +
                     '<center><p>Tem certeza disso? </p></center>',
             buttons: {
                 main: {
@@ -227,7 +226,7 @@ $(document).ready(function () {
         $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 });
-/*
+
 // ??????????
 function fileUpload(arq) {
     var string = "";
@@ -250,7 +249,7 @@ window.onload = function () {
     var fileInput = document.getElementById('exampleInputFile');
     fileInput.addEventListener('change', function (e) {
         var file = fileInput.files[0];
-        var textType = /text.*"/ //tirar aspas;
+        var textType = /text.*/;
 
         if (file.type.match(textType)) {
             var reader = new FileReader();
@@ -272,7 +271,6 @@ window.onload = function () {
     });
     //document.getElementById('start#sectionA').click();
 };
-*/
 
 ////////////////////////////////////////////////////
 //                FUNCOES AUXILIARES              //
