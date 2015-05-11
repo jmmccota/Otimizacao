@@ -24,36 +24,36 @@ Nodo = function (id, pai, altura, modelo, z, x) {
     n.toSource = function () {
         var source = "";
 
-        source = this.problema + '\n';
+        source = n.problema + '\n';
         source += "obj: ";
-        for (var i = 0; i < this.objetivo.length; i++) {
-            source += this.objetivo[i] >= 0 ? " +" : "";
-            source += this.objetivo[i] + " x" + i + " ";
+        for (var i = 0; i < n.objetivo.length; i++) {
+            source += n.objetivo[i] >= 0 ? " +" : "";
+            source += n.objetivo[i] + " x" + i + " ";
         }
         source += "\n\n" + "Subject To" + "\n";
 
         for (i = 0; i < restricoes.length; i++) {
             source += "res_" + (i + 1) + ":";
             for (var j = 0; j < objetivo.length; j++) {
-                source += (this.restricoes[i][j] >= 0) ? " +" : " ";
-                source += this.restricoes[i][j] + " x" + j;
+                source += (n.restricoes[i][j] >= 0) ? " +" : " ";
+                source += n.restricoes[i][j] + " x" + j;
             }
-            source += " " + this.relacoes[i] + " " + this.rhs[i];
+            source += " " + n.relacoes[i] + " " + n.rhs[i];
             source += "\n";
         }
 
         source += "\nBounds\n";
 
         for (i = 0; i < objetivo.length; i++) {
-            var aux = this.upper[i].toString().toUpperCase();
-            source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
-                    this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
+            var aux = n.upper[i].toString().toUpperCase();
+            source += (aux === "INF") ? "x" + i + ">=" + n.lower[i] :
+                    n.lower[i] + "<=" + "x" + i + "<=" + n.upper[i];
             source += "\n";
         }
 
         source += "\nGenerals \n";
 
-        for (i = 0; i < this.objetivo.length; i++)
+        for (i = 0; i < n.objetivo.length; i++)
             source += "x" + i + "\n";
 
         source += "\nEnd\n";
@@ -71,7 +71,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
 Heap = function (nodo) {
     /*
      * Classe que sera usada como "arvore" para o metodo branch and bound.
-     * this.array contem o vetor com o heap.
+     * h.array contem o vetor com o heap.
      * Obs: Indices do array comecam em 1.
      * Inicializa com Nodo como elemento raiz
      */
@@ -88,17 +88,17 @@ Heap = function (nodo) {
          * dir eh o nodo que sera o filho a direita de pai.
          * se dir for 'null' adiciona somente o elemento a esquerda.
          */
-        if (esq != null) {
+        if (esq !== null) {
             esq.id = pai * 2;
             esq.pai = pai;
-            esq.altura = this.array[pai].altura + 1;
-            this.array[esq.id] = esq;
+            esq.altura = h.array[pai].altura + 1;
+            h.array[esq.id] = esq;
         }
-        if (dir != null) {
+        if (dir !== null) {
             dir.id = pai * 2 + 1;
             dir.pai = pai;
-            dir.altura = this.array[pai].altura + 1;
-            this.array[dir.id] = dir;
+            dir.altura = h.array[pai].altura + 1;
+            h.array[dir.id] = dir;
         }
     };
 
@@ -125,13 +125,13 @@ BranchBound = function () {
 
     b.terminou = function () {
         //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
-        return (this.fila.length == undefined || this.fila.length == 0);
+        return (b.fila.length == undefined || b.fila.length == 0);
     };
 
     b.proximoPasso = function (escolhaVariavel) {
         /*
          * escolhaVariavel eh uma funcao para escolher qual xi sofrera a bifurcacao.
-         *     para executar normalmente se passa this.escolheVariavel.
+         *     para executar normalmente se passa b.escolheVariavel.
          *     para executar passo a passo se passa uma funcao que retorna o indice
          *         do xi que o usuario escolheu.
          * executa uma iteracao do branch and bound:
@@ -140,9 +140,9 @@ BranchBound = function () {
          */
         
         //retira o 1o da fila
-        nodo = this.heap.array[fila.shift()];
+        nodo = b.heap.array[fila.shift()];
         //atual = 1o da fila
-        this.atual = nodo.id;
+        b.atual = nodo.id;
         //resolve o simplex
         var res = simplex(nodo);
         //completa o nodo
@@ -153,28 +153,28 @@ BranchBound = function () {
         xi = escolhaVariavel();
 
         //se heap[atual].x[xi] for viavel e fracionario
-        var x = this.heap.array[atual].x[xi];
-        if (!isNaN(this.heap.array[atual].z) &&
+        var x = b.heap.array[atual].x[xi];
+        if (!isNaN(b.heap.array[atual].z) &&
                 x !== Math.floor(x)) {
 
             //gera 2 copias do objeto
-            var esq = jQuery.extend(true, {}, this.heap.array[atual]);
-            var dir = jQuery.extend(true, {}, this.heap.array[atual]);
+            var esq = jQuery.extend(true, {}, b.heap.array[atual]);
+            var dir = jQuery.extend(true, {}, b.heap.array[atual]);
 
             //se possui solucao fracionaria altera o valor de Z
-            if (this.heap.array[atual].problema === "Maximize")
-                this.heap.array[atual].z = "-Inf";
+            if (b.heap.array[atual].problema === "Maximize")
+                b.heap.array[atual].z = "-Inf";
             else
-                this.heap.array[atual].z = "Inf";
+                b.heap.array[atual].z = "Inf";
 
             //adiciona restricao de heap[atual].x[xi] nos 2 modelos
             dir.lower[xi] = Math.ceil(x);
             esq.upper[xi] = Math.floor(x);
 
             //insere 2 nodos no heap e na fila
-            this.heap.insereNodos(atual, esq, dir);
-            this.fila.push(atual * 2);
-            this.fila.push(atual * 2 + 1);
+            b.heap.insereNodos(atual, esq, dir);
+            b.fila.push(atual * 2);
+            b.fila.push(atual * 2 + 1);
         }
 
         return nodo;
@@ -186,14 +186,14 @@ BranchBound = function () {
     };
 
     b.executar = function () {
-        return proximoPasso(this.escolheVariavel);
+        return proximoPasso(b.escolheVariavel);
     };
 
     b.escolheVariavel = function () {
         /*
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
-        x = this.heap.array[this.atual].x;
+        x = b.heap.array[b.atual].x;
         
         var mini = 0;
         var minval = 1;
@@ -225,16 +225,16 @@ BranchBound = function () {
         //    se nao houver nenhuma retorna null
         //    se encontrar seta como otima
         var i = 0;
-        while(this.heap.array[i] === undefined ||
-              isNaN(this.heap.array[i].z))
+        while(b.heap.array[i] === undefined ||
+              isNaN(b.heap.array[i].z))
             i++;
-        if(i > this.heap.array.length)
+        if(i > b.heap.array.length)
             return null;
         
-        var otim = this.heap.array[i];
+        var otim = b.heap.array[i];
         
         //para cada solucao
-        for(nodo in this.heap.array){
+        for(nodo in b.heap.array){
             //se solucao eh viavel
             if(!isNaN(nodo.z)){
                 //e for melhor que a otima
