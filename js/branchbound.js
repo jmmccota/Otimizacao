@@ -400,12 +400,14 @@ leituraParametros = function () {
 };
 
 $('#salvar').bind('click', function () {
+    
     try {
         var source = "";
         source = Nodo(0, 0, 0, leituraParametros(), 0, 0).toSource();
+        
         var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
         saveAs(blob, "modelo.txt");
     } catch (err) {
-        console.write("biblioteca faltante, FileSaver.js")
+        console.write("biblioteca faltante, FileSaver.js");
     }
 });

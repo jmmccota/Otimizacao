@@ -32,7 +32,7 @@ Tabela = function () {
         row.insertCell().innerHTML = '&nbsp;';
 
         //Insere primeira restricao
-        t.addRow();
+        //t.addRow();
 
         //Limite superior e inferior
         var table = document.getElementById("myTableData2");
