@@ -1,16 +1,16 @@
 Tabela = function () {
     var t = {};
 
-    t.reseta = function (){
+    t.reseta = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
 
     //Cria a tabela base de um novo modelo
     t.novo = function () {
-        
+
         t.reseta();
-        
+
         t.existe = true;
 
         //Cabecalho
@@ -62,9 +62,9 @@ Tabela = function () {
             showAlert('warning', 'Limite máximo de restrições atingido: 20!');
             return;
         }
-        
+
         t.nRestri++;
-        
+
         var table = document.getElementById("myTableData");
         var row = table.insertRow(t.nRestri + 1);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + t.nRestri + '</b>';
@@ -87,9 +87,9 @@ Tabela = function () {
             table.deleteRow(t.nRestri + 2);
         }
     };
-    
+
     t.existe = false;
-    
+
     return t;
 };
 
@@ -128,21 +128,26 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
-        
+
         showFormProblema();
     });
 
     //Adiciona Restricao
-    $('#addRow').click(function (){
+    $('#addRow').click(function () {
         t.addRow();
     });
-    
+
     //Apaga restricao
-    $('#delRow').click(function (){
-        t.deleteRow();
+    $('#delRow').click(function () {
+        if (t.nRestri == 0) {
+            showAlert("warning","Não há mais restrições para excluir!")
+        }
+        else {
+            t.deleteRow();
+        }
     });
 
     //Limpa os dados do modelo
@@ -169,41 +174,41 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     //Salva em arquivo
-    $('#salvar').click(function (){
-        
+    $('#salvar').click(function () {
+
     });
-    
+
     //Carrega de arquivo
-    $('#carregar').click(function (){
-        
+    $('#carregar').click(function () {
+
     });
-    
+
     //Executar Branch and Bound
-    $('#executar').click(function (){
+    $('#executar').click(function () {
         b = BranchBound();
-        
-        while(!b.terminou()){
+
+        while (!b.terminou()) {
             nodo = b.executar();
             //funcao de desenhar
         }
-        
+
         otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
     });
-    
+
     //Executar Branch and Bound Passo a Passo
-    $('#passoAPasso').click(function (){
+    $('#passoAPasso').click(function () {
         b = BranchBound();
-        
-        while(!b.terminou()){
-            nodo = b.proximoPasso(function (){
+
+        while (!b.terminou()) {
+            nodo = b.proximoPasso(function () {
                 //funcao que retorna o indice do x que o usuario escolheu
             });
             //funcao de desenhar
         }
-        
+
         otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
     });
@@ -219,11 +224,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
 });
 
