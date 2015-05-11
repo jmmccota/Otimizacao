@@ -180,11 +180,6 @@ BranchBound = function () {
         return nodo;
     };
 
-    b.passoAPasso = function () {
-        //le variavel q o usuario clicou
-        return proximoPasso(/*indice do x q o usuario escolheu*/);
-    };
-
     b.executar = function () {
         return proximoPasso(b.escolheVariavel);
     };
@@ -366,7 +361,7 @@ leituraParametros = function () {
     $(".xRest").each(function () {
         restricoes[nRest].push($(this).val());
         i++;
-        if (i === nVar - 1) {
+        if (i === nVar) {
             i = 0;
             nRest++;
             restricoes[nRest] = [];
