@@ -1,4 +1,5 @@
 <body>
+    <script type="text/javascript" src="js/tabela.js"></script>
     <span id="alert" style="display:none;"></span>
     <div id="masthead">
         <div class="container">
@@ -69,7 +70,7 @@
                                 </div>
                                 <div class="row" style="padding-top:10px; padding-bottom:10px;">
                                     <div class="col-lg-10">
-                                        <button type="button" id="add" class="btn btn-primary" style="width: 100%;">
+                                        <button type="button" id="novo" class="btn btn-primary" style="width: 100%;">
                                             <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema de Otimização
                                         </button>
 
@@ -99,10 +100,10 @@
                             <div id="mydata" style="margin-top: 20px;">
                                 <table id="myTableData" class="table table-hover table-striped"></table>
                                 <center>
-                                    <button type="button" class="btn btn-primary" id="add1" value="" onclick="Javascript:addRow1()">
+                                    <button type="button" class="btn btn-primary" id="addRow" value="" onclick="Javascript:addRow1()">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Restrição
                                     </button>
-                                    <button type="button" class="btn btn-danger" id="add2" onclick="Javascript:deleteRow1()">
+                                    <button type="button" class="btn btn-danger" id="delRow" onclick="Javascript:deleteRow1()">
                                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  Excluir Restrição
                                     </button>
 
@@ -114,7 +115,7 @@
                                     <button type="submit" class="btn btn-primary" id="executar">
                                         <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
                                     </button>
-                                    <button type="submit" class="btn btn-info" id="executarPasso">
+                                    <button type="submit" class="btn btn-info" id="passoAPasso">
                                         <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
                                     </button>
                                     <button type="button" class="btn btn-default" id="limpar">
@@ -136,7 +137,7 @@
                                 <label class="control-label">Selecione Arquivo:</label>
                             </div>
                             <div class="col-lg-3">
-                                <input type="file" id="exampleInputFile">
+                                <input type="file" id="inputFile">
                             </div>
                             <button type="submit" class="btn btn-success" id="salvar">
                                 <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
@@ -153,13 +154,4 @@
             <i class="glyphicon glyphicon-arrow-up"></i>
         </span>
     </div>
-
 </body>
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootbox.min.js"></script>
-<script type="text/javascript" src="js/preenche.js"></script>
-<script type="text/javascript" src="js/branchbound.js"></script>
-<script type="text/javascript" src="js/FileSaver.min.js"></script>
-<script type="text/javascript" src="js/mpl.js"></script>

@@ -4,7 +4,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
      * Contem as informacoes necessarias para a execucao do metodo simplex
      * e as informacoes necessarias para desenha-lo na arvore.
      */
-    
+
     var n = {};
 
     n.id = id;
@@ -76,7 +76,7 @@ Heap = function (nodo) {
      * Inicializa com Nodo como elemento raiz
      */
     var h = {};
-    
+
     h.array = new Array(0);
     h.array[1] = nodo;
 
@@ -115,9 +115,9 @@ BranchBound = function () {
      * Usa um heap para simular a arvore de possibilidades
      */
     var b = {};
-    
+
     var modelo = leituraParametros();
-    
+
     var nodo = Nodo(1, 1, 0, modelo, 0, 0);
     b.heap = Heap(nodo);
     b.atual = 1;
@@ -138,7 +138,7 @@ BranchBound = function () {
          *     gera os proximos branchs e resolve o proximo da fila
          *     retorna o nodo que foi resolvido
          */
-        
+
         //retira o 1o da fila
         nodo = b.heap.array[fila.shift()];
         //atual = 1o da fila
@@ -194,7 +194,7 @@ BranchBound = function () {
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
         x = b.heap.array[b.atual].x;
-        
+
         var mini = 0;
         var minval = 1;
 
@@ -220,31 +220,31 @@ BranchBound = function () {
          * retorna o nodo com maior/menor Z
          * retorna null caso nao haja solucao inteira viavels
          */
-        
+
         //procura a 1a solucao inteira viavel
         //    se nao houver nenhuma retorna null
         //    se encontrar seta como otima
         var i = 0;
-        while(b.heap.array[i] === undefined ||
-              isNaN(b.heap.array[i].z))
+        while (b.heap.array[i] === undefined ||
+                isNaN(b.heap.array[i].z))
             i++;
-        if(i > b.heap.array.length)
+        if (i > b.heap.array.length)
             return null;
-        
+
         var otim = b.heap.array[i];
-        
+
         //para cada solucao
-        for(nodo in b.heap.array){
+        for (nodo in b.heap.array) {
             //se solucao eh viavel
-            if(!isNaN(nodo.z)){
+            if (!isNaN(nodo.z)) {
                 //e for melhor que a otima
-                if(nodo.problema === "Maximize" && nodo.z > otim.z ||
-                   nodo.problema === "Minimize" && nodo.z < otim.z)
+                if (nodo.problema === "Maximize" && nodo.z > otim.z ||
+                        nodo.problema === "Minimize" && nodo.z < otim.z)
                     // passa a ser a nova otima
                     otim = nodo;
             }
         }
-        
+
         return otim;
     };
 
@@ -252,7 +252,9 @@ BranchBound = function () {
 };
 
 
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+//                FUNCOES AUXILIARES              //
+////////////////////////////////////////////////////
 
 
 simplex = function (Nodo) {
@@ -356,7 +358,7 @@ leituraParametros = function () {
     $(".fObj").each(function () {
         objetivo.push($(this).val());
     });
-    
+
     var i = 0;
     var nRest = 0;
     var nVar = objetivo.length;
@@ -364,13 +366,13 @@ leituraParametros = function () {
     $(".xRest").each(function () {
         restricoes[nRest].push($(this).val());
         i++;
-        if(i === nVar-1){
+        if (i === nVar - 1) {
             i = 0;
             nRest++;
             restricoes[nRest] = [];
         }
     });
-    
+
     $(".relacao").each(function () {
         relacoes.push($(this).val());
     });
@@ -383,9 +385,9 @@ leituraParametros = function () {
     $(".limInf").each(function () {
         lower.push($(this).val());
     });
-    
+
     console.write(restricoes);
-    
+
     return {
         problema: problema,
         objetivo: objetivo,
@@ -401,7 +403,7 @@ $('#salvar').bind('click', function () {
     try {
         var source = "";
         source = Nodo(0, 0, 0, leituraParametros(), 0, 0).toSource();
-        var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+        var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
         saveAs(blob, "modelo.txt");
     } catch (err) {
         console.write("biblioteca faltante, FileSaver.js")
