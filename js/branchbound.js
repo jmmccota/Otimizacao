@@ -32,9 +32,9 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         }
         source += "\n\n" + "Subject To" + "\n";
 
-        for (i = 0; i < restricoes.length; i++) {
+        for (i = 0; i < n.restricoes.length; i++) {
             source += "res_" + (i + 1) + ":";
-            for (var j = 0; j < objetivo.length; j++) {
+            for (var j = 0; j < n.objetivo.length; j++) {
                 source += (n.restricoes[i][j] >= 0) ? " +" : " ";
                 source += n.restricoes[i][j] + " x" + j;
             }
@@ -44,7 +44,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
 
         source += "\nBounds\n";
 
-        for (i = 0; i < objetivo.length; i++) {
+        for (i = 0; i < n.objetivo.length; i++) {
             var aux = n.upper[i].toString().toUpperCase();
             source += (aux === "INF") ? "x" + i + ">=" + n.lower[i] :
                     n.lower[i] + "<=" + "x" + i + "<=" + n.upper[i];
@@ -140,7 +140,7 @@ BranchBound = function () {
          */
 
         //retira o 1o da fila
-        nodo = b.heap.array[fila.shift()];
+        nodo = b.heap.array[b.fila.shift()];
         //atual = 1o da fila
         b.atual = nodo.id;
         //resolve o simplex
@@ -150,7 +150,7 @@ BranchBound = function () {
         nodo.z = res["z"];
 
         //escolhe qual variavel vai sair
-        xi = escolhaVariavel();
+        var xi = escolhaVariavel();
 
         //se heap[atual].x[xi] for viavel e fracionario
         var x = b.heap.array[atual].x[xi];
@@ -193,13 +193,13 @@ BranchBound = function () {
         /*
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
-        x = b.heap.array[b.atual].x;
+        var x = b.heap.array[b.atual].x;
 
         var mini = 0;
         var minval = 1;
 
         //x.length retorna undefined
-        len = 0;
+        var len = 0;
         while (x[len] !== undefined)
             len++;
 

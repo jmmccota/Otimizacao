@@ -1,101 +1,96 @@
 Tabela = function () {
     var t = {};
 
-    var controle = -1;
-    var row = {};
+    t.reseta = function (){
+        t.nRestri = 0;
+        t.nVar = document.getElementById("variaveis").value;
+    };
 
     //Cria a tabela base de um novo modelo
     t.novo = function () {
+        
+        t.reseta();
+        
+        t.existe = true;
 
-
-        var qVariaveis = document.getElementById("variaveis");
-
-        //Cria a tabela base - Objetivo e Restricoes
-        if (controle == -1) {
-            var table = document.getElementById("myTableData");
-            var rowCount = table.rows.length;
-            row = table.insertRow(rowCount);
-            row.insertCell(0).innerHTML = '&nbsp;';
-            for (i = 1; i <= qVariaveis.value; i++) {
-                row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
-            }
-            row.insertCell().innerHTML = '<center><b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b></center>';
-            row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
-        }
-        controle++;
+        //Cabecalho
         var table = document.getElementById("myTableData");
-        var rowCount = table.rows.length;
-        row = table.insertRow(rowCount);
-        row.insertCell(0).innerHTML = '<b>Objetivo</b>';
-        for (i = 1; i <= qVariaveis.value; i++) {
-            row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any">';
-        }
-        row.insertCell().innerHTML = '&nbsp;';
-        row.insertCell().innerHTML = '&nbsp;';
-        row = table.insertRow(rowCount + 1);
-        row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
-        for (i = 1; i <= qVariaveis.value; i++) {
-            row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number" class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
-        }
-        row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="relacao form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
-        row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="ladoDir form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" required  step="any">';
+        var row = table.insertRow(0);
+        row.insertCell(0).innerHTML = '&nbsp;';
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
+        row.insertCell().innerHTML = '<center><b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b></center>';
+        row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
 
-        //Cria tabela base - Limite superior e inferior
+        //Funcao Objetivo
+        row = table.insertRow(1);
+        row.insertCell(0).innerHTML = '<b>Objetivo</b>';
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" \
+                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+        row.insertCell().innerHTML = '&nbsp;';
+        row.insertCell().innerHTML = '&nbsp;';
+
+        //Insere primeira restricao
+        t.addRow();
+
+        //Limite superior e inferior
         var table = document.getElementById("myTableData2");
         var rowCount = table.rows.length;
         row = table.insertRow(rowCount);
         row.insertCell(0).innerHTML = '&nbsp;';
-        for (i = 1; i <= qVariaveis.value; i++) {
+        for (i = 1; i <= t.nVar; i++) {
             row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
         }
         var rowCount = table.rows.length;
         row = table.insertRow(rowCount);
         row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
-        for (i = 1; i <= qVariaveis.value; i++) {
-            row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" class="limSup form-control" required  step="any">';
+        for (i = 1; i <= t.nVar; i++) {
+            row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
+                    class="limSup form-control" required  step="any">';
         }
         row = table.insertRow(rowCount + 1);
         row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
-        for (i = 1; i <= qVariaveis.value; i++) {
-            row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" class="limInf form-control" required  step="any">';
-        }
-
-    };
-
-    //Remove restricoes do modelo
-    t.deleteRow = function () {
-        var obj = document.getElementById("myTableData").rows[controle];
-        var index = obj.parentNode.parentNode.rowIndex;
-        var table = document.getElementById("myTableData");
-        if (controle < 1) {
-            showAlert('warning', 'O problema deve haver pelo menos uma restrição!');
-            //ALTERAR - PODE TER 0 RESTRICOES
-        } else {
-            table.deleteRow(controle + 2);
-            controle--;
-        }
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
+                    class="limInf form-control" required  step="any">';
     };
 
     //Adiciona restricoes ao modelo
     t.addRow = function () {
-        var qVariaveis = document.getElementById("variaveis");
-        controle++;
-        if (controle < 20) {
-            var table = document.getElementById("myTableData");
-            var rowCount = table.rows.length;
-            row = table.insertRow(rowCount);
-            row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (controle + 1) + '</b>';
-            for (i = 1; i <= qVariaveis.value; i++) {
-                row.insertCell(i).innerHTML = '<input id="x' + (controle + 1) + '' + (i - 1) + '" type="number"  class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
-            }
-            row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="relacao form-control"><option><=</option><option>=</option><option>>=</option></select>';
-            row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any">';
-        }
-        else {
-            controle--;
+        if (t.nRestri == 20) {
             showAlert('warning', 'Limite máximo de restrições atingido: 20!');
+            return;
+        }
+        
+        t.nRestri++;
+        
+        var table = document.getElementById("myTableData");
+        var row = table.insertRow(t.nRestri + 1);
+        row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + t.nRestri + '</b>';
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<input id="x' + t.nRestri + '' + (i - 1) + '" type="number"  \
+                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+        row.insertCell().innerHTML = '<select id="relacao' + t.nRestri + '" class="relacao form-control">\
+                <option><=</option><option>=</option><option>>=</option></select>';
+        row.insertCell().innerHTML = '<input id="ladoDir' + t.nRestri + '" type="number" \
+                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+    };
+
+    //Remove restricoes do modelo
+    t.deleteRow = function () {
+        var obj = document.getElementById("myTableData").rows[t.nRestri];
+        var index = obj.parentNode.parentNode.rowIndex;
+        var table = document.getElementById("myTableData");
+        if (t.nRestri > 0) {
+            t.nRestri--;
+            table.deleteRow(t.nRestri + 2);
         }
     };
+    
+    t.existe = false;
+    
+    return t;
 };
 
 $(document).ready(function () {
@@ -103,15 +98,18 @@ $(document).ready(function () {
     //Por padrao os botoes estao escondidos
     hideFormProblema();
 
+    t = Tabela();
+
     //Novo problema de otimizacao
     $("#novo").click(function () {
+
         //se ja tem algum modelo aberto
-        if (controle != -1) {
-            var qVariaveis = document.getElementById("variaveis").value;
+        if (t.existe) {
+            var nVariaveis = document.getElementById("variaveis").value;
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
                 message: '<center><p>Todas as informações serão perdidas.</p></center>' +
-                        '<center><p>Será criado uma nova tabela com<b> ' + qVariaveis + ' </b>variáveis</p></center>' +
+                        '<center><p>Será criado uma nova tabela com<b> ' + nVariaveis + ' </b>variáveis</p></center>' +
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
                     main: {
@@ -124,32 +122,29 @@ $(document).ready(function () {
                         callback: function () {
                             $("#myTableData").empty();
                             $("#myTableData2").empty();
-                            controle = -1;
-                            addRow();
-                            addRow2();
-                            showAlert('success', 'Nova tabela gerada com sucesso! ' + qVariaveis + ' variáveis criadas.');
+                            t.novo();
+                            showAlert('success', 'Nova tabela gerada com sucesso! ' + nVariaveis + ' variáveis criadas.');
                         }
                     }
                 }
             });
         }
-        else {
-            //Cria nova tabela
-            addRow();
-            addRow2();
-            //Adiciona os botoes
-            $('#add2').show('fast');
-            $('#add1').show('fast');
-            $('#sub1').show('fast');
-            $('#executar').show('fast');
-            $('#executarPasso').show('fast');
-            $('#salvar').show('fast');
-            $('#limpar').show('fast');
-            $('#excluir1').show('fast');
-        }
+        //Cria nova tabela
+        else
+            t.novo();
+        
+        showFormProblema();
     });
 
-    //ADICIONAR CHAMADA PARA OS OUTROS BOTOES
+    //Adiciona Restricao
+    $('#addRow').click(function (){
+        t.addRow();
+    });
+    
+    //Apaga restricao
+    $('#delRow').click(function (){
+        t.deleteRow();
+    });
 
     //Limpa os dados do modelo
     $("#limpar").click(function () {
@@ -168,14 +163,50 @@ $(document).ready(function () {
                     callback: function () {
                         $("#myTableData").empty();
                         $("#myTableData2").empty();
-                        controle = -1;
-                        addRow(); //primeira metade de tabela.novo
-                        addRow2(); //segunda metade de tabela.novo
+                        t.novo();
                         showAlert('success', 'Limpeza realizada com Sucesso!')
                     }
                 }
             }
         });
+    });
+    
+    //Salva em arquivo
+    $('#salvar').click(function (){
+        
+    });
+    
+    //Carrega de arquivo
+    $('#carregar').click(function (){
+        
+    });
+    
+    //Executar Branch and Bound
+    $('#executar').click(function (){
+        b = BranchBound();
+        
+        while(!b.terminou()){
+            nodo = b.executar();
+            //funcao de desenhar
+        }
+        
+        otimo = b.melhorSolucao();
+        //faz alguma coisa com o otimo
+    });
+    
+    //Executar Branch and Bound Passo a Passo
+    $('#passoAPasso').click(function (){
+        b = BranchBound();
+        
+        while(!b.terminou()){
+            nodo = b.proximoPasso(function (){
+                //funcao que retorna o indice do x que o usuario escolheu
+            });
+            //funcao de desenhar
+        }
+        
+        otimo = b.melhorSolucao();
+        //faz alguma coisa com o otimo
     });
 
     //Ao rolar a pagina adiciona o botao de voltar ao topo
@@ -191,13 +222,12 @@ $(document).ready(function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
                 verticalOffset :
                 0;
-        element = $('body');
-        offset = element.offset();
+        offset = $('body').offset();
         offsetTop = offset.top;
         $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 });
-
+/*
 // ??????????
 function fileUpload(arq) {
     var string = "";
@@ -220,7 +250,7 @@ window.onload = function () {
     var fileInput = document.getElementById('exampleInputFile');
     fileInput.addEventListener('change', function (e) {
         var file = fileInput.files[0];
-        var textType = /text.*/;
+        var textType = /text.*"/ //tirar aspas;
 
         if (file.type.match(textType)) {
             var reader = new FileReader();
@@ -242,13 +272,13 @@ window.onload = function () {
     });
     //document.getElementById('start#sectionA').click();
 };
-
+*/
 
 ////////////////////////////////////////////////////
 //                FUNCOES AUXILIARES              //
 ////////////////////////////////////////////////////
 
-//?
+// ??????????
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -270,14 +300,21 @@ function closeAlert() {
     $('#alert').fadeOut();
 }
 
+//Mostra os botoes de controle da tabela
+function showFormProblema() {
+    $('#addRow').show('fast');
+    $('#delRow').show('fast');
+    $('#executar').show('fast');
+    $('#passoAPasso').show('fast');
+    $('#salvar').show('fast');
+    $('#limpar').show('fast');
+}
 //Esconde os botoes de controle da tabela
 function hideFormProblema() {
-    $('#add2').hide();
-    $('#add1').hide();
-    $('#sub1').hide();
-    $('#executar').hide();
-    $('#salvar').hide();
-    $('#executarPasso').hide();
-    $('#limpar').hide();
-    $('#excluir1').hide();
+    $('#addRow').hide('fast');
+    $('#delRow').hide('fast');
+    $('#executar').hide('fast');
+    $('#passoAPasso').hide('fast');
+    $('#salvar').hide('fast');
+    $('#limpar').hide('fast');
 }

@@ -1,5 +1,29 @@
 <body>
-    <script type="text/javascript" src="js/tabela.js"></script>
+    
+    
+    
+    
+    
+
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootbox.min.js"></script>
+        <script type="text/javascript" src="js/FileSaver.min.js"></script>
+        <script type="text/javascript" src="js/mpl.js"></script>
+        <script type="text/javascript" src="js/branchbound.js"></script>
+        <script type="text/javascript" src="js/interface.js"></script>
+
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/vis.css" rel="stylesheet">
+    
+    
+    
+    
+    
+    
     <span id="alert" style="display:none;"></span>
     <div id="masthead">
         <div class="container">
@@ -100,10 +124,10 @@
                             <div id="mydata" style="margin-top: 20px;">
                                 <table id="myTableData" class="table table-hover table-striped"></table>
                                 <center>
-                                    <button type="button" class="btn btn-primary" id="addRow" value="" onclick="Javascript:addRow1()">
+                                    <button type="button" class="btn btn-primary" id="addRow" value="">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Restrição
                                     </button>
-                                    <button type="button" class="btn btn-danger" id="delRow" onclick="Javascript:deleteRow1()">
+                                    <button type="button" class="btn btn-danger" id="delRow">
                                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  Excluir Restrição
                                     </button>
 
@@ -139,7 +163,7 @@
                             <div class="col-lg-3">
                                 <input type="file" id="inputFile">
                             </div>
-                            <button type="submit" class="btn btn-success" id="salvar">
+                            <button type="submit" class="btn btn-success" id="carregar">
                                 <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
                             </button>
                         </form>
