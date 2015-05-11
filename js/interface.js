@@ -113,7 +113,7 @@ $(document).ready(function () {
                 buttons: {
                     main: {
                         label: "Cancelar",
-                        className: "btn-default",
+                        className: "btn-default"
                     },
                     success: {
                         label: "Sim",
@@ -276,6 +276,14 @@ window.onload = function () {
     });
     //document.getElementById('start#sectionA').click();
 };
+
+////////////////////////////////////////////////////
+//                FUNCOES DA ARVORE               //
+////////////////////////////////////////////////////
+
+
+//MAGIA DO ANDRE
+
 
 ////////////////////////////////////////////////////
 //                FUNCOES AUXILIARES              //
