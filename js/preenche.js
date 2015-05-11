@@ -1,16 +1,18 @@
-﻿var controle = -1;
+var controle = -1;
 var row;
 function deleteRow1() {
     var obj = document.getElementById("myTableData").rows[controle];
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("myTableData");
     if (controle < 1) {
-        showAlert('warning', 'O problema deve haver pelo menos uma restrição!')
+        showAlert('warning', 'O problema deve haver pelo menos uma restrição!');
     } else {
         table.deleteRow(controle + 2);
         controle--;
     }
 }
+
+//Adiciona restricoes ao modelo
 function addRow1() {
     var qVariaveis = document.getElementById("variaveis");
     controle++;
@@ -27,9 +29,11 @@ function addRow1() {
     }
     else {
         controle--;
-        showAlert('warning', 'Limite máximo de restrições atingido: 20!')
+        showAlert('warning', 'Limite máximo de restrições atingido: 20!');
     }
 }
+
+//Cria a tabela base - Objetivo e Restricoes
 function addRow() {
     var qVariaveis = document.getElementById("variaveis");
     if (controle == -1) {
@@ -61,8 +65,9 @@ function addRow() {
     }
     row.insertCell().innerHTML = '<select id="relacao' + (controle + 1) + '" class="relacao form-control" style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
     row.insertCell().innerHTML = '<input id="ladoDir' + (controle + 1) + '" type="number" class="ladoDir form-control" style="min-width: 90px;" onkeypress="return isNumberKey(event)" required  step="any">';
-
 }
+
+//Cria tabela base - Limite superior e inferior
 function addRow2() {
     var qVariaveis = document.getElementById("variaveis");
     var table = document.getElementById("myTableData2");
@@ -85,7 +90,6 @@ function addRow2() {
     for (i = 1; i <= qVariaveis.value; i++) {
         row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" class="limInf form-control" required  step="any">';
     }
-
 }
 
 function isNumberKey(evt) {
@@ -145,10 +149,10 @@ $(document).ready(function () {
                 }
             }
         }
-    );
+        );
     });
 
-
+    //Novo problema de otimizacao
     $("#add").click(function () {
 
         if (controle != -1) {
@@ -156,7 +160,7 @@ $(document).ready(function () {
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
                 message: '<center><p>Todas as informações serão perdidas.</p></center>' +
-                         '<center><p>Será criado uma nova tabela com<b> ' + qVariaveis + ' </b>variáveis</p></center>' +
+                        '<center><p>Será criado uma nova tabela com<b> ' + qVariaveis + ' </b>variáveis</p></center>' +
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
                     main: {
@@ -177,12 +181,13 @@ $(document).ready(function () {
                     }
                 }
             }
-        );
+            );
 
         }
         else {
             addRow();
             addRow2();
+            //Adiciona os botoes
             $('#add2').show('fast');
             $('#add1').show('fast');
             $('#sub1').show('fast');
@@ -226,7 +231,7 @@ function scrollToTop() {
     element = $('body');
     offset = element.offset();
     offsetTop = offset.top;
-    $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+    $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
 }
 
 
@@ -262,7 +267,7 @@ window.onload = function () {
                 row = glp_get_num_rows(lp);
                 col = glp_get_num_cols(lp);
                 run(source);
-            }
+            };
 
             reader.readAsText(file);
 
@@ -272,4 +277,3 @@ window.onload = function () {
     });
     //document.getElementById('start#sectionA').click();
 };
-

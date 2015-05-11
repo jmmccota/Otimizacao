@@ -3,56 +3,57 @@ Nodo = function (id, pai, altura, modelo, z, x) {
      * Classe que sera usada como elemento do heap.
      * Contem as informacoes necessarias para a execucao do metodo simplex
      * e as informacoes necessarias para desenha-lo na arvore.
-     * ...
      */
+    
+    var n = {};
 
-    this.id = id;
-    this.pai = pai;
-    this.altura = altura;
-    this.problema = modelo["problema"];
-    this.objetivo = modelo["objetivo"];
-    this.restricoes = modelo["restricoes"];
-    this.relacoes = modelo["relacoes"];
-    this.rhs = modelo["rhs"];
-    this.upper = modelo["upper"];
-    this.lower = modelo["lower"];
-    this.z = z;
-    this.x = x;
+    n.id = id;
+    n.pai = pai;
+    n.altura = altura;
+    n.problema = modelo["problema"];
+    n.objetivo = modelo["objetivo"];
+    n.restricoes = modelo["restricoes"];
+    n.relacoes = modelo["relacoes"];
+    n.rhs = modelo["rhs"];
+    n.upper = modelo["upper"];
+    n.lower = modelo["lower"];
+    n.z = z;
+    n.x = x;
 
 
-    this.toSource = function () {
+    n.toSource = function () {
         var source = "";
 
-        source = this.problema + '\n';
+        source = n.problema + '\n';
         source += "obj: ";
-        for (var i = 0; i < this.objetivo.length; i++) {
-            source += this.objetivo[i] >= 0 ? " +" : "";
-            source += this.objetivo[i] + " x" + i + " ";
+        for (var i = 0; i < n.objetivo.length; i++) {
+            source += n.objetivo[i] >= 0 ? " +" : "";
+            source += n.objetivo[i] + " x" + i + " ";
         }
         source += "\n\n" + "Subject To" + "\n";
 
         for (i = 0; i < restricoes.length; i++) {
             source += "res_" + (i + 1) + ":";
             for (var j = 0; j < objetivo.length; j++) {
-                source += (this.restricoes[i][j] >= 0) ? " +" : " ";
-                source += this.restricoes[i][j] + " x" + j;
+                source += (n.restricoes[i][j] >= 0) ? " +" : " ";
+                source += n.restricoes[i][j] + " x" + j;
             }
-            source += " " + this.relacoes[i] + " " + this.rhs[i];
+            source += " " + n.relacoes[i] + " " + n.rhs[i];
             source += "\n";
         }
 
         source += "\nBounds\n";
 
         for (i = 0; i < objetivo.length; i++) {
-            var aux = this.upper[i].toString().toUpperCase();
-            source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
-                    this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
+            var aux = n.upper[i].toString().toUpperCase();
+            source += (aux === "INF") ? "x" + i + ">=" + n.lower[i] :
+                    n.lower[i] + "<=" + "x" + i + "<=" + n.upper[i];
             source += "\n";
         }
 
         source += "\nGenerals \n";
 
-        for (i = 0; i < this.objetivo.length; i++)
+        for (i = 0; i < n.objetivo.length; i++)
             source += "x" + i + "\n";
 
         source += "\nEnd\n";
@@ -60,7 +61,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         return source;
     };
 
-    return this;
+    return n;
 };
 
 
@@ -70,15 +71,16 @@ Nodo = function (id, pai, altura, modelo, z, x) {
 Heap = function (nodo) {
     /*
      * Classe que sera usada como "arvore" para o metodo branch and bound.
-     * this.array contem o vetor com o heap.
+     * h.array contem o vetor com o heap.
      * Obs: Indices do array comecam em 1.
-     * ...
      * Inicializa com Nodo como elemento raiz
      */
-    this.array = new Array(0);
-    this.array[1] = nodo;
+    var h = {};
+    
+    h.array = new Array(0);
+    h.array[1] = nodo;
 
-    this.insereNodos = function (pai, esq, dir) {
+    h.insereNodos = function (pai, esq, dir) {
         /*
          * pai eh o indice do elemento pai de esq e dir.
          * esq eh o nodo que sera o filho a esquerda de pai.
@@ -86,21 +88,21 @@ Heap = function (nodo) {
          * dir eh o nodo que sera o filho a direita de pai.
          * se dir for 'null' adiciona somente o elemento a esquerda.
          */
-        if (esq != null) {
+        if (esq !== null) {
             esq.id = pai * 2;
             esq.pai = pai;
-            esq.altura = this.array[pai].altura + 1;
-            this.array[esq.id] = esq;
+            esq.altura = h.array[pai].altura + 1;
+            h.array[esq.id] = esq;
         }
-        if (dir != null) {
+        if (dir !== null) {
             dir.id = pai * 2 + 1;
             dir.pai = pai;
-            dir.altura = this.array[pai].altura + 1;
-            this.array[dir.id] = dir;
+            dir.altura = h.array[pai].altura + 1;
+            h.array[dir.id] = dir;
         }
     };
 
-    return this;
+    return h;
 };
 
 
@@ -112,22 +114,24 @@ BranchBound = function () {
      * Classe que controla a chamada do simplex
      * Usa um heap para simular a arvore de possibilidades
      */
+    var b = {};
+    
     var modelo = leituraParametros();
-
+    
     var nodo = Nodo(1, 1, 0, modelo, 0, 0);
-    this.heap = Heap(nodo);
-    this.atual = 1;
-    this.fila = [1];
+    b.heap = Heap(nodo);
+    b.atual = 1;
+    b.fila = [1];
 
-    this.terminou = function () {
+    b.terminou = function () {
         //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
-        return (this.fila.length == undefined || this.fila.length == 0);
+        return (b.fila.length == undefined || b.fila.length == 0);
     };
 
-    this.proximoPasso = function (escolhaVariavel) {
+    b.proximoPasso = function (escolhaVariavel) {
         /*
          * escolhaVariavel eh uma funcao para escolher qual xi sofrera a bifurcacao.
-         *     para executar normalmente se passa this.escolheVariavel.
+         *     para executar normalmente se passa b.escolheVariavel.
          *     para executar passo a passo se passa uma funcao que retorna o indice
          *         do xi que o usuario escolheu.
          * executa uma iteracao do branch and bound:
@@ -136,9 +140,9 @@ BranchBound = function () {
          */
         
         //retira o 1o da fila
-        nodo = this.heap.array[fila.shift()];
+        nodo = b.heap.array[fila.shift()];
         //atual = 1o da fila
-        this.atual = nodo.id;
+        b.atual = nodo.id;
         //resolve o simplex
         var res = simplex(nodo);
         //completa o nodo
@@ -149,47 +153,47 @@ BranchBound = function () {
         xi = escolhaVariavel();
 
         //se heap[atual].x[xi] for viavel e fracionario
-        var x = this.heap.array[atual].x[xi];
-        if (!isNaN(this.heap.array[atual].z) &&
+        var x = b.heap.array[atual].x[xi];
+        if (!isNaN(b.heap.array[atual].z) &&
                 x !== Math.floor(x)) {
 
             //gera 2 copias do objeto
-            var esq = jQuery.extend(true, {}, this.heap.array[atual]);
-            var dir = jQuery.extend(true, {}, this.heap.array[atual]);
+            var esq = jQuery.extend(true, {}, b.heap.array[atual]);
+            var dir = jQuery.extend(true, {}, b.heap.array[atual]);
 
             //se possui solucao fracionaria altera o valor de Z
-            if (this.heap.array[atual].problema === "Maximize")
-                this.heap.array[atual].z = "-Inf";
+            if (b.heap.array[atual].problema === "Maximize")
+                b.heap.array[atual].z = "-Inf";
             else
-                this.heap.array[atual].z = "Inf";
+                b.heap.array[atual].z = "Inf";
 
             //adiciona restricao de heap[atual].x[xi] nos 2 modelos
             dir.lower[xi] = Math.ceil(x);
             esq.upper[xi] = Math.floor(x);
 
             //insere 2 nodos no heap e na fila
-            this.heap.insereNodos(atual, esq, dir);
-            this.fila.push(atual * 2);
-            this.fila.push(atual * 2 + 1);
+            b.heap.insereNodos(atual, esq, dir);
+            b.fila.push(atual * 2);
+            b.fila.push(atual * 2 + 1);
         }
 
         return nodo;
     };
 
-    this.passoAPasso = function () {
+    b.passoAPasso = function () {
         //le variavel q o usuario clicou
         return proximoPasso(/*indice do x q o usuario escolheu*/);
     };
 
-    this.executar = function () {
-        return proximoPasso(this.escolheVariavel);
+    b.executar = function () {
+        return proximoPasso(b.escolheVariavel);
     };
 
-    this.escolheVariavel = function () {
+    b.escolheVariavel = function () {
         /*
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
-        x = this.heap.array[this.atual].x;
+        x = b.heap.array[b.atual].x;
         
         var mini = 0;
         var minval = 1;
@@ -211,7 +215,7 @@ BranchBound = function () {
         return mini;
     };
 
-    this.melhorSolucao = function () {
+    b.melhorSolucao = function () {
         /*
          * retorna o nodo com maior/menor Z
          * retorna null caso nao haja solucao inteira viavels
@@ -221,16 +225,16 @@ BranchBound = function () {
         //    se nao houver nenhuma retorna null
         //    se encontrar seta como otima
         var i = 0;
-        while(this.heap.array[i] === undefined ||
-              isNaN(this.heap.array[i].z))
+        while(b.heap.array[i] === undefined ||
+              isNaN(b.heap.array[i].z))
             i++;
-        if(i > this.heap.array.length)
+        if(i > b.heap.array.length)
             return null;
         
-        var otim = this.heap.array[i];
+        var otim = b.heap.array[i];
         
         //para cada solucao
-        for(nodo in this.heap.array){
+        for(nodo in b.heap.array){
             //se solucao eh viavel
             if(!isNaN(nodo.z)){
                 //e for melhor que a otima
@@ -244,7 +248,7 @@ BranchBound = function () {
         return otim;
     };
 
-    return this;
+    return b;
 };
 
 
@@ -271,7 +275,7 @@ simplex = function (Nodo) {
 
     if (r === 0) {
         //Caso tenha encontrado uma solucao otima
-        //alert("Solução Ótima encontrada por Simplex");
+        //alert("SoluÃ§Ã£o Ã“tima encontrada por Simplex");
         var z = glp_get_obj_val(lp);
         var x = [];
         for (var i = 0; i < glp_get_num_cols(lp); i++) {
@@ -285,19 +289,19 @@ simplex = function (Nodo) {
         var z = "";
         switch (r) {
             case GLP_EBADB:
-                z = "Número de variáveis básicas não é o mesmo que o número de linhas do objeto do problema. ";
+                z = "NÃºmero de variÃ¡veis bÃ¡sicas nÃ£o Ã© o mesmo que o nÃºmero de linhas do objeto do problema. ";
                 break;
 
             case GLP_ESING:
-                z = "O modelo contém apenas uma matriz base dentro do modelo. ";
+                z = "O modelo contÃ©m apenas uma matriz base dentro do modelo. ";
                 break;
 
             case GLP_ECOND:
-                z = "Número de condição muito grande para a matriz base inicial. ";
+                z = "NÃºmero de condiÃ§Ã£o muito grande para a matriz base inicial. ";
                 break;
 
             case GLP_EBOUND:
-                z = "Variáveis limitadas reais com limites incorretos. ";
+                z = "VariÃ¡veis limitadas reais com limites incorretos. ";
                 break;
 
             case GLP_EFAIL:
@@ -305,15 +309,15 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_EOBJLL:
-                z = "A função objetivo que era pra ser maximizada atingiu seu menor valor e continua diminuindo. ";
+                z = "A funÃ§Ã£o objetivo que era pra ser maximizada atingiu seu menor valor e continua diminuindo. ";
                 break;
 
             case GLP_EOBJUL:
-                z = "A função objetivo que era pra ser minimizada atingiu seu maior valor e continua aumentando. ";
+                z = "A funÃ§Ã£o objetivo que era pra ser minimizada atingiu seu maior valor e continua aumentando. ";
                 break;
 
             case GLP_EITLIM:
-                z = "A iteração do simplex excedeu o limite. ";
+                z = "A iteraÃ§Ã£o do simplex excedeu o limite. ";
                 break;
 
             case GLP_ETMLIM:
@@ -321,11 +325,11 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_ENOPFS:
-                z = "Não tem solução viável primal. ";
+                z = "NÃ£o tem soluÃ§Ã£o viÃ¡vel primal. ";
                 break;
 
             case GLP_ENODFS:
-                z = "Não tem solução viável dual. ";
+                z = "NÃ£o tem soluÃ§Ã£o viÃ¡vel dual. ";
         }
 
         return {z: z,
@@ -334,48 +338,54 @@ simplex = function (Nodo) {
 };
 
 leituraParametros = function () {
-    var contObj = 0;
-    var contRel = 0;
-    var contRhs = 0;
-    var contUp = 0;
-    var contLow = 0;
-    var contRes = 0;
+    /*
+     * Le os dados informados na tabela de entrada e deixa no formato utilizado
+     * em Nodo.
+     */
 
     var problema = document.getElementById("problema").value;
 
-    objetivo = [];
-    restricoes = [];
-    relacoes = [];
-    rhs = [];
-    upper = [];
-    lower = [];
+    var objetivo = [];
+    var restricoes = [];
+    var relacoes = [];
+    var rhs = [];
+    var upper = [];
+    var lower = [];
 
     //Pegando dados da Tabela
     $(".fObj").each(function () {
-        objetivo[contObj] = $(this).val();
-        contObj++;
+        objetivo.push($(this).val());
     });
+    
+    var i = 0;
+    var nRest = 0;
+    var nVar = objetivo.length;
+    restricoes[0] = [];
     $(".xRest").each(function () {
-        restricoes[contRes] = $(this).val();
-        contRes++;
+        restricoes[nRest].push($(this).val());
+        i++;
+        if(i === nVar-1){
+            i = 0;
+            nRest++;
+            restricoes[nRest] = [];
+        }
     });
+    
     $(".relacao").each(function () {
-        relacoes[contRel] = $(this).val();
-        contRel++;
+        relacoes.push($(this).val());
     });
     $(".ladoDir").each(function () {
-        rhs[contRhs] = $(this).val();
-        contRhs++;
+        rhs.push($(this).val());
     });
     $(".limSup").each(function () {
-        upper[contUp] = $(this).val();
-        contUp++;
+        upper.push($(this).val());
     });
     $(".limInf").each(function () {
-        lower[contLow] = $(this).val();
-        contLow++;
+        lower.push($(this).val());
     });
-
+    
+    console.write(restricoes);
+    
     return {
         problema: problema,
         objetivo: objetivo,
