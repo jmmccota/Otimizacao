@@ -128,7 +128,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
 
@@ -143,7 +143,7 @@ $(document).ready(function () {
     //Apaga restricao
     $('#delRow').click(function () {
         if (t.nRestri == 0) {
-            showAlert("warning","Não há mais restrições para excluir!")
+            showAlert("warning", "Não há mais restrições para excluir!")
         }
         else {
             t.deleteRow();
@@ -224,11 +224,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 });
 
@@ -261,11 +261,115 @@ window.onload = function () {
             reader.onload = function (e) {
                 source = reader.result;
                 alert(source);
-                var lp = glp_create_prob();
-                glp_read_lp_from_string(lp, null, source);
-                row = glp_get_num_rows(lp);
-                col = glp_get_num_cols(lp);
-                run(source);
+                //var objetivo = [];
+                var restricoes = [];
+                var relacoes = [];
+                var rhs = [];
+                var upper = [];
+                var lower = [];
+                //var carregado = 1;
+                var linha = 1;
+                var cont = 1;
+                var tam = 0;
+                var problema = "";
+                var iRest = 0;
+                var p = 1; //qual parte
+                var nVariaveis="";
+                //var iObj = 0;
+                //var problema;
+                while (cont < source.length) {
+                    if (p === 1) {//qual problema
+                        if (source[1] === "a") {
+                            problema = "Maximização";
+                        } else if (source[1] === "i") {
+                            problema = "Minimização";
+                        } else {
+                            alert("Arquivo está errado!!!");
+                        }
+                        alert(problema);
+                        cont += 12;
+                        p++;
+                    }
+                    if (p === 2) {
+                        var linha = "";
+                        while (source[cont] !== "\n") {
+                            linha += source[cont];
+                            cont++;
+                        }
+                        var objetivo = linha.split("|");
+                        nVariaveis=linha.length;
+                        p++;
+                        cont += 2;
+                    }
+                    if (p === 3) {
+                        
+                        linha = "";
+                        while (source[cont] !== ">" || source[cont] !== "<" || source[cont] !== "=") {
+                            linha += source[cont];
+                            cont++;
+                        }
+                        restricoes[iRest] = linha.split("|");
+                        iRest++;
+                        cont++;
+                        if(source[cont]===">"){
+                            relacoes.push(">=");
+                            cont++;
+                        }else if(source[cont]==="<"){
+                            relacoes.push("<=");
+                            cont++;
+                        }else if(source[cont]==="="){
+                            relacoes.push("=");
+                            cont++;
+                        }else{
+                            alert("Erro!!!");
+                        }
+                        var ld="";
+                        while(source[cont]!=="\n"){
+                            ld+=source[cont];
+                            cont++;
+                        }
+                        ld.split("|",1);
+                        rhs.push(ld[0]);
+                        cont++;
+                        if(source[cont+1]==="\n"){
+                            p++;
+                            cont+=2;
+                        }else{
+                            cont++;
+                        }
+                    }
+                    if(p===4){
+                        linha="";
+                        while(source[cont]!=="\n"){
+                            linha+=source[cont];
+                            cont++
+                        }
+                        linha.split("|",nVariaveis);
+                        for(i = 0; i < nVariaveis; i++){
+                            lower.push(linha[nVariaveis]);
+                        }
+                        p++;
+                        cont+=2;
+                    }
+                    if(p===5){
+                        linha="";
+                        while(source[cont]!=="\n"){
+                            linha+=source[cont];
+                            cont++
+                        }
+                        linha.split("|",nVariaveis);
+                        for(j = 0; j < nVariaveis; j++){
+                            upper.push(linha[nVariaveis]);
+                        }
+                        p++;
+                    }
+                    if(p===6){
+                        cont=source.length;
+                    }
+
+
+
+                }
             };
 
             reader.readAsText(file);
