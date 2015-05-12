@@ -261,20 +261,19 @@ window.onload = function () {
             reader.onload = function (e) {
                 source = reader.result;
                 alert(source);
-                //var objetivo = [];
                 var restricoes = [];
                 var relacoes = [];
                 var rhs = [];
                 var upper = [];
                 var lower = [];
-                //var carregado = 1;
+                var objetivo = [];
                 var linha = 1;
                 var cont = 1;
                 var tam = 0;
                 var problema = "";
                 var iRest = 0;
                 var p = 1; //qual parte
-                var nVariaveis="";
+                var nVariaveis=0;
                 //var iObj = 0;
                 //var problema;
                 while (cont < source.length) {
@@ -286,80 +285,125 @@ window.onload = function () {
                         } else {
                             alert("Arquivo está errado!!!");
                         }
-                        alert(problema);
-                        cont += 12;
+                        //alert(problema);
+                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){
+                            cont++;
+                        }
                         p++;
                     }
                     if (p === 2) {
                         var linha = "";
+                        //alert("cont "+source[cont]);
                         while (source[cont] !== "\n") {
+                            
                             linha += source[cont];
                             cont++;
                         }
-                        var objetivo = linha.split("|");
-                        nVariaveis=linha.length;
+                        
+                        for(i=0;i<linha.length;i++){
+                            if(linha[i]==="|"){
+                                nVariaveis++;
+                            }
+                        }
+                        //alert("linha2 inteira "+linha);
+                        objetivo = linha.split("|",nVariaveis);
+                        //alert("tamanho obj "+objetivo.length);
+//                        for(k=0;k<objetivo.length;k++){
+//                            alert("obj " + objetivo[k]);
+//                        }
+                        //alert(objetivo);
+                        
                         p++;
-                        cont += 2;
+                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){
+                            //alert("cont saida "+source[cont]);
+                            cont++;
+                        }
                     }
                     if (p === 3) {
-                        
+                        //alert("entrou p3");
                         linha = "";
-                        while (source[cont] !== ">" || source[cont] !== "<" || source[cont] !== "=") {
+                        //alert("cont3 "+source[cont]);
+                        while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") {
                             linha += source[cont];
                             cont++;
                         }
-                        restricoes[iRest] = linha.split("|");
+                        //alert("linha3 inteira "+linha);
+                        restricoes[iRest] = linha.split("|",nVariaveis);
+//                        for(k=0;k<restricoes[iRest].length;k++){
+//                            alert("rest " + restricoes[iRest][k]);
+//                        }
                         iRest++;
-                        cont++;
+                        //cont++;
                         if(source[cont]===">"){
                             relacoes.push(">=");
-                            cont++;
+                            cont+=2;
                         }else if(source[cont]==="<"){
                             relacoes.push("<=");
-                            cont++;
+                            cont+=2;
                         }else if(source[cont]==="="){
                             relacoes.push("=");
                             cont++;
                         }else{
                             alert("Erro!!!");
                         }
+                        //alert("relacao "+relacoes[iRest-1]);
                         var ld="";
-                        while(source[cont]!=="\n"){
+                        cont++;
+                        while(source[cont]!=="|"){
                             ld+=source[cont];
                             cont++;
                         }
-                        ld.split("|",1);
-                        rhs.push(ld[0]);
-                        cont++;
-                        if(source[cont+1]==="\n"){
+                        //alert("linha d "+ld);
+                        //var lld=ld.split("|");
+                        //alert("lld = "+lld);
+                        rhs.push(ld);
+                        //alert("direita "+rhs[iRest-1]);
+                        cont+=2;
+                        if(source[cont+2]==="\n"){
                             p++;
-                            cont+=2;
+                            
                         }else{
+                            
                             cont++;
                         }
                     }
                     if(p===4){
+                        //alert("entrou p4");
+                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){
+                            cont++;
+                        }
                         linha="";
+                        //alert("cont4 "+source[cont]);
                         while(source[cont]!=="\n"){
                             linha+=source[cont];
                             cont++
                         }
-                        linha.split("|",nVariaveis);
+                        //alert("linha3 inteira "+linha);
+                        var lw=linha.split("|",nVariaveis);
                         for(i = 0; i < nVariaveis; i++){
-                            lower.push(linha[nVariaveis]);
+                            lower.push(lw[i]);
+                            //alert("lower " + lower[i]);
                         }
                         p++;
-                        cont+=2;
+                        cont+=3;
                     }
                     if(p===5){
+                        //alert("entrou p5");
+                        //alert("cont5 "+source[cont]);
                         linha="";
                         while(source[cont]!=="\n"){
                             linha+=source[cont];
                             cont++
                         }
-                        linha.split("|",nVariaveis);
+                        //alert("linha5 inteira "+linha);
+                        var up=linha.split("|",nVariaveis);
+//                        for(j = 0; j < nVariaveis; j++){
+//                            //upper.push(up[j]);
+//                            //alert("linha split " + up[j]);
+//                        }
                         for(j = 0; j < nVariaveis; j++){
-                            upper.push(linha[nVariaveis]);
+                            upper.push(up[j]);
+                            //alert("upper " + upper[j]);
                         }
                         p++;
                     }
@@ -370,6 +414,48 @@ window.onload = function () {
 
 
                 }
+//                var source = "";
+//
+//                source = this.problema + '\n';
+//                source += "obj: ";
+//                for (var i = 0; i < this.objetivo.length; i++) {
+//                    source += this.objetivo[i] >= 0 ? " +" : "";
+//                    source += this.objetivo[i] + " x" + i + " ";
+//                }
+//                source += "\n\n" + "Subject To" + "\n";
+//
+//                for (i = 0; i < restricoes.length; i++) {
+//                    source += "res_" + (i + 1) + ":";
+//                    for (var j = 0; j < objetivo.length; j++) {
+//                        source += (this.restricoes[i][j] >= 0) ? " +" : " ";
+//                        source += this.restricoes[i][j] + " x" + j;
+//                    }
+//                    source += " " + this.relacoes[i] + " " + this.rhs[i];
+//                    source += "\n";
+//                }
+//
+//                source += "\nBounds\n";
+//
+//                for (i = 0; i < objetivo.length; i++) {
+//                    var aux = this.upper[i].toString().toUpperCase();
+//                    source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
+//                            this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
+//                    source += "\n";
+//                }
+//
+//                source += "\nGenerals \n";
+//
+//                for (i = 0; i < this.objetivo.length; i++)
+//                    source += "x" + i + "\n";
+//
+//                source += "\nEnd\n";
+                /* var lp = glp_create_prob();
+                 glp_read_lp_from_string(lp, null, source);
+                 row = glp_get_num_rows(lp);
+                 col = glp_get_num_cols(lp); */
+                //alert(lp);
+                //alert(col);
+                //run(source);
             };
 
             reader.readAsText(file);
