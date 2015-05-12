@@ -1,10 +1,10 @@
+
+<script type="text/javascript" src="js/interface.js"></script>
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/vis.css" rel="stylesheet">
 <body>
-    <script type="text/javascript" src="js/interface.js"></script>
-
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/vis.css" rel="stylesheet">
-
     <span id="alert" style="display:none;"></span>
     <div id="masthead">
         <div class="container">
@@ -108,7 +108,7 @@
 
 
                     <div class="row">
-                        <form>
+                        <form action="#">
                             <div id="mydata" style="margin-top: 20px;">
                                 <table id="myTableData" class="table table-hover table-striped"></table>
                                 <center>
@@ -137,9 +137,14 @@
                             </div>
                         </form>
                     </div>
+                    <div class="row" style="margin-top:20px; display:none;" id="rowProgress">
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only" id="valorComplete"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
             <div id="sectionB" class="tab-pane fade">
                 <div class="container-fluid">
@@ -181,4 +186,5 @@
             <i class="glyphicon glyphicon-arrow-up"></i>
         </span>
     </div>
+
 </body>

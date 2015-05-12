@@ -162,13 +162,22 @@ $(document).on('change', '.btn-file :file', function () {
     input.trigger('fileselect', [numFiles, label]);
 });
 
-
-
 $(document).ready(function () {
 
     //Por padrao os botoes estao escondidos
     hideFormProblema();
     t = Tabela();
+
+    //Verifica se a tabela está toda preenchida
+    $("form").submit(function (event) {
+        if ($("input:first").val() === "correct") {
+            $("span").text("Validated...").show();
+            return;
+        }
+
+        showAlert("danger", "Por-favor preencha todos os dados!")
+        event.preventDefault();
+    });
 
     //Novo problema de otimizacao
     $("#novo").click(function () {
@@ -272,14 +281,16 @@ $(document).ready(function () {
 
     //Executar Branch and Bound
     $('#executar').click(function () {
-        b = BranchBound();
 
-        while (!b.terminou()) {
-            nodo = b.executar();
-            //funcao de desenhar
-        }
+        progressBar("success", 100);
+        //b = BranchBound();
 
-        otimo = b.melhorSolucao();
+        //while (!b.terminou()) {
+        //    nodo = b.executar();
+        //    //funcao de desenhar
+        //}
+
+        //otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
     });
 
@@ -332,6 +343,17 @@ $(document).ready(function () {
     });
 
 });
+
+//Progress Bar
+function progressBar(type, percent) {
+    //Progress bar
+    var $pb = $('#progress-bar');
+
+    $('#rowProgress').show('fast');
+    $pb.removeClass();
+    $pb.addClass('progress-bar progress-bar-' + type + ' active');
+    $pb.width(percent + "%");
+}
 
 // ??????????
 function fileUpload(arq) {
@@ -561,7 +583,7 @@ function upload() {
 ////////////////////////////////////////////////////
 
 
-//MAGIA DO ANDRE
+
 
 
 ////////////////////////////////////////////////////

@@ -334,6 +334,14 @@ simplex = function (Nodo) {
     }
 };
 
+
+verificaTabela = function ()
+{
+
+
+}
+
+
 leituraParametros = function () {
     /*
      * Le os dados informados na tabela de entrada e deixa no formato utilizado
