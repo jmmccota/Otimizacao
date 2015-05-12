@@ -5,63 +5,59 @@ Nodo = function (id, pai, altura, modelo, z, x) {
      * e as informacoes necessarias para desenha-lo na arvore.
      */
 
-    var n = {};
-
-    n.id = id;
-    n.pai = pai;
-    n.altura = altura;
-    n.problema = modelo["problema"];
-    n.objetivo = modelo["objetivo"];
-    n.restricoes = modelo["restricoes"];
-    n.relacoes = modelo["relacoes"];
-    n.rhs = modelo["rhs"];
-    n.upper = modelo["upper"];
-    n.lower = modelo["lower"];
-    n.z = z;
-    n.x = x;
+    this.id = id;
+    this.pai = pai;
+    this.altura = altura;
+    this.problema = modelo["problema"];
+    this.objetivo = modelo["objetivo"];
+    this.restricoes = modelo["restricoes"];
+    this.relacoes = modelo["relacoes"];
+    this.rhs = modelo["rhs"];
+    this.upper = modelo["upper"];
+    this.lower = modelo["lower"];
+    this.z = z;
+    this.x = x;
 
 
-    n.toSource = function () {
+    this.toSource = function () {
         var source = "";
 
-        source = n.problema + '\n';
+        source = this.problema + '\n';
         source += "obj: ";
-        for (var i = 0; i < n.objetivo.length; i++) {
-            source += n.objetivo[i] >= 0 ? " +" : "";
-            source += n.objetivo[i] + " x" + i + " ";
+        for (var i = 0; i < this.objetivo.length; i++) {
+            source += this.objetivo[i] >= 0 ? " +" : "";
+            source += this.objetivo[i] + " x" + i + " ";
         }
         source += "\n\n" + "Subject To" + "\n";
 
-        for (i = 0; i < n.restricoes.length; i++) {
+        for (i = 0; i < this.restricoes.length; i++) {
             source += "res_" + (i + 1) + ":";
-            for (var j = 0; j < n.objetivo.length; j++) {
-                source += (n.restricoes[i][j] >= 0) ? " +" : " ";
-                source += n.restricoes[i][j] + " x" + j;
+            for (var j = 0; j < this.objetivo.length; j++) {
+                source += (this.restricoes[i][j] >= 0) ? " +" : " ";
+                source += this.restricoes[i][j] + " x" + j;
             }
-            source += " " + n.relacoes[i] + " " + n.rhs[i];
+            source += " " + this.relacoes[i] + " " + this.rhs[i];
             source += "\n";
         }
 
         source += "\nBounds\n";
 
-        for (i = 0; i < n.objetivo.length; i++) {
-            var aux = n.upper[i].toString().toUpperCase();
-            source += (aux === "INF") ? "x" + i + ">=" + n.lower[i] :
-                    n.lower[i] + "<=" + "x" + i + "<=" + n.upper[i];
+        for (i = 0; i < this.objetivo.length; i++) {
+            var aux = this.upper[i].toString().toUpperCase();
+            source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
+                    this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
             source += "\n";
         }
 
         source += "\nGenerals \n";
 
-        for (i = 0; i < n.objetivo.length; i++)
+        for (i = 0; i < this.objetivo.length; i++)
             source += "x" + i + "\n";
 
         source += "\nEnd\n";
 
         return source;
     };
-
-    return n;
 };
 
 
@@ -118,7 +114,7 @@ BranchBound = function () {
 
     var modelo = leituraParametros();
 
-    var nodo = Nodo(1, 1, 0, modelo, 0, 0);
+    var nodo = new Nodo(1, 1, 0, modelo, 0, 0);
     b.heap = Heap(nodo);
     b.atual = 1;
     b.fila = [1];
@@ -140,7 +136,7 @@ BranchBound = function () {
          */
 
         //retira o 1o da fila
-        nodo = b.heap.array[b.fila.shift()];
+        var nodo = b.heap.array[b.fila.shift()];
         //atual = 1o da fila
         b.atual = nodo.id;
         //resolve o simplex
@@ -153,35 +149,35 @@ BranchBound = function () {
         var xi = escolhaVariavel();
 
         //se heap[atual].x[xi] for viavel e fracionario
-        var x = b.heap.array[atual].x[xi];
-        if (!isNaN(b.heap.array[atual].z) &&
+        var x = b.heap.array[b.atual].x[xi];
+        if (!isNaN(b.heap.array[b.atual].z) &&
                 x !== Math.floor(x)) {
 
             //gera 2 copias do objeto
-            var esq = jQuery.extend(true, {}, b.heap.array[atual]);
-            var dir = jQuery.extend(true, {}, b.heap.array[atual]);
+            var esq = jQuery.extend(true, {}, b.heap.array[b.atual]);
+            var dir = jQuery.extend(true, {}, b.heap.array[b.atual]);
 
             //se possui solucao fracionaria altera o valor de Z
-            if (b.heap.array[atual].problema === "Maximize")
-                b.heap.array[atual].z = "-Inf";
+            if (b.heap.array[b.atual].problema === "Maximize")
+                b.heap.array[b.atual].z = "-Inf";
             else
-                b.heap.array[atual].z = "Inf";
+                b.heap.array[b.atual].z = "Inf";
 
             //adiciona restricao de heap[atual].x[xi] nos 2 modelos
             dir.lower[xi] = Math.ceil(x);
             esq.upper[xi] = Math.floor(x);
 
             //insere 2 nodos no heap e na fila
-            b.heap.insereNodos(atual, esq, dir);
-            b.fila.push(atual * 2);
-            b.fila.push(atual * 2 + 1);
+            b.heap.insereNodos(b.atual, esq, dir);
+            b.fila.push(b.atual * 2);
+            b.fila.push(b.atual * 2 + 1);
         }
 
         return nodo;
     };
 
     b.executar = function () {
-        return proximoPasso(b.escolheVariavel);
+        return b.proximoPasso(b.escolheVariavel);
     };
 
     b.escolheVariavel = function () {
@@ -380,7 +376,7 @@ leituraParametros = function () {
 
     //Pegando dados da Tabela
     $(".fObj").each(function () {
-        objetivo.push($(this).val());
+        objetivo.push(parseFloat($(this).val()));
     });
 
     var i = 0;
@@ -388,7 +384,7 @@ leituraParametros = function () {
     var nVar = objetivo.length;
     restricoes[0] = [];
     $(".xRest").each(function () {
-        restricoes[nRest].push($(this).val());
+        restricoes[nRest].push(parseFloat($(this).val()));
         i++;
         if (i === nVar) {
             i = 0;
@@ -402,13 +398,13 @@ leituraParametros = function () {
         relacoes.push($(this).val());
     });
     $(".ladoDir").each(function () {
-        rhs.push($(this).val());
+        rhs.push(parseFloat($(this).val()));
     });
     $(".limSup").each(function () {
         upper.push($(this).val());
     });
     $(".limInf").each(function () {
-        lower.push($(this).val());
+        lower.push(parseFloat($(this).val()));
     });
 
     return {
