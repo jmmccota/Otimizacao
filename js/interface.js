@@ -259,13 +259,13 @@ $(document).ready(function () {
             var x = leituraParametros();
             var verifica = verificaTabela();
             if (!verifica) {
-
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
                     source += x['objetivo'][i] >= 0 ? "+" : "";
                     source += x['objetivo'][i] + "|";
                 }
                 source += "\r\n\r\n";
+
                 for (i = 0; i < x['restricoes'].length; i++) {
                     for (var j = 0; j < x['objetivo'].length; j++) {
                         source += (x['restricoes'][i][j] >= 0) ? "+" : "";
