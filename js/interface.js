@@ -157,8 +157,8 @@ Tabela = function () {
 };
 $(document).on('change', '.btn-file :file', function () {
     var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
     input.trigger('fileselect', [numFiles, label]);
 });
 
@@ -199,7 +199,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
 
@@ -267,7 +267,7 @@ $(document).ready(function () {
                 source += "\r\n";
             }
 
-            source += "\r\n\r\n";
+            source += "\r\n";
 
             for (i = 0; i < x['objetivo'].length; i++) {
                 source += x['lower'][i] + '|';
@@ -278,7 +278,7 @@ $(document).ready(function () {
             }
             source += "\r\n\r\n";
 
-            alert(source);
+            //alert(source);
             var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
             saveAs(blob, "modelo.txt");
         } catch (err) {
@@ -344,11 +344,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 
 
@@ -356,12 +356,13 @@ $(document).ready(function () {
     $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
         var input = $(this).parents('.input-group').find(':text'),
-            log = numFiles > 1 ? numFiles + ' files selected' : label;
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
 
         if (input.length) {
             input.val(log);
         } else {
-            if (log) alert(log);
+            if (log)
+                alert(log);
         }
 
     });
