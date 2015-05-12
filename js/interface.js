@@ -167,6 +167,14 @@ $(document).ready(function () {
     hideFormProblema();
     t = Tabela();
 
+    //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
+    $("form").submit(function (event) {
+        if (!verificaTabela()) {
+            return;
+        }
+        event.preventDefault();
+    });
+
     //Novo problema de otimizacao
     $("#novo").click(function () {
 
@@ -196,7 +204,7 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
 
@@ -246,35 +254,44 @@ $(document).ready(function () {
         try {
             var source = "";
             var x = leituraParametros();
+            var verifica = verificaTabela();
+            if (!verifica) {
 
-            source = x['problema'] + '\r\n\r\n';
-            for (var i = 0; i < x.objetivo.length; i++) {
-                source += x['objetivo'][i] >= 0 ? "+" : "";
-                source += x['objetivo'][i] + "|";
-            }
-            source += "\r\n\r\n";
-            for (i = 0; i < x['restricoes'].length; i++) {
-                for (var j = 0; j < x['objetivo'].length; j++) {
-                    source += (x['restricoes'][i][j] >= 0) ? "+" : "";
-                    source += x['restricoes'][i][j] + "|";
+                source = x['problema'] + '\r\n\r\n';
+                for (var i = 0; i < x.objetivo.length; i++) {
+                    source += x['objetivo'][i] >= 0 ? "+" : "";
+                    source += x['objetivo'][i] + "|";
                 }
-                source += x['relacoes'][i] + "|" + x['rhs'][i];
+                source += "\r\n\r\n";
+                for (i = 0; i < x['restricoes'].length; i++) {
+                    for (var j = 0; j < x['objetivo'].length; j++) {
+                        source += (x['restricoes'][i][j] >= 0) ? "+" : "";
+                        source += x['restricoes'][i][j] + "|";
+                    }
+                    source += x['relacoes'][i] + "|" + x['rhs'][i];
+                    source += "\r\n";
+                }
+
                 source += "\r\n";
-            }
 
-            source += "\r\n";
+                for (i = 0; i < x['objetivo'].length; i++) {
+                    source += x['lower'][i] + '|';
+                }
+                source += "\r\n\r\n";
+                for (i = 0; i < x['objetivo'].length; i++) {
+                    source += x['upper'][i] + '|';
+                }
+                source += "\r\n\r\n";
 
-            for (i = 0; i < x['objetivo'].length; i++) {
-                source += x['lower'][i] + '|';
-            }
-            source += "\r\n\r\n";
-            for (i = 0; i < x['objetivo'].length; i++) {
-                source += x['upper'][i] + '|';
+                //alert(source);
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                saveAs(blob, "modelo.txt");
             }
             source += "\r\n\r\n";
             
             var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
             saveAs(blob, "modelo.txt");
+
         } catch (err) {
             console.write("biblioteca faltante, FileSaver.js");
         }
@@ -301,15 +318,23 @@ $(document).ready(function () {
 
     //Executar Branch and Bound
     $('#executar').click(function () {
-        b = BranchBound();
 
-        while (!b.terminou()) {
-            nodo = b.executar();
-            //funcao de desenhar
+
+        progressBar("success", 100);
+        x = leituraParametros();
+        if (x) {
+            b = BranchBound();
+
+            while (!b.terminou()) {
+                nodo = b.executar();
+                //funcao de desenhar
+            }
+
+            otimo = b.melhorSolucao();
+            //faz alguma coisa com o otimo
         }
 
-        otimo = b.melhorSolucao();
-        //faz alguma coisa com o otimo
+
     });
 
     //Executar Branch and Bound Passo a Passo
@@ -338,11 +363,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
 
 
@@ -362,6 +387,84 @@ $(document).ready(function () {
     });
 
 });
+;
+
+////////////////////////////////////////////////////
+//                FUNCOES DA ARVORE               //
+////////////////////////////////////////////////////
+
+
+
+
+
+////////////////////////////////////////////////////
+//                FUNCOES AUXILIARES              //
+////////////////////////////////////////////////////
+
+// ??????????
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        if (charCode >= 44 && charCode <= 46)
+            return true;
+        return false;
+    }
+    return true;
+}
+
+//Cria um alert bootstrap
+function showAlert(type, message) {
+    $('#alert').removeClass();
+    $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
+    window.setTimeout(closeAlert, 3000);
+}
+//Apaga um alert bootstrap
+function closeAlert() {
+    $('#alert').fadeOut();
+}
+
+//Mostra os botoes de controle da tabela
+function showFormProblema() {
+    $('#addRow').show('fast');
+    $('#delRow').show('fast');
+    $('#executar').show('fast');
+    $('#passoAPasso').show('fast');
+    $('#salvar').show('fast');
+    $('#limpar').show('fast');
+}
+
+function showFormProblema2() {
+    $('#carregar').hide('fast');
+    $('#sectionB').hide('fast');
+    $('#sectionA').show('fast');
+    $('#addRow').show('fast');
+    $('#delRow').show('fast');
+    $('#executar').show('fast');
+    $('#passoAPasso').show('fast');
+    $('#salvar').show('fast');
+    $('#limpar').show('fast');
+}
+//Esconde os botoes de controle da tabela
+function hideFormProblema() {
+    $('#addRow').hide('fast');
+    $('#delRow').hide('fast');
+    $('#executar').hide('fast');
+    $('#passoAPasso').hide('fast');
+    $('#salvar').hide('fast');
+    $('#limpar').hide('fast');
+}
+
+
+//Progress Bar
+function progressBar(type, percent) {
+    //Progress bar
+    var $pb = $('#progress-bar');
+
+    $('#rowProgress').show('fast');
+    $pb.removeClass();
+    $pb.addClass('progress-bar progress-bar-' + type + ' active');
+    $pb.width(percent + "%");
+}
 
 // ??????????
 function fileUpload(arq) {
@@ -583,70 +686,4 @@ function upload() {
     mod.nVar = function () {
         return nVariaveis;
     };
-}
-;
-
-////////////////////////////////////////////////////
-//                FUNCOES DA ARVORE               //
-////////////////////////////////////////////////////
-
-
-//MAGIA DO ANDRE
-
-
-////////////////////////////////////////////////////
-//                FUNCOES AUXILIARES              //
-////////////////////////////////////////////////////
-
-// ??????????
-function isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        if (charCode >= 44 && charCode <= 46)
-            return true;
-        return false;
-    }
-    return true;
-}
-
-//Cria um alert bootstrap
-function showAlert(type, message) {
-    $('#alert').removeClass();
-    $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
-    window.setTimeout(closeAlert, 3000);
-}
-//Apaga um alert bootstrap
-function closeAlert() {
-    $('#alert').fadeOut();
-}
-
-//Mostra os botoes de controle da tabela
-function showFormProblema() {
-    $('#addRow').show('fast');
-    $('#delRow').show('fast');
-    $('#executar').show('fast');
-    $('#passoAPasso').show('fast');
-    $('#salvar').show('fast');
-    $('#limpar').show('fast');
-}
-
-function showFormProblema2() {
-    $('#carregar').hide('fast');
-    $('#sectionB').hide('fast');
-    $('#sectionA').show('fast');
-    $('#addRow').show('fast');
-    $('#delRow').show('fast');
-    $('#executar').show('fast');
-    $('#passoAPasso').show('fast');
-    $('#salvar').show('fast');
-    $('#limpar').show('fast');
-}
-//Esconde os botoes de controle da tabela
-function hideFormProblema() {
-    $('#addRow').hide('fast');
-    $('#delRow').hide('fast');
-    $('#executar').hide('fast');
-    $('#passoAPasso').hide('fast');
-    $('#salvar').hide('fast');
-    $('#limpar').hide('fast');
 }
