@@ -5,6 +5,69 @@ Tabela = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
+    t.carrega = function (obj, rest, rela, dir, low, up, nVari) {
+        t.reseta();
+        t.existe = true;
+        t.nRestri = rest.lenght;
+        t.nVar = nVari;
+        //Cabecalho
+        var table = document.getElementById("myTableData");
+        var row = table.insertRow(0);
+        row.insertCell(0).innerHTML = '&nbsp;';
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
+        row.insertCell().innerHTML = '<center><b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b></center>';
+        row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
+        //Funcao Objetivo
+        row = table.insertRow(1);
+        row.insertCell(0).innerHTML = '<b>Objetivo</b>';
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" \
+                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + obj[i] + '">';
+        row.insertCell().innerHTML = '&nbsp;';
+        row.insertCell().innerHTML = '&nbsp;';
+
+        //add restricoes
+        var table = document.getElementById("myTableData");
+        if (t.nRestri < 20) {
+            for (j = 2; j < t.nRestri + 2; i++) {
+                var row = table.insertRow(j);
+                row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
+                for (i = 1; i <= t.nVar; i++)
+                    row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="number"  \
+                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + rest[j - 2][i - 1] + '">';
+                row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control" value="' + rela[j - 2] + '">\
+                <option><=</option><option>=</option><option>>=</option></select>';
+                row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
+                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + dir[j - 2] + '">';
+            }
+        } else {
+            alert("Mais de 20 restriçoes...ERRO!!!! ");
+        }
+        //Limite superior e inferior
+        var table = document.getElementById("myTableData2");
+        var rowCount = table.rows.length;
+        row = table.insertRow(rowCount);
+        row.insertCell(0).innerHTML = '&nbsp;';
+        for (i = 1; i <= t.nVar; i++) {
+            row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
+        }
+        var rowCount = table.rows.length;
+        row = table.insertRow(rowCount);
+        row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
+        for (i = 1; i <= t.nVar; i++) {
+            row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
+                    class="limSup form-control" required  step="any" value="' + up[i-1] + '">';
+        }
+        row = table.insertRow(rowCount + 1);
+        row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
+                    class="limInf form-control" required  step="any" value="' + low[i-1] + '">';
+
+
+
+    }
 
     //Cria a tabela base de um novo modelo
     t.novo = function () {
@@ -181,8 +244,22 @@ $(document).ready(function () {
     });
 
     //Carrega de arquivo
-    $('#carregar').click(function () {
-
+    $('#carregar').click(function () { //como esconder as sections e verificar se ta certo...
+        var mod = upload();
+        mod.objetivo=mod.obj();
+        mod.restricoes=mod.rest();
+        mod.relacoes=mod.rela();
+        mod.direita=mod.dir();
+        mod.lower=mod.low();
+        mod.upper=mod.up();
+        mod.nVari=mod.nVar();
+        alert("Botao");
+        for(i=0;i<mod.objetivo.lenght;i++){
+            alert("obj "+mod.objetivo[i]);
+        }
+        t.carrega(mod.objetivo, mod.restricoes, mod.relacoes, mod.direita, mod.lower, mod.upper, mod.nVari);
+        //dar um jeito de mostrar sectionA com as tabelas carregadas
+        //showFormProblema2();
     });
 
     //Executar Branch and Bound
@@ -247,11 +324,22 @@ function fileUpload(arq) {
 }
 
 // ??????????
-window.onload = function () {
+function upload() {
     var col;
     var row;
     var source = "";
-    var fileInput = document.getElementById('exampleInputFile');
+    var restricoes = [];
+    var relacoes = [];
+    var rhs = [];
+    var upper = [];
+    var lower = [];
+    var objetivo = [];
+    var problema = "";
+    var nVariaveis = 0;
+    var mod = {};
+
+
+    var fileInput = document.getElementById('inputFile');
     fileInput.addEventListener('change', function (e) {
         var file = fileInput.files[0];
         var textType = /text.*/;
@@ -260,20 +348,14 @@ window.onload = function () {
             var reader = new FileReader();
             reader.onload = function (e) {
                 source = reader.result;
-                alert(source);
-                var restricoes = [];
-                var relacoes = [];
-                var rhs = [];
-                var upper = [];
-                var lower = [];
-                var objetivo = [];
+                showAlert("alert", source);
                 var linha = 1;
                 var cont = 1;
                 var tam = 0;
-                var problema = "";
+
                 var iRest = 0;
                 var p = 1; //qual parte
-                var nVariaveis=0;
+                var nVariaveis = 0;
                 //var iObj = 0;
                 //var problema;
                 while (cont < source.length) {
@@ -286,7 +368,7 @@ window.onload = function () {
                             alert("Arquivo está errado!!!");
                         }
                         //alert(problema);
-                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){
+                        while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {
                             cont++;
                         }
                         p++;
@@ -295,26 +377,26 @@ window.onload = function () {
                         var linha = "";
                         //alert("cont "+source[cont]);
                         while (source[cont] !== "\n") { //pega a linha inteira 
-                            
-                            linha += source[cont]; 
+
+                            linha += source[cont];
                             cont++;
                         }
-                        
-                        for(i=0;i<linha.length;i++){ //o numero de | é o numero de variaveis
-                            if(linha[i]==="|"){
+
+                        for (i = 0; i < linha.length; i++) { //o numero de | é o numero de variaveis
+                            if (linha[i] === "|") {
                                 nVariaveis++;
                             }
                         }
                         //alert("linha2 inteira "+linha);
-                        objetivo = linha.split("|",nVariaveis); //funçao objetivo
+                        objetivo = linha.split("|", nVariaveis); //funçao objetivo
                         //alert("tamanho obj "+objetivo.length);
 //                        for(k=0;k<objetivo.length;k++){
 //                            alert("obj " + objetivo[k]);
 //                        }
                         //alert(objetivo);
-                        
+
                         p++;
-                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){//avança ate as restriçoes
+                        while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {//avança ate as restriçoes
                             //alert("cont saida "+source[cont]);
                             cont++;
                         }
@@ -328,29 +410,29 @@ window.onload = function () {
                             cont++;
                         }
                         //alert("linha3 inteira "+linha);
-                        restricoes[iRest] = linha.split("|",nVariaveis);
+                        restricoes[iRest] = linha.split("|", nVariaveis);
 //                        for(k=0;k<restricoes[iRest].length;k++){
 //                            alert("rest " + restricoes[iRest][k]);
 //                        }
                         iRest++;
                         //cont++;
-                        if(source[cont]===">"){ //pega a relacao
+                        if (source[cont] === ">") { //pega a relacao
                             relacoes.push(">=");
-                            cont+=2;
-                        }else if(source[cont]==="<"){
+                            cont += 2;
+                        } else if (source[cont] === "<") {
                             relacoes.push("<=");
-                            cont+=2;
-                        }else if(source[cont]==="="){
+                            cont += 2;
+                        } else if (source[cont] === "=") {
                             relacoes.push("=");
                             cont++;
-                        }else{
+                        } else {
                             alert("Erro!!!");
                         }
                         //alert("relacao "+relacoes[iRest-1]);
-                        var ld="";
+                        var ld = "";
                         cont++;
-                        while(source[cont]!=="|"){ //pega o lado direito
-                            ld+=source[cont];
+                        while (source[cont] !== "|") { //pega o lado direito
+                            ld += source[cont];
                             cont++;
                         }
                         //alert("linha d "+ld);
@@ -358,57 +440,57 @@ window.onload = function () {
                         //alert("lld = "+lld);
                         rhs.push(ld);
                         //alert("direita "+rhs[iRest-1]);
-                        cont+=2;
-                        if(source[cont+2]==="\n"){ //se tiver acabado restriçoes pula pro proximo p
+                        cont += 2;
+                        if (source[cont + 2] === "\n") { //se tiver acabado restriçoes pula pro proximo p
                             p++;
-                            
-                        }else{ //se nao tiver pula pra proxima linha
-                            
+
+                        } else { //se nao tiver pula pra proxima linha
+
                             cont++;
                         }
                     }
-                    if(p===4){ //pega lower
+                    if (p === 4) { //pega lower
                         //alert("entrou p4");
-                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){ //vai ate a linha
+                        while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") { //vai ate a linha
                             cont++;
                         }
-                        linha="";
+                        linha = "";
                         //alert("cont4 "+source[cont]);
-                        while(source[cont]!=="\n"){ //pega a linha com os minimos
-                            linha+=source[cont];
+                        while (source[cont] !== "\n") { //pega a linha com os minimos
+                            linha += source[cont];
                             cont++
                         }
                         //alert("linha3 inteira "+linha);
-                        var lw=linha.split("|",nVariaveis); //separa valores
-                        for(i = 0; i < nVariaveis; i++){
+                        var lw = linha.split("|", nVariaveis); //separa valores
+                        for (i = 0; i < nVariaveis; i++) {
                             lower.push(lw[i]);
                             //alert("lower " + lower[i]);
                         }
                         p++;
-                        cont+=3;
+                        cont += 3;
                     }
-                    if(p===5){//pega uppers
+                    if (p === 5) {//pega uppers
                         //alert("entrou p5");
                         //alert("cont5 "+source[cont]);
-                        linha="";
-                        while(source[cont]!=="\n"){ //vai ate a linha
-                            linha+=source[cont];
+                        linha = "";
+                        while (source[cont] !== "\n") { //vai ate a linha
+                            linha += source[cont];
                             cont++
                         }
                         //alert("linha5 inteira "+linha);
-                        var up=linha.split("|",nVariaveis); //separa valores
+                        var up = linha.split("|", nVariaveis); //separa valores
 //                        for(j = 0; j < nVariaveis; j++){
 //                            //upper.push(up[j]);
 //                            //alert("linha split " + up[j]);
 //                        }
-                        for(j = 0; j < nVariaveis; j++){
+                        for (j = 0; j < nVariaveis; j++) {
                             upper.push(up[j]);
                             //alert("upper " + upper[j]);
                         }
                         p++;
                     }
-                    if(p===6){//termina
-                        cont=source.length;
+                    if (p === 6) {//termina
+                        cont = source.length;
                     }
 
 
@@ -423,7 +505,32 @@ window.onload = function () {
         }
     });
     //document.getElementById('start#sectionA').click();
-};
+    mod.rest = function () {
+        return restricoes;
+    };
+    mod.up = function () {
+        return upper;
+    };
+    mod.low = function () {
+        return lower;
+    };
+    mod.obj = function () {
+        return objetivo;
+    };
+    mod.direito = function () {
+        return rhs;
+    };
+    mod.rela = function () {
+        return relacoes;
+    };
+    mod.prob = function () {
+        return problema;
+    };
+    mod.nVar = function () {
+        return nVariaveis;
+    };
+}
+;
 
 ////////////////////////////////////////////////////
 //                FUNCOES DA ARVORE               //
@@ -461,6 +568,17 @@ function closeAlert() {
 
 //Mostra os botoes de controle da tabela
 function showFormProblema() {
+    $('#addRow').show('fast');
+    $('#delRow').show('fast');
+    $('#executar').show('fast');
+    $('#passoAPasso').show('fast');
+    $('#salvar').show('fast');
+    $('#limpar').show('fast');
+}
+function showFormProblema2() {
+    $('#carregar').hide('fast');
+    $('#sectionB').hide('fast');
+    $('#sectionA').show('fast');
     $('#addRow').show('fast');
     $('#delRow').show('fast');
     $('#executar').show('fast');
