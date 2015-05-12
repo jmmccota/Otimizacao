@@ -277,7 +277,7 @@ window.onload = function () {
                 //var iObj = 0;
                 //var problema;
                 while (cont < source.length) {
-                    if (p === 1) {//qual problema
+                    if (p === 1) {//qual problema...p=1 é pra saber se é max ou min
                         if (source[1] === "a") {
                             problema = "Maximização";
                         } else if (source[1] === "i") {
@@ -291,22 +291,22 @@ window.onload = function () {
                         }
                         p++;
                     }
-                    if (p === 2) {
+                    if (p === 2) { //saber funçao objetivo
                         var linha = "";
                         //alert("cont "+source[cont]);
-                        while (source[cont] !== "\n") {
+                        while (source[cont] !== "\n") { //pega a linha inteira 
                             
-                            linha += source[cont];
+                            linha += source[cont]; 
                             cont++;
                         }
                         
-                        for(i=0;i<linha.length;i++){
+                        for(i=0;i<linha.length;i++){ //o numero de | é o numero de variaveis
                             if(linha[i]==="|"){
                                 nVariaveis++;
                             }
                         }
                         //alert("linha2 inteira "+linha);
-                        objetivo = linha.split("|",nVariaveis);
+                        objetivo = linha.split("|",nVariaveis); //funçao objetivo
                         //alert("tamanho obj "+objetivo.length);
 //                        for(k=0;k<objetivo.length;k++){
 //                            alert("obj " + objetivo[k]);
@@ -314,16 +314,16 @@ window.onload = function () {
                         //alert(objetivo);
                         
                         p++;
-                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){
+                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){//avança ate as restriçoes
                             //alert("cont saida "+source[cont]);
                             cont++;
                         }
                     }
-                    if (p === 3) {
+                    if (p === 3) { //pega restriçoes
                         //alert("entrou p3");
                         linha = "";
                         //alert("cont3 "+source[cont]);
-                        while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") {
+                        while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") { //pega ate a relacao
                             linha += source[cont];
                             cont++;
                         }
@@ -334,7 +334,7 @@ window.onload = function () {
 //                        }
                         iRest++;
                         //cont++;
-                        if(source[cont]===">"){
+                        if(source[cont]===">"){ //pega a relacao
                             relacoes.push(">=");
                             cont+=2;
                         }else if(source[cont]==="<"){
@@ -349,7 +349,7 @@ window.onload = function () {
                         //alert("relacao "+relacoes[iRest-1]);
                         var ld="";
                         cont++;
-                        while(source[cont]!=="|"){
+                        while(source[cont]!=="|"){ //pega o lado direito
                             ld+=source[cont];
                             cont++;
                         }
@@ -359,27 +359,27 @@ window.onload = function () {
                         rhs.push(ld);
                         //alert("direita "+rhs[iRest-1]);
                         cont+=2;
-                        if(source[cont+2]==="\n"){
+                        if(source[cont+2]==="\n"){ //se tiver acabado restriçoes pula pro proximo p
                             p++;
                             
-                        }else{
+                        }else{ //se nao tiver pula pra proxima linha
                             
                             cont++;
                         }
                     }
-                    if(p===4){
+                    if(p===4){ //pega lower
                         //alert("entrou p4");
-                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){
+                        while(source[cont]!=="-" && source[cont]!=="+" && source[cont]!=="0"){ //vai ate a linha
                             cont++;
                         }
                         linha="";
                         //alert("cont4 "+source[cont]);
-                        while(source[cont]!=="\n"){
+                        while(source[cont]!=="\n"){ //pega a linha com os minimos
                             linha+=source[cont];
                             cont++
                         }
                         //alert("linha3 inteira "+linha);
-                        var lw=linha.split("|",nVariaveis);
+                        var lw=linha.split("|",nVariaveis); //separa valores
                         for(i = 0; i < nVariaveis; i++){
                             lower.push(lw[i]);
                             //alert("lower " + lower[i]);
@@ -387,16 +387,16 @@ window.onload = function () {
                         p++;
                         cont+=3;
                     }
-                    if(p===5){
+                    if(p===5){//pega uppers
                         //alert("entrou p5");
                         //alert("cont5 "+source[cont]);
                         linha="";
-                        while(source[cont]!=="\n"){
+                        while(source[cont]!=="\n"){ //vai ate a linha
                             linha+=source[cont];
                             cont++
                         }
                         //alert("linha5 inteira "+linha);
-                        var up=linha.split("|",nVariaveis);
+                        var up=linha.split("|",nVariaveis); //separa valores
 //                        for(j = 0; j < nVariaveis; j++){
 //                            //upper.push(up[j]);
 //                            //alert("linha split " + up[j]);
@@ -407,55 +407,13 @@ window.onload = function () {
                         }
                         p++;
                     }
-                    if(p===6){
+                    if(p===6){//termina
                         cont=source.length;
                     }
 
 
 
                 }
-//                var source = "";
-//
-//                source = this.problema + '\n';
-//                source += "obj: ";
-//                for (var i = 0; i < this.objetivo.length; i++) {
-//                    source += this.objetivo[i] >= 0 ? " +" : "";
-//                    source += this.objetivo[i] + " x" + i + " ";
-//                }
-//                source += "\n\n" + "Subject To" + "\n";
-//
-//                for (i = 0; i < restricoes.length; i++) {
-//                    source += "res_" + (i + 1) + ":";
-//                    for (var j = 0; j < objetivo.length; j++) {
-//                        source += (this.restricoes[i][j] >= 0) ? " +" : " ";
-//                        source += this.restricoes[i][j] + " x" + j;
-//                    }
-//                    source += " " + this.relacoes[i] + " " + this.rhs[i];
-//                    source += "\n";
-//                }
-//
-//                source += "\nBounds\n";
-//
-//                for (i = 0; i < objetivo.length; i++) {
-//                    var aux = this.upper[i].toString().toUpperCase();
-//                    source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
-//                            this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
-//                    source += "\n";
-//                }
-//
-//                source += "\nGenerals \n";
-//
-//                for (i = 0; i < this.objetivo.length; i++)
-//                    source += "x" + i + "\n";
-//
-//                source += "\nEnd\n";
-                /* var lp = glp_create_prob();
-                 glp_read_lp_from_string(lp, null, source);
-                 row = glp_get_num_rows(lp);
-                 col = glp_get_num_cols(lp); */
-                //alert(lp);
-                //alert(col);
-                //run(source);
             };
 
             reader.readAsText(file);
