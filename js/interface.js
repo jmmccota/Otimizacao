@@ -58,7 +58,7 @@ Tabela = function () {
 
     //Adiciona restricoes ao modelo
     t.addRow = function () {
-        if (t.nRestri == 20) {
+        if (t.nRestri === 20) {
             showAlert('warning', 'Limite máximo de restrições atingido: 20!');
             return;
         }
@@ -71,9 +71,9 @@ Tabela = function () {
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="x' + t.nRestri + '' + (i - 1) + '" type="number"  \
                     class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
-        row.insertCell().innerHTML = '<select id="relacao' + t.nRestri + '" class="relacao form-control">\
-                <option><=</option><option>=</option><option>>=</option></select>';
-        row.insertCell().innerHTML = '<input id="ladoDir' + t.nRestri + '" type="number" \
+        row.insertCell().innerHTML = '<select id="relacao' + t.nRestri + '" class="relacao form-control" \
+                style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
+        row.insertCell().innerHTML = '<input id="ladoDir' + t.nRestri + '" type="number" style="min-width: 90px;"\
                 class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     };
 
