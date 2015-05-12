@@ -5,7 +5,7 @@ Tabela = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
-    
+
     t.carrega = function (obj, rest, rela, dir, low, up, nVari) {
         t.reseta();
         t.existe = true;
@@ -204,7 +204,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
 
@@ -220,7 +220,7 @@ $(document).ready(function () {
     $('#delRow').click(function () {
         if (t.nRestri == 0)
             showAlert("warning", "Não há mais restrições para excluir!");
-        else 
+        else
             t.deleteRow();
     });
 
@@ -284,14 +284,14 @@ $(document).ready(function () {
                 source += "\r\n\r\n";
 
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                saveAs(blob, "modelo.txt");
+            } else {
+                source += "\r\n\r\n";
+
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
-            source += "\r\n\r\n";
-            
-            var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
-            saveAs(blob, "modelo.txt");
-
         } catch (err) {
             console.write("biblioteca faltante, FileSaver.js");
         }
@@ -301,7 +301,7 @@ $(document).ready(function () {
     $('#carregar').click(function () { //como esconder as sections e verificar se ta certo...
         var x = upload();
         alert("botao");
-        alert("obj "+x['objetivo']);
+        alert("obj " + x['objetivo']);
 
         t.carrega(x['problema'], x['objetivo'], x['restricoes'], x['relacoes'], x['rhs'], x['lower'], x['upper'], x['nVariaveis']);
         //dar um jeito de mostrar sectionA com as tabelas carregadas
@@ -354,11 +354,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 
 
@@ -658,13 +658,13 @@ function upload() {
         alert("obj " + objetivo[k]);
     }
     for (k = 0; k < iRest; k++) {
-        for(var j=0;j<nVariaveis;j++){
+        for (var j = 0; j < nVariaveis; j++) {
             alert("rest " + restricoes[k][j]);
         }
         alert("relacao " + relacoes[k]);
         alert("direita " + rhs[k]);
     }
-   
+
     for (j = 0; j < nVariaveis; j++) {
         alert("upper " + upper[j]);
     }
