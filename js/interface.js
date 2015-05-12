@@ -5,7 +5,7 @@ Tabela = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
-    
+
     t.carrega = function (obj, rest, rela, dir, low, up, nVari) {
         t.reseta();
         t.existe = true;
@@ -204,7 +204,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
 
@@ -220,7 +220,7 @@ $(document).ready(function () {
     $('#delRow').click(function () {
         if (t.nRestri == 0)
             showAlert("warning", "Não há mais restrições para excluir!");
-        else 
+        else
             t.deleteRow();
     });
 
@@ -284,14 +284,14 @@ $(document).ready(function () {
                 source += "\r\n\r\n";
 
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                saveAs(blob, "modelo.txt");
+            } else {
+                source += "\r\n\r\n";
+
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
-            source += "\r\n\r\n";
-            
-            var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
-            saveAs(blob, "modelo.txt");
-
         } catch (err) {
             console.write("biblioteca faltante, FileSaver.js");
         }
@@ -299,23 +299,14 @@ $(document).ready(function () {
 
     //Carrega de arquivo
     $('#carregar').click(function () { //como esconder as sections e verificar se ta certo...
-        var mod = upload();
-        mod.objetivo = mod.obj();
-        mod.restricoes = mod.rest();
-        mod.relacoes = mod.rela();
-        mod.direita = mod.dir();
-        mod.lower = mod.low();
-        mod.upper = mod.up();
-        mod.nVari = mod.nVar();
-        alert("Botao");
-        for (i = 0; i < mod.objetivo.lenght; i++) {
-            alert("obj " + mod.objetivo[i]);
-        }
-        t.carrega(mod.objetivo, mod.restricoes, mod.relacoes, mod.direita, mod.lower, mod.upper, mod.nVari);
+        var x = upload();
+        alert("botao");
+        alert("obj " + x['objetivo']);
+
+        t.carrega(x['problema'], x['objetivo'], x['restricoes'], x['relacoes'], x['rhs'], x['lower'], x['upper'], x['nVariaveis']);
         //dar um jeito de mostrar sectionA com as tabelas carregadas
         //showFormProblema2();
     });
-
     //Executar Branch and Bound
     $('#executar').click(function () {
 
@@ -363,11 +354,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 
 
@@ -493,197 +484,195 @@ function upload() {
     var objetivo = [];
     var problema = "";
     var nVariaveis = 0;
-    var mod = {};
-
+    var iRest = 0;
 
     var fileInput = document.getElementById('inputFile');
-    fileInput.addEventListener('change', function (e) {
-        var file = fileInput.files[0];
-        var textType = /text.*/;
+    //fileInput.addEventListener('change', function (e) {
+    var file = fileInput.files[0];
+    var textType = /text.*/;
+    //alert("entrou fileinput");
+    if (file.type.match(textType)) {
 
-        if (file.type.match(textType)) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                source = reader.result;
-                showAlert("alert", source);
-                var linha = 1;
-                var cont = 1;
-                var tam = 0;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            //alert("entrou fileinput2");
+            source = reader.result;
+            //alert("source "+source);
+            var linha = 1;
+            var cont = 1;
+            var tam = 0;
 
-                var iRest = 0;
-                var p = 1; //qual parte
-                var nVariaveis = 0;
-                //var iObj = 0;
-                //var problema;
-                while (cont < source.length) {
-                    if (p === 1) {//qual problema...p=1 é pra saber se é max ou min
-                        if (source[1] === "a") {
-                            problema = "Maximização";
-                        } else if (source[1] === "i") {
-                            problema = "Minimização";
-                        } else {
-                            alert("Arquivo está errado!!!");
-                        }
-                        //alert(problema);
-                        while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {
-                            cont++;
-                        }
-                        p++;
+            //var iRest = 0;
+            var p = 1; //qual parte
+            //var nVariaveis = 0;
+            //var iObj = 0;
+            //var problema;
+            while (cont < source.length) {
+                if (p === 1) {//qual problema...p=1 Ã© pra saber se Ã© max ou min
+                    if (source[1] === "a") {
+                        problema = "MaximizaÃ§Ã£o";
+                    } else if (source[1] === "i") {
+                        problema = "MinimizaÃ§Ã£o";
+                    } else {
+                        alert("Arquivo estÃ¡ errado!!!");
                     }
-                    if (p === 2) { //saber funçao objetivo
-                        var linha = "";
-                        //alert("cont "+source[cont]);
-                        while (source[cont] !== "\n") { //pega a linha inteira 
-
-                            linha += source[cont];
-                            cont++;
-                        }
-
-                        for (i = 0; i < linha.length; i++) { //o numero de | é o numero de variaveis
-                            if (linha[i] === "|") {
-                                nVariaveis++;
-                            }
-                        }
-                        //alert("linha2 inteira "+linha);
-                        objetivo = linha.split("|", nVariaveis); //funçao objetivo
-                        //alert("tamanho obj "+objetivo.length);
-                        //                        for(k=0;k<objetivo.length;k++){
-                        //                            alert("obj " + objetivo[k]);
-                        //                        }
-                        //alert(objetivo);
-
-                        p++;
-                        while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {//avança ate as restriçoes
-                            //alert("cont saida "+source[cont]);
-                            cont++;
-                        }
-                    }
-                    if (p === 3) { //pega restriçoes
-                        //alert("entrou p3");
-                        linha = "";
-                        //alert("cont3 "+source[cont]);
-                        while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") { //pega ate a relacao
-                            linha += source[cont];
-                            cont++;
-                        }
-                        //alert("linha3 inteira "+linha);
-                        restricoes[iRest] = linha.split("|", nVariaveis);
-                        //                        for(k=0;k<restricoes[iRest].length;k++){
-                        //                            alert("rest " + restricoes[iRest][k]);
-                        //                        }
-                        iRest++;
-                        //cont++;
-                        if (source[cont] === ">") { //pega a relacao
-                            relacoes.push(">=");
-                            cont += 2;
-                        } else if (source[cont] === "<") {
-                            relacoes.push("<=");
-                            cont += 2;
-                        } else if (source[cont] === "=") {
-                            relacoes.push("=");
-                            cont++;
-                        } else {
-                            alert("Erro!!!");
-                        }
-                        //alert("relacao "+relacoes[iRest-1]);
-                        var ld = "";
+                    //alert(problema);
+                    while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {
                         cont++;
-                        while (source[cont] !== "|") { //pega o lado direito
-                            ld += source[cont];
-                            cont++;
-                        }
-                        //alert("linha d "+ld);
-                        //var lld=ld.split("|");
-                        //alert("lld = "+lld);
-                        rhs.push(ld);
-                        //alert("direita "+rhs[iRest-1]);
-                        cont += 2;
-                        if (source[cont + 2] === "\n") { //se tiver acabado restriçoes pula pro proximo p
-                            p++;
-
-                        } else { //se nao tiver pula pra proxima linha
-
-                            cont++;
-                        }
                     }
-                    if (p === 4) { //pega lower
-                        //alert("entrou p4");
-                        while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") { //vai ate a linha
-                            cont++;
-                        }
-                        linha = "";
-                        //alert("cont4 "+source[cont]);
-                        while (source[cont] !== "\n") { //pega a linha com os minimos
-                            linha += source[cont];
-                            cont++
-                        }
-                        //alert("linha3 inteira "+linha);
-                        var lw = linha.split("|", nVariaveis); //separa valores
-                        for (i = 0; i < nVariaveis; i++) {
-                            lower.push(lw[i]);
-                            //alert("lower " + lower[i]);
-                        }
-                        p++;
-                        cont += 3;
-                    }
-                    if (p === 5) {//pega uppers
-                        //alert("entrou p5");
-                        //alert("cont5 "+source[cont]);
-                        linha = "";
-                        while (source[cont] !== "\n") { //vai ate a linha
-                            linha += source[cont];
-                            cont++
-                        }
-                        //alert("linha5 inteira "+linha);
-                        var up = linha.split("|", nVariaveis); //separa valores
-                        //                        for(j = 0; j < nVariaveis; j++){
-                        //                            //upper.push(up[j]);
-                        //                            //alert("linha split " + up[j]);
-                        //                        }
-                        for (j = 0; j < nVariaveis; j++) {
-                            upper.push(up[j]);
-                            //alert("upper " + upper[j]);
-                        }
-                        p++;
-                    }
-                    if (p === 6) {//termina
-                        cont = source.length;
-                    }
-
-
-
+                    p++;
                 }
-            };
+                if (p === 2) { //saber funÃ§ao objetivo
+                    var linha = "";
+                    //alert("cont "+source[cont]);
+                    while (source[cont] !== "\n") { //pega a linha inteira 
 
-            reader.readAsText(file);
+                        linha += source[cont];
+                        cont++;
+                    }
 
-        } else {
-            alert("Erro no Carregamento");
+                    for (i = 0; i < linha.length; i++) { //o numero de | Ã© o numero de variaveis
+                        if (linha[i] === "|") {
+                            nVariaveis++;
+                        }
+                    }
+                    //alert("linha2 inteira "+linha);
+                    objetivo = linha.split("|", nVariaveis); //funÃ§ao objetivo
+                    //alert("tamanho obj "+objetivo.length);
+//                                                for(k=0;k<objetivo.length;k++){
+//                                                    alert("obj " + objetivo[k]);
+//                                                }
+                    //alert(objetivo);
+
+                    p++;
+                    while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {//avanÃ§a ate as restriÃ§oes
+                        //alert("cont saida "+source[cont]);
+                        cont++;
+                    }
+                }
+                if (p === 3) { //pega restriÃ§oes
+                    //alert("entrou p3");
+                    linha = "";
+                    //alert("cont3 "+source[cont]);
+                    while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") { //pega ate a relacao
+                        linha += source[cont];
+                        cont++;
+                    }
+                    //alert("linha3 inteira "+linha);
+                    restricoes[iRest] = linha.split("|", nVariaveis);
+//                    for (k = 0; k < restricoes[iRest].length; k++) {
+//                        alert("rest " + restricoes[iRest][k]);
+//                    }
+                    iRest++;
+                    //cont++;
+                    if (source[cont] === ">") { //pega a relacao
+                        relacoes.push(">=");
+                        cont += 2;
+                    } else if (source[cont] === "<") {
+                        relacoes.push("<=");
+                        cont += 2;
+                    } else if (source[cont] === "=") {
+                        relacoes.push("=");
+                        cont++;
+                    } else {
+                        alert("Erro!!!");
+                    }
+//                    alert("relacao " + relacoes[iRest - 1]);
+                    var ld = "";
+                    cont++;
+                    while (source[cont] !== "|") { //pega o lado direito
+                        ld += source[cont];
+                        cont++;
+                    }
+                    //alert("linha d "+ld);
+                    //var lld=ld.split("|");
+                    //alert("lld = "+lld);
+                    rhs.push(ld);
+//                    alert("direita " + rhs[iRest - 1]);
+                    cont += 2;
+                    if (source[cont + 2] === "\n") { //se tiver acabado restriÃ§oes pula pro proximo p
+                        p++;
+
+                    } else { //se nao tiver pula pra proxima linha
+
+                        cont++;
+                    }
+                }
+                if (p === 4) { //pega lower
+                    //alert("entrou p4");
+                    while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") { //vai ate a linha
+                        cont++;
+                    }
+                    linha = "";
+                    //alert("cont4 "+source[cont]);
+                    while (source[cont] !== "\n") { //pega a linha com os minimos
+                        linha += source[cont];
+                        cont++
+                    }
+                    //alert("linha3 inteira "+linha);
+                    var lw = linha.split("|", nVariaveis); //separa valores
+                    for (i = 0; i < nVariaveis; i++) {
+                        lower.push(lw[i]);
+                        //alert("lower " + lower[i]);
+                    }
+                    p++;
+                    cont += 3;
+                }
+                if (p === 5) {//pega uppers
+                    //alert("entrou p5");
+                    //alert("cont5 "+source[cont]);
+                    linha = "";
+                    while (source[cont] !== "\n") { //vai ate a linha
+                        linha += source[cont];
+                        cont++
+                    }
+                    //alert("linha5 inteira "+linha);
+                    var up = linha.split("|", nVariaveis); //separa valores
+                    //                        for(j = 0; j < nVariaveis; j++){
+                    //                            //upper.push(up[j]);
+                    //                            //alert("linha split " + up[j]);
+                    //                        }
+                    for (j = 0; j < nVariaveis; j++) {
+                        upper.push(up[j]);
+                        //alert("upper " + upper[j]);
+                    }
+                    p++;
+                    alert("Pegou os valores, falta mandar pra tabela");
+                }
+                if (p === 6) {//termina
+                    cont = source.length;
+                }
+
+
+
+            }
+        };
+
+        reader.readAsText(file);
+
+    } else {
+        alert("Erro no Carregamento");
+    }
+    alert("passou if else");
+    for (var k = 0; k < objetivo.length; k++) {
+        alert("obj " + objetivo[k]);
+    }
+    for (k = 0; k < iRest; k++) {
+        for (var j = 0; j < nVariaveis; j++) {
+            alert("rest " + restricoes[k][j]);
         }
-    });
+        alert("relacao " + relacoes[k]);
+        alert("direita " + rhs[k]);
+    }
+
+    for (j = 0; j < nVariaveis; j++) {
+        alert("upper " + upper[j]);
+    }
+    for (var i = 0; i < nVariaveis; i++) {
+        alert("lower " + lower[i]);
+    }
+    //});
     //document.getElementById('start#sectionA').click();
-    mod.rest = function () {
-        return restricoes;
-    };
-    mod.up = function () {
-        return upper;
-    };
-    mod.low = function () {
-        return lower;
-    };
-    mod.obj = function () {
-        return objetivo;
-    };
-    mod.direito = function () {
-        return rhs;
-    };
-    mod.rela = function () {
-        return relacoes;
-    };
-    mod.prob = function () {
-        return problema;
-    };
-    mod.nVar = function () {
-        return nVariaveis;
-    };
+
 }
+;
