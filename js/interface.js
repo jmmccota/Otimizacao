@@ -57,13 +57,13 @@ Tabela = function () {
         row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
         for (i = 1; i <= t.nVar; i++) {
             row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
-                    class="limSup form-control" required  step="any" value="' + up[i-1] + '">';
+                    class="limSup form-control" required  step="any" value="' + up[i - 1] + '">';
         }
         row = table.insertRow(rowCount + 1);
         row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
-                    class="limInf form-control" required  step="any" value="' + low[i-1] + '">';
+                    class="limInf form-control" required  step="any" value="' + low[i - 1] + '">';
 
 
 
@@ -155,6 +155,14 @@ Tabela = function () {
 
     return t;
 };
+$(document).on('change', '.btn-file :file', function () {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+});
+
+
 
 $(document).ready(function () {
 
@@ -191,7 +199,7 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
 
@@ -246,16 +254,16 @@ $(document).ready(function () {
     //Carrega de arquivo
     $('#carregar').click(function () { //como esconder as sections e verificar se ta certo...
         var mod = upload();
-        mod.objetivo=mod.obj();
-        mod.restricoes=mod.rest();
-        mod.relacoes=mod.rela();
-        mod.direita=mod.dir();
-        mod.lower=mod.low();
-        mod.upper=mod.up();
-        mod.nVari=mod.nVar();
+        mod.objetivo = mod.obj();
+        mod.restricoes = mod.rest();
+        mod.relacoes = mod.rela();
+        mod.direita = mod.dir();
+        mod.lower = mod.low();
+        mod.upper = mod.up();
+        mod.nVari = mod.nVar();
         alert("Botao");
-        for(i=0;i<mod.objetivo.lenght;i++){
-            alert("obj "+mod.objetivo[i]);
+        for (i = 0; i < mod.objetivo.lenght; i++) {
+            alert("obj " + mod.objetivo[i]);
         }
         t.carrega(mod.objetivo, mod.restricoes, mod.relacoes, mod.direita, mod.lower, mod.upper, mod.nVari);
         //dar um jeito de mostrar sectionA com as tabelas carregadas
@@ -301,12 +309,28 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
+
+
+    //Botão file
+    $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+        if (input.length) {
+            input.val(log);
+        } else {
+            if (log) alert(log);
+        }
+
+    });
+
 });
 
 // ??????????
@@ -390,9 +414,9 @@ function upload() {
                         //alert("linha2 inteira "+linha);
                         objetivo = linha.split("|", nVariaveis); //funçao objetivo
                         //alert("tamanho obj "+objetivo.length);
-//                        for(k=0;k<objetivo.length;k++){
-//                            alert("obj " + objetivo[k]);
-//                        }
+                        //                        for(k=0;k<objetivo.length;k++){
+                        //                            alert("obj " + objetivo[k]);
+                        //                        }
                         //alert(objetivo);
 
                         p++;
@@ -411,9 +435,9 @@ function upload() {
                         }
                         //alert("linha3 inteira "+linha);
                         restricoes[iRest] = linha.split("|", nVariaveis);
-//                        for(k=0;k<restricoes[iRest].length;k++){
-//                            alert("rest " + restricoes[iRest][k]);
-//                        }
+                        //                        for(k=0;k<restricoes[iRest].length;k++){
+                        //                            alert("rest " + restricoes[iRest][k]);
+                        //                        }
                         iRest++;
                         //cont++;
                         if (source[cont] === ">") { //pega a relacao
@@ -479,10 +503,10 @@ function upload() {
                         }
                         //alert("linha5 inteira "+linha);
                         var up = linha.split("|", nVariaveis); //separa valores
-//                        for(j = 0; j < nVariaveis; j++){
-//                            //upper.push(up[j]);
-//                            //alert("linha split " + up[j]);
-//                        }
+                        //                        for(j = 0; j < nVariaveis; j++){
+                        //                            //upper.push(up[j]);
+                        //                            //alert("linha split " + up[j]);
+                        //                        }
                         for (j = 0; j < nVariaveis; j++) {
                             upper.push(up[j]);
                             //alert("upper " + upper[j]);
