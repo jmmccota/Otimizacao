@@ -168,14 +168,11 @@ $(document).ready(function () {
     hideFormProblema();
     t = Tabela();
 
-    //Verifica se a tabela está toda preenchida
+    //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
-        if ($("input:first").val() === "correct") {
-            $("span").text("Validated...").show();
+        if (!verificaTabela()) {
             return;
         }
-
-        showAlert("danger", "Por-favor preencha todos os dados!")
         event.preventDefault();
     });
 
@@ -208,7 +205,7 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
 
@@ -261,35 +258,38 @@ $(document).ready(function () {
             var source = "";
             var x = leituraParametros();
 
-            source = x['problema'] + '\r\n\r\n';
-            for (var i = 0; i < x.objetivo.length; i++) {
-                source += x['objetivo'][i] >= 0 ? "+" : "";
-                source += x['objetivo'][i] + "|";
-            }
-            source += "\r\n\r\n";
-            for (i = 0; i < x['restricoes'].length; i++) {
-                for (var j = 0; j < x['objetivo'].length; j++) {
-                    source += (x['restricoes'][i][j] >= 0) ? "+" : "";
-                    source += x['restricoes'][i][j] + "|";
+            //if (x) {
+                //alert(x["problema"]);
+                source = x['problema'] + '\r\n\r\n';
+                for (var i = 0; i < x.objetivo.length; i++) {
+                    source += x['objetivo'][i] >= 0 ? "+" : "";
+                    source += x['objetivo'][i] + "|";
                 }
-                source += x['relacoes'][i] + "|" + x['rhs'][i];
+                source += "\r\n\r\n";
+                for (i = 0; i < x['restricoes'].length; i++) {
+                    for (var j = 0; j < x['objetivo'].length; j++) {
+                        source += (x['restricoes'][i][j] >= 0) ? "+" : "";
+                        source += x['restricoes'][i][j] + "|";
+                    }
+                    source += x['relacoes'][i] + "|" + x['rhs'][i];
+                    source += "\r\n";
+                }
+
                 source += "\r\n";
-            }
 
-            source += "\r\n";
+                for (i = 0; i < x['objetivo'].length; i++) {
+                    source += x['lower'][i] + '|';
+                }
+                source += "\r\n\r\n";
+                for (i = 0; i < x['objetivo'].length; i++) {
+                    source += x['upper'][i] + '|';
+                }
+                source += "\r\n\r\n";
 
-            for (i = 0; i < x['objetivo'].length; i++) {
-                source += x['lower'][i] + '|';
-            }
-            source += "\r\n\r\n";
-            for (i = 0; i < x['objetivo'].length; i++) {
-                source += x['upper'][i] + '|';
-            }
-            source += "\r\n\r\n";
-
-            //alert(source);
-            var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
-            saveAs(blob, "modelo.txt");
+                //alert(source);
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                saveAs(blob, "modelo.txt");
+            //}
         } catch (err) {
             console.write("biblioteca faltante, FileSaver.js");
         }
@@ -355,11 +355,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
 
 

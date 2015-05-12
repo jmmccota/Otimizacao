@@ -265,9 +265,9 @@ simplex = function (Nodo) {
 
     glp_scale_prob(lp, GLP_SF_AUTO);
 
-//    if (glp_get_num_int(lp) === 0 && glp_get_num_bin(lp) === 0) {
+    //    if (glp_get_num_int(lp) === 0 && glp_get_num_bin(lp) === 0) {
 
-    var smcp = new SMCP({presolve: GLP_ON});
+    var smcp = new SMCP({ presolve: GLP_ON });
     var r = glp_simplex(lp, smcp);
 
     if (r === 0) {
@@ -275,11 +275,13 @@ simplex = function (Nodo) {
         //alert("Solução Ótima encontrada por Simplex");
         var z = glp_get_obj_val(lp);
         var x = [];
-        for (var i = 0; i < glp_get_num_cols(lp); i++) {
+        for (var i = 0; i < glp_get_num_cols(lp) ; i++) {
             x[i] = glp_get_col_prim(lp, i + 1);
         }
-        return {z: z,
-            x: x};
+        return {
+            z: z,
+            x: x
+        };
     }
     else {
         //Caso tenha acontecido algum erro
@@ -329,16 +331,36 @@ simplex = function (Nodo) {
                 z = "Não tem solução viável dual. ";
         }
 
-        return {z: z,
-            x: []};
+        return {
+            z: z,
+            x: []
+        };
     }
 };
 
 
-verificaTabela = function ()
-{
+verificaTabela = function () {
+    var bool;
+    $(".fObj").each(function () {
+        bool = $(this).val() == '';
+    });
+    $(".xRest").each(function () {
+        bool = $(this).val() == '';
+    });
+    $(".relacao").each(function () {
+        bool = $(this).val() == '';
+    });
+    $(".ladoDir").each(function () {
+        bool = $(this).val() == '';
+    });
+    $(".limSup").each(function () {
+        bool = $(this).val() == '';
+    });
+    $(".limInf").each(function () {
+        bool = $(this).val() == '';
+    });
 
-
+    return bool;
 }
 
 
@@ -347,57 +369,60 @@ leituraParametros = function () {
      * Le os dados informados na tabela de entrada e deixa no formato utilizado
      * em Nodo.
      */
+    //Se a tabela tiver algum valor em branco não lê
+    if (!verificaTabela()) {
+        var problema = document.getElementById("problema").value;
 
-    var problema = document.getElementById("problema").value;
+        var objetivo = [];
+        var restricoes = [];
+        var relacoes = [];
+        var rhs = [];
+        var upper = [];
+        var lower = [];
 
-    var objetivo = [];
-    var restricoes = [];
-    var relacoes = [];
-    var rhs = [];
-    var upper = [];
-    var lower = [];
+        //Pegando dados da Tabela
+        $(".fObj").each(function () {
+            objetivo.push($(this).val());
+        });
 
-    //Pegando dados da Tabela
-    $(".fObj").each(function () {
-        objetivo.push($(this).val());
-    });
+        var i = 0;
+        var nRest = 0;
+        var nVar = objetivo.length;
+        restricoes[0] = [];
+        $(".xRest").each(function () {
+            restricoes[nRest].push($(this).val());
+            i++;
+            if (i === nVar) {
+                i = 0;
+                nRest++;
+                restricoes[nRest] = [];
+            }
+        });
 
-    var i = 0;
-    var nRest = 0;
-    var nVar = objetivo.length;
-    restricoes[0] = [];
-    $(".xRest").each(function () {
-        restricoes[nRest].push($(this).val());
-        i++;
-        if (i === nVar) {
-            i = 0;
-            nRest++;
-            restricoes[nRest] = [];
-        }
-    });
+        $(".relacao").each(function () {
+            relacoes.push($(this).val());
+        });
+        $(".ladoDir").each(function () {
+            rhs.push($(this).val());
+        });
+        $(".limSup").each(function () {
+            upper.push($(this).val());
+        });
+        $(".limInf").each(function () {
+            lower.push($(this).val());
+        });
 
-    $(".relacao").each(function () {
-        relacoes.push($(this).val());
-    });
-    $(".ladoDir").each(function () {
-        rhs.push($(this).val());
-    });
-    $(".limSup").each(function () {
-        upper.push($(this).val());
-    });
-    $(".limInf").each(function () {
-        lower.push($(this).val());
-    });
+        return {
+            problema: problema,
+            objetivo: objetivo,
+            restricoes: restricoes,
+            relacoes: relacoes,
+            rhs: rhs,
+            upper: upper,
+            lower: lower
+        };
+    } else {
+        return false;
+    }
 
-    console.write(restricoes);
-
-    return {
-        problema: problema,
-        objetivo: objetivo,
-        restricoes: restricoes,
-        relacoes: relacoes,
-        rhs: rhs,
-        upper: upper,
-        lower: lower
-    };
 };
