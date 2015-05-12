@@ -369,60 +369,55 @@ leituraParametros = function () {
      * Le os dados informados na tabela de entrada e deixa no formato utilizado
      * em Nodo.
      */
-    //Se a tabela tiver algum valor em branco não lê
-    if (!verificaTabela()) {
-        var problema = document.getElementById("problema").value;
+    var problema = document.getElementById("problema").value;
 
-        var objetivo = [];
-        var restricoes = [];
-        var relacoes = [];
-        var rhs = [];
-        var upper = [];
-        var lower = [];
+    var objetivo = [];
+    var restricoes = [];
+    var relacoes = [];
+    var rhs = [];
+    var upper = [];
+    var lower = [];
 
-        //Pegando dados da Tabela
-        $(".fObj").each(function () {
-            objetivo.push($(this).val());
-        });
+    //Pegando dados da Tabela
+    $(".fObj").each(function () {
+        objetivo.push($(this).val());
+    });
 
-        var i = 0;
-        var nRest = 0;
-        var nVar = objetivo.length;
-        restricoes[0] = [];
-        $(".xRest").each(function () {
-            restricoes[nRest].push($(this).val());
-            i++;
-            if (i === nVar) {
-                i = 0;
-                nRest++;
-                restricoes[nRest] = [];
-            }
-        });
+    var i = 0;
+    var nRest = 0;
+    var nVar = objetivo.length;
+    restricoes[0] = [];
+    $(".xRest").each(function () {
+        restricoes[nRest].push($(this).val());
+        i++;
+        if (i === nVar) {
+            i = 0;
+            nRest++;
+            restricoes[nRest] = [];
+        }
+    });
 
-        $(".relacao").each(function () {
-            relacoes.push($(this).val());
-        });
-        $(".ladoDir").each(function () {
-            rhs.push($(this).val());
-        });
-        $(".limSup").each(function () {
-            upper.push($(this).val());
-        });
-        $(".limInf").each(function () {
-            lower.push($(this).val());
-        });
+    $(".relacao").each(function () {
+        relacoes.push($(this).val());
+    });
+    $(".ladoDir").each(function () {
+        rhs.push($(this).val());
+    });
+    $(".limSup").each(function () {
+        upper.push($(this).val());
+    });
+    $(".limInf").each(function () {
+        lower.push($(this).val());
+    });
 
-        return {
-            problema: problema,
-            objetivo: objetivo,
-            restricoes: restricoes,
-            relacoes: relacoes,
-            rhs: rhs,
-            upper: upper,
-            lower: lower
-        };
-    } else {
-        return false;
-    }
+    return {
+        problema: problema,
+        objetivo: objetivo,
+        restricoes: restricoes,
+        relacoes: relacoes,
+        rhs: rhs,
+        upper: upper,
+        lower: lower
+    };
 
 };

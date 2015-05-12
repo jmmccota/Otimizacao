@@ -257,9 +257,9 @@ $(document).ready(function () {
         try {
             var source = "";
             var x = leituraParametros();
+            var verifica = verificaTabela();
+            if (!verifica) {
 
-            //if (x) {
-                //alert(x["problema"]);
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
                     source += x['objetivo'][i] >= 0 ? "+" : "";
@@ -289,7 +289,7 @@ $(document).ready(function () {
                 //alert(source);
                 var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
-            //}
+            }
         } catch (err) {
             console.write("biblioteca faltante, FileSaver.js");
         }
@@ -317,16 +317,22 @@ $(document).ready(function () {
     //Executar Branch and Bound
     $('#executar').click(function () {
 
+
         progressBar("success", 100);
-        //b = BranchBound();
+        x = leituraParametros();
+        if (x) {
+            b = BranchBound();
 
-        //while (!b.terminou()) {
-        //    nodo = b.executar();
-        //    //funcao de desenhar
-        //}
+            while (!b.terminou()) {
+                nodo = b.executar();
+                //funcao de desenhar
+            }
 
-        //otimo = b.melhorSolucao();
-        //faz alguma coisa com o otimo
+            otimo = b.melhorSolucao();
+            //faz alguma coisa com o otimo
+        }
+
+
     });
 
     //Executar Branch and Bound Passo a Passo
@@ -613,14 +619,6 @@ function upload() {
     };
 }
 ;
-
-////////////////////////////////////////////////////
-//                FUNCOES DA ARVORE               //
-////////////////////////////////////////////////////
-
-
-
-
 
 ////////////////////////////////////////////////////
 //                FUNCOES DA ARVORE               //
