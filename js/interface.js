@@ -157,8 +157,8 @@ Tabela = function () {
 };
 $(document).on('change', '.btn-file :file', function () {
     var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
     input.trigger('fileselect', [numFiles, label]);
 });
 
@@ -208,7 +208,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
 
@@ -257,7 +257,42 @@ $(document).ready(function () {
 
     //Salva em arquivo
     $('#salvar').click(function () {
+        try {
+            var source = "";
+            var x = leituraParametros();
 
+            source = x['problema'] + '\r\n\r\n';
+            for (var i = 0; i < x.objetivo.length; i++) {
+                source += x['objetivo'][i] >= 0 ? "+" : "";
+                source += x['objetivo'][i] + "|";
+            }
+            source += "\r\n\r\n";
+            for (i = 0; i < x['restricoes'].length; i++) {
+                for (var j = 0; j < x['objetivo'].length; j++) {
+                    source += (x['restricoes'][i][j] >= 0) ? "+" : "";
+                    source += x['restricoes'][i][j] + "|";
+                }
+                source += x['relacoes'][i] + "|" + x['rhs'][i];
+                source += "\r\n";
+            }
+
+            source += "\r\n";
+
+            for (i = 0; i < x['objetivo'].length; i++) {
+                source += x['lower'][i] + '|';
+            }
+            source += "\r\n\r\n";
+            for (i = 0; i < x['objetivo'].length; i++) {
+                source += x['upper'][i] + '|';
+            }
+            source += "\r\n\r\n";
+
+            //alert(source);
+            var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+            saveAs(blob, "modelo.txt");
+        } catch (err) {
+            console.write("biblioteca faltante, FileSaver.js");
+        }
     });
 
     //Carrega de arquivo
@@ -320,11 +355,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 
 
@@ -332,12 +367,13 @@ $(document).ready(function () {
     $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
         var input = $(this).parents('.input-group').find(':text'),
-            log = numFiles > 1 ? numFiles + ' files selected' : label;
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
 
         if (input.length) {
             input.val(log);
         } else {
-            if (log) alert(log);
+            if (log)
+                alert(log);
         }
 
     });
@@ -584,6 +620,14 @@ function upload() {
 
 
 
+
+
+////////////////////////////////////////////////////
+//                FUNCOES DA ARVORE               //
+////////////////////////////////////////////////////
+
+
+//MAGIA DO ANDRE
 
 
 ////////////////////////////////////////////////////
