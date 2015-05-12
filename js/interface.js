@@ -1,16 +1,16 @@
 Tabela = function () {
     var t = {};
 
-    t.reseta = function (){
+    t.reseta = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
 
     //Cria a tabela base de um novo modelo
     t.novo = function () {
-        
+
         t.reseta();
-        
+
         t.existe = true;
 
         //Cabecalho
@@ -62,9 +62,9 @@ Tabela = function () {
             showAlert('warning', 'Limite máximo de restrições atingido: 20!');
             return;
         }
-        
+
         t.nRestri++;
-        
+
         var table = document.getElementById("myTableData");
         var row = table.insertRow(t.nRestri + 1);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + t.nRestri + '</b>';
@@ -87,9 +87,9 @@ Tabela = function () {
             table.deleteRow(t.nRestri + 2);
         }
     };
-    
+
     t.existe = false;
-    
+
     return t;
 };
 
@@ -131,17 +131,17 @@ $(document).ready(function () {
         //Cria nova tabela
         else
             t.novo();
-        
+
         showFormProblema();
     });
 
     //Adiciona Restricao
-    $('#addRow').click(function (){
+    $('#addRow').click(function () {
         t.addRow();
     });
-    
+
     //Apaga restricao
-    $('#delRow').click(function (){
+    $('#delRow').click(function () {
         t.deleteRow();
     });
 
@@ -169,41 +169,77 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     //Salva em arquivo
-    $('#salvar').click(function (){
-        
+    $('#salvar').click(function () {
+
+        try {
+            var source = "";
+            var x = leituraParametros();
+
+            source = x['problema'] + '\r\n\r\n';
+            for (var i = 0; i < x.objetivo.length; i++) {
+                source += x['objetivo'][i] >= 0 ? "+" : "";
+                source += x['objetivo'][i] + "|";
+            }
+            source += "\r\n\r\n";
+            for (i = 0; i < x['restricoes'].length; i++) {
+                for (var j = 0; j < x['objetivo'].length; j++) {
+                    source += (x['restricoes'][i][j] >= 0) ? "+" : "";
+                    source += x['restricoes'][i][j] + "|";
+                }
+                source += x['relacoes'][i] + "|" + x['rhs'][i];
+                source += "\r\n";
+            }
+
+            source += "\r\n\r\n";
+
+            for (i = 0; i < x['objetivo'].length; i++) {
+                source += x['lower'][i] + '|';
+            }
+            source += "\r\n\r\n";
+            for (i = 0; i < x['objetivo'].length; i++) {
+                source += x['upper'][i] + '|';
+            }
+            source += "\r\n\r\n";
+
+            alert(source);
+            var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+            saveAs(blob, "modelo.txt");
+        } catch (err) {
+            console.write("biblioteca faltante, FileSaver.js");
+        }
     });
-    
+
     //Carrega de arquivo
-    $('#carregar').click(function (){
-        
+    $('#carregar').click(function () {
+
     });
-    
+
     //Executar Branch and Bound
-    $('#executar').click(function (){
+    $('#executar').click(function () {
         b = BranchBound();
-        
-        while(!b.terminou()){
+
+        while (!b.terminou()) {
             nodo = b.executar();
             //funcao de desenhar
         }
-        
+
         otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
     });
-    
+
     //Executar Branch and Bound Passo a Passo
-    $('#passoAPasso').click(function (){
+    $('#passoAPasso').click(function () {
         b = BranchBound();
-        
-        while(!b.terminou()){
-            nodo = b.proximoPasso(function (){
+
+        while (!b.terminou()) {
+            nodo = b.proximoPasso(function () {
                 //funcao que retorna o indice do x que o usuario escolheu
             });
             //funcao de desenhar
         }
-        
+
         otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
     });
