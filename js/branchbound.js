@@ -367,6 +367,7 @@ leituraParametros = function () {
             restricoes[nRest] = [];
         }
     });
+    restricoes.pop();
 
     $(".relacao").each(function () {
         relacoes.push($(this).val());
@@ -380,8 +381,6 @@ leituraParametros = function () {
     $(".limInf").each(function () {
         lower.push($(this).val());
     });
-
-    console.write(restricoes);
 
     return {
         problema: problema,

@@ -5,6 +5,7 @@ Tabela = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
+    
     t.carrega = function (obj, rest, rela, dir, low, up, nVari) {
         t.reseta();
         t.existe = true;
@@ -64,10 +65,7 @@ Tabela = function () {
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
                     class="limInf form-control" required  step="any" value="' + low[i - 1] + '">';
-
-
-
-    }
+    };
 
     //Cria a tabela base de um novo modelo
     t.novo = function () {
@@ -155,14 +153,13 @@ Tabela = function () {
 
     return t;
 };
+
 $(document).on('change', '.btn-file :file', function () {
     var input = $(this),
             numFiles = input.get(0).files ? input.get(0).files.length : 1,
             label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
     input.trigger('fileselect', [numFiles, label]);
 });
-
-
 
 $(document).ready(function () {
 
@@ -213,12 +210,10 @@ $(document).ready(function () {
 
     //Apaga restricao
     $('#delRow').click(function () {
-        if (t.nRestri == 0) {
-            showAlert("warning", "Não há mais restrições para excluir!")
-        }
-        else {
+        if (t.nRestri == 0)
+            showAlert("warning", "Não há mais restrições para excluir!");
+        else 
             t.deleteRow();
-        }
     });
 
     //Limpa os dados do modelo
@@ -277,8 +272,7 @@ $(document).ready(function () {
                 source += x['upper'][i] + '|';
             }
             source += "\r\n\r\n";
-
-            //alert(source);
+            
             var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
             saveAs(blob, "modelo.txt");
         } catch (err) {
@@ -601,14 +595,6 @@ function upload() {
 
 
 ////////////////////////////////////////////////////
-//                FUNCOES DA ARVORE               //
-////////////////////////////////////////////////////
-
-
-//MAGIA DO ANDRE
-
-
-////////////////////////////////////////////////////
 //                FUNCOES AUXILIARES              //
 ////////////////////////////////////////////////////
 
@@ -643,6 +629,7 @@ function showFormProblema() {
     $('#salvar').show('fast');
     $('#limpar').show('fast');
 }
+
 function showFormProblema2() {
     $('#carregar').hide('fast');
     $('#sectionB').hide('fast');
