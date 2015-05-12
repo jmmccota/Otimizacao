@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Branch-Bound</title>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/leftBar.js"></script>
+        <script type="text/javascript" src="js/interface.js"></script>
+       <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Branch-Bound</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">INÍCIO</a></li>
+                        <li><a href="#">AJUDA</a></li>
+                        <li><a href="contato.html">CONTATO</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="masthead">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h1>
+                                Ajuda
+                                <p class="lead">Manual de ajuda ao usuário</p>
+                            </h1>
+                        </div>
+                    </div>
+                </div><!--/container-->
+            </div><!--/masthead-->
+
+
+            <div class="container">
+
+                <div class="row">
+                    <!--left-->
+                    <div class="col-md-3" id="leftCol">
+                        <ul class="nav nav-stacked" id="sidebar">
+                            <li><a href="#sec0">Iniciando</a></li>
+                            <li><a href="#sec1">Modelo de PL</a></li>
+                            <li><a href="#sec1">Execução Completa</a></li>
+                            <li><a href="#sec1">Execução Passo a Passo</a></li>
+
+                        </ul>
+                    </div><!--/left-->
+                    <!--right-->
+                    <div class="col-md-9">
+                        <h2 id="sec0">Iniciando </h2>
+                        <hr>
+                        <p>
+                            O Projeto foi desenvolvido por alunos para a resolução de problemas de Programação Inteira. Foi usada a biblioteca glpk.js como algoritmo para 
+                            o método Simplex. Para entender o funcionamento do algoritmo, na página inicial possui o botão "Mais sobre o modelo" que demonstra o funcionamento do algoritmo.
+                            No canto superior há uma aba "Contato", onde o usuário poderá deixar algumas sugestões para a melhoria do algoritmo proposto.
+                        </p>
+                        <p>
+                            Para iniciarmos, clique em Começar e divirta-se!
+                        </p>
+                        <h2 id="sec1">Modelo de Programação Linear (PL)</h2><hr>
+                        <p>
+                            Na parte superior, pode-se criar um problema de otimização ou carregá-lo do seu dispositivo. 
+                        </p>
+                        <p>
+                            Na opção "Carregar problema de otimização", deve-se escolher um arquivo .txt
+                            no botão "escolher arquivo". Esse arquivo deverá conter no máximo 20 restrições e 10 variáveis. Logo após selecionar o arquivo, clique em "analisar arquivo" para que o Problema seja
+                            carregado.
+                        </p>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-md-offset-3">
+                                <div class="panel panel-primary secondary ">
+                                    <div class="panel-body">
+                                        <img src="img/load.png" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Na opção "Criar novo problema de otimização", deve-se selecionar qual o tipo de problema a ser solucionado e qual o número de variáveis do problema, onde
+                            o solver aceita no máximo 20 restrições e 10 variáveis. Ao clicar em "Novo problema de otimização", será gerado um grid dinâmico, onde será digitado os valores da função objetivo.
+                            Para adicionar ou remover restrições ao problema, clique em "Adicionar restrição" ou "Excluir restrição". Os valores da função objetivo e das restrições podem ser inteiras ou reais. Deve-se digitar qual o limite superior e inferior de cada variável nas seções 
+                            "Limite Superior" e "Limite Inferior", caso esses limites sejam infinitos deve-se escrever "inf" nos mesmos. Para visualizar o modelo criado ou o modelo em forma de PL extendido, clique nos botões
+                            "Mostrar modelo de Programação Linear" e "Mostrar Modelo de Programação Linear extendido".
+                        </p>
+                        <p>
+                            Ao clicar em "Limpar Tudo" todos os campos serão limpos para nova digitação pelo usuário. Ao clicar em Salvar problema, o modelo será salvo em um formato para o solver.
+                        </p>
+                        <p>
+                            O algoritmo poderá ser processado de duas maneiras. A primeira é clicando em "Executar Completo" e a segunda em "Passo a Passo".
+                        </p>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="panel panel-primary secondary ">
+                                    <div class="panel-body">
+                                        <img src="img/MPL.png" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div><!--/right-->
+                </div><!--/row-->
+            </div>
+
+            <!--  FOOTER  -->
+            <div id="footerwrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h4>Realizado por</h4>
+                            <div class="hline-w"></div>
+                            <p>Alunos de Engenharia de Computação, estudantes do CEFET-MG Campus VII</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <h4>Endereço</h4>
+                            <div class="hline-w"></div>
+                            <p>
+                                R. Oito de Dezembro, Centro<br>
+                                Timoteo, MG<br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-top-wrapper ">
+            <span class="scroll-top-inner">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+            </span>
+        </div>
+    </body>
+</html>

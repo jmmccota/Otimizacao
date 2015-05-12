@@ -1,7 +1,4 @@
-<script type="text/javascript" src="js/ASCIIMathML.js"></script>
-<script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
-
-﻿<div id="masthead">
+<div id="masthead">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -35,13 +32,10 @@
             <ul class="nav nav-stacked" id="sidebar">
                 <li><a href="#sec0">Introdução</a></li>
                 <li><a href="#sec1">Resolvendo PLIM	</a></li>
-                <li><a href="#sec2">Section 2</a></li>
-                <li><a href="#sec3">Section 3</a></li>
-                <li><a href="#sec4">Section 4</a></li>
             </ul>
         </div><!--/left-->
         <!--right-->
-        <div class="col-md-9">
+        <div class="col-md-9" style="padding-bottom: 60px;">
             <h2 id="sec0">Introdução </h2>
             <hr>
             <p>
@@ -89,10 +83,34 @@
             <br>
             <h2 id="sec1">Resolvendo PLIM Usando Branch-Bound</h2><hr>
             <p>
-                O problema com a resolução de PLIMs usando o método Simplex é que ele
+                O problema com a resolu&ccedil;&atilde;o de PLIMs usando o m&eacute;todo Simplex &eacute; que ele
                 frequentemente retorna partes de
-                ` x = (x_1,x_2,x_3)` que não estão em forma de número inteiro.
-                ue não estão em forma de número inteiro.
+                ` x = (x_1,x_2,x_3)` que n&atilde;o est&atilde;o em forma de n&uacute;mero inteiro.
+            </p>
+            <p>
+                Para resolver usando o Branch and Bound, primeiro resolvemos o problema usando o Relaxamento, o que significa resolv&ecirc;-lo pelo Simplex Revisado como se n&atilde;o houvesse 
+                restri&ccedil;&odblac;es inteiras. Assim, obtemos: ` z = cx`.
+            </p>
+            <p>
+                Como o exemplo usado envolve um problema de maximiza&ccedil;&atilde;o que engloba todas as solu&ccedil;&odblac;es inteiras, ent&atilde;o esse &eacute; um limite superior da PLIM. Em seguida, escolhe-se uma vari&aacute;vel n&atilde;o inteira.
+                Comumente, escolhe-se a vari&aacute;vel mais fracionada, que esteja mais pr&oacute;xima do valor mediano ou mais distante de um n&uacute;mero inteiro.     
+            </p>
+            <p>
+                Por exemplo, em ` x = (1.25, 3.45, 2.75, 5)`, escolhe-se ramificar em `x_2`, pois `0.45` est&aacute; mais pr&oacute;ximo de `0.5` do que as outras fra&ccedil;&odblac;es. A partir disso, criamos
+                dois subproblemas ou dois nodos de nossa &aacute;rvore. Em um n&oacute; adicionamos a restri&ccedil;&atilde;o `x_2<=3`, na outra adicionamos `x_2>=4`. Seja `S` o conjunto solu&ccedil;&atilde;o vi&aacute;vel do relaxamento: `S = {x: Ax<=b\ e\ x>=0}`, temos que:
+            </p>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-md-offset-4">
+                    <blockquote>
+                        <center>
+                            ` S_1 = S \cap{x:x_j <= \lfloor\hat{x}_j\rfloor\} `
+                            ` S_1 = S \cap{x:x_j >= \ceil{hat{x}_j}} `
+                        </center>
+                    </blockquote>
+                </div>
+            </div>
+            <p>
+                Ent&atilde;o, cada um dos n&oacute;s devem ser resolvidos com suas novas restri&ccedil;&odblac;es pelo m&eacute;todo Dual Simplex. Caso o problema seja invi&aacute;vel, ent&atilde;o o n&oacute; &eacute; cortado por inviabilidade. A solu&ccedil;&atilde;o &oacute;tima &eacute; encontrada quando todos os n&oacute;s fracion&aacute;rios s&atilde;o cortados. 
             </p>
 
 

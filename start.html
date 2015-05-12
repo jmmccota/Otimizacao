@@ -104,7 +104,7 @@
                     </div>
                     <div class="row">
                         <div class="mpl col-lg-12" id="div_mpl" style="display:none;">
-                          
+
                         </div>
                     </div>
 
@@ -144,19 +144,33 @@
 
             </div>
             <div id="sectionB" class="tab-pane fade">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <form id="formUpload" action="" method="get" name="formulario">
-                            <div class="col-lg-2">
-                                <label class="control-label">Selecione Arquivo:</label>
+                            <div class="col-lg-6">
+                                <label class="control-label">Selecione o Arquivo:</label>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Prourar&hellip; <input type="file" id="inputFile">
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                                <span class="help-block">
+                                    Selecione um arquivo contendo o problema de otimização.
+                                </span>
                             </div>
-                            <div class="col-lg-3">
-                                <input type="file" id="inputFile">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label"></label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success" id="carregar" style="width:100%; margin-top:5px;">
+                                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
+                                </button>
                             </div>
-                            <br>
-                            <button type="submit" class="btn btn-success" id="carregar">
-                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
-                            </button>
                         </form>
                     </div>
                 </div>
