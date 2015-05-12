@@ -396,6 +396,7 @@ leituraParametros = function () {
             restricoes[nRest] = [];
         }
     });
+    restricoes.pop();
 
     $(".relacao").each(function () {
         relacoes.push($(this).val());
