@@ -70,8 +70,10 @@ function mpl() {
     //document.getElementsByTagName("head")[0].appendChild(script2);
 
    
-    addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
-    addHead("js/ASCIIMathML.js");
+    addHead("js/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML");
+   
+	
+	//addHead("js/ASCIIMathML.js");
 
 
     $('#div_mpl').show();
@@ -107,7 +109,7 @@ function mpl() {
         }
     }
 
-    bodyContent += "` " + obj + " `";
+    bodyContent += "$$ " + obj + " $$";
     bodyContent += '</div>';
     bodyContent += '</div>';
 
