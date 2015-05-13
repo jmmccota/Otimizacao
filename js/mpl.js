@@ -159,7 +159,9 @@ function mpl() {
                 lim += "x_" + i + " >= " + numL + ";  ";
             }
             if (numUp.length > 0) {
-                if(numUp != 'inf' || numUp != 'INF'){
+                if(numUp == 'inf' || numUp == 'INF'){
+                    //por algum motivo sem isso não funciona
+                }else{
                     lim += "x_" + i + " <= " + numUp + ";  ";
                 }
             }
