@@ -219,8 +219,8 @@ BranchBound = function () {
         //    se encontrar seta como otima
         var i = 1;
         while (i<=this.heap.array.length){
-            if (i == this.heap.array.length)
-                return null;
+            if (i === this.heap.array.length)
+                return 0;
             else if(isNaN(this.heap.array[i].z))
                 i++;
             else
