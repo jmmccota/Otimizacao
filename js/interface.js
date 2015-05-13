@@ -287,7 +287,7 @@ $(document).ready(function () {
     hideFormProblema();
     t = Tabela();
     //Instancia de objeto da classe Arvore  
-    a = Arvore()
+    a = Arvore();
 
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
@@ -461,7 +461,7 @@ $(document).ready(function () {
     $('#executar').click(function () {
         $("#panelResultado").show();
 
-        b = BranchBound();
+        b = new BranchBound();
         a.setContainer(document.getElementById("resultTree"));
         while (!b.terminou()) {
             nodo = b.executar();
@@ -481,9 +481,11 @@ $(document).ready(function () {
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
-        b = BranchBound();
+        
+        b = new BranchBound();
         while (!b.terminou()) {
-            nodo = b.proximoPasso(function () {
+            nodo = b.proximoPasso(function (branchBound/*precisa do BranchBound como parametro,
+                    mesmo que nao seja usado*/) {
                 //funcao que retorna o indice do x que o usuario escolheu
             });
             //funcao de desenhar
