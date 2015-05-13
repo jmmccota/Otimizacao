@@ -1,5 +1,4 @@
-﻿
-        function getTableValues() {
+﻿        function getTableValues() {
             var contObj = 0;
             var contRel = 0;
             var contRhs = 0;
@@ -54,8 +53,9 @@
                 lower: lower
             };
         }
+
 function mpl() {
-    
+
 
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -68,7 +68,7 @@ function mpl() {
     script2.type = "text/javascript";
     script2.src = "js/ASCIIMathML.js";
     document.getElementsByTagName("head")[0].appendChild(script2);
-    
+
     $('#div_mpl').fadeIn("fast");
     var mp = document.getElementById("div_mpl");
 
@@ -88,7 +88,7 @@ function mpl() {
     } else {
         bodyContent += '<span>min:</span>';
     }
-    bodyContent += '</div>'
+    bodyContent += '</div>';
     bodyContent += '<div class="col-xs-10">';
     for (i = 1; i <= x["objetivo"].length; i++) {
         var num = x["objetivo"][i - 1];
@@ -103,11 +103,11 @@ function mpl() {
     }
 
     bodyContent += "` " + obj + " `";
-    bodyContent += '</div>'
-    bodyContent += '</div>'
+    bodyContent += '</div>';
+    bodyContent += '</div>';
 
 
-    bodyContent += '<div class="row" style="padding-top: 5px;">'
+    bodyContent += '<div class="row" style="padding-top: 5px;">';
     bodyContent += '<div class="col-xs-3">';
     bodyContent += "<span>sujeito a:</span>";
     bodyContent += '</div>';
@@ -130,15 +130,15 @@ function mpl() {
             res = "";
             k = 0;
             bodyContent += '</div>';
-            if(i<x["restricoes"].length){
-            bodyContent += '<div class="col-xs-10 col-md-offset-1">';
+            if (i < x["restricoes"].length) {
+                bodyContent += '<div class="col-xs-10 col-md-offset-1">';
             }
         }
     }
 
     bodyContent += '</div>';
-    bodyContent += '<div class="row" style="padding-top: 5px;">'
-    bodyContent += '<div class="col-xs-3">'
+    bodyContent += '<div class="row" style="padding-top: 5px;">';
+    bodyContent += '<div class="col-xs-3">';
     bodyContent += "<span>e:</span>";
     bodyContent += '</div>';
     bodyContent += '<div class="col-xs-10" >';
