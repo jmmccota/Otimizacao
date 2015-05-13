@@ -1,4 +1,4 @@
-﻿function getTableValues() {
+function getTableValues() {
     var contObj = 0;
     var contRel = 0;
     var contRhs = 0;
@@ -53,29 +53,26 @@
         lower: lower
     };
 }
-
+var cont = 0;
 function mpl() {
 
-
-    //var script = document.createElement("script");
-    //script.type = "text/javascript";
-    //script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
-    //document.getElementsByTagName("head")[0].appendChild(script);
-
-
-
-    //var script2 = document.createElement("script");
-    //script2.type = "text/javascript";
-    //script2.src = "js/ASCIIMathML.js";
-    //document.getElementsByTagName("head")[0].appendChild(script2);
-
-   
-    addHead("js/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML");
-   
-	
-	//addHead("js/ASCIIMathML.js");
+    if (cont == 0) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
+        document.getElementsByTagName("head")[0].appendChild(script);
 
 
+
+        var script2 = document.createElement("script");
+        script2.type = "text/javascript";
+        script2.src = "js/ASCIIMathML.js";
+        document.getElementsByTagName("head")[0].appendChild(script2);
+    }
+
+
+
+    cont++;
     $('#div_mpl').show();
     var mp = document.getElementById("div_mpl");
 
@@ -87,6 +84,7 @@ function mpl() {
     var res = "";
     var k = 0;
     var z = 0;
+
 
     bodyContent = '<div class="row">'
     bodyContent += '<div class="col-xs-1">';
@@ -109,7 +107,7 @@ function mpl() {
         }
     }
 
-    bodyContent += "$$ " + obj + " $$";
+    bodyContent += "` " + obj + " `";
     bodyContent += '</div>';
     bodyContent += '</div>';
 
@@ -161,7 +159,11 @@ function mpl() {
                 lim += "x_" + i + " >= " + numL + ";  ";
             }
             if (numUp.length > 0) {
-                lim += "x_" + i + " <= " + numUp + ";  ";
+                if (numUp == 'inf' || numUp == 'INF') {
+                    //por algum motivo sem isso não funciona
+                } else {
+                    lim += "x_" + i + " <= " + numUp + ";  ";
+                }
             }
         }
     }
@@ -169,7 +171,9 @@ function mpl() {
     bodyContent += '</div>';
     bodyContent += '</div>';
     mp.innerHTML = bodyContent;
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
 function botaoMpl() {
     mpl();
+
 }

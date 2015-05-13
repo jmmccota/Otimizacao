@@ -134,7 +134,7 @@ Tabela = function () {
         var table = document.getElementById("myTableData");
         if (t.nRestri < 20) {
 
-            for (j = 2; j < (t.nRestri + 2) ; j++) {
+            for (j = 2; j < (t.nRestri + 2); j++) {
 
                 var row = table.insertRow(j);
                 row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -330,7 +330,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -387,18 +387,22 @@ $(document).ready(function () {
             if (!verifica) {
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
-                    source += x['objetivo'][i] >= 0 ? "+" : "";
+//                    source += x['objetivo'][i] >= 0 ? "+" : "";
                     source += x['objetivo'][i] + "|";
                 }
                 source += "\r\n\r\n";
 
-                for (i = 0; i < x['restricoes'].length; i++) {
-                    for (var j = 0; j < x['objetivo'].length; j++) {
-                        source += (x['restricoes'][i][j] >= 0) ? "+" : "";
-                        source += x['restricoes'][i][j] + "|";
+                if (x['restricoes'].length > 0) {
+                    for (i = 0; i < x['restricoes'].length; i++) {
+                        for (var j = 0; j < x['objetivo'].length; j++) {
+//                        source += (x['restricoes'][i][j] >= 0) ? "+" : "";
+                            source += x['restricoes'][i][j] + "|";
+                        }
+                        source += x['relacoes'][i] + "|" + x['rhs'][i] + "|";
+                        source += "\r\n";
                     }
-                    source += x['relacoes'][i] + "|" + x['rhs'][i] + "|";
-                    source += "\r\n";
+                } else { // caso não tenha restricao
+                    source += "nr\r\n";
                 }
 
                 source += "\r\n";
@@ -413,16 +417,16 @@ $(document).ready(function () {
                 source += "\r\n\r\n";
 
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             } else {
                 source += "\r\n\r\n";
 
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
-            console.write("biblioteca faltante, FileSaver.js");
+            console.error("biblioteca faltante, FileSaver.js"+err);
         }
     });
 
@@ -500,11 +504,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 
     //Ao clicar no botão file aparecer o caminho
@@ -834,7 +838,8 @@ CarregaFile = function upload() {
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
-};
+}
+;
 
 //Função para verificar a existencia de um script
 function exiteHead(src) {
@@ -851,7 +856,8 @@ function exiteHead(src) {
         }
 
     }
-};
+}
+;
 
 //Adiciona script dinamico
 function addHead(src) {
@@ -864,7 +870,8 @@ function addHead(src) {
     script.type = "text/javascript";
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script)
-};
+}
+;
 
 function removeStyle() {
     $('style').empty();
