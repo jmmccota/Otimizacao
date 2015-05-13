@@ -95,20 +95,20 @@ Tabela = function () {
 
     };
 
-    t.carrega = function (x) {
+    t.carrega = function (xx) {
         t.reseta();
         $("#myTableData").empty();
         $("#myTableData2").empty();
         t.existe = true;
-        t.nRestri = x["iRest"];
-        t.nVar = x["nVariaveis"];
-        t.problema = x["problema"];
-        t.objetivo = x["objetivo"];
-        t.restricoes = x["restricoes"];
-        t.relacoes = x["relacoes"];
-        t.rhs = x["rhs"];
-        t.upper = x["upper"];
-        t.lower = x["lower"];
+        t.nRestri = xx["iRest"];
+        t.nVar = xx["nVariaveis"];
+        t.problema = xx["problema"];
+        t.objetivo = xx["objetivo"];
+        t.restricoes = xx["restricoes"];
+        t.relacoes = xx["relacoes"];
+        t.rhs = xx["rhs"];
+        t.upper = xx["upper"];
+        t.lower = xx["lower"];
 
 
 
@@ -131,35 +131,39 @@ Tabela = function () {
         row.insertCell().innerHTML = '&nbsp;';
 
         //add restricoes
-        var table = document.getElementById("myTableData");
-        if (t.nRestri < 20) {
+        if (t.restricoes[0] === "n") {
+            alert("Nao possui restricoes");
+        } else {
+            var table = document.getElementById("myTableData");
+            if (t.nRestri < 20) {
 
-            for (j = 2; j < (t.nRestri + 2) ; j++) {
+                for (j = 2; j < (t.nRestri + 2); j++) {
 
-                var row = table.insertRow(j);
-                row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
-                for (i = 1; i <= t.nVar; i++) {
-                    row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="number"  \
+                    var row = table.insertRow(j);
+                    row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
+                    for (i = 1; i <= t.nVar; i++) {
+                        row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="number"  \
                     class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 2][i - 1] + '">';
 
-                }
+                    }
 
-                if (t.relacoes[j - 2] === "<=") {
-                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
+                    if (t.relacoes[j - 2] === "<=") {
+                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
                 <option value="<=" selected="selected"><=</option><option>=</option><option>>=</option></select>';
-                } else if (t.relacoes[j - 2] === "=") {
-                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
+                    } else if (t.relacoes[j - 2] === "=") {
+                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
                 <option><=</option><option value="=" selected="selected">=</option><option>>=</option></select>';
-                } else if (t.relacoes[j - 2] === ">=") {
-                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
+                    } else if (t.relacoes[j - 2] === ">=") {
+                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
                 <option><=</option><option>=</option><option value=">=" selected="selected">>=</option></select>';
-                }
+                    }
 
-                row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
+                    row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
                 class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
+                }
+            } else {
+                alert("Mais de 20 restriçoes...ERRO!!!! ");
             }
-        } else {
-            alert("Mais de 20 restriçoes...ERRO!!!! ");
         }
         //Limite superior e inferior
         var table = document.getElementById("myTableData2");
@@ -434,22 +438,22 @@ $(document).ready(function () {
     $('#carregar').click(function () {
         //como esconder as sections e verificar se ta certo...
         t.reseta();
-        var x = CarregaFile();
+        var xx = CarregaFile();
         showFormProblema2();
         //alert("botao");
         //alert("obj " + x['objetivo']);
         //showFormProblema2();
-        t.carrega(x);
+        t.carrega(xx);
         var c = document.getElementById("problema");
         for (var i = 0; i < c.options.length; i++) {
-            if (c.options[i].value === x["problema"]) {
+            if (c.options[i].value === xx["problema"]) {
                 c.options[i].selected = true;
                 break;
             }
         }
         var d = document.getElementById("variaveis");
         for (var k = 1; k <= d.options.length; k++) {
-            if (k === x["nVariaveis"]) {
+            if (k === xx["nVariaveis"]) {
                 d.options[k - 1].selected = true;
                 break;
             }
@@ -667,7 +671,9 @@ CarregaFile = function upload() {
                         alert("Arquivo estÃ¡ errado!!!");
                     }
                     //alert(problema);
-                    while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {
+                    while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
+                            && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                            && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
                         cont++;
                     }
                     p++;
@@ -695,9 +701,20 @@ CarregaFile = function upload() {
                     //alert(objetivo);
 
                     p++;
-                    while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") {//avanÃ§a ate as restriÃ§oes
-                        //alert("cont saida "+source[cont]);
+                    //var n=0;
+                    while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
+                            && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                            && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9" && source[cont] !== "n") {//avanÃ§a ate as restriÃ§oes
+
+
                         cont++;
+                    }
+                    if (source[cont] === "n") {
+                        //alert("cont saida " + source[cont]);
+                        restricoes.push("n");
+                        p = 4;
+                        //n=1;
+
                     }
                 }
                 if (p === 3) { //pega restriÃ§oes
@@ -750,7 +767,9 @@ CarregaFile = function upload() {
                 }
                 if (p === 4) { //pega lower
                     //alert("entrou p4");
-                    while (source[cont] !== "-" && source[cont] !== "+" && source[cont] !== "0") { //vai ate a linha
+                    while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
+                            && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                            && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
                         cont++;
                     }
                     linha = "";
@@ -799,7 +818,9 @@ CarregaFile = function upload() {
                     //alert("Pegou os valores, falta mandar pra tabela");
                 }
                 if (p === 6) {//termina
+
                     cont = source.length;
+
                 }
 
 
@@ -813,9 +834,6 @@ CarregaFile = function upload() {
         alert("Erro no Carregamento");
     }
     alert("Valores carregados");
-
-
-
     return {
         problema: problema,
         objetivo: objetivo,
@@ -828,6 +846,9 @@ CarregaFile = function upload() {
         iRest: iRest
 
     };
+
+
+
 };
 
 //Remover script Dinamico
