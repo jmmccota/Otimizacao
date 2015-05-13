@@ -302,7 +302,7 @@ $(document).ready(function () {
                         source += (x['restricoes'][i][j] >= 0) ? "+" : "";
                         source += x['restricoes'][i][j] + "|";
                     }
-                    source += x['relacoes'][i] + "|" + x['rhs'][i];
+                    source += x['relacoes'][i] + "|" + x['rhs'][i]+ "|";
                     source += "\r\n";
                 }
 
