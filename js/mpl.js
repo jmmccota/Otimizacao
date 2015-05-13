@@ -163,3 +163,6 @@ function mpl() {
     bodyContent += '</div>';
     mp.innerHTML = bodyContent;
 }
+function botaoMpl() {
+    mpl();
+}
