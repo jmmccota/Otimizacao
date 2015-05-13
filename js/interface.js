@@ -5,12 +5,23 @@ Tabela = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
-    
-    t.carrega = function (obj, rest, rela, dir, low, up, nVari) {
+
+    t.carrega = function (x) {
         t.reseta();
         t.existe = true;
-        t.nRestri = rest.lenght;
-        t.nVar = nVari;
+        t.nRestri = x["iRest"];
+        t.nVar = x["nVariaveis"];
+        t.problema = x["problema"];
+        t.objetivo = x["objetivo"];
+        t.restricoes = x["restricoes"];
+        t.relacoes = x["relacoes"];
+        t.rhs = x["rhs"];
+        t.upper = x["upper"];
+        t.lower = x["lower"];
+
+
+
+
         //Cabecalho
         var table = document.getElementById("myTableData");
         var row = table.insertRow(0);
@@ -24,23 +35,26 @@ Tabela = function () {
         row.insertCell(0).innerHTML = '<b>Objetivo</b>';
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" \
-                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + obj[i] + '">';
+                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.objetivo[i] + '">';
         row.insertCell().innerHTML = '&nbsp;';
         row.insertCell().innerHTML = '&nbsp;';
 
         //add restricoes
         var table = document.getElementById("myTableData");
         if (t.nRestri < 20) {
-            for (j = 2; j < t.nRestri + 2; i++) {
+
+            for (j = 2; j < (t.nRestri + 2); j++) {
                 var row = table.insertRow(j);
                 row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
-                for (i = 1; i <= t.nVar; i++)
+                for (i = 1; i <= t.nVar; i++) {
                     row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="number"  \
-                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + rest[j - 2][i - 1] + '">';
-                row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control" value="' + rela[j - 2] + '">\
+                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 2][i - 1] + '">';
+                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control" value="' + t.relacoes[j - 2] + '">\
                 <option><=</option><option>=</option><option>>=</option></select>';
-                row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
-                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + dir[j - 2] + '">';
+                    row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
+                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
+                }
+
             }
         } else {
             alert("Mais de 20 restriçoes...ERRO!!!! ");
@@ -57,14 +71,19 @@ Tabela = function () {
         row = table.insertRow(rowCount);
         row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
         for (i = 1; i <= t.nVar; i++) {
+            
             row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
-                    class="limSup form-control" required  step="any" value="' + up[i - 1] + '">';
+                    class="limSup form-control" required  step="any" value="' + t.upper[i - 1] + '">';
         }
         row = table.insertRow(rowCount + 1);
         row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
-        for (i = 1; i <= t.nVar; i++)
+        for (i = 1; i <= t.nVar; i++) {
+            
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
-                    class="limInf form-control" required  step="any" value="' + low[i - 1] + '">';
+                    class="limInf form-control" required  step="any" value="' + t.lower[i - 1] + '">';
+        }
+        
+
     };
 
     //Cria a tabela base de um novo modelo
@@ -204,7 +223,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
 
@@ -220,7 +239,7 @@ $(document).ready(function () {
     $('#delRow').click(function () {
         if (t.nRestri == 0)
             showAlert("warning", "Não há mais restrições para excluir!");
-        else 
+        else
             t.deleteRow();
     });
 
@@ -284,26 +303,29 @@ $(document).ready(function () {
                 source += "\r\n\r\n";
 
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                saveAs(blob, "modelo.txt");
+            } else {
+                source += "\r\n\r\n";
+
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
-            source += "\r\n\r\n";
-            
-            var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
-            saveAs(blob, "modelo.txt");
-
         } catch (err) {
             console.write("biblioteca faltante, FileSaver.js");
         }
     });
 
     //Carrega de arquivo
-    $('#carregar').click(function () { //como esconder as sections e verificar se ta certo...
-        var x = upload();
-        alert("botao");
-        alert("obj "+x['objetivo']);
+    $('#carregar').click(function () {
+        //como esconder as sections e verificar se ta certo...
+        var x = CarregaFile();
+        showFormProblema2();
+        //alert("botao");
+        //alert("obj " + x['objetivo']);
+        //showFormProblema2();
+        t.carrega(x);
 
-        t.carrega(x['problema'], x['objetivo'], x['restricoes'], x['relacoes'], x['rhs'], x['lower'], x['upper'], x['nVariaveis']);
         //dar um jeito de mostrar sectionA com as tabelas carregadas
         //showFormProblema2();
     });
@@ -354,11 +376,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
 
 
@@ -472,9 +494,7 @@ function fileUpload(arq) {
 }
 
 // ??????????
-function upload() {
-    var col;
-    var row;
+CarregaFile = function upload() {
     var source = "";
     var restricoes = [];
     var relacoes = [];
@@ -510,9 +530,9 @@ function upload() {
             while (cont < source.length) {
                 if (p === 1) {//qual problema...p=1 Ã© pra saber se Ã© max ou min
                     if (source[1] === "a") {
-                        problema = "MaximizaÃ§Ã£o";
+                        problema = "Maximize";
                     } else if (source[1] === "i") {
-                        problema = "MinimizaÃ§Ã£o";
+                        problema = "Minimize";
                     } else {
                         alert("Arquivo estÃ¡ errado!!!");
                     }
@@ -637,7 +657,7 @@ function upload() {
                         //alert("upper " + upper[j]);
                     }
                     p++;
-                    alert("Pegou os valores, falta mandar pra tabela");
+                    //alert("Pegou os valores, falta mandar pra tabela");
                 }
                 if (p === 6) {//termina
                     cont = source.length;
@@ -653,24 +673,19 @@ function upload() {
     } else {
         alert("Erro no Carregamento");
     }
-    alert("passou if else");
-    for (var k = 0; k < objetivo.length; k++) {
-        alert("obj " + objetivo[k]);
-    }
-    for (k = 0; k < iRest; k++) {
-        for(var j=0;j<nVariaveis;j++){
-            alert("rest " + restricoes[k][j]);
-        }
-        alert("relacao " + relacoes[k]);
-        alert("direita " + rhs[k]);
-    }
-   
-    for (j = 0; j < nVariaveis; j++) {
-        alert("upper " + upper[j]);
-    }
-    for (var i = 0; i < nVariaveis; i++) {
-        alert("lower " + lower[i]);
-    }
+    alert("Valores carregados");
+    return {
+        problema: problema,
+        objetivo: objetivo,
+        restricoes: restricoes,
+        relacoes: relacoes,
+        rhs: rhs,
+        upper: upper,
+        lower: lower,
+        nVariaveis: nVariaveis,
+        iRest: iRest
+
+    };
     //});
     //document.getElementById('start#sectionA').click();
 

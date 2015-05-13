@@ -114,7 +114,7 @@ BranchBound = function () {
 
     var modelo = leituraParametros();
 
-    var nodo = new Nodo(1, 1, 0, modelo, 0, 0);
+    var nodo = new Nodo(1, 0, 0, modelo, 0, 0);
     b.heap = Heap(nodo);
     b.atual = 1;
     b.fila = [1];
