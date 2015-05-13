@@ -4,10 +4,13 @@ Tabela = function () {
     t.reseta = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
+        
     };
 
     t.carrega = function (x) {
         t.reseta();
+        $("#myTableData").empty();
+        $("#myTableData2").empty();
         t.existe = true;
         t.nRestri = x["iRest"];
         t.nVar = x["nVariaveis"];
@@ -334,6 +337,7 @@ $(document).ready(function () {
     //Carrega de arquivo
     $('#carregar').click(function () {
         //como esconder as sections e verificar se ta certo...
+        t.reseta();
         var x = CarregaFile();
         showFormProblema2();
         //alert("botao");
