@@ -1,75 +1,80 @@
-﻿        function getTableValues() {
-            var contObj = 0;
-            var contRel = 0;
-            var contRhs = 0;
-            var contUp = 0;
-            var contLow = 0;
-            var contRes = 0;
-            var contObj2 = 0;
+﻿function getTableValues() {
+    var contObj = 0;
+    var contRel = 0;
+    var contRhs = 0;
+    var contUp = 0;
+    var contLow = 0;
+    var contRes = 0;
+    var contObj2 = 0;
 
-            var problema = document.getElementById("problema").value;
+    var problema = document.getElementById("problema").value;
 
-            objetivo = [];
-            restricoes = [];
-            relacoes = [];
-            rhs = [];
-            upper = [];
-            lower = [];
+    objetivo = [];
+    restricoes = [];
+    relacoes = [];
+    rhs = [];
+    upper = [];
+    lower = [];
 
-            //Pegando dados da Tabela
-            $(".fObj").each(function () {
-                objetivo[contObj] = $(this).val();
-                contObj++;
-            });
-            $(".xRest").each(function () {
-                restricoes[contRes] = $(this).val();
-                contRes++;
-            });
+    //Pegando dados da Tabela
+    $(".fObj").each(function () {
+        objetivo[contObj] = $(this).val();
+        contObj++;
+    });
+    $(".xRest").each(function () {
+        restricoes[contRes] = $(this).val();
+        contRes++;
+    });
 
-            $(".relacao").each(function () {
-                relacoes[contRel] = $(this).val();
-                contRel++;
-            });
-            $(".ladoDir").each(function () {
-                rhs[contRhs] = $(this).val();
-                contRhs++;
-            });
-            $(".limSup").each(function () {
-                upper[contUp] = $(this).val();
-                contUp++;
-            });
-            $(".limInf").each(function () {
-                lower[contLow] = $(this).val();
-                contLow++;
-            });
+    $(".relacao").each(function () {
+        relacoes[contRel] = $(this).val();
+        contRel++;
+    });
+    $(".ladoDir").each(function () {
+        rhs[contRhs] = $(this).val();
+        contRhs++;
+    });
+    $(".limSup").each(function () {
+        upper[contUp] = $(this).val();
+        contUp++;
+    });
+    $(".limInf").each(function () {
+        lower[contLow] = $(this).val();
+        contLow++;
+    });
 
-            return {
-                problema: problema,
-                objetivo: objetivo,
-                restricoes: restricoes,
-                relacoes: relacoes,
-                rhs: rhs,
-                upper: upper,
-                lower: lower
-            };
-        }
+    return {
+        problema: problema,
+        objetivo: objetivo,
+        restricoes: restricoes,
+        relacoes: relacoes,
+        rhs: rhs,
+        upper: upper,
+        lower: lower
+    };
+}
 
 function mpl() {
 
 
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
+    //var script = document.createElement("script");
+    //script.type = "text/javascript";
+    //script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
+    //document.getElementsByTagName("head")[0].appendChild(script);
 
 
 
-    var script2 = document.createElement("script");
-    script2.type = "text/javascript";
-    script2.src = "js/ASCIIMathML.js";
-    document.getElementsByTagName("head")[0].appendChild(script2);
+    //var script2 = document.createElement("script");
+    //script2.type = "text/javascript";
+    //script2.src = "js/ASCIIMathML.js";
+    //document.getElementsByTagName("head")[0].appendChild(script2);
 
-    $('#div_mpl').fadeIn("fast");
+   
+    addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
+    addHead("js/ASCIIMathML.js");
+
+
+    $('#div_mpl').show();
     var mp = document.getElementById("div_mpl");
 
     var body;

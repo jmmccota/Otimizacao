@@ -8,7 +8,7 @@ Arvore = function () {
     //this.container = document.getElementById("resultTree");
 
 
-    this.AdicionarNodo = function (nodo) {
+    this.adicionarNodo = function (nodo) {
         try {
             this.nodes.add({
                 id: nodo.id,
@@ -23,7 +23,7 @@ Arvore = function () {
         }
     };
 
-    this.AdicionarAresta = function (nodo) {
+    this.adicionarAresta = function (nodo) {
         try {
             this.edges.add({
                 to: nodo.pai,
@@ -36,8 +36,12 @@ Arvore = function () {
     };
 
 
+    this.setContainer = function (container)
+    {
+        this.container = container;
+    }
 
-    this.CriarConexao = function (container) {
+    this.criarConexao = function () {
         this.data = {
             nodes: this.nodes,
             edges: this.edges
@@ -65,7 +69,7 @@ Arvore = function () {
             }
 
         };
-        this.network = new vis.Network(container, this.data, options);
+        this.network = new vis.Network(this.container, this.data, options);
     };
 
     //Somente para testes
@@ -452,39 +456,22 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
-        //if (!verificaTabela()) {
-
-
         $("#panelResultado").show();
+        
+        b = BranchBound();
+        a.setContainer(document.getElementById("resultTree"));
+        while (!b.terminou()) {
+            nodo = b.executar();
 
+            //funcao de desenhar
+            a.adicionarNodo(nodo);
+            a.adicionarAresta(nodo);
+        }
+        a.criarConexao();
+        otimo = b.melhorSolucao();
+        //faz alguma coisa com o otimo
         progressBar("primary", 100);
-        //addHead("js/vis.js");
-        var nodo1 = new Nodo(1, 1, 0, modelo, 10, 0);
 
-        a.AdicionarNodo(nodo1);
-        a.AdicionarAresta(nodo1);
-
-        var nodo2 = new Nodo(2, 1, 1, modelo, 20, 0);
-        a.AdicionarNodo(nodo2);
-        a.AdicionarAresta(nodo2);
-        var container = document.getElementById("resultTree");
-        a.CriarConexao(container);
-
-
-
-        //b = BranchBound();
-
-        //while (!b.terminou()) {
-        //    nodo = b.executar();
-        //    //funcao de desenhar
-        //    a.ReceberNodo(nodo);
-
-
-        //}
-        //DesenharNodo(nodo, a);
-        //otimo = b.melhorSolucao();
-        ////faz alguma coisa com o otimo
-        //}
     });
 
 
@@ -859,16 +846,21 @@ function exiteHead(src) {
         }
 
     }
-}
+};
 
 //Adiciona script dinamico
 function addHead(src) {
     if (exiteHead(src)) {
         removeHead(src);
-        alert("Removido co sucesso");
+        removeStyle();
+        //alert("Removido co sucesso");
     }
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script)
+};
+
+function removeStyle() {
+    $('style').empty();
 }
