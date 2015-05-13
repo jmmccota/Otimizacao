@@ -140,13 +140,13 @@ function mpl() {
             }
         }
     }
-
+    bodyContent += '</div>';
     bodyContent += '</div>';
     bodyContent += '<div class="row" style="padding-top: 5px;">';
     bodyContent += '<div class="col-xs-3">';
     bodyContent += "<span>e:</span>";
     bodyContent += '</div>';
-    bodyContent += '<div class="col-xs-10" >';
+    bodyContent += '<div class="col-xs-10 col-md-offset-1" >';
 
     for (i = 1; i <= x["lower"].length; i++) {
         var numL = x["lower"][i - 1];
@@ -173,7 +173,13 @@ function mpl() {
     mp.innerHTML = bodyContent;
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
-function botaoMpl() {
-    mpl();
 
+function botaoMpl() {
+    $('#esconde').show('fast');
+    mpl();
+}
+
+function escondeMPL() {
+    $('#esconde').hide('fast');
+    $('#div_mpl').hide('fast');
 }
