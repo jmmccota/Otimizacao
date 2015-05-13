@@ -42,28 +42,28 @@ Tabela = function () {
         //add restricoes
         var table = document.getElementById("myTableData");
         if (t.nRestri < 20) {
-            
-            for (j = 2; j < (t.nRestri + 2); j++) {
-                
+
+            for (j = 2; j < (t.nRestri + 2) ; j++) {
+
                 var row = table.insertRow(j);
                 row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
                 for (i = 1; i <= t.nVar; i++) {
                     row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="number"  \
                     class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 2][i - 1] + '">';
-                    
+
                 }
-                
-                if(t.relacoes[j-2]==="<="){
+
+                if (t.relacoes[j - 2] === "<=") {
                     row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
                 <option value="<=" selected="selected"><=</option><option>=</option><option>>=</option></select>';
-                }else if(t.relacoes[j-2]==="="){
+                } else if (t.relacoes[j - 2] === "=") {
                     row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
                 <option><=</option><option value="=" selected="selected">=</option><option>>=</option></select>';
-                }else if(t.relacoes[j-2]===">="){
+                } else if (t.relacoes[j - 2] === ">=") {
                     row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
                 <option><=</option><option>=</option><option value=">=" selected="selected">>=</option></select>';
                 }
-                
+
                 row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
                 class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
             }
@@ -93,7 +93,7 @@ Tabela = function () {
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
                     class="limInf form-control" required  step="any" value="' + t.lower[i - 1] + '">';
         }
-        
+
 
     };
 
@@ -235,7 +235,7 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -290,13 +290,13 @@ $(document).ready(function () {
             var x = leituraParametros();
             var verifica = verificaTabela();
             if (!verifica) {
-
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
                     source += x['objetivo'][i] >= 0 ? "+" : "";
                     source += x['objetivo'][i] + "|";
                 }
                 source += "\r\n\r\n";
+
                 for (i = 0; i < x['restricoes'].length; i++) {
                     for (var j = 0; j < x['objetivo'].length; j++) {
                         source += (x['restricoes'][i][j] >= 0) ? "+" : "";
@@ -318,12 +318,12 @@ $(document).ready(function () {
                 source += "\r\n\r\n";
 
                 //alert(source);
-                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             } else {
                 source += "\r\n\r\n";
 
-                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -341,18 +341,16 @@ $(document).ready(function () {
         //showFormProblema2();
         t.carrega(x);
         var c = document.getElementById("problema");
-	for (var i=0; i<c.options.length; i++)
-	{	
-		if (c.options[i].value === x["problema"])
-		{
-			c.options[i].selected = true;
-			break;
-		}
-	}
+        for (var i = 0; i < c.options.length; i++) {
+            if (c.options[i].value === x["problema"]) {
+                c.options[i].selected = true;
+                break;
+            }
+        }
         var d = document.getElementById("variaveis");
-        for(var k=1;k<=d.options.length;k++){
-            if(k===x["nVariaveis"]){
-                d.options[k-1].selected=true;
+        for (var k = 1; k <= d.options.length; k++) {
+            if (k === x["nVariaveis"]) {
+                d.options[k - 1].selected = true;
                 break;
             }
         }
@@ -406,11 +404,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
 
 
@@ -593,9 +591,9 @@ CarregaFile = function upload() {
                     //alert("linha2 inteira "+linha);
                     objetivo = linha.split("|", nVariaveis); //funÃ§ao objetivo
                     //alert("tamanho obj "+objetivo.length);
-//                                                for(k=0;k<objetivo.length;k++){
-//                                                    alert("obj " + objetivo[k]);
-//                                                }
+                    //                                                for(k=0;k<objetivo.length;k++){
+                    //                                                    alert("obj " + objetivo[k]);
+                    //                                                }
                     //alert(objetivo);
 
                     p++;
@@ -614,9 +612,9 @@ CarregaFile = function upload() {
                     }
                     //alert("linha3 inteira "+linha);
                     restricoes[iRest] = linha.split("|", nVariaveis);
-//                    for (k = 0; k < restricoes[iRest].length; k++) {
-//                        alert("rest " + restricoes[iRest][k]);
-//                    }
+                    //                    for (k = 0; k < restricoes[iRest].length; k++) {
+                    //                        alert("rest " + restricoes[iRest][k]);
+                    //                    }
                     iRest++;
                     //cont++;
                     if (source[cont] === ">") { //pega a relacao
@@ -631,7 +629,7 @@ CarregaFile = function upload() {
                     } else {
                         alert("Erro!!!");
                     }
-//                    alert("relacao " + relacoes[iRest - 1]);
+                    //                    alert("relacao " + relacoes[iRest - 1]);
                     var ld = "";
                     cont++;
                     while (source[cont] !== "|") { //pega o lado direito
@@ -642,7 +640,7 @@ CarregaFile = function upload() {
                     //var lld=ld.split("|");
                     //alert("lld = "+lld);
                     rhs.push(ld);
-//                    alert("direita " + rhs[iRest - 1]);
+                    //                    alert("direita " + rhs[iRest - 1]);
                     cont += 2;
                     if (source[cont + 2] === "\n") { //se tiver acabado restriÃ§oes pula pro proximo p
                         p++;
@@ -676,15 +674,15 @@ CarregaFile = function upload() {
                     //alert("entrou p5");
                     //alert("cont5 "+source[cont]);
                     linha = "";
-                    var cb=0;
+                    var cb = 0;
                     while (source[cont] !== "\n" && cb < nVariaveis) { //vai ate a linha
                         linha += source[cont];
                         if (source[cont] === "|") {
                             cb++;
-                            if(cb===nVariaveis){
+                            if (cb === nVariaveis) {
                                 break;
                             }
-                            
+
                         }
                         cont++;
 
@@ -717,9 +715,9 @@ CarregaFile = function upload() {
         alert("Erro no Carregamento");
     }
     alert("Valores carregados");
-    
-    
-    
+
+
+
     return {
         problema: problema,
         objetivo: objetivo,
@@ -732,8 +730,5 @@ CarregaFile = function upload() {
         iRest: iRest
 
     };
-    //});
-    //document.getElementById('start#sectionA').click();
+};
 
-}
-;
