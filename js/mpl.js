@@ -159,7 +159,11 @@ function mpl() {
                 lim += "x_" + i + " >= " + numL + ";  ";
             }
             if (numUp.length > 0) {
-                lim += "x_" + i + " <= " + numUp + ";  ";
+                if(numUp == 'inf' || numUp == 'INF'){
+                    lim += "x_" + i + " <= \infty;  ";
+                } else {
+                    lim += "x_" + i + " <= " + numUp + ";  ";
+                }
             }
         }
     }
