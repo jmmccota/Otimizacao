@@ -159,9 +159,7 @@ function mpl() {
                 lim += "x_" + i + " >= " + numL + ";  ";
             }
             if (numUp.length > 0) {
-                if(numUp == 'inf' || numUp == 'INF'){
-                    lim += "x_" + i + " <= \infty;  ";
-                } else {
+                if(numUp != 'inf' || numUp != 'INF'){
                     lim += "x_" + i + " <= " + numUp + ";  ";
                 }
             }
