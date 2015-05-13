@@ -17,7 +17,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-    text-align: justify;
     padding: 0;
     margin-bottom: 12px;
     font-family: 'Raleway', sans-serif;
@@ -344,3 +343,19 @@ panel-primary {
     height: 400px;
     border: 1px solid lightgray;
 }
+
+#pagAjuda {
+    margin-bottom: 60px;
+}
+
+    #pagAjuda p {
+        text-align: justify;
+    }
+
+#pagModelo {
+    margin-bottom: 60px;
+}
+
+    #pagModelo p {
+        text-align: justify;
+    }
