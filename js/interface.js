@@ -35,26 +35,37 @@ Tabela = function () {
         row.insertCell(0).innerHTML = '<b>Objetivo</b>';
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="number" \
-                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.objetivo[i] + '">';
+                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.objetivo[i - 1] + '">';
         row.insertCell().innerHTML = '&nbsp;';
         row.insertCell().innerHTML = '&nbsp;';
 
         //add restricoes
         var table = document.getElementById("myTableData");
         if (t.nRestri < 20) {
-
+            
             for (j = 2; j < (t.nRestri + 2); j++) {
+                
                 var row = table.insertRow(j);
                 row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
                 for (i = 1; i <= t.nVar; i++) {
                     row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="number"  \
                     class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 2][i - 1] + '">';
-                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control" value="' + t.relacoes[j - 2] + '">\
-                <option><=</option><option>=</option><option>>=</option></select>';
-                    row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
-                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
+                    
                 }
-
+                
+                if(t.relacoes[j-2]==="<="){
+                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
+                <option value="<=" selected="selected"><=</option><option>=</option><option>>=</option></select>';
+                }else if(t.relacoes[j-2]==="="){
+                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
+                <option><=</option><option value="=" selected="selected">=</option><option>>=</option></select>';
+                }else if(t.relacoes[j-2]===">="){
+                    row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
+                <option><=</option><option>=</option><option value=">=" selected="selected">>=</option></select>';
+                }
+                
+                row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="number" \
+                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
             }
         } else {
             alert("Mais de 20 restriçoes...ERRO!!!! ");
@@ -71,14 +82,14 @@ Tabela = function () {
         row = table.insertRow(rowCount);
         row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
         for (i = 1; i <= t.nVar; i++) {
-            
+
             row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
                     class="limSup form-control" required  step="any" value="' + t.upper[i - 1] + '">';
         }
         row = table.insertRow(rowCount + 1);
         row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
         for (i = 1; i <= t.nVar; i++) {
-            
+
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
                     class="limInf form-control" required  step="any" value="' + t.lower[i - 1] + '">';
         }
@@ -196,7 +207,7 @@ $(document).ready(function () {
 
     //Novo problema de otimizacao
     $("#novo").click(function () {
-        
+
         $("#div_mpl").fadeOut("fast");
         //se ja tem algum modelo aberto
         if (t.existe) {
@@ -273,7 +284,7 @@ $(document).ready(function () {
 
     //Salva em arquivo
     $('#salvar').click(function () {
-         $("#div_mpl").fadeOut("fast");
+        $("#div_mpl").fadeOut("fast");
         try {
             var source = "";
             var x = leituraParametros();
@@ -329,7 +340,22 @@ $(document).ready(function () {
         //alert("obj " + x['objetivo']);
         //showFormProblema2();
         t.carrega(x);
-
+        var c = document.getElementById("problema");
+	for (var i=0; i<c.options.length; i++)
+	{	
+		if (c.options[i].value === x["problema"])
+		{
+			c.options[i].selected = true;
+			break;
+		}
+	}
+        var d = document.getElementById("variaveis");
+        for(var k=1;k<=d.options.length;k++){
+            if(k===x["nVariaveis"]){
+                d.options[k-1].selected=true;
+                break;
+            }
+        }
         //dar um jeito de mostrar sectionA com as tabelas carregadas
         //showFormProblema2();
     });
@@ -451,15 +477,19 @@ function showFormProblema() {
 }
 
 function showFormProblema2() {
-    $('#carregar').hide('fast');
-    $('#sectionB').hide('fast');
-    $('#sectionA').show('fast');
-    $('#addRow').show('fast');
-    $('#delRow').show('fast');
-    $('#executar').show('fast');
-    $('#passoAPasso').show('fast');
-    $('#salvar').show('fast');
-    $('#limpar').show('fast');
+    //Da active no <li> section A
+    $("#a").removeClass()
+    $("#a").addClass("active");
+    $("#b").removeClass()
+
+    //Muda de Aba para section A
+    $secA = $("#sectionA");
+    $secB = $("#sectionB");
+    $secB.removeClass();
+    $secB.addClass("tab-pane fade");
+    $secA.removeClass();
+    $secA.addClass("tab-pane fade in active");
+    showFormProblema();
 }
 //Esconde os botoes de controle da tabela
 function hideFormProblema() {
@@ -646,9 +676,18 @@ CarregaFile = function upload() {
                     //alert("entrou p5");
                     //alert("cont5 "+source[cont]);
                     linha = "";
-                    while (source[cont] !== "\n") { //vai ate a linha
+                    var cb=0;
+                    while (source[cont] !== "\n" && cb < nVariaveis) { //vai ate a linha
                         linha += source[cont];
-                        cont++
+                        if (source[cont] === "|") {
+                            cb++;
+                            if(cb===nVariaveis){
+                                break;
+                            }
+                            
+                        }
+                        cont++;
+
                     }
                     //alert("linha5 inteira "+linha);
                     var up = linha.split("|", nVariaveis); //separa valores
@@ -678,6 +717,9 @@ CarregaFile = function upload() {
         alert("Erro no Carregamento");
     }
     alert("Valores carregados");
+    
+    
+    
     return {
         problema: problema,
         objetivo: objetivo,
