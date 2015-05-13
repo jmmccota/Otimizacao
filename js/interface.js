@@ -196,7 +196,8 @@ $(document).ready(function () {
 
     //Novo problema de otimizacao
     $("#novo").click(function () {
-
+        
+        $("#div_mpl").hide('fast');
         //se ja tem algum modelo aberto
         if (t.existe) {
             var nVariaveis = document.getElementById("variaveis").value;
@@ -226,17 +227,18 @@ $(document).ready(function () {
         //Cria nova tabela
         else
             t.novo();
-
         showFormProblema();
     });
 
     //Adiciona Restricao
     $('#addRow').click(function () {
+         $("#div_mpl").hide('fast');
         t.addRow();
     });
 
     //Apaga restricao
     $('#delRow').click(function () {
+        $("#div_mpl").hide('fast');
         if (t.nRestri == 0)
             showAlert("warning", "Não há mais restrições para excluir!");
         else
@@ -245,6 +247,7 @@ $(document).ready(function () {
 
     //Limpa os dados do modelo
     $("#limpar").click(function () {
+         $("#div_mpl").hide('fast');
         bootbox.dialog({
             title: '<center><b>Aviso</b></center>',
             message: '<center><p>Todas as informa&ccedil;&otilde;es ser&atilde;o perdidas.</p></center>' +
@@ -270,6 +273,7 @@ $(document).ready(function () {
 
     //Salva em arquivo
     $('#salvar').click(function () {
+         $("#div_mpl").hide('fast');
         try {
             var source = "";
             var x = leituraParametros();
@@ -332,7 +336,7 @@ $(document).ready(function () {
     //Executar Branch and Bound
     $('#executar').click(function () {
 
-
+        $("#div_mpl").hide('fast');
         progressBar("success", 100);
         x = leituraParametros();
         if (x) {
@@ -352,8 +356,8 @@ $(document).ready(function () {
 
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
+             $("#div_mpl").hide('fast');
         b = BranchBound();
-
         while (!b.terminou()) {
             nodo = b.proximoPasso(function () {
                 //funcao que retorna o indice do x que o usuario escolheu
