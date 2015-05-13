@@ -1,8 +1,6 @@
 <script type="text/javascript" src="js/interface.js"></script>
+<script type="text/javascript" src="js/mpl.js"></script>
 
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link href="css/vis.css" rel="stylesheet">
 <body>
     <span id="alert" style="display:none;"></span>
     <div id="masthead">
@@ -170,9 +168,31 @@
                     </div>
                 </div>
             </div>
+        </div> <!--end content-well-->
 
+        <div class="panel panel-default" id="panelResultado" style="display:none;">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="panel-title">Resultado</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Nodes Exemplo</h2>
+                        <pre id="nodes"></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>Edges Exemplo</h2>
+                        <pre id="edges"></pre>
+                    </div>
+                </div>
+
+                <h3>Arvore Exemplo</h3>
+                <div id="resultTree"></div>
+            </div>
         </div>
-    </div>
+    </div><!-- end container-->
+    
     <div class="scroll-top-wrapper ">
         <span class="scroll-top-inner">
             <i class="glyphicon glyphicon-arrow-up"></i>

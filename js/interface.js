@@ -1,10 +1,95 @@
+////////////////////////////////////////////////////
+//                FUNCOES DA ARVORE               //
+////////////////////////////////////////////////////
+Arvore = function () {
+
+    this.nodes = new vis.DataSet();
+    this.edges = new vis.DataSet();
+    //this.container = document.getElementById("resultTree");
+
+
+    this.AdicionarNodo = function (nodo) {
+        try {
+            this.nodes.add({
+                id: nodo.id,
+                label: "" + nodo.z,
+                level: nodo.altura
+
+            });
+
+        }
+        catch (err) {
+            alert(err);
+        }
+    };
+
+    this.AdicionarAresta = function (nodo) {
+        try {
+            this.edges.add({
+                to: nodo.pai,
+                from: nodo.id
+            });
+        }
+        catch (err) {
+            alert(err);
+        }
+    };
+
+
+
+    this.CriarConexao = function (container) {
+        this.data = {
+            nodes: this.nodes,
+            edges: this.edges
+        };
+        var options = {
+            height: '200px',
+            edges: {
+                width: 2
+            },
+            physics: {
+                hierarchicalRepulsion: {
+                    centralGravity: 0.5,
+                    springLength: 50,
+                    springConstant: 0.05,
+                    nodeDistance: 120,
+                    damping: 0.09
+                }
+            },
+            hierarchicalLayout: {
+                enabled: true,
+                levelSeparation: 50,
+                nodeSpacing: 5,
+                direction: "UD",
+                layout: "direction"
+            }
+
+        };
+        this.network = new vis.Network(container, this.data, options);
+    };
+
+    //Somente para testes
+    this.nodes.subscribe('*', function () {
+        $('#nodes').html(toJSON(nodes.get()));
+    });
+    this.edges.subscribe('*', function () {
+        $('#edges').html(toJSON(edges.get()));
+    });
+    //---------------------------------------------------
+
+    return this;
+};
+
+////////////////////////////////////////////////////
+//                FUNCOES DA TABELA               //
+////////////////////////////////////////////////////
 Tabela = function () {
     var t = {};
 
     t.reseta = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
-        
+
     };
 
     t.carrega = function (x) {
@@ -187,18 +272,19 @@ Tabela = function () {
     return t;
 };
 
-$(document).on('change', '.btn-file :file', function () {
-    var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.trigger('fileselect', [numFiles, label]);
-});
 
+//Somente para testes
+function toJSON(obj) {
+    return JSON.stringify(obj, null, 4);
+}
+//----------------------------------
 $(document).ready(function () {
 
     //Por padrao os botoes estao escondidos
     hideFormProblema();
     t = Tabela();
+    //Instancia de objeto da classe Arvore  
+    a = Arvore()
 
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
@@ -207,6 +293,9 @@ $(document).ready(function () {
         }
         event.preventDefault();
     });
+
+
+
 
     //Novo problema de otimizacao
     $("#novo").click(function () {
@@ -305,7 +394,7 @@ $(document).ready(function () {
                         source += (x['restricoes'][i][j] >= 0) ? "+" : "";
                         source += x['restricoes'][i][j] + "|";
                     }
-                    source += x['relacoes'][i] + "|" + x['rhs'][i]+ "|";
+                    source += x['relacoes'][i] + "|" + x['rhs'][i] + "|";
                     source += "\r\n";
                 }
 
@@ -363,24 +452,41 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
-
-        $("#div_mpl").fadeOut("fast");
-        progressBar("success", 100);
-        x = leituraParametros();
-        if (x) {
-            b = BranchBound();
-
-            while (!b.terminou()) {
-                nodo = b.executar();
-                //funcao de desenhar
-            }
-
-            otimo = b.melhorSolucao();
-            //faz alguma coisa com o otimo
-        }
+        //if (!verificaTabela()) {
 
 
+        $("#panelResultado").show();
+
+        progressBar("primary", 100);
+        //addHead("js/vis.js");
+        var nodo1 = new Nodo(1, 1, 0, modelo, 10, 0);
+
+        a.AdicionarNodo(nodo1);
+        a.AdicionarAresta(nodo1);
+
+        var nodo2 = new Nodo(2, 1, 1, modelo, 20, 0);
+        a.AdicionarNodo(nodo2);
+        a.AdicionarAresta(nodo2);
+        var container = document.getElementById("resultTree");
+        a.CriarConexao(container);
+
+
+
+        //b = BranchBound();
+
+        //while (!b.terminou()) {
+        //    nodo = b.executar();
+        //    //funcao de desenhar
+        //    a.ReceberNodo(nodo);
+
+
+        //}
+        //DesenharNodo(nodo, a);
+        //otimo = b.melhorSolucao();
+        ////faz alguma coisa com o otimo
+        //}
     });
+
 
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
@@ -415,6 +521,14 @@ $(document).ready(function () {
         $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
 
+    //Ao clicar no botão file aparecer o caminho
+    $(document).on('change', '.btn-file :file', function () {
+        var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+
 
     //Botão file
     $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
@@ -434,19 +548,8 @@ $(document).ready(function () {
 });
 ;
 
-////////////////////////////////////////////////////
-//                FUNCOES DA ARVORE               //
-////////////////////////////////////////////////////
 
-
-
-
-
-////////////////////////////////////////////////////
-//                FUNCOES AUXILIARES              //
-////////////////////////////////////////////////////
-
-// ??????????
+// Proibe a digitação de letras e simbolos especiais
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -736,3 +839,36 @@ CarregaFile = function upload() {
     };
 };
 
+//Remover script Dinamico
+function removeHead(src) {
+    $("script[src='" + src + "']").remove()
+};
+
+//Função para verificar a existencia de um script
+function exiteHead(src) {
+    var head = $('head');
+    head = head.find('script');
+
+    for (i = 0; i < head.length; i++) {
+        scriptSrc = head[i].src.split("/");
+        srcLocal = src.split("/");
+
+        //alert(scriptSrc[scriptSrc.length - 1] + "\n " + srcLocal[srcLocal.length - 1] + "\n" + (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]));
+        if (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]) {
+            return true;
+        }
+
+    }
+}
+
+//Adiciona script dinamico
+function addHead(src) {
+    if (exiteHead(src)) {
+        removeHead(src);
+        alert("Removido co sucesso");
+    }
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script)
+}
