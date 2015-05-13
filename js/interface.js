@@ -342,13 +342,11 @@ $(document).ready(function () {
 
     //Adiciona Restricao
     $('#addRow').click(function () {
-        $("#div_mpl").fadeOut("fast");
         t.addRow();
     });
 
     //Apaga restricao
     $('#delRow').click(function () {
-        $("#div_mpl").fadeOut("fast");
         if (t.nRestri == 0)
             showAlert("warning", "Não há mais restrições para excluir!");
         else
@@ -600,6 +598,7 @@ function hideFormProblema() {
     $('#passoAPasso').hide('fast');
     $('#salvar').hide('fast');
     $('#limpar').hide('fast');
+    $('#esconde').hide('fast');
 }
 
 
