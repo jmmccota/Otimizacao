@@ -5,6 +5,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
      * e as informacoes necessarias para desenha-lo na arvore.
      */
 
+    this.numero = 0;
     this.id = id;
     this.pai = pai;
     this.altura = altura;
@@ -79,6 +80,8 @@ Heap = function (nodo) {
      */
 
     this.array = new Array(0);
+    this.contador = 1;
+    nodo.numero = 1;
     this.array[1] = nodo;
 
     this.insereNodos = function (pai, esq, dir) {
@@ -93,12 +96,16 @@ Heap = function (nodo) {
             esq.id = pai * 2;
             esq.pai = pai;
             esq.altura = this.array[pai].altura + 1;
+            this.contador++;
+            esq.numero = this.contador;
             this.array[esq.id] = esq;
         }
         if (dir !== null) {
             dir.id = pai * 2 + 1;
             dir.pai = pai;
             dir.altura = this.array[pai].altura + 1;
+            this.contador++;
+            dir.numero = this.contador;
             this.array[dir.id] = dir;
         }
     };
