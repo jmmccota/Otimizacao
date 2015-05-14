@@ -14,9 +14,7 @@ Arvore = function () {
                 id: nodo.id,
                 label: "" + nodo.numero,
                 title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
-                level: nodo.altura,
-                value: nodo
-
+                level: nodo.altura
             });
         }
         catch (err) {
@@ -28,6 +26,7 @@ Arvore = function () {
             this.edges.add({
                 to: nodo.pai,
                 from: nodo.id
+                //label: ">" + nodo.x[0]
             });
         }
         catch (err) {
@@ -134,10 +133,18 @@ function exibirNodo(nodo, tipo) {
 
     var obj = "";
 
+
     for (i = 1; i <= nodo.objetivo.length; i++) {
         var num = nodo.objetivo[i - 1];
-        obj += num + "x_" + i + " ";
+        if (num >= 0 && i != 1) {
+            obj += " + " + num + "x_" + i;
+        }
+        else {
+            obj += num + "x_" + i;
+        }
+
     }
+
 
     if (nodo.problema == "Maximize") {
         $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
@@ -146,12 +153,16 @@ function exibirNodo(nodo, tipo) {
     }
 
 
-    var novosX = "`";
+    var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
         novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
     }
-    novosX += "`";
-    $("#novosX").append(novosX);
+    if (novosX == "") {
+        $("#novosX").append("Nenhum valor.");
+    } else {
+        $("#novosX").append("`" + novosX + "`");
+    }
+
 }
 
 ////////////////////////////////////////////////////
@@ -330,12 +341,7 @@ Tabela = function () {
     t.existe = false;
     return t;
 };
-//Somente para testes
-//
-//----------------------------------
-//function toJSON(obj) {
-//        return JSON.stringify(obj, null, 4);
-//    }
+
 $(document).ready(function () {
 
     //Por padrao os botoes estao escondidos
@@ -411,6 +417,7 @@ $(document).ready(function () {
                     className: "btn-success",
                     callback: function () {
                         $("#panelResultado").fadeOut("fast");
+                        $('#rowProgress').fadeOut('fast');
                         $("#myTableData").empty();
                         $("#myTableData2").empty();
                         t.novo();
