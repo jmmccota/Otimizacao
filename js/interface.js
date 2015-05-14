@@ -43,7 +43,7 @@ Arvore = function () {
             edges: this.edges
         };
         var options = {
-            height: '500px',
+            height: '400px',
             hover: true,
             dragNetwork: false,
             dragNodes: false,
