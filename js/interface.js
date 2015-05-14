@@ -38,6 +38,11 @@ Arvore = function () {
 
     this.definirOtimo = function (otimo) {
         this.network.selectNodes([otimo.id]);
+        $("#valorZ").empty();
+        $("#tipoSol").empty();
+        $("#novosX").empty();
+        $("#funcaoObj").empty();
+
         $("#valorZ").append("z = " + otimo.z);
         $("#tipoSol").append("Solução Ótima");
         var novosX = "`";
@@ -60,7 +65,19 @@ Arvore = function () {
             }
         }
 
-        $("#funcaoObj").append("` z =  " + obj + " `");
+        var obj = "";
+
+        for (i = 1; i <= nodo.objetivo.length; i++) {
+            var num = nodo.objetivo[i - 1];
+            obj += num + "x_" + i + " ";
+        }
+
+        if (nodo.problema == "Maximize") {
+            $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
+        } else {
+            $("#funcaoObj").append("min: " + "` z =  " + obj + " `");
+        }
+
 
 
     };
@@ -108,7 +125,7 @@ Arvore = function () {
         this.network.on('select', function (properties) {
             try {
                 nodo = b.heap.array[properties.nodes];
-                showAlert('success', 'ID: ' + nodo.numero);
+                showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
 
                 $("#valorZ").empty();
                 $("#tipoSol").empty();
@@ -120,27 +137,28 @@ Arvore = function () {
                 var novosX = "`";
                 for (i = 0; i < nodo.x.length; i++) {
                     novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
-
                 }
                 novosX += "`";
                 $("#novosX").append(novosX);
+
+
                 var obj = "";
+
                 for (i = 1; i <= nodo.objetivo.length; i++) {
                     var num = nodo.objetivo[i - 1];
-                    if (num.length > 0) {
-                        if (num >= 0 && i != 1) {
-                            obj += " + " + num + "x_" + i;
-                        }
-                        else {
-                            obj += num + "x_" + i;
-                        }
-                    }
+                    obj += num + "x_" + i + " ";
                 }
 
-                $("#funcaoObj").append("` z =  " + obj + " `");
+                if (nodo.problema == "Maximize") {
+                    $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
+                } else {
+                    $("#funcaoObj").append("min: " + "` z =  " + obj + " `");
+                }
+
+
             }
             catch (err) {
-                alert(err);
+                //showAlert("danger", "Você clicou na aresta. Clique no nó!");
             }
         });
     };
@@ -590,6 +608,7 @@ function showAlert(type, message) {
     $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
     window.setTimeout(closeAlert, 3000);
 }
+
 //Apaga um alert bootstrap
 function closeAlert() {
     $('#alert').fadeOut();
@@ -630,7 +649,6 @@ function hideFormProblema() {
     $('#limpar').hide('fast');
     $('#esconde').hide('fast');
 }
-
 
 //Progress Bar
 function progressBar(type, percent) {
@@ -914,6 +932,7 @@ function addHead(src) {
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script)
 };
+
 function removeStyle() {
     $('style').empty();
 }
