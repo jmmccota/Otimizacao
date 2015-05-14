@@ -5,13 +5,12 @@ Arvore = function () {
 
     this.nodes = new vis.DataSet();
     this.edges = new vis.DataSet();
-    
 
     this.adicionarNodo = function (nodo) {
         try {
             this.nodes.add({
                 id: nodo.id,
-                label: "" + nodo.id,
+                label: "" + nodo.numero,
                 title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
                 level: nodo.altura,
                 value: nodo
@@ -35,7 +34,8 @@ Arvore = function () {
     };
     this.setContainer = function (container) {
         this.container = container;
-    }
+    };
+
     this.definirOtimo = function (otimo) {
         this.network.selectNodes([otimo.id]);
         $("#valorZ").append("z = " + otimo.z);
@@ -64,21 +64,7 @@ Arvore = function () {
 
 
     };
-    this.selecionarNodo = function (properties) {
-        showAlert('success', 'ID: ' + properties.nodes);
-
-        $("#valorZ").empty();
-        $("#tipoSol").empty();
-        $("#novosX").empty();
-        $("#funcaoObj").empty();
-
-
-        $("#valorZ").append(properties.nodes);
-
-    };
-
-
-    this.criarConexao = function () {
+    this.criarConexao = function (b) {
         this.data = {
             nodes: this.nodes,
             edges: this.edges
@@ -119,8 +105,46 @@ Arvore = function () {
         };
         this.network = new vis.Network(this.container, this.data, options);
 
-        this.network.on('select', this.selecionarNodo);
+        this.network.on('select', function (properties) {
+            try {
+                nodo = b.heap.array[properties.nodes];
+                showAlert('success', 'ID: ' + nodo.numero);
+
+                $("#valorZ").empty();
+                $("#tipoSol").empty();
+                $("#novosX").empty();
+                $("#funcaoObj").empty();
+
+                $("#valorZ").append("z = " + nodo.z);
+                $("#tipoSol").append("oioi");
+                var novosX = "`";
+                for (i = 0; i < nodo.x.length; i++) {
+                    novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
+
+                }
+                novosX += "`";
+                $("#novosX").append(novosX);
+                var obj = "";
+                for (i = 1; i <= nodo.objetivo.length; i++) {
+                    var num = nodo.objetivo[i - 1];
+                    if (num.length > 0) {
+                        if (num >= 0 && i != 1) {
+                            obj += " + " + num + "x_" + i;
+                        }
+                        else {
+                            obj += num + "x_" + i;
+                        }
+                    }
+                }
+
+                $("#funcaoObj").append("` z =  " + obj + " `");
+            }
+            catch (err) {
+                alert(err);
+            }
+        });
     };
+
 };
 
 ////////////////////////////////////////////////////
@@ -482,7 +506,8 @@ $(document).ready(function () {
             a.setContainer(document.getElementById("resultTree"));
 
             //Operações da arvore.
-            a.criarConexao();
+            a.criarConexao(b);
+
 
             a.definirOtimo(otimo);
 
