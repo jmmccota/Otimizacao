@@ -5,6 +5,8 @@ Arvore = function () {
 
     this.nodes = new vis.DataSet();
     this.edges = new vis.DataSet();
+    this.bestNod;
+
 
     this.adicionarNodo = function (nodo) {
         try {
@@ -38,7 +40,8 @@ Arvore = function () {
 
     this.definirOtimo = function (otimo) {
         this.network.selectNodes([otimo.id]);
-        exibirNodo(otimo);
+        this.bestNode = otimo;
+        exibirNodo(otimo, "otimo");
     };
     this.criarConexao = function (b) {
         this.data = {
@@ -84,7 +87,13 @@ Arvore = function () {
         this.network.on('select', function (properties) {
             try {
                 nodo = b.heap.array[properties.nodes];
-                exibirNodo(nodo);
+                //para verificar se o nó pe otimo na hora de escrever as informações
+                //if (this.bestNode.id == node.id) {
+                //    exibirNodo(nodo, "otimo");
+                //} else {
+                //    exibirNodo(nodo, "não é otimo");
+                //}
+                exibirNodo(nodo, "não é otimo");
                 showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
             }
             catch (err) {
@@ -95,7 +104,7 @@ Arvore = function () {
 
 };
 //Funções auxiliares
-function exibirNodo(nodo) {
+function exibirNodo(nodo, tipo) {
 
     $("#valorZ").empty();
     $("#tipoSol").empty();
@@ -111,14 +120,16 @@ function exibirNodo(nodo) {
         else {
             $("#tipoSol").append("Não tem solução viável primal.");
         }
+    } else {
+        if (tipo == "otimo") {
+            $("#tipoSol").append("Solução ótima;");
+        }
+        else {
+            $("#tipoSol").append("Não é a solução ótima.");
+        }
     }
 
 
-    var novosX = "`";
-
-
-
- 
 
 
     var obj = "";
@@ -135,6 +146,7 @@ function exibirNodo(nodo) {
     }
 
 
+    var novosX = "`";
     for (i = 0; i < nodo.x.length; i++) {
         novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
     }
@@ -502,8 +514,6 @@ $(document).ready(function () {
 
             //Operações da arvore.
             a.criarConexao(b);
-
-
             a.definirOtimo(otimo);
 
         }
