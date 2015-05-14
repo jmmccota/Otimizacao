@@ -5,8 +5,6 @@ Arvore = function () {
 
     this.nodes = new vis.DataSet();
     this.edges = new vis.DataSet();
-    this.bestNod;
-
 
     this.adicionarNodo = function (nodo) {
         try {
@@ -87,12 +85,13 @@ Arvore = function () {
             try {
                 nodo = b.heap.array[properties.nodes];
                 //para verificar se o nó pe otimo na hora de escrever as informações
-                //if (this.bestNode.id == node.id) {
-                //    exibirNodo(nodo, "otimo");
-                //} else {
-                //    exibirNodo(nodo, "não é otimo");
-                //}
-                exibirNodo(nodo, "não é otimo");
+                alert(this.bestNode.id == properties.nodes);
+                if (this.bestNode.id == properties.nodes) {
+                    exibirNodo(nodo, "otimo");
+                } else {
+                    exibirNodo(nodo, "não é otimo");
+                }
+               // exibirNodo(nodo, "não é otimo");
                 showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
             }
             catch (err) {
@@ -375,6 +374,7 @@ $(document).ready(function () {
                         className: "btn-success",
                         callback: function () {
                             $("#panelResultado").fadeOut("fast");
+                            $('#rowProgress').fadeOut('fast');
                             $("#myTableData").empty();
                             $("#myTableData2").empty();
                             t.novo();
