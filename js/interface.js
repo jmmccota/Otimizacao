@@ -5,24 +5,23 @@ Arvore = function () {
 
     this.nodes = new vis.DataSet();
     this.edges = new vis.DataSet();
-    //this.container = document.getElementById("resultTree");
+//this.container = document.getElementById("resultTree");
 
 
     this.adicionarNodo = function (nodo) {
         try {
             this.nodes.add({
                 id: nodo.id,
-                label: "" + nodo.z,
+                label: "" + nodo.id,
+                title: "z: " + nodo.z,
                 level: nodo.altura
 
             });
-
         }
         catch (err) {
             alert(err);
         }
     };
-
     this.adicionarAresta = function (nodo) {
         try {
             this.edges.add({
@@ -34,8 +33,6 @@ Arvore = function () {
             alert(err);
         }
     };
-
-
     this.setContainer = function (container) {
         this.container = container;
     }
@@ -46,7 +43,14 @@ Arvore = function () {
             edges: this.edges
         };
         var options = {
-            height: '200px',
+            height: '500px',
+            hover: true,
+            dragNetwork: false,
+            dragNodes: false,
+            zoomable: false,
+            smoothCurves: {
+                roundness: 0
+            },
             edges: {
                 width: 2
             },
@@ -70,7 +74,6 @@ Arvore = function () {
         };
         this.network = new vis.Network(this.container, this.data, options);
     };
-
     //Somente para testes
     this.nodes.subscribe('*', function () {
         $('#nodes').html(toJSON(nodes.get()));
@@ -82,19 +85,15 @@ Arvore = function () {
 
     return this;
 };
-
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
 Tabela = function () {
     var t = {};
-
     t.reseta = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
-
     };
-
     t.carrega = function (xx) {
         t.reseta();
         $("#myTableData").empty();
@@ -109,10 +108,6 @@ Tabela = function () {
         t.rhs = xx["rhs"];
         t.upper = xx["upper"];
         t.lower = xx["lower"];
-
-
-
-
         //Cabecalho
         var table = document.getElementById("myTableData");
         var row = table.insertRow(0);
@@ -129,7 +124,6 @@ Tabela = function () {
                     class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.objetivo[i - 1] + '">';
         row.insertCell().innerHTML = '&nbsp;';
         row.insertCell().innerHTML = '&nbsp;';
-
         //add restricoes
         if (t.restricoes[0] === "n") {
             alert("Nao possui restricoes");
@@ -144,7 +138,6 @@ Tabela = function () {
                     for (i = 1; i <= t.nVar; i++) {
                         row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="number"  \
                     class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 2][i - 1] + '">';
-
                     }
 
                     if (t.relacoes[j - 2] === "<=") {
@@ -191,14 +184,11 @@ Tabela = function () {
 
 
     };
-
     //Cria a tabela base de um novo modelo
     t.novo = function () {
 
         t.reseta();
-
         t.existe = true;
-
         //Cabecalho
         var table = document.getElementById("myTableData");
         var row = table.insertRow(0);
@@ -207,7 +197,6 @@ Tabela = function () {
             row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
         row.insertCell().innerHTML = '<center><b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b></center>';
         row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
-
         //Funcao Objetivo
         row = table.insertRow(1);
         row.insertCell(0).innerHTML = '<b>Objetivo</b>';
@@ -216,7 +205,6 @@ Tabela = function () {
                     class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         row.insertCell().innerHTML = '&nbsp;';
         row.insertCell().innerHTML = '&nbsp;';
-
         //Insere primeira restricao
         //t.addRow();
 
@@ -241,7 +229,6 @@ Tabela = function () {
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
                     class="limInf form-control" required  step="any">';
     };
-
     //Adiciona restricoes ao modelo
     t.addRow = function () {
         if (t.nRestri === 20) {
@@ -250,7 +237,6 @@ Tabela = function () {
         }
 
         t.nRestri++;
-
         var table = document.getElementById("myTableData");
         var row = table.insertRow(t.nRestri + 1);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + t.nRestri + '</b>';
@@ -262,7 +248,6 @@ Tabela = function () {
         row.insertCell().innerHTML = '<input id="ladoDir' + t.nRestri + '" type="number" style="min-width: 90px;"\
                 class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     };
-
     //Remove restricoes do modelo
     t.deleteRow = function () {
         var obj = document.getElementById("myTableData").rows[t.nRestri];
@@ -273,13 +258,9 @@ Tabela = function () {
             table.deleteRow(t.nRestri + 2);
         }
     };
-
     t.existe = false;
-
     return t;
 };
-
-
 //Somente para testes
 function toJSON(obj) {
     return JSON.stringify(obj, null, 4);
@@ -287,12 +268,11 @@ function toJSON(obj) {
 //----------------------------------
 $(document).ready(function () {
 
-    //Por padrao os botoes estao escondidos
+//Por padrao os botoes estao escondidos
     hideFormProblema();
     t = Tabela();
     //Instancia de objeto da classe Arvore  
     a = Arvore();
-
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
         if (!verificaTabela()) {
@@ -300,10 +280,6 @@ $(document).ready(function () {
         }
         event.preventDefault();
     });
-
-
-
-
     //Novo problema de otimizacao
     $("#novo").click(function () {
 
@@ -334,17 +310,15 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+//Cria nova tabela
         else
             t.novo();
         showFormProblema();
     });
-
     //Adiciona Restricao
     $('#addRow').click(function () {
         t.addRow();
     });
-
     //Apaga restricao
     $('#delRow').click(function () {
         if (t.nRestri == 0)
@@ -352,7 +326,6 @@ $(document).ready(function () {
         else
             t.deleteRow();
     });
-
     //Limpa os dados do modelo
     $("#limpar").click(function () {
         $("#div_mpl").fadeOut("fast");
@@ -378,7 +351,6 @@ $(document).ready(function () {
             }
         });
     });
-
     //Salva em arquivo
     $('#salvar').click(function () {
         $("#div_mpl").fadeOut("fast");
@@ -393,7 +365,6 @@ $(document).ready(function () {
                     source += x['objetivo'][i] + "|";
                 }
                 source += "\r\n\r\n";
-
                 if (x['restricoes'].length > 0) {
                     for (i = 0; i < x['restricoes'].length; i++) {
                         for (var j = 0; j < x['objetivo'].length; j++) {
@@ -408,7 +379,6 @@ $(document).ready(function () {
                 }
 
                 source += "\r\n";
-
                 for (i = 0; i < x['objetivo'].length; i++) {
                     source += x['lower'][i] + '|';
                 }
@@ -417,24 +387,21 @@ $(document).ready(function () {
                     source += x['upper'][i] + '|';
                 }
                 source += "\r\n\r\n";
-
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             } else {
                 source += "\r\n\r\n";
-
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
             console.error("biblioteca faltante, FileSaver.js" + err);
         }
     });
-
     //Carrega de arquivo
     $('#carregar').click(function () {
-        //como esconder as sections e verificar se ta certo...
+//como esconder as sections e verificar se ta certo...
         t.reseta();
         var xx = CarregaFile();
         showFormProblema2();
@@ -456,18 +423,16 @@ $(document).ready(function () {
                 break;
             }
         }
-        //dar um jeito de mostrar sectionA com as tabelas carregadas
-        //showFormProblema2();
+//dar um jeito de mostrar sectionA com as tabelas carregadas
+//showFormProblema2();
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
         $("#panelResultado").show();
-
         b = new BranchBound();
         a.setContainer(document.getElementById("resultTree"));
         while (!b.terminou()) {
             nodo = b.executar();
-
             //funcao de desenhar
             a.adicionarNodo(nodo);
             a.adicionarAresta(nodo);
@@ -476,19 +441,15 @@ $(document).ready(function () {
         otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
         progressBar("primary", 100);
-
     });
-
-
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
-        
         b = new BranchBound();
         while (!b.terminou()) {
             nodo = b.proximoPasso(function (branchBound/*precisa do BranchBound como parametro,
-                    mesmo que nao seja usado*/) {
-                //funcao que retorna o indice do x que o usuario escolheu
+             mesmo que nao seja usado*/) {
+//funcao que retorna o indice do x que o usuario escolheu
             });
             //funcao de desenhar
         }
@@ -496,7 +457,6 @@ $(document).ready(function () {
         otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
     });
-
     //Ao rolar a pagina adiciona o botao de voltar ao topo
     $(document).on('scroll', function () {
         if ($(window).scrollTop() > 100)
@@ -504,17 +464,15 @@ $(document).ready(function () {
         else
             $('.scroll-top-wrapper').removeClass('show');
     });
-
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
-
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
         var input = $(this),
@@ -522,14 +480,11 @@ $(document).ready(function () {
                 label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.trigger('fileselect', [numFiles, label]);
     });
-
-
     //Botão file
     $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
         var input = $(this).parents('.input-group').find(':text'),
                 log = numFiles > 1 ? numFiles + ' files selected' : label;
-
         if (input.length) {
             input.val(log);
         } else {
@@ -538,11 +493,8 @@ $(document).ready(function () {
         }
 
     });
-
 });
 ;
-
-
 // Proibe a digitação de letras e simbolos especiais
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
@@ -576,7 +528,7 @@ function showFormProblema() {
 }
 
 function showFormProblema2() {
-    //Da active no <li> section A
+//Da active no <li> section A
     $("#a").removeClass()
     $("#a").addClass("active");
     $("#b").removeClass()
@@ -604,9 +556,8 @@ function hideFormProblema() {
 
 //Progress Bar
 function progressBar(type, percent) {
-    //Progress bar
+//Progress bar
     var $pb = $('#progress-bar');
-
     $('#rowProgress').show('fast');
     $pb.removeClass();
     $pb.addClass('progress-bar progress-bar-' + type + ' active');
@@ -622,7 +573,7 @@ function fileUpload(arq) {
     while (!arquivo.AtEndOfStream) {
         string += arquivo.ReadAll();
     }
-    //fecha o txt
+//fecha o txt
     arquivo.Close();
 }
 
@@ -638,7 +589,6 @@ CarregaFile = function upload() {
     var problema = "";
     var nVariaveis = 0;
     var iRest = 0;
-
     var fileInput = document.getElementById('inputFile');
     //fileInput.addEventListener('change', function (e) {
     var file = fileInput.files[0];
@@ -654,7 +604,6 @@ CarregaFile = function upload() {
             var linha = 1;
             var cont = 1;
             var tam = 0;
-
             //var iRest = 0;
             var p = 1; //qual parte
             //var nVariaveis = 0;
@@ -758,7 +707,6 @@ CarregaFile = function upload() {
                     cont += 2;
                     if (source[cont + 2] === "\n") { //se tiver acabado restriÃ§oes pula pro proximo p
                         p++;
-
                     } else { //se nao tiver pula pra proxima linha
 
                         cont++;
@@ -801,7 +749,6 @@ CarregaFile = function upload() {
 
                         }
                         cont++;
-
                     }
                     //alert("linha5 inteira "+linha);
                     var up = linha.split("|", nVariaveis); //separa valores
@@ -819,16 +766,13 @@ CarregaFile = function upload() {
                 if (p === 6) {//termina
 
                     cont = source.length;
-
                 }
 
 
 
             }
         };
-
         reader.readAsText(file);
-
     } else {
         alert("Erro no Carregamento");
     }
@@ -845,26 +789,19 @@ CarregaFile = function upload() {
         iRest: iRest
 
     };
-
-
-
 };
-
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
 }
 ;
-
 //Função para verificar a existencia de um script
 function exiteHead(src) {
     var head = $('head');
     head = head.find('script');
-
     for (i = 0; i < head.length; i++) {
         scriptSrc = head[i].src.split("/");
         srcLocal = src.split("/");
-
         //alert(scriptSrc[scriptSrc.length - 1] + "\n " + srcLocal[srcLocal.length - 1] + "\n" + (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]));
         if (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]) {
             return true;
@@ -873,23 +810,18 @@ function exiteHead(src) {
     }
 }
 ;
-
-
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
 }
 ;
-
 //Função para verificar a existencia de um script
 function exiteHead(src) {
     var head = $('head');
     head = head.find('script');
-
     for (i = 0; i < head.length; i++) {
         scriptSrc = head[i].src.split("/");
         srcLocal = src.split("/");
-
         //alert(scriptSrc[scriptSrc.length - 1] + "\n " + srcLocal[srcLocal.length - 1] + "\n" + (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]));
         if (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]) {
             return true;
@@ -898,7 +830,6 @@ function exiteHead(src) {
     }
 }
 ;
-
 //Adiciona script dinamico
 function addHead(src) {
     if (exiteHead(src)) {
@@ -912,7 +843,6 @@ function addHead(src) {
     document.getElementsByTagName("head")[0].appendChild(script)
 }
 ;
-
 function removeStyle() {
     $('style').empty();
 }
