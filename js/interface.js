@@ -34,6 +34,11 @@ Arvore = function () {
     this.setContainer = function (container) {
         this.container = container;
     }
+    this.definirOtimo = function (otimo) {
+        this.network.selectNodes([otimo.id]);
+    };
+
+
 
     this.criarConexao = function () {
         this.data = {
@@ -76,16 +81,15 @@ Arvore = function () {
         });
     };
     //Somente para testes
+
     //this.nodes.subscribe('*', function () {
     //    $('#nodes').html(toJSON(nodes.get()));
     //});
     //this.edges.subscribe('*', function () {
     //    $('#edges').html(toJSON(edges.get()));
     //});
-    //---------------------------------------------------
-
-    return this;
 };
+
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
@@ -274,7 +278,7 @@ $(document).ready(function () {
     hideFormProblema();
     t = Tabela();
     //Instancia de objeto da classe Arvore  
-    a = Arvore();
+    a = new Arvore();
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
         if (!verificaTabela()) {
@@ -426,13 +430,15 @@ $(document).ready(function () {
             }
         }
     });
-
     //Executar Branch and Bound
     $('#executar').click(function () {
+        $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1000);
 
         $("#panelResultado").show();
         a.setContainer(document.getElementById("resultTree"));
-        pb = 0;
+
+
+        progressBar("primary", 100);
 
         b = new BranchBound();
 
@@ -441,18 +447,14 @@ $(document).ready(function () {
             //funcao de desenhar
             a.adicionarNodo(nodo);
             a.adicionarAresta(nodo);
-            //progres bar load
-            pb = pb + 5;
         }
-        pb = 100;
+
         a.criarConexao();
         otimo = b.melhorSolucao();
-        //faz alguma coisa com o otimo
-        progressBar("primary", pb);
-        $("html, body").animate({ scrollTop: $(document).height() - 400 }, 2000);
+        alert(otimo.id);
+        a.definirOtimo(otimo);
 
     });
-
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
