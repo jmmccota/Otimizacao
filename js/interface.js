@@ -38,48 +38,7 @@ Arvore = function () {
 
     this.definirOtimo = function (otimo) {
         this.network.selectNodes([otimo.id]);
-        $("#valorZ").empty();
-        $("#tipoSol").empty();
-        $("#novosX").empty();
-        $("#funcaoObj").empty();
-
-        $("#valorZ").append("z = " + otimo.z);
-        $("#tipoSol").append("Solução Ótima");
-        var novosX = "`";
-        for (i = 0; i < otimo.x.length; i++) {
-            novosX += "x_" + (i + 1) + " = " + otimo.x[i] + "; "
-
-        }
-        novosX += "`";
-        $("#novosX").append(novosX);
-        var obj = "";
-        for (i = 1; i <= otimo.objetivo.length; i++) {
-            var num = otimo.objetivo[i - 1];
-            if (num.length > 0) {
-                if (num >= 0 && i != 1) {
-                    obj += " + " + num + "x_" + i;
-                }
-                else {
-                    obj += num + "x_" + i;
-                }
-            }
-        }
-
-        var obj = "";
-
-        for (i = 1; i <= nodo.objetivo.length; i++) {
-            var num = nodo.objetivo[i - 1];
-            obj += num + "x_" + i + " ";
-        }
-
-        if (nodo.problema == "Maximize") {
-            $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
-        } else {
-            $("#funcaoObj").append("min: " + "` z =  " + obj + " `");
-        }
-
-
-
+        exibirNodo(otimo);
     };
     this.criarConexao = function (b) {
         this.data = {
@@ -125,37 +84,8 @@ Arvore = function () {
         this.network.on('select', function (properties) {
             try {
                 nodo = b.heap.array[properties.nodes];
+                exibirNodo(nodo);
                 showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
-
-                $("#valorZ").empty();
-                $("#tipoSol").empty();
-                $("#novosX").empty();
-                $("#funcaoObj").empty();
-
-                $("#valorZ").append("z = " + nodo.z);
-                $("#tipoSol").append("oioi");
-                var novosX = "`";
-                for (i = 0; i < nodo.x.length; i++) {
-                    novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
-                }
-                novosX += "`";
-                $("#novosX").append(novosX);
-
-
-                var obj = "";
-
-                for (i = 1; i <= nodo.objetivo.length; i++) {
-                    var num = nodo.objetivo[i - 1];
-                    obj += num + "x_" + i + " ";
-                }
-
-                if (nodo.problema == "Maximize") {
-                    $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
-                } else {
-                    $("#funcaoObj").append("min: " + "` z =  " + obj + " `");
-                }
-
-
             }
             catch (err) {
                 //showAlert("danger", "Você clicou na aresta. Clique no nó!");
@@ -164,6 +94,53 @@ Arvore = function () {
     };
 
 };
+//Funções auxiliares
+function exibirNodo(nodo) {
+
+    $("#valorZ").empty();
+    $("#tipoSol").empty();
+    $("#novosX").empty();
+    $("#funcaoObj").empty();
+
+    $("#valorZ").append("z = " + nodo.z);
+
+    if (typeof (nodo.z) === "string") {
+        if (nodo.z == "-Inf" || nodo.z == "Inf") {
+            $("#tipoSol").append("Solução não é inteira.");
+        }
+        else {
+            $("#tipoSol").append("Não tem solução viável primal.");
+        }
+    }
+
+
+    var novosX = "`";
+
+
+
+ 
+
+
+    var obj = "";
+
+    for (i = 1; i <= nodo.objetivo.length; i++) {
+        var num = nodo.objetivo[i - 1];
+        obj += num + "x_" + i + " ";
+    }
+
+    if (nodo.problema == "Maximize") {
+        $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
+    } else {
+        $("#funcaoObj").append("min: " + "` z =  " + obj + " `");
+    }
+
+
+    for (i = 0; i < nodo.x.length; i++) {
+        novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
+    }
+    novosX += "`";
+    $("#novosX").append(novosX);
+}
 
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
