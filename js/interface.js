@@ -82,10 +82,8 @@ Arvore = function () {
     this.edges.subscribe('*', function () {
         $('#edges').html(toJSON(edges.get()));
     });
-    //---------------------------------------------------
-
-    return this;
 };
+
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
@@ -273,7 +271,7 @@ $(document).ready(function () {
     hideFormProblema();
     t = Tabela();
     //Instancia de objeto da classe Arvore  
-    a = Arvore();
+    a = new Arvore();
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
         if (!verificaTabela()) {
