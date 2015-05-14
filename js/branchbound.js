@@ -39,11 +39,11 @@ Nodo = function (id, pai, altura, modelo, z, x) {
                     source += this.restricoes[i][j] + " x" + j;
                 }
                 source += " " + this.relacoes[i] + " " + this.rhs[i];
+				source += "\n";
             }
         } 
         else
-            source += " +0 x0 = 0";
-        source += "\n";
+            source += " +0 x0 = 0\n";
         
 
         source += "\nBounds\n";
