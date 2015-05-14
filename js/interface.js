@@ -40,7 +40,7 @@ Arvore = function () {
     this.definirOtimo = function (otimo) {
         this.network.selectNodes([otimo.id]);
         this.bestNode = otimo;
-        exibirNodo(otimo, "otimo");
+        exibirNodo(otimo, this.bestNode);
     };
     this.criarConexao = function (b) {
         this.data = {
@@ -92,7 +92,7 @@ Arvore = function () {
                 //} else {
                 //    exibirNodo(nodo, "não é otimo");
                 //}
-                exibirNodo(nodo, "não é otimo");
+                exibirNodo(nodo, b.melhorSolucao());
                 showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
             }
             catch (err) {
@@ -103,7 +103,7 @@ Arvore = function () {
 
 };
 //Funções auxiliares
-function exibirNodo(nodo, tipo) {
+function exibirNodo(nodo, otimo) {
 
     $("#valorZ").empty();
     $("#tipoSol").empty();
@@ -112,24 +112,20 @@ function exibirNodo(nodo, tipo) {
 
     $("#valorZ").append("z = " + nodo.z);
 
-    if (typeof (nodo.z) === "string") {
-        if (nodo.z == "-Inf" || nodo.z == "Inf") {
-            $("#tipoSol").append("Solução não é inteira.");
-        }
-        else {
-            $("#tipoSol").append("Não tem solução viável primal.");
-        }
-    } else {
-        if (tipo == "otimo") {
-            $("#tipoSol").append("Solução ótima;");
-        }
-        else {
-            $("#tipoSol").append("Não é a solução ótima.");
-        }
+    
+    if (nodo.z === "-Inf" || nodo.z === "Inf") 
+        $("#tipoSol").append("Solução não é inteira.");
+    else if(otimo === 0 || typeof(nodo.z) === "string"){
+        $("#tipoSol").append(nodo.z); 
+        $("#valorZ").empty();
+        $("#valorZ").append("Não possui solução viável.");
     }
-
-
-
+    else if(nodo.id === otimo.id)
+        $("#tipoSol").append("Solução ótima;");    
+    else
+        $("#tipoSol").append("Não é a solução ótima.");
+    
+    
 
     var obj = "";
 
@@ -510,7 +506,7 @@ $(document).ready(function () {
             a.adicionarNodo(nodo);
             a.adicionarAresta(nodo);
         }
-        otimo = b.melhorSolucao();
+        var otimo = b.melhorSolucao();
 
         if (otimo != 0) {
             progressBar("success", 100);
