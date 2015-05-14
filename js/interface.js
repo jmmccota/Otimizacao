@@ -72,16 +72,16 @@ Arvore = function () {
         };
         this.network = new vis.Network(this.container, this.data, options);
         network.on('select', function (properties) {
-            showAlert('success','ID: '+properties.nodes);
+            showAlert('success', 'ID: ' + properties.nodes);
         });
     };
     //Somente para testes
-    this.nodes.subscribe('*', function () {
-        $('#nodes').html(toJSON(nodes.get()));
-    });
-    this.edges.subscribe('*', function () {
-        $('#edges').html(toJSON(edges.get()));
-    });
+    //this.nodes.subscribe('*', function () {
+    //    $('#nodes').html(toJSON(nodes.get()));
+    //});
+    //this.edges.subscribe('*', function () {
+    //    $('#edges').html(toJSON(edges.get()));
+    //});
     //---------------------------------------------------
 
     return this;
@@ -132,7 +132,7 @@ Tabela = function () {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 20) {
 
-                for (j = 2; j < (t.nRestri + 2); j++) {
+                for (j = 2; j < (t.nRestri + 2) ; j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -263,13 +263,14 @@ Tabela = function () {
     return t;
 };
 //Somente para testes
-function toJSON(obj) {
-    return JSON.stringify(obj, null, 4);
-}
+//
 //----------------------------------
+//function toJSON(obj) {
+//        return JSON.stringify(obj, null, 4);
+//    }
 $(document).ready(function () {
 
-//Por padrao os botoes estao escondidos
+    //Por padrao os botoes estao escondidos
     hideFormProblema();
     t = Tabela();
     //Instancia de objeto da classe Arvore  
@@ -311,7 +312,7 @@ $(document).ready(function () {
                 }
             });
         }
-//Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -389,11 +390,11 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             } else {
                 source += "\r\n\r\n";
-                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -402,7 +403,7 @@ $(document).ready(function () {
     });
     //Carrega de arquivo
     $('#carregar').click(function () {
-//como esconder as sections e verificar se ta certo...
+        //como esconder as sections e verificar se ta certo...
         t.reseta();
         var xx = CarregaFile();
         showFormProblema2();
@@ -424,25 +425,34 @@ $(document).ready(function () {
                 break;
             }
         }
-//dar um jeito de mostrar sectionA com as tabelas carregadas
-//showFormProblema2();
     });
+
     //Executar Branch and Bound
     $('#executar').click(function () {
+
         $("#panelResultado").show();
-        b = new BranchBound();
         a.setContainer(document.getElementById("resultTree"));
+        pb = 0;
+
+        b = new BranchBound();
+
         while (!b.terminou()) {
             nodo = b.executar();
             //funcao de desenhar
             a.adicionarNodo(nodo);
             a.adicionarAresta(nodo);
+            //progres bar load
+            pb = pb + 5;
         }
+        pb = 100;
         a.criarConexao();
         otimo = b.melhorSolucao();
         //faz alguma coisa com o otimo
-        progressBar("primary", 100);
+        progressBar("primary", pb);
+        $("html, body").animate({ scrollTop: $(document).height() - 400 }, 2000);
+
     });
+
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
@@ -450,7 +460,7 @@ $(document).ready(function () {
         while (!b.terminou()) {
             nodo = b.proximoPasso(function (branchBound/*precisa do BranchBound como parametro,
              mesmo que nao seja usado*/) {
-//funcao que retorna o indice do x que o usuario escolheu
+                //funcao que retorna o indice do x que o usuario escolheu
             });
             //funcao de desenhar
         }
@@ -468,11 +478,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
@@ -529,7 +539,7 @@ function showFormProblema() {
 }
 
 function showFormProblema2() {
-//Da active no <li> section A
+    //Da active no <li> section A
     $("#a").removeClass()
     $("#a").addClass("active");
     $("#b").removeClass()
@@ -557,7 +567,7 @@ function hideFormProblema() {
 
 //Progress Bar
 function progressBar(type, percent) {
-//Progress bar
+    //Progress bar
     var $pb = $('#progress-bar');
     $('#rowProgress').show('fast');
     $pb.removeClass();
@@ -574,7 +584,7 @@ function fileUpload(arq) {
     while (!arquivo.AtEndOfStream) {
         string += arquivo.ReadAll();
     }
-//fecha o txt
+    //fecha o txt
     arquivo.Close();
 }
 
@@ -823,7 +833,6 @@ function exiteHead(src) {
     for (i = 0; i < head.length; i++) {
         scriptSrc = head[i].src.split("/");
         srcLocal = src.split("/");
-        //alert(scriptSrc[scriptSrc.length - 1] + "\n " + srcLocal[srcLocal.length - 1] + "\n" + (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]));
         if (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]) {
             return true;
         }
@@ -835,8 +844,6 @@ function exiteHead(src) {
 function addHead(src) {
     if (exiteHead(src)) {
         removeHead(src);
-        removeStyle();
-        //alert("Removido co sucesso");
     }
     var script = document.createElement("script");
     script.type = "text/javascript";
