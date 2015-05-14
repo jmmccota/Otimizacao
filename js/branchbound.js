@@ -211,7 +211,7 @@ BranchBound = function () {
     this.melhorSolucao = function () {
         /*
          * retorna o nodo com maior/menor Z
-         * retorna null caso nao haja solucao inteira viavels
+         * retorna 0 caso nao haja solucao inteira viavels
          */
 
         //procura a 1a solucao inteira viavel
