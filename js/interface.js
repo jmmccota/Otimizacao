@@ -102,9 +102,23 @@ Arvore = function () {
     };
 
 };
+var cont2=0;
 //Funções auxiliares
 function exibirNodo(nodo, otimo) {
+    
+    if (cont2 == 0) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
+        document.getElementsByTagName("head")[0].appendChild(script);
 
+
+
+        var script2 = document.createElement("script");
+        script2.type = "text/javascript";
+        script2.src = "js/ASCIIMathML.js";
+        document.getElementsByTagName("head")[0].appendChild(script2);
+    }
     $("#valorZ").empty();
     $("#tipoSol").empty();
     $("#novosX").empty();
@@ -158,6 +172,7 @@ function exibirNodo(nodo, otimo) {
     } else {
         $("#novosX").append("`" + novosX + "`");
     }
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
 }
 
