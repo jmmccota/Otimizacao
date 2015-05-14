@@ -110,6 +110,17 @@ panel-primary {
     border-bottom-color: #384452;
 }
 
+.list-group p {
+    font-size: 18px;
+    font-family: 'STIX';
+}
+
+.list-group h4 {
+    font-size: 20px;
+    font-family: 'STIX';
+}
+
+
 
 /*	################################################################
 	SITE

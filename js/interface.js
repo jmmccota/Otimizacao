@@ -12,7 +12,8 @@ Arvore = function () {
                 id: nodo.id,
                 label: "" + nodo.id,
                 title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
-                level: nodo.altura
+                level: nodo.altura,
+                value: nodo
 
             });
         }
@@ -36,8 +37,37 @@ Arvore = function () {
     }
     this.definirOtimo = function (otimo) {
         this.network.selectNodes([otimo.id]);
-    };
+        $("#valorZ").append("z = " + otimo.z);
+        $("#tipoSol").append("Solução Ótima");
+        var novosX = "`";
+        for (i = 0; i < otimo.x.length; i++) {
+            novosX += "x_" + (i + 1) + " = " + otimo.x[i] + "; "
 
+        }
+        novosX += "`";
+        $("#novosX").append(novosX);
+        var obj = "";
+        for (i = 1; i <= otimo.objetivo.length; i++) {
+            var num = otimo.objetivo[i - 1];
+            if (num.length > 0) {
+                if (num >= 0 && i != 1) {
+                    obj += " + " + num + "x_" + i;
+                }
+                else {
+                    obj += num + "x_" + i;
+                }
+            }
+        }
+
+        $("#funcaoObj").append("` z =  " + obj + " `");
+
+
+    };
+    this.selecionarNodo = function (nodo) {
+
+
+
+    };
 
 
     this.criarConexao = function () {
@@ -53,6 +83,10 @@ Arvore = function () {
             zoomable: false,
             smoothCurves: {
                 roundness: 0
+            },
+            nodes: {
+                radius: 30,
+                borderWidth: 2
             },
             edges: {
                 width: 2
@@ -76,18 +110,13 @@ Arvore = function () {
 
         };
         this.network = new vis.Network(this.container, this.data, options);
-        network.on('select', function (properties) {
+
+        this.network.on('select', function (properties) {
             showAlert('success', 'ID: ' + properties.nodes);
+            $("#valorZ").empty();
+            $("#valorZ").append(properties.nodes);
         });
     };
-    //Somente para testes
-
-    //this.nodes.subscribe('*', function () {
-    //    $('#nodes').html(toJSON(nodes.get()));
-    //});
-    //this.edges.subscribe('*', function () {
-    //    $('#edges').html(toJSON(edges.get()));
-    //});
 };
 
 ////////////////////////////////////////////////////
@@ -407,7 +436,6 @@ $(document).ready(function () {
     });
     //Carrega de arquivo
     $('#carregar').click(function () {
-        //como esconder as sections e verificar se ta certo...
         t.reseta();
         var xx = CarregaFile();
         showFormProblema2();
@@ -432,27 +460,35 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
-        $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1000);
-
-        $("#panelResultado").show();
-        a.setContainer(document.getElementById("resultTree"));
-
-
-        progressBar("primary", 100);
 
         b = new BranchBound();
 
         while (!b.terminou()) {
             nodo = b.executar();
-            //funcao de desenhar
             a.adicionarNodo(nodo);
             a.adicionarAresta(nodo);
         }
-
-        a.criarConexao();
         otimo = b.melhorSolucao();
-        alert(otimo.id);
-        a.definirOtimo(otimo);
+
+        if (otimo != 0) {
+            progressBar("success", 100);
+            showAlert("success", "Executado com Sucesso.")
+            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
+            $("#panelResultado").show();
+            a.setContainer(document.getElementById("resultTree"));
+
+            //Operações da arvore.
+            a.criarConexao();
+
+            a.definirOtimo(otimo);
+
+        }
+        else {
+            progressBar("warning", 100);
+            showAlert("warning", "Não foi póssivel obter uma solução ótiva viável.")
+
+        }
+
 
     });
     //Executar Branch and Bound Passo a Passo
@@ -507,7 +543,7 @@ $(document).ready(function () {
 
     });
 });
-;
+
 // Proibe a digitação de letras e simbolos especiais
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
@@ -788,6 +824,7 @@ CarregaFile = function upload() {
         reader.readAsText(file);
     } else {
         alert("Erro no Carregamento");
+        return;
     }
     alert("Valores carregados");
     return {
@@ -802,12 +839,11 @@ CarregaFile = function upload() {
         iRest: iRest
 
     };
-};
+}
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
 }
-;
 //Função para verificar a existencia de um script
 function exiteHead(src) {
     var head = $('head');
@@ -822,12 +858,10 @@ function exiteHead(src) {
 
     }
 }
-;
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
 }
-;
 //Função para verificar a existencia de um script
 function exiteHead(src) {
     var head = $('head');
@@ -841,7 +875,6 @@ function exiteHead(src) {
 
     }
 }
-;
 //Adiciona script dinamico
 function addHead(src) {
     if (exiteHead(src)) {
@@ -851,8 +884,7 @@ function addHead(src) {
     script.type = "text/javascript";
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script)
-}
-;
+};
 function removeStyle() {
     $('style').empty();
 }
