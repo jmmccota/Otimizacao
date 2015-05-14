@@ -361,7 +361,6 @@ $(document).ready(function () {
     });
     //Novo problema de otimizacao
     $("#novo").click(function () {
-
         $("#div_mpl").fadeOut("fast");
         //se ja tem algum modelo aberto
         if (t.existe) {
@@ -380,6 +379,7 @@ $(document).ready(function () {
                         label: "Sim",
                         className: "btn-success",
                         callback: function () {
+                            $("#panelResultado").fadeOut("fast");
                             $("#myTableData").empty();
                             $("#myTableData2").empty();
                             t.novo();
@@ -421,6 +421,7 @@ $(document).ready(function () {
                     label: "Sim",
                     className: "btn-success",
                     callback: function () {
+                        $("#panelResultado").fadeOut("fast");
                         $("#myTableData").empty();
                         $("#myTableData2").empty();
                         t.novo();
