@@ -102,6 +102,7 @@ Heap = function (nodo) {
             this.array[dir.id] = dir;
         }
     };
+
 };
 
 

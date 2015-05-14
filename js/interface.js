@@ -5,6 +5,7 @@ Arvore = function () {
 
     this.nodes = new vis.DataSet();
     this.edges = new vis.DataSet();
+    
 
     this.adicionarNodo = function (nodo) {
         try {
@@ -63,9 +64,16 @@ Arvore = function () {
 
 
     };
-    this.selecionarNodo = function (nodo) {
+    this.selecionarNodo = function (properties) {
+        showAlert('success', 'ID: ' + properties.nodes);
+
+        $("#valorZ").empty();
+        $("#tipoSol").empty();
+        $("#novosX").empty();
+        $("#funcaoObj").empty();
 
 
+        $("#valorZ").append(properties.nodes);
 
     };
 
@@ -111,11 +119,7 @@ Arvore = function () {
         };
         this.network = new vis.Network(this.container, this.data, options);
 
-        this.network.on('select', function (properties) {
-            showAlert('success', 'ID: ' + properties.nodes);
-            $("#valorZ").empty();
-            $("#valorZ").append(properties.nodes);
-        });
+        this.network.on('select', this.selecionarNodo);
     };
 };
 
