@@ -352,8 +352,6 @@ $(document).ready(function () {
     //Por padrao os botoes estao escondidos
     hideFormProblema();
     t = Tabela();
-    //Instancia de objeto da classe Arvore  
-    a = new Arvore();
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
         if (!verificaTabela()) {
@@ -507,6 +505,7 @@ $(document).ready(function () {
     //Executar Branch and Bound
     $('#executar').click(function () {
 
+        a = new Arvore();
         b = new BranchBound();
 
         while (!b.terminou()) {
@@ -541,6 +540,7 @@ $(document).ready(function () {
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
+        a = new Arvore();
         b = new BranchBound();
         while (!b.terminou()) {
             nodo = b.proximoPasso(function (branchBound/*precisa do BranchBound como parametro,
