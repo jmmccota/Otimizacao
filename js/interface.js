@@ -13,7 +13,7 @@ Arvore = function () {
             this.nodes.add({
                 id: nodo.id,
                 label: "" + nodo.id,
-                title: "z: " + nodo.z,
+                title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
                 level: nodo.altura
 
             });
