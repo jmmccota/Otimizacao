@@ -71,6 +71,9 @@ Arvore = function () {
 
         };
         this.network = new vis.Network(this.container, this.data, options);
+        network.on('select', function (properties) {
+            showAlert('success','ID: '+properties.nodes);
+        });
     };
     //Somente para testes
     this.nodes.subscribe('*', function () {
