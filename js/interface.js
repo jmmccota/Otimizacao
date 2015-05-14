@@ -329,8 +329,6 @@ $(document).ready(function () {
     //Por padrao os botoes estao escondidos
     hideFormProblema();
     t = Tabela();
-    //Instancia de objeto da classe Arvore  
-    a = new Arvore();
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
         if (!verificaTabela()) {
@@ -340,7 +338,6 @@ $(document).ready(function () {
     });
     //Novo problema de otimizacao
     $("#novo").click(function () {
-
         $("#div_mpl").fadeOut("fast");
         //se ja tem algum modelo aberto
         if (t.existe) {
@@ -359,6 +356,7 @@ $(document).ready(function () {
                         label: "Sim",
                         className: "btn-success",
                         callback: function () {
+                            $("#panelResultado").fadeOut("fast");
                             $("#myTableData").empty();
                             $("#myTableData2").empty();
                             t.novo();
@@ -400,6 +398,7 @@ $(document).ready(function () {
                     label: "Sim",
                     className: "btn-success",
                     callback: function () {
+                        $("#panelResultado").fadeOut("fast");
                         $("#myTableData").empty();
                         $("#myTableData2").empty();
                         t.novo();
@@ -484,6 +483,7 @@ $(document).ready(function () {
     //Executar Branch and Bound
     $('#executar').click(function () {
 
+        a = new Arvore();
         b = new BranchBound();
 
         while (!b.terminou()) {
@@ -518,6 +518,7 @@ $(document).ready(function () {
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
+        a = new Arvore();
         b = new BranchBound();
         while (!b.terminou()) {
             nodo = b.proximoPasso(function (branchBound/*precisa do BranchBound como parametro,
