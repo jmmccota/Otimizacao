@@ -227,9 +227,8 @@ panel-primary {
 }
 
     .mpl span {
-        text-align: left;
-        font-weight: bold;
-        font-size: 14px;
+          font-size: 16.9px;
+        font-family: 'STIX';
     }
 
 #close {

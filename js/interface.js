@@ -5,8 +5,6 @@ Arvore = function () {
 
     this.nodes = new vis.DataSet();
     this.edges = new vis.DataSet();
-//this.container = document.getElementById("resultTree");
-
 
     this.adicionarNodo = function (nodo) {
         try {

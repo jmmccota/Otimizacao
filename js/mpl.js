@@ -76,7 +76,6 @@ function mpl() {
     $('#div_mpl').show();
     var mp = document.getElementById("div_mpl");
 
-    var body;
     var bodyContent;
     var x = getTableValues();
     var obj = "";
@@ -86,15 +85,15 @@ function mpl() {
     var z = 0;
 
 
-    bodyContent = '<div class="row">'
-    bodyContent += '<div class="col-xs-1">';
+    bodyContent = '<div class="row" style="margin-top: 10px;" >'
+    bodyContent += '<div class="col-md-1" style="text-align:right;">';
     if (x["problema"] == "Maximize") {
-        bodyContent += '<span>max:</span>';
+        bodyContent += '<span >max: </span>';
     } else {
-        bodyContent += '<span>min:</span>';
+        bodyContent += '<span>min: </span>';
     }
     bodyContent += '</div>';
-    bodyContent += '<div class="col-xs-10">';
+    bodyContent += '<div class="col-md-11">';
     for (i = 1; i <= x["objetivo"].length; i++) {
         var num = x["objetivo"][i - 1];
         if (num.length > 0) {
@@ -107,16 +106,16 @@ function mpl() {
         }
     }
 
-    bodyContent += "` " + obj + " `";
+    bodyContent += "` z =  " + obj + " `";
     bodyContent += '</div>';
     bodyContent += '</div>';
 
 
     bodyContent += '<div class="row" style="padding-top: 5px;">';
-    bodyContent += '<div class="col-xs-3">';
-    bodyContent += "<span>sujeito a:</span>";
+    bodyContent += '<div class="col-md-1">';
+    bodyContent += '<span >sujeito a:</span>';
     bodyContent += '</div>';
-    bodyContent += '<div class="col-xs-10 col-md-offset-1">';
+    bodyContent += '<div class="col-md-11">';
 
     for (i = 1; i <= x["restricoes"].length; i++) {
         k++;
@@ -131,22 +130,22 @@ function mpl() {
         }
         if (k == (x["objetivo"].length)) {
             z++;
-            bodyContent += "` " + res + " `" + "`" + x["relacoes"][z - 1] + " `" + "`" + x["rhs"][z - 1] + "`";
+            bodyContent += "`" + res + " `" + "`" + x["relacoes"][z - 1] + " `" + "`" + x["rhs"][z - 1] + "`";
             res = "";
             k = 0;
             bodyContent += '</div>';
             if (i < x["restricoes"].length) {
-                bodyContent += '<div class="col-xs-10 col-md-offset-1">';
+                bodyContent += '<div class="col-md-11 col-md-offset-1">';
             }
         }
     }
     bodyContent += '</div>';
     bodyContent += '</div>';
-    bodyContent += '<div class="row" style="padding-top: 5px;">';
-    bodyContent += '<div class="col-xs-3">';
+    bodyContent += '<div class="row" style="padding-top: 5px; margin-bottom: 10px;">';
+    bodyContent += '<div class="col-md-1" style="text-align:right">';
     bodyContent += "<span>e:</span>";
     bodyContent += '</div>';
-    bodyContent += '<div class="col-xs-10 col-md-offset-1" >';
+    bodyContent += '<div class="col-md-10" >';
 
     for (i = 1; i <= x["lower"].length; i++) {
         var numL = x["lower"][i - 1];
