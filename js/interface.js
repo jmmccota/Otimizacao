@@ -33,7 +33,7 @@ Arvore = function () {
     };
     this.setContainer = function (container) {
         this.container = container;
-    }
+    };
 
     this.criarConexao = function () {
         this.data = {
@@ -71,17 +71,17 @@ Arvore = function () {
 
         };
         this.network = new vis.Network(this.container, this.data, options);
-        network.on('select', function (properties) {
+        this.network.on('select', function (properties) {
             showAlert('success','ID: '+properties.nodes);
         });
-    };
+    };/*
     //Somente para testes
     this.nodes.subscribe('*', function () {
         $('#nodes').html(toJSON(nodes.get()));
     });
     this.edges.subscribe('*', function () {
         $('#edges').html(toJSON(edges.get()));
-    });
+    });*/
 };
 
 ////////////////////////////////////////////////////
@@ -400,7 +400,7 @@ $(document).ready(function () {
     });
     //Carrega de arquivo
     $('#carregar').click(function () {
-//como esconder as sections e verificar se ta certo...
+	//como esconder as sections e verificar se ta certo...
         t.reseta();
         var xx = CarregaFile();
         showFormProblema2();
@@ -493,7 +493,7 @@ $(document).ready(function () {
 
     });
 });
-;
+
 // Proibe a digitação de letras e simbolos especiais
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
@@ -774,6 +774,7 @@ CarregaFile = function upload() {
         reader.readAsText(file);
     } else {
         alert("Erro no Carregamento");
+		return;
     }
     alert("Valores carregados");
     return {
@@ -788,12 +789,11 @@ CarregaFile = function upload() {
         iRest: iRest
 
     };
-};
+}
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
 }
-;
 //Função para verificar a existencia de um script
 function exiteHead(src) {
     var head = $('head');
@@ -808,12 +808,10 @@ function exiteHead(src) {
 
     }
 }
-;
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
 }
-;
 //Função para verificar a existencia de um script
 function exiteHead(src) {
     var head = $('head');
@@ -828,7 +826,6 @@ function exiteHead(src) {
 
     }
 }
-;
 //Adiciona script dinamico
 function addHead(src) {
     if (exiteHead(src)) {
@@ -840,8 +837,7 @@ function addHead(src) {
     script.type = "text/javascript";
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script)
-}
-;
+};
 function removeStyle() {
     $('style').empty();
 }
