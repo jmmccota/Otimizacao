@@ -147,6 +147,7 @@ function exibirNodo(nodo, otimo) {
     }
 
     $("#modelo").append(nodo.modelo());
+    cont2++;
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 };
 ////////////////////////////////////////////////////
