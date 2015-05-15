@@ -110,6 +110,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
                     this.lower[i] + "<=" + "x_" + i + "<=" + this.upper[i];
             source += "`\n";
         }
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
         return source.replace(/\n/g, '<br>');
     };
