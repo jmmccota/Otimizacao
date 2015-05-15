@@ -29,10 +29,10 @@ Nodo = function (id, pai, altura, modelo, z, x) {
             source += this.objetivo[i] >= 0 ? " +" : "";
             source += this.objetivo[i] + " x" + i + " ";
         }
-        
+
         source += "\n\n" + "Subject To" + "\n";
-        
-        if(this.restricoes.length !== 0){
+
+        if (this.restricoes.length !== 0) {
             for (i = 0; i < this.restricoes.length; i++) {
                 source += "Restricao" + (i + 1) + ":";
                 for (var j = 0; j < this.objetivo.length; j++) {
@@ -40,12 +40,12 @@ Nodo = function (id, pai, altura, modelo, z, x) {
                     source += this.restricoes[i][j] + " x" + j;
                 }
                 source += " " + this.relacoes[i] + " " + this.rhs[i];
-				source += "\n";
+                source += "\n";
             }
-        } 
+        }
         else
             source += " +0 x0 = 0\n";
-        
+
 
         source += "\nBounds\n";
 
@@ -65,46 +65,46 @@ Nodo = function (id, pai, altura, modelo, z, x) {
 
         return source;
     };
-    
-    this.modelo = function (){
+
+    this.modelo = function () {
         var source = "";
 
-        if(this.problema === "Maximize")
+        if (this.problema === "Maximize")
             source = 'Maximizar';
-        if(this.problema === "Minimize")
+        if (this.problema === "Minimize")
             source = 'Minimizar';
         source += " `z = ";
         for (var i = 0; i < this.objetivo.length; i++) {
-            if(this.restricoes[i][j] === 0) continue;
+            if (this.restricoes[i][j] === 0) continue;
             source += (this.objetivo[i] === 1) ?
-                " x_" + (i+1) + " ":
-                this.objetivo[i] + " x_" + (i+1) + " ";
+                " x_" + (i + 1) + " " :
+                this.objetivo[i] + " x_" + (i + 1) + " ";
         }
         source += "`";
-        
+
         source += "\n" + "Sujeito a:" + "\n";
-        
-        if(this.restricoes.length !== 0){
+
+        if (this.restricoes.length !== 0) {
             for (i = 0; i < this.restricoes.length; i++) {
                 var primeiro = true;
                 source += "`";
                 for (var j = 0; j < this.objetivo.length; j++) {
-                    if(this.restricoes[i][j] === 0) continue;
-                    if(!primeiro)
+                    if (this.restricoes[i][j] === 0) continue;
+                    if (!primeiro)
                         source += (this.restricoes[i][j] > 0) ? " + " : " ";
                     else
                         primeiro = false;
                     source += (this.restricoes[i][j] === 1) ?
-                            " x_" + (j+1) + " " :
-                            this.restricoes[i][j] + "x_" + (j+1) + " ";
+                            " x_" + (j + 1) + " " :
+                            this.restricoes[i][j] + "x_" + (j + 1) + " ";
                 }
                 source += this.relacoes[i] + " " + this.rhs[i];
-		source += "`\n";
+                source += "`\n";
             }
         }
 
         for (i = 0; i < this.objetivo.length; i++) {
-                source += "`";
+            source += "`";
             var aux = this.upper[i].toString().toUpperCase();
             source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
                     this.lower[i] + "<=" + "x_" + i + "<=" + this.upper[i];
@@ -274,10 +274,10 @@ BranchBound = function () {
         //    se nao houver nenhuma retorna null
         //    se encontrar seta como otima
         var i = 1;
-        while (i<=this.heap.array.length){
+        while (i <= this.heap.array.length) {
             if (i === this.heap.array.length)
                 return 0;
-            else if(isNaN(this.heap.array[i].z))
+            else if (isNaN(this.heap.array[i].z))
                 i++;
             else
                 break;
@@ -395,25 +395,35 @@ simplex = function (Nodo) {
 
 
 verificaTabela = function () {
-    var bool;
+    var bool = false;
     $(".fObj").each(function () {
-        bool = $(this).val() == '';
+        bool = ($(this).val() === '' || $(this).val() === null);
     });
-    $(".xRest").each(function () {
-        bool = $(this).val() == '';
-    });
-    $(".relacao").each(function () {
-        bool = $(this).val() == '';
-    });
-    $(".ladoDir").each(function () {
-        bool = $(this).val() == '';
-    });
-    $(".limSup").each(function () {
-        bool = $(this).val() == '';
-    });
-    $(".limInf").each(function () {
-        bool = $(this).val() == '';
-    });
+    if (!bool) {
+        $(".xRest").each(function () {
+            bool = ($(this).val() === '' || $(this).val() === null);
+        });
+        if (!bool) {
+            $(".relacao").each(function () {
+                bool = ($(this).val() === '' || $(this).val() === null);
+            });
+            if (!bool) {
+                $(".ladoDir").each(function () {
+                    bool = ($(this).val() === '' || $(this).val() === null);
+                });
+                if (!bool) {
+                    $(".limSup").each(function () {
+                        bool = ($(this).val() === '' || $(this).val() === null);
+                    });
+                    if (!bool) {
+                        $(".limInf").each(function () {
+                            bool = ($(this).val() === '' || $(this).val() === null);
+                        });
+                    }
+                }
+            }
+        }
+    }
 
     return bool;
 }

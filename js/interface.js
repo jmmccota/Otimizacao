@@ -333,9 +333,6 @@ $(document).ready(function () {
     t = Tabela();
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
-        if (!verificaTabela()) {
-            return;
-        }
         event.preventDefault();
     });
     //Novo problema de otimizacao
@@ -418,8 +415,7 @@ $(document).ready(function () {
         try {
             var source = "";
             var x = leituraParametros();
-            var verifica = verificaTabela();
-            if (!verifica) {
+            if (!verificaTabela()) {
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
                     //                    source += x['objetivo'][i] >= 0 ? "+" : "";
@@ -449,10 +445,6 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
-                saveAs(blob, "modelo.txt");
-            } else {
-                source += "\r\n\r\n";
                 var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             }
@@ -486,47 +478,53 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
-        a = new Arvore();
-        b = new BranchBound();
+        $("#div_mpl").fadeOut("fast");
+        if (!verificaTabela()) {
+            a = new Arvore();
+            b = new BranchBound();
 
-        while (!b.terminou()) {
-            nodo = b.executar();
-            //Adiciona nodo e aresta a arvore
-            a.adicionarNodo(nodo);
-            a.adicionarAresta(nodo);
-        }
-        var otimo = b.melhorSolucao();
 
-        if (otimo != 0) {
-            progressBar("success", 100);
-            showAlert("success", "Executado com Sucesso.")
-            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
-            $("#panelResultado").show();
-            a.setContainer(document.getElementById("resultTree"));
+            while (!b.terminou()) {
+                nodo = b.executar();
+                //Adiciona nodo e aresta a arvore
+                a.adicionarNodo(nodo);
+                a.adicionarAresta(nodo);
+            }
+            var otimo = b.melhorSolucao();
 
-            //Operações da arvore.
-            a.criarConexao(b);
-            a.definirOtimo(otimo);
-        }
-        else {
-            progressBar("warning", 100);
-            showAlert("warning", "Não foi póssivel obter uma solução ótiva viável.")
+            if (otimo != 0) {
+                progressBar("success", 100);
+                showAlert("success", "Executado com Sucesso.")
+                $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
+                $("#panelResultado").show();
+                a.setContainer(document.getElementById("resultTree"));
+
+                //Operações da arvore.
+                a.criarConexao(b);
+                a.definirOtimo(otimo);
+            }
+            else {
+                progressBar("warning", 100);
+                showAlert("warning", "Não foi póssivel obter uma solução ótiva viável.")
+            }
         }
     });
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
-        a = new Arvore();
-        b = new BranchBound();
-        while (!b.terminou()) {
-            nodo = b.proximoPasso(function (branchBound/*precisa do BranchBound como parametro,
-             mesmo que nao seja usado*/) {
-                //funcao que retorna o indice do x que o usuario escolheu
-            });
-            //funcao de desenhar
-        }
+        if (!verificaTabela()) {
+            a = new Arvore();
+            b = new BranchBound();
+            while (!b.terminou()) {
+                nodo = b.proximoPasso(function (b) {
 
-        otimo = b.melhorSolucao();
+
+                });
+                //funcao de desenhar
+            }
+
+            otimo = b.melhorSolucao();
+        }
         //faz alguma coisa com o otimo
     });
     //Ao rolar a pagina adiciona o botao de voltar ao topo
