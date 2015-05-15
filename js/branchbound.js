@@ -73,30 +73,42 @@ Nodo = function (id, pai, altura, modelo, z, x) {
             source = 'Maximizar';
         if(this.problema === "Minimize")
             source = 'Minimizar';
-        source += " z = ";
+        source += " `z = ";
         for (var i = 0; i < this.objetivo.length; i++) {
-            source += this.objetivo[i] + " x_" + (i+1) + " ";
+            if(this.restricoes[i][j] === 0) continue;
+            source += (this.objetivo[i] === 1) ?
+                " x_" + (i+1) + " ":
+                this.objetivo[i] + " x_" + (i+1) + " ";
         }
+        source += "`";
         
-        source += "\n\n" + "Sujeito a:" + "\n";
+        source += "\n" + "Sujeito a:" + "\n";
         
         if(this.restricoes.length !== 0){
             for (i = 0; i < this.restricoes.length; i++) {
+                var primeiro = true;
+                source += "`";
                 for (var j = 0; j < this.objetivo.length; j++) {
-                    source += this.restricoes[i][j] + " x_" + (j+1) + " ";
+                    if(this.restricoes[i][j] === 0) continue;
+                    if(!primeiro)
+                        source += (this.restricoes[i][j] > 0) ? " + " : " ";
+                    else
+                        primeiro = false;
+                    source += (this.restricoes[i][j] === 1) ?
+                            " x_" + (j+1) + " " :
+                            this.restricoes[i][j] + "x_" + (j+1) + " ";
                 }
                 source += this.relacoes[i] + " " + this.rhs[i];
-				source += "\n";
+		source += "`\n";
             }
-        } 
-        else
-            source += " +0 x0 = 0\n";
+        }
 
         for (i = 0; i < this.objetivo.length; i++) {
+                source += "`";
             var aux = this.upper[i].toString().toUpperCase();
             source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
-                    this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
-            source += "\n";
+                    this.lower[i] + "<=" + "x_" + i + "<=" + this.upper[i];
+            source += "`\n";
         }
 
         return source.replace(/\n/g, '<br>');
