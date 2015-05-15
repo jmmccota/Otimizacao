@@ -62,7 +62,6 @@
                             <li><a href="#sec1">Modelo de PL</a></li>
                             <li><a href="#sec2">Execução Completa</a></li>
                             <li><a href="#sec3">Execução Passo a Passo</a></li>
-                            <li><a href="#sec4">Modelo de arquivo</a></li>
 
                         </ul>
                     </div><!--/left-->
@@ -73,7 +72,8 @@
                         <p>
                             O Projeto foi desenvolvido por alunos para a resolução de problemas de Programação Inteira. Foi usada a biblioteca glpk.js como algoritmo para 
                             o método Simplex. Para entender o funcionamento do algoritmo, na página inicial possui o botão "Mais sobre o modelo" que demonstra o funcionamento do algoritmo.
-                            No canto superior há uma aba "Contato", onde o usuário poderá deixar algumas sugestões para a melhoria do algoritmo proposto.
+                            No canto superior há uma aba "Contato", onde o usuário poderá deixar algumas sugestões para a melhoria do algoritmo proposto. É aconselhável o usuário utilizar o navegador 
+                            Mozilla Firefox 38.0.1.
                         </p>
                         <p>
                             Para iniciarmos, clique em <a href="" id="start" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Começar</a> e divirta-se!
@@ -84,7 +84,26 @@
                         </p>
                         <p>
                             Na opção "Carregar problema de otimização", deve-se escolher um arquivo .txt
-                            no botão "escolher arquivo". Esse arquivo deverá conter no máximo 20 restrições e 10 variáveis. Logo após selecionar o arquivo, clique em "analisar arquivo" para que o Problema seja
+                            no botão "escolher arquivo". Esse arquivo deverá conter no máximo 20 restrições e 10 variáveis. Segue-se a seguir, um Modelo de programação linear e seu respectivo modelo de arquivo .txt em um formato
+                            que o solver reconhece. 
+                        </p>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-lg-offset-2">
+                                <div class="panel panel-primary secondary ">
+                                    <div class="panel-body">
+                                        <img src="img/modelo2txt.png" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <div class="panel panel-primary secondary ">
+                                    <div class="panel-body">
+                                        <img src="img/modelotxt.png" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Logo após selecionar o arquivo, clique em "analisar arquivo" para que o Problema seja
                             carregado.
                         </p>
                         <div class="row">
@@ -118,12 +137,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 id="sec4">Modelo de arquivo</h2><hr>
+                        <h2 id="sec2">Execução Completa</h2><hr>
                         <p>
-                            ` x_1^1 ` exemplo mathjax
-                           
+                            Na opção "Executar Completo", será apresentada uma árvore contendo como nós um problema a ser executado pelo simplex. O nó com borda mais larga, representa a solução ótima. Ao passar o mouse por cima
+                            dos nós, será apresentado os valores de x e a solução ótima. O mesmo poderá ser visto clicando em um dos nós, sendo apresentado também o modelo de programação linear e o tipo de solução.
                         </p>
-
                     </div><!--/right-->
                 </div><!--/row-->
             </div>

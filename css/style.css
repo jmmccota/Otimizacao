@@ -238,6 +238,7 @@ panel-primary {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
+
 .mpl span {
     font-size: 16.9px;
     font-family: 'STIX';
@@ -359,3 +360,5 @@ panel-primary {
     #pagModelo p {
         text-align: justify;
     }
+
+    
