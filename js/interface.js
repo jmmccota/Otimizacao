@@ -109,6 +109,8 @@ function exibirNodo(nodo, otimo) {
         script2.src = "js/ASCIIMathML.js";
         document.getElementsByTagName("head")[0].appendChild(script2);
     }
+    
+    cont2++;
     $("#valorZ").empty();
     $("#tipoSol").empty();
     $("#novosX").empty();
@@ -145,10 +147,9 @@ function exibirNodo(nodo, otimo) {
     } else {
         $("#novosX").append(novosX.substring(0, novosX.length - 2));
     }
-
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     $("#modelo").append(nodo.modelo());
     cont2++;
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 };
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
@@ -479,7 +480,6 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
-        $("#div_mpl").fadeOut("fast");
         if (!verificaTabela()) {
             a = new Arvore();
             b = new BranchBound();
