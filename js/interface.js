@@ -5,8 +5,6 @@ Arvore = function () {
 
     this.nodes = new vis.DataSet();
     this.edges = new vis.DataSet();
-    this.bestNod;
-
 
     this.adicionarNodo = function (nodo) {
         try {
@@ -26,7 +24,6 @@ Arvore = function () {
             this.edges.add({
                 to: nodo.pai,
                 from: nodo.id
-                //label: ">" + nodo.x[0]
             });
         }
         catch (err) {
@@ -36,7 +33,6 @@ Arvore = function () {
     this.setContainer = function (container) {
         this.container = container;
     };
-
     this.definirOtimo = function (otimo) {
         this.network.selectNodes([otimo.id]);
         this.bestNode = otimo;
@@ -86,12 +82,6 @@ Arvore = function () {
         this.network.on('select', function (properties) {
             try {
                 nodo = b.heap.array[properties.nodes];
-                //para verificar se o nó pe otimo na hora de escrever as informações
-                //if (this.bestNode.id == node.id) {
-                //    exibirNodo(nodo, "otimo");
-                //} else {
-                //    exibirNodo(nodo, "não é otimo");
-                //}
                 exibirNodo(nodo, b.melhorSolucao());
                 showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
             }
@@ -102,10 +92,10 @@ Arvore = function () {
     };
 
 };
-var cont2=0;
+var cont2 = 0;
 //Funções auxiliares
 function exibirNodo(nodo, otimo) {
-    
+
     if (cont2 == 0) {
         var script = document.createElement("script");
         script.type = "text/javascript";
@@ -124,30 +114,28 @@ function exibirNodo(nodo, otimo) {
     $("#novosX").empty();
     $("#modelo").empty();
 
-
-    
-    if (nodo.z === "-Inf"){
+    if (nodo.z === "-Inf") {
         $("#tipoSol").append("Solução não é inteira");
         $("#valorZ").append("`z = -\infty`");
     }
-    else if (nodo.z === "-Inf" || nodo.z === "Inf"){
+    else if (nodo.z === "-Inf" || nodo.z === "Inf") {
         $("#tipoSol").append("Solução não é inteira");
         $("#valorZ").append("`z = \infty`");
     }
-    else if(otimo === 0 || typeof(nodo.z) === "string"){
-        $("#tipoSol").append(nodo.z); 
+    else if (otimo === 0 || typeof (nodo.z) === "string") {
+        $("#tipoSol").append(nodo.z);
         $("#valorZ").append("Não possui solução viável");
     }
-    else if(nodo.id === otimo.id){
-        $("#tipoSol").append("Solução ótima");    
+    else if (nodo.id === otimo.id) {
+        $("#tipoSol").append("Solução ótima");
         $("#valorZ").append("`z = " + nodo.z + "`");
     }
-    else{
+    else {
         $("#tipoSol").append("Não é a solução ótima");
         $("#valorZ").append("`z = " + nodo.z + "`");
     }
-    
-    
+
+
     var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
         novosX += "`x_" + (i + 1) + " = " + nodo.x[i] + "`<br>"
@@ -155,14 +143,13 @@ function exibirNodo(nodo, otimo) {
     if (novosX == "") {
         $("#novosX").append("Nenhum valor.");
     } else {
-        $("#novosX").append(novosX.substring(0, novosX.length-2));
-    }   
-    
+        $("#novosX").append(novosX.substring(0, novosX.length - 2));
+    }
+
     $("#modelo").append(nodo.modelo());
     cont2++;
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-}
-
+};
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
@@ -347,9 +334,6 @@ $(document).ready(function () {
     t = Tabela();
     //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
     $("form").submit(function (event) {
-        if (!verificaTabela()) {
-            return;
-        }
         event.preventDefault();
     });
     //Novo problema de otimizacao
@@ -373,6 +357,7 @@ $(document).ready(function () {
                         className: "btn-success",
                         callback: function () {
                             $("#panelResultado").fadeOut("fast");
+                            $('#rowProgress').fadeOut('fast');
                             $("#myTableData").empty();
                             $("#myTableData2").empty();
                             t.novo();
@@ -431,8 +416,7 @@ $(document).ready(function () {
         try {
             var source = "";
             var x = leituraParametros();
-            var verifica = verificaTabela();
-            if (!verifica) {
+            if (!verificaTabela()) {
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
                     //                    source += x['objetivo'][i] >= 0 ? "+" : "";
@@ -462,10 +446,6 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
-                saveAs(blob, "modelo.txt");
-            } else {
-                source += "\r\n\r\n";
                 var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             }
@@ -499,51 +479,53 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
+        $("#div_mpl").fadeOut("fast");
+        if (!verificaTabela()) {
+            a = new Arvore();
+            b = new BranchBound();
 
-        a = new Arvore();
-        b = new BranchBound();
 
-        while (!b.terminou()) {
-            nodo = b.executar();
-            a.adicionarNodo(nodo);
-            a.adicionarAresta(nodo);
+            while (!b.terminou()) {
+                nodo = b.executar();
+                //Adiciona nodo e aresta a arvore
+                a.adicionarNodo(nodo);
+                a.adicionarAresta(nodo);
+            }
+            var otimo = b.melhorSolucao();
+
+            if (otimo != 0) {
+                progressBar("success", 100);
+                showAlert("success", "Executado com Sucesso.")
+                $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
+                $("#panelResultado").show();
+                a.setContainer(document.getElementById("resultTree"));
+
+                //Operações da arvore.
+                a.criarConexao(b);
+                a.definirOtimo(otimo);
+            }
+            else {
+                progressBar("warning", 100);
+                showAlert("warning", "Não foi póssivel obter uma solução ótiva viável.")
+            }
         }
-        var otimo = b.melhorSolucao();
-
-        if (otimo != 0) {
-            progressBar("success", 100);
-            showAlert("success", "Executado com Sucesso.")
-            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
-            $("#panelResultado").show();
-            a.setContainer(document.getElementById("resultTree"));
-
-            //Operações da arvore.
-            a.criarConexao(b);
-            a.definirOtimo(otimo);
-
-        }
-        else {
-            progressBar("warning", 100);
-            showAlert("warning", "Não foi póssivel obter uma solução ótiva viável.")
-
-        }
-
-
     });
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
-        a = new Arvore();
-        b = new BranchBound();
-        while (!b.terminou()) {
-            nodo = b.proximoPasso(function (branchBound/*precisa do BranchBound como parametro,
-             mesmo que nao seja usado*/) {
-                //funcao que retorna o indice do x que o usuario escolheu
-            });
-            //funcao de desenhar
-        }
+        if (!verificaTabela()) {
+            a = new Arvore();
+            b = new BranchBound();
+            while (!b.terminou()) {
+                nodo = b.proximoPasso(function (b) {
 
-        otimo = b.melhorSolucao();
+
+                });
+                //funcao de desenhar
+            }
+
+            otimo = b.melhorSolucao();
+        }
         //faz alguma coisa com o otimo
     });
     //Ao rolar a pagina adiciona o botao de voltar ao topo
