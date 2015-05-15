@@ -278,7 +278,8 @@ BranchBound = function () {
         while (i <= this.heap.array.length) {
             if (i === this.heap.array.length)
                 return 0;
-            else if (isNaN(this.heap.array[i].z))
+            else if (this.heap.array[i] == undefined ||
+                     isNaN(this.heap.array[i].z))
                 i++;
             else
                 break;
