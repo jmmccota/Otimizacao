@@ -105,7 +105,6 @@ function exibirNodo(nodo, otimo) {
     $("#novosX").empty();
     $("#modelo").empty();
 
-    $("#modelo").append(nodo.modelo());
 
     if (nodo.z === "-Inf") {
         $("#tipoSol").append("Solução não é inteira");
@@ -137,6 +136,8 @@ function exibirNodo(nodo, otimo) {
     } else {
         $("#novosX").append(novosX.substring(0, novosX.length - 2));
     }
+    $("#modelo").append(nodo.modelo());
+
 };
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
@@ -483,16 +484,17 @@ $(document).ready(function () {
                     a.adicionarAresta(nodo);
                 }
                 //Operações da arvore
-                progressBar("success", 100);
+                var otimo = b.melhorSolucao();
                 $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
                 $("#panelResultado").show();
+
                 a.setContainer(document.getElementById("resultTree"));
                 a.criarConexao(b);
 
-                var otimo = b.melhorSolucao();
                 if (otimo != 0) {
-                    showAlert("success", "Soloção ótima encontrada com Sucesso.")
                     a.definirOtimo(otimo);
+                    progressBar("success", 100);
+                    showAlert("success", "Solução ótima encontrada com Sucesso.")
                 }
                 else {
                     progressBar("warning", 100);
@@ -503,9 +505,7 @@ $(document).ready(function () {
             catch (err) {
                 showAlert("danger", err);
             }
-
         }
-
     });
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
