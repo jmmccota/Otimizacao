@@ -23,8 +23,8 @@ Arvore = function () {
         try {
             this.edges.add({
                 to: nodo.pai,
-                from: nodo.id
-                //label: ">" + nodo.x[0]
+                from: nodo.id,
+                label: '> e', labelAlignment: 'line-above',
             });
         }
         catch (err) {
@@ -76,22 +76,13 @@ Arvore = function () {
                 direction: "UD",
                 layout: "direction"
             }
-
         };
         this.network = new vis.Network(this.container, this.data, options);
 
         this.network.on('select', function (properties) {
             try {
                 nodo = b.heap.array[properties.nodes];
-                //para verificar se o nó pe otimo na hora de escrever as informações
-
-                //if (this.bestNode.id == node.id) {
-                //    exibirNodo(nodo, "otimo");
-                //} else {
-                //    exibirNodo(nodo, "não é otimo");
-                //}
                 exibirNodo(nodo, b.melhorSolucao());
-
                 showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
             }
             catch (err) {
@@ -101,9 +92,23 @@ Arvore = function () {
     };
 
 };
+var cont2 = 0;
 //Funções auxiliares
 function exibirNodo(nodo, otimo) {
 
+    if (cont2 == 0) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
+        document.getElementsByTagName("head")[0].appendChild(script);
+
+
+
+        var script2 = document.createElement("script");
+        script2.type = "text/javascript";
+        script2.src = "js/ASCIIMathML.js";
+        document.getElementsByTagName("head")[0].appendChild(script2);
+    }
     $("#valorZ").empty();
     $("#tipoSol").empty();
     $("#novosX").empty();
@@ -112,8 +117,18 @@ function exibirNodo(nodo, otimo) {
     $("#valorZ").append("z = " + nodo.z);
 
 
-    if (nodo.z === "-Inf" || nodo.z === "Inf")
+    if (nodo.z === "-Inf" || nodo.z === "Inf") {
         $("#tipoSol").append("Solução não é inteira.");
+        if (nodo.z === "-Inf") {
+            $("#valorZ").empty();
+            $("#valorZ").append("z = `- \infty`");
+        }
+        else {
+            $("#valorZ").empty();
+            $("#valorZ").append("z = `\infty`");
+        }
+
+    }
     else if (otimo === 0 || typeof (nodo.z) === "string") {
         $("#tipoSol").append(nodo.z);
         $("#valorZ").empty();
@@ -151,8 +166,10 @@ function exibirNodo(nodo, otimo) {
     } else {
         $("#novosX").append("`" + novosX + "`");
     }
-};  
 
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+};
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
