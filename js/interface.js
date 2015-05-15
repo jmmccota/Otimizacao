@@ -341,10 +341,14 @@ $(document).ready(function () {
         //se ja tem algum modelo aberto
         if (t.existe) {
             var nVariaveis = document.getElementById("variaveis").value;
+            if (nVariaveis > 1)
+                mensagem = "Ser&aacute; criado uma nova tabela com<b> " + nVariaveis + " </b>vari&aacute;veis."
+            else
+                mensagem = "Ser&aacute; criado uma nova tabela com<b> 1 </b>variável"
             bootbox.dialog({
                 title: '<center><b>Aviso</b></center>',
                 message: '<center><p>Todas as informa&ccedil;&otilde;es ser&atilde;o perdidas.</p></center>' +
-                        '<center><p>Ser&aacute; criado uma nova tabela com<b> ' + nVariaveis + ' </b>vari&aacute;veis</p></center>' +
+                        '<center><p>' + mensagem + '</p></center>' +
                         '<center><p>Tem certeza disso? </p></center>',
                 buttons: {
                     main: {
@@ -505,7 +509,7 @@ $(document).ready(function () {
             }
             else {
                 progressBar("warning", 100);
-                showAlert("warning", "Não foi póssivel obter uma solução ótiva viável.")
+                showAlert("warning", "Não foi póssivel obter uma solução ótima viável.")
             }
         }
     });
