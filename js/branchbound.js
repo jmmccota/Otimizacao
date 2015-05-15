@@ -34,7 +34,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         
         if(this.restricoes.length !== 0){
             for (i = 0; i < this.restricoes.length; i++) {
-                source += "res_" + (i + 1) + ":";
+                source += "Restricao" + (i + 1) + ":";
                 for (var j = 0; j < this.objetivo.length; j++) {
                     source += (this.restricoes[i][j] >= 0) ? " +" : " ";
                     source += this.restricoes[i][j] + " x" + j;
@@ -64,6 +64,42 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         source += "\nEnd\n";
 
         return source;
+    };
+    
+    this.modelo = function (){
+        var source = "";
+
+        if(this.problema === "Maximize")
+            source = 'Maximizar';
+        if(this.problema === "Minimize")
+            source = 'Minimizar';
+        source += " z = ";
+        for (var i = 0; i < this.objetivo.length; i++) {
+            source += this.objetivo[i] + " x_" + (i+1) + " ";
+        }
+        
+        source += "\n\n" + "Sujeito a:" + "\n";
+        
+        if(this.restricoes.length !== 0){
+            for (i = 0; i < this.restricoes.length; i++) {
+                for (var j = 0; j < this.objetivo.length; j++) {
+                    source += this.restricoes[i][j] + " x_" + (j+1) + " ";
+                }
+                source += this.relacoes[i] + " " + this.rhs[i];
+				source += "\n";
+            }
+        } 
+        else
+            source += " +0 x0 = 0\n";
+
+        for (i = 0; i < this.objetivo.length; i++) {
+            var aux = this.upper[i].toString().toUpperCase();
+            source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
+                    this.lower[i] + "<=" + "x" + i + "<=" + this.upper[i];
+            source += "\n";
+        }
+
+        return source.replace(/\n/g, '<br>');
     };
 };
 

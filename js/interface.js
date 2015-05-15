@@ -108,47 +108,24 @@ function exibirNodo(nodo, otimo) {
     $("#valorZ").empty();
     $("#tipoSol").empty();
     $("#novosX").empty();
-    $("#funcaoObj").empty();
+    $("#modelo").empty();
 
     $("#valorZ").append("z = " + nodo.z);
 
     
     if (nodo.z === "-Inf" || nodo.z === "Inf") 
-        $("#tipoSol").append("Solução não é inteira.");
+        $("#tipoSol").append("Solução não é inteira");
     else if(otimo === 0 || typeof(nodo.z) === "string"){
         $("#tipoSol").append(nodo.z); 
         $("#valorZ").empty();
-        $("#valorZ").append("Não possui solução viável.");
+        $("#valorZ").append("Não possui solução viável");
     }
     else if(nodo.id === otimo.id)
-        $("#tipoSol").append("Solução ótima;");    
+        $("#tipoSol").append("Solução ótima");    
     else
-        $("#tipoSol").append("Não é a solução ótima.");
+        $("#tipoSol").append("Não é a solução ótima");
     
     
-
-    var obj = "";
-
-
-    for (i = 1; i <= nodo.objetivo.length; i++) {
-        var num = nodo.objetivo[i - 1];
-        if (num >= 0 && i != 1) {
-            obj += " + " + num + "x_" + i;
-        }
-        else {
-            obj += num + "x_" + i;
-        }
-
-    }
-
-
-    if (nodo.problema == "Maximize") {
-        $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
-    } else {
-        $("#funcaoObj").append("min: " + "` z =  " + obj + " `");
-    }
-
-
     var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
         novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
@@ -156,9 +133,11 @@ function exibirNodo(nodo, otimo) {
     if (novosX == "") {
         $("#novosX").append("Nenhum valor.");
     } else {
-        $("#novosX").append("`" + novosX + "`");
+        $("#novosX").append("`" + novosX.substring(0, novosX.length-2) + "`");
     }
-
+    
+    
+    $("#modelo").append(nodo.modelo());
 }
 
 ////////////////////////////////////////////////////
