@@ -83,7 +83,7 @@ Arvore = function () {
             try {
                 nodo = b.heap.array[properties.nodes];
                 exibirNodo(nodo, b.melhorSolucao());
-                showAlert('success', 'Nó ' + nodo.numero + ' selecionado.');
+                showAlert('info', 'Nó ' + nodo.numero + ' selecionado.');
             }
             catch (err) {
                 //showAlert("danger", "Você clicou na aresta. Clique no nó!");
@@ -485,7 +485,7 @@ $(document).ready(function () {
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
-                $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
                 $("#panelResultado").show();
 
                 a.setContainer(document.getElementById("resultTree"));
