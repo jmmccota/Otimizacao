@@ -109,7 +109,7 @@ function exibirNodo(nodo, otimo) {
         script2.src = "js/ASCIIMathML.js";
         document.getElementsByTagName("head")[0].appendChild(script2);
     }
-    
+
     cont2++;
     $("#valorZ").empty();
     $("#tipoSol").empty();
@@ -485,34 +485,41 @@ $(document).ready(function () {
     //Executar Branch and Bound
     $('#executar').click(function () {
         if (!verificaTabela()) {
-            a = new Arvore();
-            b = new BranchBound();
+            try {
+                a = new Arvore();
+                b = new BranchBound();
 
 
-            while (!b.terminou()) {
-                nodo = b.executar();
-                //Adiciona nodo e aresta a arvore
-                a.adicionarNodo(nodo);
-                a.adicionarAresta(nodo);
-            }
-            var otimo = b.melhorSolucao();
-
-            if (otimo != 0) {
+                while (!b.terminou()) {
+                    nodo = b.executar();
+                    //Adiciona nodo e aresta a arvore
+                    a.adicionarNodo(nodo);
+                    a.adicionarAresta(nodo);
+                }
                 progressBar("success", 100);
                 showAlert("success", "Executado com Sucesso.")
                 $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
                 $("#panelResultado").show();
                 a.setContainer(document.getElementById("resultTree"));
 
+                var otimo = b.melhorSolucao();
                 //Operações da arvore.
                 a.criarConexao(b);
-                a.definirOtimo(otimo);
+
+                if (otimo != 0) {
+
+                    a.definirOtimo(otimo);
+                }
+                else {
+                    progressBar("warning", 100);
+                    showAlert("warning", "Não foi póssivel obter uma solução ótima viável.")
+                }
             }
-            else {
-                progressBar("warning", 100);
-                showAlert("warning", "Não foi póssivel obter uma solução ótima viável.")
+            catch (err) {
+                showAlert("danger", err);
             }
         }
+
     });
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
