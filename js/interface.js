@@ -92,29 +92,20 @@ Arvore = function () {
     };
 
 };
-var cont2 = 0;
+
 //Funções auxiliares
+var mathCont = 0;
 function exibirNodo(nodo, otimo) {
 
-    if (cont2 == 0) {
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
-        document.getElementsByTagName("head")[0].appendChild(script);
+    addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
+    addHead("js/ASCIIMathML.js");
 
-
-
-        var script2 = document.createElement("script");
-        script2.type = "text/javascript";
-        script2.src = "js/ASCIIMathML.js";
-        document.getElementsByTagName("head")[0].appendChild(script2);
-    }
-
-    cont2++;
     $("#valorZ").empty();
     $("#tipoSol").empty();
     $("#novosX").empty();
     $("#modelo").empty();
+
+    $("#modelo").append(nodo.modelo());
 
     if (nodo.z === "-Inf") {
         $("#tipoSol").append("Solução não é inteira");
@@ -137,7 +128,6 @@ function exibirNodo(nodo, otimo) {
         $("#valorZ").append("`z = " + nodo.z + "`");
     }
 
-
     var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
         novosX += "`x_" + (i + 1) + " = " + nodo.x[i] + "`<br>"
@@ -147,9 +137,6 @@ function exibirNodo(nodo, otimo) {
     } else {
         $("#novosX").append(novosX.substring(0, novosX.length - 2));
     }
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-    $("#modelo").append(nodo.modelo());
-    cont2++;
 };
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
@@ -489,35 +476,34 @@ $(document).ready(function () {
                 a = new Arvore();
                 b = new BranchBound();
 
-
                 while (!b.terminou()) {
                     nodo = b.executar();
                     //Adiciona nodo e aresta a arvore
                     a.adicionarNodo(nodo);
                     a.adicionarAresta(nodo);
                 }
+                //Operações da arvore
                 progressBar("success", 100);
-                showAlert("success", "Executado com Sucesso.")
                 $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
                 $("#panelResultado").show();
                 a.setContainer(document.getElementById("resultTree"));
-
-                var otimo = b.melhorSolucao();
-                //Operações da arvore.
                 a.criarConexao(b);
 
+                var otimo = b.melhorSolucao();
                 if (otimo != 0) {
-
+                    showAlert("success", "Soloção ótima encontrada com Sucesso.")
                     a.definirOtimo(otimo);
                 }
                 else {
                     progressBar("warning", 100);
                     showAlert("warning", "Não foi póssivel obter uma solução ótima viável.")
                 }
+
             }
             catch (err) {
                 showAlert("danger", err);
             }
+
         }
 
     });
@@ -877,26 +863,9 @@ CarregaFile = function upload() {
 function removeHead(src) {
     $("script[src='" + src + "']").remove()
 }
-//Função para verificar a existencia de um script
-function exiteHead(src) {
-    var head = $('head');
-    head = head.find('script');
-    for (i = 0; i < head.length; i++) {
-        scriptSrc = head[i].src.split("/");
-        srcLocal = src.split("/");
-        //alert(scriptSrc[scriptSrc.length - 1] + "\n " + srcLocal[srcLocal.length - 1] + "\n" + (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]));
-        if (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]) {
-            return true;
-        }
 
-    }
-}
-//Remover script Dinamico
-function removeHead(src) {
-    $("script[src='" + src + "']").remove()
-}
 //Função para verificar a existencia de um script
-function exiteHead(src) {
+function existeHead(src) {
     var head = $('head');
     head = head.find('script');
     for (i = 0; i < head.length; i++) {
@@ -905,18 +874,21 @@ function exiteHead(src) {
         if (scriptSrc[scriptSrc.length - 1] == srcLocal[srcLocal.length - 1]) {
             return true;
         }
-
     }
+    return false;
 }
-//Adiciona script dinamico
+//Adiciona script dinamico - modificado para o MathJax
 function addHead(src) {
-    if (exiteHead(src)) {
-        removeHead(src);
+    if (mathCont > 1) {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    } else {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = src;
+        document.getElementsByTagName("head")[0].appendChild(script);
+        mathCont++;
     }
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script)
+
 };
 
 function removeStyle() {
