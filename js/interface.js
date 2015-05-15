@@ -23,8 +23,7 @@ Arvore = function () {
         try {
             this.edges.add({
                 to: nodo.pai,
-                from: nodo.id,
-                label: '> e', labelAlignment: 'line-above',
+                from: nodo.id
             });
         }
         catch (err) {
@@ -76,6 +75,7 @@ Arvore = function () {
                 direction: "UD",
                 layout: "direction"
             }
+
         };
         this.network = new vis.Network(this.container, this.data, options);
 
@@ -112,63 +112,42 @@ function exibirNodo(nodo, otimo) {
     $("#valorZ").empty();
     $("#tipoSol").empty();
     $("#novosX").empty();
-    $("#funcaoObj").empty();
+    $("#modelo").empty();
 
-    $("#valorZ").append("z = " + nodo.z);
-
-
-    if (nodo.z === "-Inf" || nodo.z === "Inf") {
-        $("#tipoSol").append("Solução não é inteira.");
-        if (nodo.z === "-Inf") {
-            $("#valorZ").empty();
-            $("#valorZ").append("z = `- \infty`");
-        }
-        else {
-            $("#valorZ").empty();
-            $("#valorZ").append("z = `\infty`");
-        }
-
+    if (nodo.z === "-Inf") {
+        $("#tipoSol").append("Solução não é inteira");
+        $("#valorZ").append("`z = -\infty`");
+    }
+    else if (nodo.z === "-Inf" || nodo.z === "Inf") {
+        $("#tipoSol").append("Solução não é inteira");
+        $("#valorZ").append("`z = \infty`");
     }
     else if (otimo === 0 || typeof (nodo.z) === "string") {
         $("#tipoSol").append(nodo.z);
-        $("#valorZ").empty();
-        $("#valorZ").append("Não possui solução viável.");
+        $("#valorZ").append("Não possui solução viável");
     }
-    else if (nodo.id === otimo.id)
-        $("#tipoSol").append("Solução ótima.");
-    else
-        $("#tipoSol").append("Não é a solução ótima.");
-
-    var obj = "";
-    for (i = 1; i <= nodo.objetivo.length; i++) {
-        var num = nodo.objetivo[i - 1];
-        if (num >= 0 && i != 1) {
-            obj += " + " + num + "x_" + i;
-        }
-        else {
-            obj += num + "x_" + i;
-        }
+    else if (nodo.id === otimo.id) {
+        $("#tipoSol").append("Solução ótima");
+        $("#valorZ").append("`z = " + nodo.z + "`");
     }
-
-    if (nodo.problema == "Maximize") {
-        $("#funcaoObj").append("max: " + "` z =  " + obj + " `");
-    } else {
-        $("#funcaoObj").append("min: " + "` z =  " + obj + " `");
+    else {
+        $("#tipoSol").append("Não é a solução ótima");
+        $("#valorZ").append("`z = " + nodo.z + "`");
     }
 
 
     var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
-        novosX += "x_" + (i + 1) + " = " + nodo.x[i] + "; "
+        novosX += "`x_" + (i + 1) + " = " + nodo.x[i] + "`<br>"
     }
     if (novosX == "") {
         $("#novosX").append("Nenhum valor.");
     } else {
-        $("#novosX").append("`" + novosX + "`");
+        $("#novosX").append(novosX.substring(0, novosX.length - 2));
     }
 
+    $("#modelo").append(nodo.modelo());
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-
 };
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
@@ -507,12 +486,12 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
-
         a = new Arvore();
         b = new BranchBound();
 
         while (!b.terminou()) {
             nodo = b.executar();
+            //Adiciona nodo e aresta a arvore
             a.adicionarNodo(nodo);
             a.adicionarAresta(nodo);
         }
@@ -528,15 +507,11 @@ $(document).ready(function () {
             //Operações da arvore.
             a.criarConexao(b);
             a.definirOtimo(otimo);
-
         }
         else {
             progressBar("warning", 100);
             showAlert("warning", "Não foi póssivel obter uma solução ótiva viável.")
-
         }
-
-
     });
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {

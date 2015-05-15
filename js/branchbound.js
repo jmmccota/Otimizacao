@@ -34,7 +34,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         
         if(this.restricoes.length !== 0){
             for (i = 0; i < this.restricoes.length; i++) {
-                source += "res_" + (i + 1) + ":";
+                source += "Restricao" + (i + 1) + ":";
                 for (var j = 0; j < this.objetivo.length; j++) {
                     source += (this.restricoes[i][j] >= 0) ? " +" : " ";
                     source += this.restricoes[i][j] + " x" + j;
@@ -64,6 +64,54 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         source += "\nEnd\n";
 
         return source;
+    };
+    
+    this.modelo = function (){
+        var source = "";
+
+        if(this.problema === "Maximize")
+            source = 'Maximizar';
+        if(this.problema === "Minimize")
+            source = 'Minimizar';
+        source += " `z = ";
+        for (var i = 0; i < this.objetivo.length; i++) {
+            if(this.restricoes[i][j] === 0) continue;
+            source += (this.objetivo[i] === 1) ?
+                " x_" + (i+1) + " ":
+                this.objetivo[i] + " x_" + (i+1) + " ";
+        }
+        source += "`";
+        
+        source += "\n" + "Sujeito a:" + "\n";
+        
+        if(this.restricoes.length !== 0){
+            for (i = 0; i < this.restricoes.length; i++) {
+                var primeiro = true;
+                source += "`";
+                for (var j = 0; j < this.objetivo.length; j++) {
+                    if(this.restricoes[i][j] === 0) continue;
+                    if(!primeiro)
+                        source += (this.restricoes[i][j] > 0) ? " + " : " ";
+                    else
+                        primeiro = false;
+                    source += (this.restricoes[i][j] === 1) ?
+                            " x_" + (j+1) + " " :
+                            this.restricoes[i][j] + "x_" + (j+1) + " ";
+                }
+                source += this.relacoes[i] + " " + this.rhs[i];
+		source += "`\n";
+            }
+        }
+
+        for (i = 0; i < this.objetivo.length; i++) {
+                source += "`";
+            var aux = this.upper[i].toString().toUpperCase();
+            source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
+                    this.lower[i] + "<=" + "x_" + i + "<=" + this.upper[i];
+            source += "`\n";
+        }
+
+        return source.replace(/\n/g, '<br>');
     };
 };
 
