@@ -671,7 +671,7 @@ function fileUpload(arq) {
     var string = "";
     //o parametro arq é o endereço do txt
     //carrega o txt
-    var arquivo = dados.OpenTextFile(arq, 1, true);
+    var arquivo = document.OpenTextFile(arq, 1, true);
     //varre o arquivo
     while (!arquivo.AtEndOfStream) {
         string += arquivo.ReadAll();
@@ -692,9 +692,9 @@ CarregaFile = function upload() {
     var problema = "";
     var nVariaveis = 0;
     var iRest = 0;
-    var fileInput = document.getElementById('inputFile');
+    //var fileInput = document.getElementById('inputFile');
     //fileInput.addEventListener('change', function (e) {
-    var file = fileInput.files[0];
+    var file =  document.getElementById('inputFile').files[0];
     var textType = /text.*/;
     //alert("entrou fileinput");
     if (file.type.match(textType)) {
@@ -719,7 +719,7 @@ CarregaFile = function upload() {
                     } else if (source[1] === "i") {
                         problema = "Minimize";
                     } else {
-                        alert("Arquivo estÃ¡ errado!!!");
+                        alert("Arquivo está errado!!!");
                     }
                     //alert(problema);
                     while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
