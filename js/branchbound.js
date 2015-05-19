@@ -74,8 +74,13 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         if (this.problema === "Minimize")
             source = 'Minimizar';
         source += " `z = ";
+        var primeiro = true;
         for (var i = 0; i < this.objetivo.length; i++) {
-            if (this.restricoes[i][j] === 0) continue;
+            if (this.objetivo[i] === 0) continue;
+            if (!primeiro)
+                source += (this.restricoes[i][j] > 0) ? " + " : " ";
+            else
+                primeiro = false;
             source += (this.objetivo[i] === 1) ?
                 " x_" + (i + 1) + " " :
                 this.objetivo[i] + " x_" + (i + 1) + " ";
@@ -106,8 +111,8 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         for (i = 0; i < this.objetivo.length; i++) {
             source += "`";
             var aux = this.upper[i].toString().toUpperCase();
-            source += (aux === "INF") ? "x" + i + ">=" + this.lower[i] :
-                    this.lower[i] + "<=" + "x_" + i + "<=" + this.upper[i];
+            source += (aux === "INF") ? "x" + (i+1) + ">=" + this.lower[i] :
+                    this.lower[i] + "<=" + "x_" + (i+1) + "<=" + this.upper[i];
             source += "`\n";
         }
         //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
@@ -182,18 +187,8 @@ BranchBound = function () {
         //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
         return (this.fila.length == undefined || this.fila.length == 0);
     };
-
-    this.proximoPasso = function (escolhaVariavel) {
-        /*
-         * escolhaVariavel eh uma funcao para escolher qual xi sofrera a bifurcacao.
-         *     para executar normalmente se passa this.escolheVariavel.
-         *     para executar passo a passo se passa uma funcao que retorna o indice
-         *         do xi que o usuario escolheu.
-         * executa uma iteracao do branch and bound:
-         *     gera os proximos branchs e resolve o proximo da fila
-         *     retorna o nodo que foi resolvido
-         */
-
+    
+    this.resolveNodo = function (){
         //retira o 1o da fila
         var nodo = this.heap.array[this.fila.shift()];
         //atual = 1o da fila
@@ -203,10 +198,22 @@ BranchBound = function () {
         //completa o nodo
         nodo.x = res["x"];
         nodo.z = res["z"];
+        
+        //Olha se nodo vai gerar filhos (para saber se vai terminar)
+        var tudoInteiro = true;
+        for(var i = 0; i < nodo.x.length; i++)
+            tudoInteiro &= parseFloat(nodo.x[i]) == Math.floor(nodo.x[i]);
+        //insere 2 nodos na fila
+        if (!isNaN(nodo.z) &&
+            !tudoInteiro) {
+            this.fila.push(this.atual * 2);
+            this.fila.push(this.atual * 2 + 1);
+        }
+        
+        return nodo;
+    };
 
-        //escolhe qual variavel vai sair
-        var xi = escolhaVariavel(this);
-
+    this.geraFilhos = function (xi) {
         //se heap[atual].x[xi] for viavel e fracionario
         var x = this.heap.array[this.atual].x[xi];
         if (!isNaN(this.heap.array[this.atual].z) &&
@@ -226,24 +233,22 @@ BranchBound = function () {
             dir.lower[xi] = Math.ceil(x);
             esq.upper[xi] = Math.floor(x);
 
-            //insere 2 nodos no heap e na fila
+            //insere 2 nodos no heap
             this.heap.insereNodos(this.atual, esq, dir);
-            this.fila.push(this.atual * 2);
-            this.fila.push(this.atual * 2 + 1);
         }
-
-        return nodo;
     };
 
     this.executar = function () {
-        return this.proximoPasso(this.escolheVariavel);
+        var nodo = this.resolveNodo();
+        this.geraFilhos(this.escolheVariavel());
+        return nodo;
     };
 
-    this.escolheVariavel = function (b) {
+    this.escolheVariavel = function () {
         /*
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
-        var x = b.heap.array[b.atual].x;
+        var x = this.heap.array[b.atual].x;
 
         var mini = 0;
         var minval = 1;
@@ -288,14 +293,18 @@ BranchBound = function () {
         var otim = this.heap.array[i];
 
         //para cada solucao
-        for (nodo in this.heap.array) {
+        for (var j = i; j < this.heap.array.length; j++) {
+            if(this.heap.array[j] == undefined)
+                continue
             //se solucao eh viavel
-            if (!isNaN(nodo.z)) {
+            else if (!isNaN(this.heap.array[j].z)) {
                 //e for melhor que a otima
-                if (nodo.problema === "Maximize" && nodo.z > otim.z ||
-                        nodo.problema === "Minimize" && nodo.z < otim.z)
+                if ((this.heap.array[j].problema === "Maximize" &&
+                        this.heap.array[j].z > otim.z) ||
+                    (this.heap.array[j].problema === "Minimize" &&
+                        this.heap.array[j].z < otim.z))
                     // passa a ser a nova otima
-                    otim = nodo;
+                    otim = this.heap.array[j];
             }
         }
 

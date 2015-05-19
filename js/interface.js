@@ -94,7 +94,7 @@ Arvore = function () {
 };
 
 //Funções auxiliares
-var mathCont = 0;
+mathCont = 0;
 function exibirNodo(nodo, otimo) {
 
     addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
@@ -129,16 +129,19 @@ function exibirNodo(nodo, otimo) {
 
     var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
-        novosX += "`x_" + (i + 1) + " = " + nodo.x[i] + "`<br>"
+        novosX += '<div id="' + i + '" onclick="selecionaX(' + i + ')">`x_' + (i + 1) + ' = ' + nodo.x[i] + '`</div>';
     }
     if (novosX == "") {
         $("#novosX").append("Nenhum valor.");
     } else {
-        $("#novosX").append(novosX.substring(0, novosX.length - 2));
+        $("#novosX").append(novosX);
     }
     $("#modelo").append(nodo.modelo());
 
-};
+}
+;
+
+
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
@@ -185,7 +188,7 @@ Tabela = function () {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 20) {
 
-                for (j = 2; j < (t.nRestri + 2) ; j++) {
+                for (j = 2; j < (t.nRestri + 2); j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -316,8 +319,8 @@ Tabela = function () {
     return t;
 };
 
-$(document).ready(function () {
 
+$(document).ready(function () {
     //Por padrao os botoes estao escondidos
     hideFormProblema();
     t = Tabela();
@@ -360,7 +363,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -439,7 +442,7 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -485,22 +488,21 @@ $(document).ready(function () {
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
-                $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
+                $("html, body").animate({scrollTop: $(document).height() - 380}, 1500);
                 $("#panelResultado").show();
 
                 a.setContainer(document.getElementById("resultTree"));
                 a.criarConexao(b);
 
-                if (otimo != 0) {
+                if (otimo !== 0) {
                     a.definirOtimo(otimo);
                     progressBar("success", 100);
-                    showAlert("success", "Solução ótima encontrada com Sucesso.")
+                    showAlert("success", "Solução ótima encontrada com sucesso.")
                 }
                 else {
                     progressBar("warning", 100);
-                    showAlert("warning", "Não foi póssivel obter uma solução ótima viável.")
+                    showAlert("warning", "Não foi possivel obter uma solução ótima viável.")
                 }
-
             }
             catch (err) {
                 showAlert("danger", err);
@@ -513,17 +515,33 @@ $(document).ready(function () {
         if (!verificaTabela()) {
             a = new Arvore();
             b = new BranchBound();
-            while (!b.terminou()) {
-                nodo = b.proximoPasso(function (b) {
+            $("html, body").animate({scrollTop: $(document).height() - 380}, 1500);
+            $("#panelResultado").show();
+            nodos = [];
 
-
-                });
-                //funcao de desenhar
-            }
-
-            otimo = b.melhorSolucao();
+            var nodo = b.resolveNodo();
+            a.adicionarNodo(nodo);
+            a.adicionarAresta(nodo);
+            nodos.push(nodo);
+            a.setContainer(document.getElementById("resultTree"));
+            a.criarConexao(b);
+            $('#proximoPasso').show('fast');
         }
-        //faz alguma coisa com o otimo
+    });
+    //Define botao para proximo passo
+    $('#proximoPasso').click(function () {
+        if (b.terminou())
+            a.definirOtimo(b.melhorSolucao());
+        delete a;
+        a = new Arvore();
+        b.geraFilhos(b.escolheVariavel());
+        nodos.push(b.resolveNodo());
+        for (var i = 0; i < nodos.length; i++) {
+            a.adicionarNodo(nodos[i]);
+            a.adicionarAresta(nodos[i]);
+        }
+        a.setContainer(document.getElementById("resultTree"));
+        a.criarConexao(b);
     });
     //Ao rolar a pagina adiciona o botao de voltar ao topo
     $(document).on('scroll', function () {
@@ -535,11 +553,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
@@ -562,6 +580,22 @@ $(document).ready(function () {
 
     });
 });
+
+//Define proximo passo a partir de selecao da variavel
+function selecionaX(xi) {
+    if (b.terminou())
+        a.definirOtimo(b.melhorSolucao());
+    delete a;
+    a = new Arvore();
+    b.geraFilhos(xi);
+    nodos.push(b.resolveNodo());
+    for (var i = 0; i < nodos.length; i++) {
+        a.adicionarNodo(nodos[i]);
+        a.adicionarAresta(nodos[i]);
+    }
+    a.setContainer(document.getElementById("resultTree"));
+    a.criarConexao(b);
+}
 
 // Proibe a digitação de letras e simbolos especiais
 function isNumberKey(evt) {
@@ -598,9 +632,9 @@ function showFormProblema() {
 
 function showFormProblema2() {
     //Da active no <li> section A
-    $("#a").removeClass()
+    $("#a").removeClass();
     $("#a").addClass("active");
-    $("#b").removeClass()
+    $("#b").removeClass();
 
     //Muda de Aba para section A
     $secA = $("#sectionA");
@@ -620,6 +654,7 @@ function hideFormProblema() {
     $('#salvar').hide('fast');
     $('#limpar').hide('fast');
     $('#esconde').hide('fast');
+    $('#proximoPasso').hide('fast');
 }
 
 //Progress Bar
@@ -861,7 +896,7 @@ CarregaFile = function upload() {
 }
 //Remover script Dinamico
 function removeHead(src) {
-    $("script[src='" + src + "']").remove()
+    $("script[src='" + src + "']").remove();
 }
 
 //Função para verificar a existencia de um script
@@ -889,7 +924,7 @@ function addHead(src) {
         mathCont++;
     }
 
-};
+}
 
 function removeStyle() {
     $('style').empty();
