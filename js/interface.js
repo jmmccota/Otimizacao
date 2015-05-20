@@ -129,9 +129,12 @@ function exibirNodo(nodo, otimo) {
 
     var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
-        novosX += '<div id="' + i + '" onclick="selecionaX(' + i + ')">`x_' + (i + 1) + ' = ' + nodo.x[i] + '`</div>';
+        novosX += '<div id="' + i + '" onclick="selecionaX(' + i + ')" class="';
+        if(i === nodo.xi)
+            novosX += 'destacaXi ';
+        novosX += 'destacaXialt">`x_' + (i + 1) + ' = ' + nodo.x[i] + '`</div>';
     }
-    if (novosX == "") {
+    if (novosX === "") {
         $("#novosX").append("Nenhum valor.");
     } else {
         $("#novosX").append(novosX);

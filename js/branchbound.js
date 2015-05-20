@@ -235,6 +235,8 @@ BranchBound = function () {
 
             //insere 2 nodos no heap
             this.heap.insereNodos(this.atual, esq, dir);
+            
+            this.heap.array[this.atual].xi = xi;
         }
     };
 
@@ -248,7 +250,7 @@ BranchBound = function () {
         /*
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
-        var x = this.heap.array[b.atual].x;
+        var x = this.heap.array[this.atual].x;
 
         var mini = 0;
         var minval = 1;
