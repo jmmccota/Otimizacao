@@ -1,3 +1,5 @@
+//Varivel de controle para MathJax.js
+mathCont = 0;
 ////////////////////////////////////////////////////
 //                FUNCOES DA ARVORE               //
 ////////////////////////////////////////////////////
@@ -92,9 +94,7 @@ Arvore = function () {
     };
 
 };
-
 //Funções auxiliares
-mathCont = 0;
 function exibirNodo(nodo, otimo) {
 
     addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
@@ -143,8 +143,6 @@ function exibirNodo(nodo, otimo) {
 
 }
 ;
-
-
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
@@ -191,7 +189,7 @@ Tabela = function () {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 21) {
 
-                for (j = 2; j < (t.nRestri + 2); j++) {
+                for (j = 2; j < (t.nRestri + 2) ; j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -215,8 +213,8 @@ Tabela = function () {
                 class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
                 }
             } else {
-                alert("Mais de 20 restriçoes...ERRO!!!! ");
-                window.location = "index.html";
+                showAlert('warning', 'Limite máximo de restrições atingido: 20!');
+                
             }
         }
         //Limite superior e inferior
@@ -233,14 +231,14 @@ Tabela = function () {
         for (i = 1; i <= t.nVar; i++) {
 
             row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
-                    class="limSup form-control" required  step="any" value="' + t.upper[i - 1] + '">';
+                    class="limSup form-control" onkeypress="return isInfinityKey(event)" required  step="any" value="' + t.upper[i - 1] + '">';
         }
         row = table.insertRow(rowCount + 1);
         row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
         for (i = 1; i <= t.nVar; i++) {
 
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
-                    class="limInf form-control" required  step="any" value="' + t.lower[i - 1] + '">';
+                    class="limInf form-control" onkeypress="return isInfinityKey(event)" required  step="any" value="' + t.lower[i - 1] + '">';
         }
 
 
@@ -282,13 +280,13 @@ Tabela = function () {
         row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
         for (i = 1; i <= t.nVar; i++) {
             row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
-                    class="limSup form-control" required  step="any">';
+                    class="limSup form-control" onkeypress="return isInfinityKey(event)" required  step="any">';
         }
         row = table.insertRow(rowCount + 1);
         row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
-                    class="limInf form-control" required  step="any">';
+                    class="limInf form-control" onkeypress="return isInfinityKey(event)" required  step="any">';
     };
     //Adiciona restricoes ao modelo
     t.addRow = function () {
@@ -322,7 +320,6 @@ Tabela = function () {
     t.existe = false;
     return t;
 };
-
 
 $(document).ready(function () {
     //Por padrao os botoes estao escondidos
@@ -367,7 +364,7 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -446,7 +443,7 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -492,7 +489,7 @@ $(document).ready(function () {
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
-                $("html, body").animate({scrollTop: $(document).height() - 385}, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
 
                 $("#panelResultado").show();
 
@@ -520,7 +517,7 @@ $(document).ready(function () {
         if (!verificaTabela()) {
             a = new Arvore();
             b = new BranchBound();
-            $("html, body").animate({scrollTop: $(document).height() - 380}, 1500);
+            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
             $("#panelResultado").show();
             nodos = [];
 
@@ -558,11 +555,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
@@ -611,6 +608,26 @@ function isNumberKey(evt) {
         return false;
     }
     return true;
+}
+
+function isInfinityKey(evt) {
+    var valida = false;
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        if (charCode >= 44 && charCode <= 46)
+            valida = true;
+        else
+            if (charCode == 105)
+                valida = true;
+            else if (charCode == 110)
+                valida = true
+            else if (charCode == 102)
+                valida = true;
+            else
+                valida = false;
+    }
+
+    return valida;
 }
 
 //Cria um alert bootstrap
