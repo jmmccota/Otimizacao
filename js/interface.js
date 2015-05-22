@@ -214,7 +214,7 @@ Tabela = function () {
                 }
             } else {
                 showAlert('warning', 'Limite máximo de restrições atingido: 20!');
-                
+
             }
         }
         //Limite superior e inferior
@@ -617,14 +617,15 @@ function isInfinityKey(evt) {
         if (charCode >= 44 && charCode <= 46)
             valida = true;
         else
-            if (charCode == 105)
-                valida = true;
-            else if (charCode == 110)
-                valida = true
-            else if (charCode == 102)
+            //inf minuscuto
+            if (charCode == 105 || charCode == 110 || charCode == 102)
                 valida = true;
             else
-                valida = false;
+                //INF maiusculo
+                if (charCode == 70 || charCode == 73 || charCode == 78)
+                    valida = true;
+                else
+                    valida = false;
     }
 
     return valida;
