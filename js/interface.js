@@ -130,7 +130,7 @@ function exibirNodo(nodo, otimo) {
     var novosX = "";
     for (i = 0; i < nodo.x.length; i++) {
         novosX += '<div id="' + i + '" onclick="selecionaX(' + i + ')" class="';
-        if(i === nodo.xi)
+        if (i === nodo.xi)
             novosX += 'destacaXi ';
         novosX += 'destacaXialt">`x_' + (i + 1) + ' = ' + nodo.x[i] + '`</div>';
     }
@@ -189,9 +189,9 @@ Tabela = function () {
             alert("Nao possui restricoes");
         } else {
             var table = document.getElementById("myTableData");
-            if (t.nRestri < 20) {
+            if (t.nRestri < 21) {
 
-                for (j = 2; j < (t.nRestri + 2) ; j++) {
+                for (j = 2; j < (t.nRestri + 2); j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -216,6 +216,7 @@ Tabela = function () {
                 }
             } else {
                 alert("Mais de 20 restriçoes...ERRO!!!! ");
+                window.location = "index.html";
             }
         }
         //Limite superior e inferior
@@ -366,7 +367,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -445,7 +446,7 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -491,7 +492,7 @@ $(document).ready(function () {
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
-                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
+                $("html, body").animate({scrollTop: $(document).height() - 385}, 1500);
 
                 $("#panelResultado").show();
 
@@ -519,7 +520,7 @@ $(document).ready(function () {
         if (!verificaTabela()) {
             a = new Arvore();
             b = new BranchBound();
-            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
+            $("html, body").animate({scrollTop: $(document).height() - 380}, 1500);
             $("#panelResultado").show();
             nodos = [];
 
@@ -557,11 +558,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
@@ -669,19 +670,6 @@ function progressBar(type, percent) {
     $pb.removeClass();
     $pb.addClass('progress-bar progress-bar-' + type + ' active');
     $pb.width(percent + "%");
-}
-
-function fileUpload(arq) {
-    var string = "";
-    //o parametro arq é o endereço do txt
-    //carrega o txt
-    var arquivo = document.OpenTextFile(arq, 1, true);
-    //varre o arquivo
-    while (!arquivo.AtEndOfStream) {
-        string += arquivo.ReadAll();
-    }
-    //fecha o txt
-    arquivo.Close();
 }
 
 // ??????????
@@ -897,7 +885,7 @@ CarregaFile = function upload() {
         iRest: iRest
 
     };
-}
+};
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove();
