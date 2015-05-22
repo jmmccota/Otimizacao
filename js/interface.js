@@ -404,7 +404,7 @@ $(document).ready(function () {
                         $("#myTableData").empty();
                         $("#myTableData2").empty();
                         t.novo();
-                        showAlert('success', 'Limpeza realizada com Sucesso!')
+                        showAlert('success', 'Limpeza realizada com Sucesso!');
                     }
                 }
             }
@@ -785,7 +785,7 @@ CarregaFile = function upload() {
                         relacoes.push("=");
                         cont++;
                     } else {
-                        alert("Erro!!!");
+                        alert("Erro!!! Sentido da expressão inexistente");
                     }
                     //                    alert("relacao " + relacoes[iRest - 1]);
                     var ld = "";
@@ -818,7 +818,7 @@ CarregaFile = function upload() {
                     //alert("cont4 "+source[cont]);
                     while (source[cont] !== "\n") { //pega a linha com os minimos
                         linha += source[cont];
-                        cont++
+                        cont++;
                     }
                     //alert("linha3 inteira "+linha);
                     var lw = linha.split("|", nVariaveis); //separa valores
@@ -859,12 +859,8 @@ CarregaFile = function upload() {
                     //alert("Pegou os valores, falta mandar pra tabela");
                 }
                 if (p === 6) {//termina
-
                     cont = source.length;
                 }
-
-
-
             }
         };
         reader.readAsText(file);
