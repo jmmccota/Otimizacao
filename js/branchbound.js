@@ -79,7 +79,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
             if (this.objetivo[i] === 0)
                 continue;
             if (!primeiro)
-                source += (this.restricoes[i][j] > 0) ? " + " : " ";
+                source += (this.objetivo[i] > 0) ? " + " : " ";
             else
                 primeiro = false;
             source += (this.objetivo[i] === 1) ?
@@ -557,4 +557,4 @@ leituraParametros = function () {
 
 };
 
-//@ sourceURL=branchbound.js
+//# sourceURL=branchbound.js
