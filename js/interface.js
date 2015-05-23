@@ -598,12 +598,10 @@ $(document).ready(function () {
                 alert(log);
         }
     });
-
     //Carregar, cria um evento de listener
-    var fileInput = document.getElementById('fileInput');
-    var fileDisplayArea = document.getElementById('fileDisplayArea');
-
     fileInput.addEventListener('change', function (e) {
+        var fileInput = document.getElementById('fileInput');
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
         var file = fileInput.files[0];
         var textType = /text.*/;
 
@@ -640,7 +638,7 @@ function selecionaX(xi) {
     }
     a.setContainer(document.getElementById("resultTree"));
     a.criarConexao(b);
-}
+};
 
 // Proibe a digitação de letras e simbolos especiais
 function isNumberKey(evt) {
@@ -651,7 +649,7 @@ function isNumberKey(evt) {
         return false;
     }
     return true;
-}
+};
 
 function isInfinityKey(evt) {
 
@@ -675,19 +673,19 @@ function isInfinityKey(evt) {
         valida = true;
 
     return valida;
-}
+};
 
 //Cria um alert bootstrap
 function showAlert(type, message) {
     $('#alert').removeClass();
     $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
     window.setTimeout(closeAlert, 3000);
-}
+};
 
 //Apaga um alert bootstrap
 function closeAlert() {
     $('#alert').fadeOut();
-}
+};
 
 //Mostra os botoes de controle da tabela
 function showFormProblema() {
@@ -697,7 +695,7 @@ function showFormProblema() {
     $('#passoAPasso').show('fast');
     $('#salvar').show('fast');
     $('#limpar').show('fast');
-}
+};
 
 function showFormProblema2() {
     //Da active no <li> section A
@@ -713,7 +711,7 @@ function showFormProblema2() {
     $secA.removeClass();
     $secA.addClass("tab-pane fade in active");
     showFormProblema();
-}
+};
 //Esconde os botoes de controle da tabela
 function hideFormProblema() {
     $('#addRow').hide('fast');
@@ -724,7 +722,7 @@ function hideFormProblema() {
     $('#limpar').hide('fast');
     $('#esconde').hide('fast');
     $('#proximoPasso').hide('fast');
-}
+};
 
 //Progress Bar
 function progressBar(type, percent) {
@@ -734,12 +732,12 @@ function progressBar(type, percent) {
     $pb.removeClass();
     $pb.addClass('progress-bar progress-bar-' + type + ' active');
     $pb.width(percent + "%");
-}
+};
 
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove();
-}
+};
 
 //Função para verificar a existencia de um script
 function existeHead(src) {
@@ -753,7 +751,7 @@ function existeHead(src) {
         }
     }
     return false;
-}
+};
 //Adiciona script dinamico - modificado para o MathJax
 function addHead(src) {
     if (mathCont > 1) {
@@ -766,11 +764,11 @@ function addHead(src) {
         mathCont++;
     }
 
-}
+};
 
 function removeStyle() {
     $('style').empty();
-}
+};
 
 function analisarFile() {
     try {
@@ -965,5 +963,5 @@ function analisarFile() {
         nVariaveis: nVariaveis,
         iRest: iRest
     };
-};
-//@ sourceURL=interface.js 
+};   
+//# sourceURL=interface.js
