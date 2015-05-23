@@ -947,4 +947,4 @@ function analisarFile() {
         iRest: iRest
     };
 };
-    
+//@ sourceURL=interface.js 

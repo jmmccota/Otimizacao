@@ -1,127 +1,129 @@
-<div id="masthead">
+<body>
+    <div id="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>
+                        Branch-Bound
+                        <p class="lead">Programação Linear Inteira Mista(PLIM)</p>
+                    </h1>
+                </div>
+                <a href="#" id="back" onclick="backIndex()">
+                    <div class="col-md-2 col-md-offset-3">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <img src="img/back.png" class="img-responsive">
+                                </div>
+                                <div class="col-sm-4">
+                                    Voltar
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div><!--/container-->
+    </div><!--/masthead-->
+    <!--main-->
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
-                <h1>
-                    Branch-Bound
-                    <p class="lead">Programação Linear Inteira Mista(PLIM)</p>
-                </h1>
-            </div>
-            <a href="#" id="back" onclick="backIndex()">
-                <div class="col-md-2 col-md-offset-3">
-                    <div class="well well-sm">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <img src="img/back.png" class="img-responsive">
-                            </div>
-                            <div class="col-sm-4">
-                                Voltar
+            <!--left-->
+            <div class="col-md-3" id="leftCol">
+                <ul class="nav nav-stacked" id="sidebar">
+                    <li><a href="#sec0">Introdução</a></li>
+                    <li><a href="#sec1">Resolvendo PLIM	</a></li>
+                </ul>
+            </div><!--/left-->
+            <!--right-->
+            <div class="col-md-9" id="pagModelo">
+                <h2 id="sec0">Introdução </h2>
+                <hr>
+                <p>
+                    A programação Linear Inteira Mista tem uma grande vantagem em relação a Programação Inteira que é permitir que sejam incluídos
+                    na análise os custos fixos, bem como diferentes níveis de custos variáveis para as instalãções.
+                    Estes problemas possuem soluções mais complexa em relação aqueles que utilizam a Programação Linear. Contudo na Programação Linear,
+                    existem condições necessárias e suficientes de otimização teoricamente provadas que podem ser
+                    utilizadas para testar eficientemente se uma dada solução viável é uma solução ótima ou não.
+                </p>
+                <p>
+                    A Programação Linear está preocupada com a maximização ou minimização de uma
+                    equação sobre certos critérios ou restrições. Abaixo temos um exemplo:
+                </p>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="panel panel-primary secondary ">
+                            <div class="panel-heading"><h4> Exemplo:</h4></div>
+                            <div class="panel-body">
+                                <img src="img/exemplo1.png" class="img-responsive">
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6 col-sm-6">
+                        <blockquote>
+                            <p> Este problema pode ser resolvido pelo Método Simplex ou Simplex duas Fases. A solução ótima se encontra abaixo: </p>
+                            <center>
+                                ` x = (x_1,x_2,x_3) = (0.5,0,1.5)`
+                            </center>
+                        </blockquote>
+                    </div>
+
                 </div>
-            </a>
-        </div>
+                <p>
+                    Problemas como estes são utilizados em todas as empresas para minimizar o desperdício, maximizar lucro, ou otimizar a outros aspectos do negócio .
+                    No entanto, algumas partes da solução pode ser limitada a números inteiros,
+
+                    `x in  Z^+`
+                </p>
+                <p>
+                    Programação linear inteira mista é uma PL(Programação Linear) que existe alguma ou todas as variáveis não inteiras. Portanto precisamos de encontrar uma
+                    nova solução ótima para evitarmos casos de números parciais. Simplesmente com o arredondamento, a solução muitas vezes pode sair da região viável, comprometendo a otimalidade.
+                </p>
+
+                <br>
+                <h2 id="sec1">Resolvendo PLIM Usando Branch-Bound</h2><hr>
+                <p>
+                    O problema com a resolu&ccedil;&atilde;o de PLIMs usando o m&eacute;todo Simplex &eacute; que ele
+                    frequentemente retorna partes de
+                    ` x = (x_1,x_2,x_3)` que n&atilde;o est&atilde;o em forma de n&uacute;mero inteiro.
+                </p>
+                <p>
+                    Para resolver usando o Branch and Bound, primeiro resolvemos o problema usando o Relaxamento, o que significa resolv&ecirc;-lo pelo Simplex Revisado como se n&atilde;o houvesse
+                    restri&ccedil;&odblac;es inteiras. Assim, obtemos: ` z = cx`.
+                </p>
+                <p>
+                    Como o exemplo usado envolve um problema de maximiza&ccedil;&atilde;o que engloba todas as solu&ccedil;&odblac;es inteiras, ent&atilde;o esse &eacute; um limite superior da PLIM. Em seguida, escolhe-se uma vari&aacute;vel n&atilde;o inteira.
+                    Comumente, escolhe-se a vari&aacute;vel mais fracionada, que esteja mais pr&oacute;xima do valor mediano ou mais distante de um n&uacute;mero inteiro.
+                </p>
+                <p>
+                    Por exemplo, em ` x = (1.25, 3.45, 2.75, 5)`, escolhe-se ramificar em `x_2`, pois `0.45` est&aacute; mais pr&oacute;ximo de `0.5` do que as outras fra&ccedil;&odblac;es. A partir disso, criamos
+                    dois subproblemas ou dois nodos de nossa &aacute;rvore. Em um n&oacute; adicionamos a restri&ccedil;&atilde;o `x_2<=3`, na outra adicionamos `x_2>=4`. Seja `S` o conjunto solu&ccedil;&atilde;o vi&aacute;vel do relaxamento: `S = {x: Ax<=b\ e\ x>=0}`, temos que:
+                </p>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-md-offset-4">
+                        <blockquote>
+                            <center>
+                                ` S_1 = S \cap{x:x_j <= \lfloor\hat{x}_j\rfloor\} `
+                                ` S_1 = S \cap{x:x_j >= \ceil{hat{x}_j}} `
+                            </center>
+                        </blockquote>
+                    </div>
+                </div>
+                <p>
+                    Ent&atilde;o, cada um dos n&oacute;s devem ser resolvidos com suas novas restri&ccedil;&odblac;es pelo m&eacute;todo Dual Simplex. Caso o problema seja invi&aacute;vel, ent&atilde;o o n&oacute; &eacute; cortado por inviabilidade. A solu&ccedil;&atilde;o &oacute;tima &eacute; encontrada quando todos os n&oacute;s fracion&aacute;rios s&atilde;o cortados.
+                </p>
+
+
+            </div><!--/right-->
+        </div><!--/row-->
     </div><!--/container-->
-</div><!--/masthead-->
-<!--main-->
-<div class="container">
-    <div class="row">
-        <!--left-->
-        <div class="col-md-3" id="leftCol">
-            <ul class="nav nav-stacked" id="sidebar">
-                <li><a href="#sec0">Introdução</a></li>
-                <li><a href="#sec1">Resolvendo PLIM	</a></li>
-            </ul>
-        </div><!--/left-->
-        <!--right-->
-        <div class="col-md-9" id="pagModelo">
-            <h2 id="sec0">Introdução </h2>
-            <hr>
-            <p>
-                A programação Linear Inteira Mista tem uma grande vantagem em relação a Programação Inteira que é permitir que sejam incluídos
-                na análise os custos fixos, bem como diferentes níveis de custos variáveis para as instalãções.
-                Estes problemas possuem soluções mais complexa em relação aqueles que utilizam a Programação Linear. Contudo na Programação Linear,
-                existem condições necessárias e suficientes de otimização teoricamente provadas que podem ser
-                utilizadas para testar eficientemente se uma dada solução viável é uma solução ótima ou não.
-            </p>
-            <p>
-                A Programação Linear está preocupada com a maximização ou minimização de uma
-                equação sobre certos critérios ou restrições. Abaixo temos um exemplo:
-            </p>
-
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="panel panel-primary secondary ">
-                        <div class="panel-heading"><h4> Exemplo:</h4></div>
-                        <div class="panel-body">
-                            <img src="img/exemplo1.png" class="img-responsive">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <blockquote>
-                        <p> Este problema pode ser resolvido pelo Método Simplex ou Simplex duas Fases. A solução ótima se encontra abaixo: </p>
-                        <center>
-                            ` x = (x_1,x_2,x_3) = (0.5,0,1.5)`
-                        </center>
-                    </blockquote>
-                </div>
-
-            </div>
-            <p>
-                Problemas como estes são utilizados em todas as empresas para minimizar o desperdício, maximizar lucro, ou otimizar a outros aspectos do negócio .
-                No entanto, algumas partes da solução pode ser limitada a números inteiros,
-
-                `x in  Z^+`
-            </p>
-            <p>
-                Programação linear inteira mista é uma PL(Programação Linear) que existe alguma ou todas as variáveis não inteiras. Portanto precisamos de encontrar uma
-                nova solução ótima para evitarmos casos de números parciais. Simplesmente com o arredondamento, a solução muitas vezes pode sair da região viável, comprometendo a otimalidade.
-            </p>
-
-            <br>
-            <h2 id="sec1">Resolvendo PLIM Usando Branch-Bound</h2><hr>
-            <p>
-                O problema com a resolu&ccedil;&atilde;o de PLIMs usando o m&eacute;todo Simplex &eacute; que ele
-                frequentemente retorna partes de
-                ` x = (x_1,x_2,x_3)` que n&atilde;o est&atilde;o em forma de n&uacute;mero inteiro.
-            </p>
-            <p>
-                Para resolver usando o Branch and Bound, primeiro resolvemos o problema usando o Relaxamento, o que significa resolv&ecirc;-lo pelo Simplex Revisado como se n&atilde;o houvesse 
-                restri&ccedil;&odblac;es inteiras. Assim, obtemos: ` z = cx`.
-            </p>
-            <p>
-                Como o exemplo usado envolve um problema de maximiza&ccedil;&atilde;o que engloba todas as solu&ccedil;&odblac;es inteiras, ent&atilde;o esse &eacute; um limite superior da PLIM. Em seguida, escolhe-se uma vari&aacute;vel n&atilde;o inteira.
-                Comumente, escolhe-se a vari&aacute;vel mais fracionada, que esteja mais pr&oacute;xima do valor mediano ou mais distante de um n&uacute;mero inteiro.     
-            </p>
-            <p>
-                Por exemplo, em ` x = (1.25, 3.45, 2.75, 5)`, escolhe-se ramificar em `x_2`, pois `0.45` est&aacute; mais pr&oacute;ximo de `0.5` do que as outras fra&ccedil;&odblac;es. A partir disso, criamos
-                dois subproblemas ou dois nodos de nossa &aacute;rvore. Em um n&oacute; adicionamos a restri&ccedil;&atilde;o `x_2<=3`, na outra adicionamos `x_2>=4`. Seja `S` o conjunto solu&ccedil;&atilde;o vi&aacute;vel do relaxamento: `S = {x: Ax<=b\ e\ x>=0}`, temos que:
-            </p>
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-md-offset-4">
-                    <blockquote>
-                        <center>
-                            ` S_1 = S \cap{x:x_j <= \lfloor\hat{x}_j\rfloor\} `
-                            ` S_1 = S \cap{x:x_j >= \ceil{hat{x}_j}} `
-                        </center>
-                    </blockquote>
-                </div>
-            </div>
-            <p>
-                Ent&atilde;o, cada um dos n&oacute;s devem ser resolvidos com suas novas restri&ccedil;&odblac;es pelo m&eacute;todo Dual Simplex. Caso o problema seja invi&aacute;vel, ent&atilde;o o n&oacute; &eacute; cortado por inviabilidade. A solu&ccedil;&atilde;o &oacute;tima &eacute; encontrada quando todos os n&oacute;s fracion&aacute;rios s&atilde;o cortados. 
-            </p>
-
-
-        </div><!--/right-->
-    </div><!--/row-->
-</div><!--/container-->
-<div class="scroll-top-wrapper ">
-    <span class="scroll-top-inner">
-        <i class="glyphicon glyphicon-arrow-up"></i>
-    </span>
-</div>
+    <div class="scroll-top-wrapper ">
+        <span class="scroll-top-inner">
+            <i class="glyphicon glyphicon-arrow-up"></i>
+        </span>
+    </div>
+</body>
 
 <script type="text/javascript" src="js/leftBar.js"></script>
 <script type="text/javascript" src="js/ASCIIMathML.js"></script>
