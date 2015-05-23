@@ -113,8 +113,11 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         for (i = 0; i < this.objetivo.length; i++) {
             source += "`";
             var aux = this.upper[i].toString().toUpperCase();
-            source += (aux === "INF") ? "x" + (i + 1) + ">=" + this.lower[i] :
-                    this.lower[i] + "<=" + "x_" + (i + 1) + "<=" + this.upper[i];
+            if(this.upper[i] == this.lower[i])
+                source += "x" + (i + 1) + "=" + this.lower[i];
+            else
+                source += (aux === "INF") ? "x" + (i + 1) + ">=" + this.lower[i] :
+                        this.lower[i] + "<=" + "x_" + (i + 1) + "<=" + this.upper[i];
             source += "`\n";
         }
         //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
