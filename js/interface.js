@@ -86,6 +86,7 @@ Arvore = function () {
 
         this.network.on('select', function (properties) {
             try {
+                nodoSelecionado = properties.nodes;
                 nodo = b.heap.array[properties.nodes];
                 exibirNodo(nodo, b.melhorSolucao());
                 showAlert('info', 'Nó ' + nodo.numero + ' selecionado.');
@@ -456,29 +457,33 @@ $(document).ready(function () {
     });
     //Analisar arquivo
     $('#analisarFile').click(function () {
-        if (reader.result != null )  {
-            t.reseta();
-            showFormProblema2();
-            var problema = analisarFile();
-            var c = document.getElementById("problema");
-            for (var i = 0; i < c.options.length; i++) {
-                if (c.options[i].value === problema["problema"]) {
-                    c.options[i].selected = true;
-                    break;
+        try {
+            if (reader.result != null) {
+                t.reseta();
+                showFormProblema2();
+                var problema = analisarFile();
+                var c = document.getElementById("problema");
+                for (var i = 0; i < c.options.length; i++) {
+                    if (c.options[i].value === problema["problema"]) {
+                        c.options[i].selected = true;
+                        break;
+                    }
                 }
-            }
-            var d = document.getElementById("variaveis");
-            for (var k = 1; k <= d.options.length; k++) {
-                if (k === problema["nVariaveis"]) {
-                    d.options[k - 1].selected = true;
-                    break;
+                var d = document.getElementById("variaveis");
+                for (var k = 1; k <= d.options.length; k++) {
+                    if (k === problema["nVariaveis"]) {
+                        d.options[k - 1].selected = true;
+                        break;
+                    }
                 }
-            }
-            t.carrega(problema);
-            showAlert("success", "Arquivo analisado com sucesso!");
+                t.carrega(problema);
+                showAlert("success", "Arquivo analisado com sucesso!");
 
-        }else
-            showAlert("danger", "Não foi possivel analisar o arquivo!");
+            } else
+                showAlert("danger", "Não foi possivel analisar o arquivo!");
+        } catch (err) {
+            showAlert("danger", err);
+        }
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
@@ -487,11 +492,17 @@ $(document).ready(function () {
                 a = new Arvore();
                 b = new BranchBound();
 
+                var res = b.resolveRaiz();
+                //Adiciona nodo e aresta a arvore
+                a.adicionarNodo(res);
+                a.adicionarAresta(res);
                 while (!b.terminou()) {
-                    nodo = b.executar();
+                    res = b.executar();
                     //Adiciona nodo e aresta a arvore
-                    a.adicionarNodo(nodo);
-                    a.adicionarAresta(nodo);
+                    a.adicionarNodo(res[0]);
+                    a.adicionarAresta(res[0]);
+                    a.adicionarNodo(res[1]);
+                    a.adicionarAresta(res[1]);
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
@@ -527,7 +538,7 @@ $(document).ready(function () {
             $("#panelResultado").show();
             nodos = [];
 
-            var nodo = b.resolveNodo();
+            var nodo = b.resolveRaiz();
             a.adicionarNodo(nodo);
             a.adicionarAresta(nodo);
             nodos.push(nodo);
@@ -542,8 +553,9 @@ $(document).ready(function () {
             a.definirOtimo(b.melhorSolucao());
         delete a;
         a = new Arvore();
-        b.geraFilhos(b.escolheVariavel());
-        nodos.push(b.resolveNodo());
+        var res = b.executar();
+        nodos.push(res[0]);
+        nodos.push(res[1]);
         for (var i = 0; i < nodos.length; i++) {
             a.adicionarNodo(nodos[i]);
             a.adicionarAresta(nodos[i]);
@@ -607,7 +619,7 @@ $(document).ready(function () {
             reader.readAsText(file);
         } else {
             $('#analisarFile').prop('disabled', true);
-            fileDisplayArea.innerText = "Arquivo não suportado! ";
+            fileDisplayArea.textContent = "Arquivo não suportado!";
             showAlert("danger", "Arquivo não suportado!");
         }
     });
@@ -619,8 +631,9 @@ function selecionaX(xi) {
         a.definirOtimo(b.melhorSolucao());
     delete a;
     a = new Arvore();
-    b.geraFilhos(xi);
-    nodos.push(b.resolveNodo());
+    var res = b.resolveNodos(nodoSelecionado, xi);
+    nodos.push(res[0]);
+    nodos.push(res[1]);
     for (var i = 0; i < nodos.length; i++) {
         a.adicionarNodo(nodos[i]);
         a.adicionarAresta(nodos[i]);
@@ -760,180 +773,186 @@ function removeStyle() {
 }
 
 function analisarFile() {
-    var source = "";
-    var restricoes = [];
-    var relacoes = [];
-    var rhs = [];
-    var upper = [];
-    var lower = [];
-    var objetivo = [];
-    var problema = "";
-    var nVariaveis = 0;
-    var iRest = 0;
+    try {
+        var source = "";
+        var restricoes = [];
+        var relacoes = [];
+        var rhs = [];
+        var upper = [];
+        var lower = [];
+        var objetivo = [];
+        var problema = "";
+        var nVariaveis = 0;
+        var iRest = 0;
 
-    source = reader.result;
-    var linha = 1;
-    var cont = 1;
-    var tam = 0;
-    var p = 1; //qual parte
-    while (cont < source.length) {
-        if (p === 1) {//qual problema...p=1 Ã© pra saber se Ã© max ou min
-            if (source[1] === "a") {
-                problema = "Maximize";
-            } else if (source[1] === "i") {
-                problema = "Minimize";
-            } else {
-                alert("Arquivo está errado!!!");
-            }
-            //alert(problema);
-            while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
-                    && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
-                    && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
-                cont++;
-            }
-            p++;
-        }
-        if (p === 2) { //saber funÃ§ao objetivo
-            var linha = "";
-            //alert("cont "+source[cont]);
-            while (source[cont] !== "\n") { //pega a linha inteira 
-
-                linha += source[cont];
-                cont++;
-            }
-
-            for (i = 0; i < linha.length; i++) { //o numero de | Ã© o numero de variaveis
-                if (linha[i] === "|") {
-                    nVariaveis++;
+        source = reader.result;
+        var linha = 1;
+        var cont = 1;
+        var tam = 0;
+        var p = 1; //qual parte
+        while (cont < source.length) {
+            if (p === 1) {//qual problema...p=1 Ã© pra saber se Ã© max ou min
+                if (source[1] === "a") {
+                    problema = "Maximize";
+                } else if (source[1] === "i") {
+                    problema = "Minimize";
+                } else {
+                    alert("Arquivo está errado!!!");
                 }
-            }
-            //alert("linha2 inteira "+linha);
-            objetivo = linha.split("|", nVariaveis); //funÃ§ao objetivo
-            //alert("tamanho obj "+objetivo.length);
-            //                                                for(k=0;k<objetivo.length;k++){
-            //                                                    alert("obj " + objetivo[k]);
-            //                                                }
-            //alert(objetivo);
-
-            p++;
-            //var n=0;
-            while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
-                    && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
-                    && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9" && source[cont] !== "n") {//avanÃ§a ate as restriÃ§oes
-
-
-                cont++;
-            }
-            if (source[cont] === "n") {
-                //alert("cont saida " + source[cont]);
-                restricoes.push("n");
-                p = 4;
-                //n=1;
-
-            }
-        }
-        if (p === 3) { //pega restriÃ§oes
-            //alert("entrou p3");
-            linha = "";
-            //alert("cont3 "+source[cont]);
-            while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") { //pega ate a relacao
-                linha += source[cont];
-                cont++;
-            }
-            //alert("linha3 inteira "+linha);
-            restricoes[iRest] = linha.split("|", nVariaveis);
-            //                    for (k = 0; k < restricoes[iRest].length; k++) {
-            //                        alert("rest " + restricoes[iRest][k]);
-            //                    }
-            iRest++;
-            //cont++;
-            if (source[cont] === ">") { //pega a relacao
-                relacoes.push(">=");
-                cont += 2;
-            } else if (source[cont] === "<") {
-                relacoes.push("<=");
-                cont += 2;
-            } else if (source[cont] === "=") {
-                relacoes.push("=");
-                cont++;
-            } else {
-                alert("Erro!!! Sentido da expressão inexistente");
-            }
-            //                    alert("relacao " + relacoes[iRest - 1]);
-            var ld = "";
-            cont++;
-            while (source[cont] !== "|") { //pega o lado direito
-                ld += source[cont];
-                cont++;
-            }
-            //alert("linha d "+ld);
-            //var lld=ld.split("|");
-            //alert("lld = "+lld);
-            rhs.push(ld);
-            //                    alert("direita " + rhs[iRest - 1]);
-            cont += 2;
-            if (source[cont + 2] === "\n") { //se tiver acabado restriÃ§oes pula pro proximo p
+                //alert(problema);
+                while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
+                        && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                        && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
+                    cont++;
+                }
                 p++;
-            } else { //se nao tiver pula pra proxima linha
+            }
+            if (p === 2) { //saber funÃ§ao objetivo
+                var linha = "";
+                //alert("cont "+source[cont]);
+                while (source[cont] !== "\n") { //pega a linha inteira 
 
-                cont++;
-            }
-        }
-        if (p === 4) { //pega lower
-            //alert("entrou p4");
-            while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
-                    && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
-                    && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
-                cont++;
-            }
-            linha = "";
-            //alert("cont4 "+source[cont]);
-            while (source[cont] !== "\n") { //pega a linha com os minimos
-                linha += source[cont];
-                cont++;
-            }
-            //alert("linha3 inteira "+linha);
-            var lw = linha.split("|", nVariaveis); //separa valores
-            for (i = 0; i < nVariaveis; i++) {
-                lower.push(lw[i]);
-                //alert("lower " + lower[i]);
-            }
-            p++;
-            cont += 3;
-        }
-        if (p === 5) {//pega uppers
-            //alert("entrou p5");
-            //alert("cont5 "+source[cont]);
-            linha = "";
-            var cb = 0;
-            while (source[cont] !== "\n" && cb < nVariaveis) { //vai ate a linha
-                linha += source[cont];
-                if (source[cont] === "|") {
-                    cb++;
-                    if (cb === nVariaveis) {
-                        break;
+                    linha += source[cont];
+                    cont++;
+                }
+
+                for (i = 0; i < linha.length; i++) { //o numero de | Ã© o numero de variaveis
+                    if (linha[i] === "|") {
+                        nVariaveis++;
                     }
+                }
+                //alert("linha2 inteira "+linha);
+                objetivo = linha.split("|", nVariaveis); //funÃ§ao objetivo
+                //alert("tamanho obj "+objetivo.length);
+                //                                                for(k=0;k<objetivo.length;k++){
+                //                                                    alert("obj " + objetivo[k]);
+                //                                                }
+                //alert(objetivo);
+
+                p++;
+                //var n=0;
+                while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
+                        && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                        && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9" && source[cont] !== "n") {//avanÃ§a ate as restriÃ§oes
+
+
+                    cont++;
+                }
+                if (source[cont] === "n") {
+                    //alert("cont saida " + source[cont]);
+                    restricoes.push("n");
+                    p = 4;
+                    //n=1;
 
                 }
+            }
+            if (p === 3) { //pega restriÃ§oes
+                //alert("entrou p3");
+                linha = "";
+                //alert("cont3 "+source[cont]);
+                while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") { //pega ate a relacao
+                    linha += source[cont];
+                    cont++;
+                }
+                //alert("linha3 inteira "+linha);
+                restricoes[iRest] = linha.split("|", nVariaveis);
+                //                    for (k = 0; k < restricoes[iRest].length; k++) {
+                //                        alert("rest " + restricoes[iRest][k]);
+                //                    }
+                iRest++;
+                //cont++;
+                if (source[cont] === ">") { //pega a relacao
+                    relacoes.push(">=");
+                    cont += 2;
+                } else if (source[cont] === "<") {
+                    relacoes.push("<=");
+                    cont += 2;
+                } else if (source[cont] === "=") {
+                    relacoes.push("=");
+                    cont++;
+                } else {
+                    alert("Erro!!! Sentido da expressão inexistente");
+                }
+                //                    alert("relacao " + relacoes[iRest - 1]);
+                var ld = "";
                 cont++;
+                while (source[cont] !== "|") { //pega o lado direito
+                    ld += source[cont];
+                    cont++;
+                }
+                //alert("linha d "+ld);
+                //var lld=ld.split("|");
+                //alert("lld = "+lld);
+                rhs.push(ld);
+                //                    alert("direita " + rhs[iRest - 1]);
+                cont += 2;
+                if (source[cont + 2] === "\n") { //se tiver acabado restriÃ§oes pula pro proximo p
+                    p++;
+                } else { //se nao tiver pula pra proxima linha
+
+                    cont++;
+                }
             }
-            //alert("linha5 inteira "+linha);
-            var up = linha.split("|", nVariaveis); //separa valores
-            //                        for(j = 0; j < nVariaveis; j++){
-            //                            //upper.push(up[j]);
-            //                            //alert("linha split " + up[j]);
-            //                        }
-            for (j = 0; j < nVariaveis; j++) {
-                upper.push(up[j]);
-                //alert("upper " + upper[j]);
+            if (p === 4) { //pega lower
+                //alert("entrou p4");
+                while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
+                        && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                        && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
+                    cont++;
+                }
+                linha = "";
+                //alert("cont4 "+source[cont]);
+                while (source[cont] !== "\n") { //pega a linha com os minimos
+                    linha += source[cont];
+                    cont++;
+                }
+                //alert("linha3 inteira "+linha);
+                var lw = linha.split("|", nVariaveis); //separa valores
+                for (i = 0; i < nVariaveis; i++) {
+                    lower.push(lw[i]);
+                    //alert("lower " + lower[i]);
+                }
+                p++;
+                cont += 3;
             }
-            p++;
-            //alert("Pegou os valores, falta mandar pra tabela");
+            if (p === 5) {//pega uppers
+                //alert("entrou p5");
+                //alert("cont5 "+source[cont]);
+                linha = "";
+                var cb = 0;
+                while (source[cont] !== "\n" && cb < nVariaveis) { //vai ate a linha
+                    linha += source[cont];
+                    if (source[cont] === "|") {
+                        cb++;
+                        if (cb === nVariaveis) {
+                            break;
+                        }
+
+                    }
+                    cont++;
+                }
+                //alert("linha5 inteira "+linha);
+                var up = linha.split("|", nVariaveis); //separa valores
+                //                        for(j = 0; j < nVariaveis; j++){
+                //                            //upper.push(up[j]);
+                //                            //alert("linha split " + up[j]);
+                //                        }
+                for (j = 0; j < nVariaveis; j++) {
+                    upper.push(up[j]);
+                    //alert("upper " + upper[j]);
+                }
+                p++;
+                //alert("Pegou os valores, falta mandar pra tabela");
+            }
+            if (p === 6) {//termina
+                cont = source.length;
+            }
         }
-        if (p === 6) {//termina
-            cont = source.length;
-        }
+    } catch (err) {
+        showAlert("danger", err);
     }
+
+
 
     return {
         problema: problema,

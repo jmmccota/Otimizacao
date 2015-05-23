@@ -381,8 +381,6 @@ panel-primary {
     word-break: break-all;
     word-wrap: break-word;
     background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     font-family: monospace, monospace;
     font-size: 1em;
 }
