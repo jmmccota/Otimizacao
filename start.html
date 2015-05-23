@@ -144,13 +144,13 @@
             <div id="sectionB" class="tab-pane fade">
                 <div class="container-fluid">
                     <div class="row">
-                        <form id="formUpload" action="" method="get" name="formulario">
+                        <form id="formUpload"  name="formulario">
                             <div class="col-lg-6">
                                 <label class="control-label">Selecione o Arquivo:</label>
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                         <span class="btn btn-primary btn-file">
-                                            Procurar&hellip; <input type="file" id="inputFile">
+                                            Procurar&hellip; <input type="file" id="fileInput">
                                         </span>
                                     </span>
                                     <input type="text" class="form-control" readonly>
@@ -165,12 +165,17 @@
                                         <label class="control-label"></label>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-success" id="carregar" style="width:100%; margin-top:5px;">
+                                <button type="button" class="btn btn-success" id="analisarFile" style="width:100%; margin-top:5px;">
                                     <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
                                 </button>
                             </div>
                         </form>
                     </div>
+                    <div class="row text-center" style="display: none;" id="rowFileDisplayArea">
+                        <div id="fileDisplayArea"></div>
+                    </div>
+                        
+                    
                 </div>
             </div>
         </div> <!--end content-well-->
