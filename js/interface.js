@@ -665,7 +665,7 @@ function selecionaX(xi) {
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        if (charCode >= 44 && charCode <= 46)
+        if (charCode >= 45 && charCode <= 46)
             return true;
         return false;
     }
@@ -677,7 +677,7 @@ function isInfinityKey(evt) {
     var valida = false;
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        if (charCode >= 44 && charCode <= 46)
+        if (charCode >= 45 && charCode <= 46)
             valida = true;
         else
         //inf minuscuto
