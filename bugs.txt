@@ -1,2 +1,0 @@
-. Ao carregar um problema e tentar carregar outro problema, o conteudo das abas somem.
-. Ao colocar 10 variaveis, os valores estoram o tamanho da div de solução.
