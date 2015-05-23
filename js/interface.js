@@ -935,3 +935,5 @@ function addHead(src) {
 function removeStyle() {
     $('style').empty();
 }
+
+//@ sourceURL=interface.js
