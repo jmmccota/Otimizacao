@@ -956,5 +956,28 @@ function analisarFile() {
         iRest: iRest
     };
 };
+
+function mpl() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+    $('#div_mpl').show();
+    var mp = document.getElementById("div_mpl");
+    var nodo = new Nodo(0, 0, 0, leituraParametros(), 0, 0);
+    var bodyContent = nodo.modelo();
+    mp.innerHTML = bodyContent;
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+}
+
+function botaoMpl() {
+    $('#esconde').show('fast');
+    mpl();
+}
+
+function escondeMPL() {
+    $('#esconde').hide('fast');
+    $('#div_mpl').hide('fast');
+}
     
 //# sourceURL=interface.js
