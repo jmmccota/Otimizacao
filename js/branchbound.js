@@ -227,6 +227,9 @@ BranchBound = function () {
         if (this.borda.indexOf(id * 2) === -1 &&
                 this.borda.indexOf(id * 2 + 1) === -1)
             return undefined;
+        
+        if(Math.floor(this.heap.array[id].x[xi]) == this.heap.array[id].x[xi])
+            return [undefined, undefined];
 
         this.heap.array[id].xi = xi;
 
@@ -290,7 +293,7 @@ BranchBound = function () {
                 dir.z = "-Inf";
             else
                 dir.z = "Inf";
-        }        
+        }
         
         if(esq != undefined)
             this.borda.splice(this.borda.indexOf(esq.id), 1);
