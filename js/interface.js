@@ -487,6 +487,7 @@ $(document).ready(function () {
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
+        $('#proximoPasso').hide('fast');
         if (!verificaTabela()) {
             try {
                 a = new Arvore();
@@ -636,8 +637,8 @@ $(document).ready(function () {
         }
     });
 });
-function analisarStyle(type)
-{
+
+function analisarStyle(type){
     $("#analisarFile").removeClass();
     $("#analisarFile").addClass("btn btn-" + type);
 }
@@ -659,7 +660,6 @@ function selecionaX(xi) {
     a.setContainer(document.getElementById("resultTree"));
     a.criarConexao(b);
 }
-;
 
 // Proibe a digitação de letras e simbolos especiais
 function isNumberKey(evt) {
@@ -671,7 +671,6 @@ function isNumberKey(evt) {
     }
     return true;
 }
-;
 
 function isInfinityKey(evt) {
 
@@ -696,7 +695,6 @@ function isInfinityKey(evt) {
 
     return valida;
 }
-;
 
 //Cria um alert bootstrap
 function showAlert(type, message) {
@@ -704,13 +702,11 @@ function showAlert(type, message) {
     $('#alert').addClass('alert alert-' + type).html(message).fadeIn();
     window.setTimeout(closeAlert, 3000);
 }
-;
 
 //Apaga um alert bootstrap
 function closeAlert() {
     $('#alert').fadeOut();
 }
-;
 
 //Mostra os botoes de controle da tabela
 function showFormProblema() {
@@ -721,7 +717,6 @@ function showFormProblema() {
     $('#salvar').show('fast');
     $('#limpar').show('fast');
 }
-;
 
 function showFormProblema2() {
     //Da active no <li> section A
@@ -738,7 +733,7 @@ function showFormProblema2() {
     $secA.addClass("tab-pane fade in active");
     showFormProblema();
 }
-;
+
 //Esconde os botoes de controle da tabela
 function hideFormProblema() {
     $('#addRow').hide('fast');
@@ -750,7 +745,6 @@ function hideFormProblema() {
     $('#esconde').hide('fast');
     $('#proximoPasso').hide('fast');
 }
-;
 
 function progressBar(type, percent) {
     //Progress bar
@@ -760,7 +754,6 @@ function progressBar(type, percent) {
     $pb.addClass('progress-bar progress-bar-' + type + ' active');
     $pb.width(percent + "%");
 }
-;
 
 //Progress Bar
 function progressBarFile(type, percent) {
@@ -770,13 +763,12 @@ function progressBarFile(type, percent) {
     $pb.removeClass();
     $pb.addClass('progress-bar progress-bar-' + type + ' active');
     $pb.width(percent + "%");
-};
+}
 
 //Remover script Dinamico
 function removeHead(src) {
     $("script[src='" + src + "']").remove();
 }
-;
 
 //Função para verificar a existencia de um script
 function existeHead(src) {
@@ -791,7 +783,6 @@ function existeHead(src) {
     }
     return false;
 }
-;
 //Adiciona script dinamico - modificado para o MathJax
 function addHead(src) {
     if (mathCont > 1) {
@@ -803,14 +794,11 @@ function addHead(src) {
         document.getElementsByTagName("head")[0].appendChild(script);
         mathCont++;
     }
-
 }
-;
 
 function removeStyle() {
     $('style').empty();
 }
-;
 
 function analisarFile() {
     try {
@@ -1006,7 +994,6 @@ function analisarFile() {
         iRest: iRest
     };
 }
-;
 
 function mpl() {
     var script = document.createElement("script");
