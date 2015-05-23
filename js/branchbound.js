@@ -76,14 +76,15 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         source += " `z = ";
         var primeiro = true;
         for (var i = 0; i < this.objetivo.length; i++) {
-            if (this.objetivo[i] === 0) continue;
+            if (this.objetivo[i] === 0)
+                continue;
             if (!primeiro)
                 source += (this.restricoes[i][j] > 0) ? " + " : " ";
             else
                 primeiro = false;
             source += (this.objetivo[i] === 1) ?
-                " x_" + (i + 1) + " " :
-                this.objetivo[i] + " x_" + (i + 1) + " ";
+                    " x_" + (i + 1) + " " :
+                    this.objetivo[i] + " x_" + (i + 1) + " ";
         }
         source += "`";
 
@@ -94,7 +95,8 @@ Nodo = function (id, pai, altura, modelo, z, x) {
                 var primeiro = true;
                 source += "`";
                 for (var j = 0; j < this.objetivo.length; j++) {
-                    if (this.restricoes[i][j] === 0) continue;
+                    if (this.restricoes[i][j] === 0)
+                        continue;
                     if (!primeiro)
                         source += (this.restricoes[i][j] > 0) ? " + " : " ";
                     else
@@ -111,8 +113,8 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         for (i = 0; i < this.objetivo.length; i++) {
             source += "`";
             var aux = this.upper[i].toString().toUpperCase();
-            source += (aux === "INF") ? "x" + (i+1) + ">=" + this.lower[i] :
-                    this.lower[i] + "<=" + "x_" + (i+1) + "<=" + this.upper[i];
+            source += (aux === "INF") ? "x" + (i + 1) + ">=" + this.lower[i] :
+                    this.lower[i] + "<=" + "x_" + (i + 1) + "<=" + this.upper[i];
             source += "`\n";
         }
         //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
@@ -176,81 +178,135 @@ BranchBound = function () {
      * Usa um heap para simular a arvore de possibilidades
      */
 
-    var modelo = leituraParametros();
 
-    var nodo = new Nodo(1, 0, 0, modelo, 0, 0);
-    this.heap = new Heap(nodo);
-    this.atual = 1;
-    this.fila = [1];
+    this.resolveRaiz = function () {
+        var nodo = new Nodo(1, 0, 0, leituraParametros(), 0, 0);
+        this.heap = new Heap(nodo);
+        this.borda = [];
 
-    this.terminou = function () {
-        //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
-        return (this.fila.length == undefined || this.fila.length == 0);
-    };
-    
-    this.resolveNodo = function (){
-        //retira o 1o da fila
-        var nodo = this.heap.array[this.fila.shift()];
-        //atual = 1o da fila
-        this.atual = nodo.id;
         //resolve o simplex
         var res = simplex(nodo);
         //completa o nodo
         nodo.x = res["x"];
         nodo.z = res["z"];
-        
-        //Olha se nodo vai gerar filhos (para saber se vai terminar)
+
+        //Olha se nodo vai gerar filhos
         var tudoInteiro = true;
-        for(var i = 0; i < nodo.x.length; i++)
+        for (var i = 0; i < nodo.x.length; i++)
             tudoInteiro &= parseFloat(nodo.x[i]) == Math.floor(nodo.x[i]);
-        //insere 2 nodos na fila
-        if (!isNaN(nodo.z) &&
-            !tudoInteiro) {
-            this.fila.push(this.atual * 2);
-            this.fila.push(this.atual * 2 + 1);
+
+        if(!tudoInteiro){
+            //cria 2 nodos filhos
+            if (!isNaN(nodo.z)) {
+                this.heap.insereNodos(1, jQuery.extend(true, {}, nodo), 
+                        jQuery.extend(true, {}, nodo));
+                this.borda.push(2);
+                this.borda.push(3);
+            }
+
+            //altera o valor de Z
+            if (nodo.problema === "Maximize")
+                nodo.z = "-Inf";
+            else
+                nodo.z = "Inf";
         }
-        
+
         return nodo;
     };
 
-    this.geraFilhos = function (xi) {
-        //se heap[atual].x[xi] for viavel e fracionario
-        var x = this.heap.array[this.atual].x[xi];
-        if (!isNaN(this.heap.array[this.atual].z) &&
-                x !== Math.floor(x)) {
+    this.terminou = function () {
+        //se a fila de proximo nodo a analisar estiver vazia a execucao terminou
+        return (this.borda.length == undefined || this.borda.length == 0);
+    };
 
-            //gera 2 copias do objeto
-            var esq = jQuery.extend(true, {}, this.heap.array[this.atual]);
-            var dir = jQuery.extend(true, {}, this.heap.array[this.atual]);
+    this.resolveNodos = function (id, xi) {
+        //se nodo nao vai ter filhos
+        if (this.borda.indexOf(id * 2) === -1 &&
+                this.borda.indexOf(id * 2 + 1) === -1)
+            return undefined;
 
-            //se possui solucao fracionaria altera o valor de Z
-            if (this.heap.array[this.atual].problema === "Maximize")
-                this.heap.array[this.atual].z = "-Inf";
+        this.heap.array[id].xi = xi;
+
+        //RESOLVENDO NO DA ESQUERDA
+        var esq = this.heap.array[id * 2];
+        esq.id = id * 2;
+        //adiciona restricao
+        esq.upper[xi] = Math.floor(this.heap.array[id].x[xi]);
+        //resolve o simplex
+        var res = simplex(esq);
+        //completa o nodo
+        esq.x = res["x"];
+        esq.z = res["z"];
+
+        //Olha se nodo vai gerar filhos (para saber se vai terminar)
+        var tudoInteiro = true;
+        for (var i = 0; i < esq.x.length; i++)
+            tudoInteiro &= parseFloat(esq.x[i]) == Math.floor(esq.x[i]);
+        if(!tudoInteiro){
+            //cria 2 nodos filhos
+            if (!isNaN(esq.z)) {
+                this.heap.insereNodos(esq.id, jQuery.extend(true, {}, esq), 
+                        jQuery.extend(true, {}, esq));
+                this.borda.push(esq.id * 2);
+                this.borda.push(esq.id * 2 + 1);
+            }
+
+            //altera o valor de Z
+            if (esq.problema === "Maximize")
+                esq.z = "-Inf";
             else
-                this.heap.array[this.atual].z = "Inf";
-
-            //adiciona restricao de heap[atual].x[xi] nos 2 modelos
-            dir.lower[xi] = Math.ceil(x);
-            esq.upper[xi] = Math.floor(x);
-
-            //insere 2 nodos no heap
-            this.heap.insereNodos(this.atual, esq, dir);
-            
-            this.heap.array[this.atual].xi = xi;
+                esq.z = "Inf";
         }
+        
+        //RESOLVENDO NO DA DIREITA
+        var dir = this.heap.array[id * 2 + 1];
+        dir.id = id * 2 + 1;
+        //adiciona restricao
+        dir.lower[xi] = Math.ceil(this.heap.array[id].x[xi]);
+        //resolve o simplex
+        var res = simplex(dir);
+        //completa o nodo
+        dir.x = res["x"];
+        dir.z = res["z"];
+
+        //Olha se nodo vai gerar filhos (para saber se vai terminar)
+        var tudoInteiro = true;
+        for (var i = 0; i < dir.x.length; i++)
+            tudoInteiro &= parseFloat(dir.x[i]) == Math.floor(dir.x[i]);
+        if(!tudoInteiro){
+            //cria 2 nodos filhos
+            if (!isNaN(dir.z)) {
+                this.heap.insereNodos(dir.id, jQuery.extend(true, {}, dir), 
+                        jQuery.extend(true, {}, dir));
+                this.borda.push(dir.id * 2);
+                this.borda.push(dir.id * 2 + 1);
+            }
+
+            //altera o valor de Z
+            if (dir.problema === "Maximize")
+                dir.z = "-Inf";
+            else
+                dir.z = "Inf";
+        }        
+        
+        if(esq != undefined)
+            this.borda.splice(this.borda.indexOf(esq.id), 1);
+        if(dir != undefined)
+            this.borda.splice(this.borda.indexOf(dir.id), 1);
+
+        return [esq, dir];
     };
 
     this.executar = function () {
-        var nodo = this.resolveNodo();
-        this.geraFilhos(this.escolheVariavel());
-        return nodo;
+        var id = Math.floor(this.borda[0]/2);
+        return this.resolveNodos(id, this.escolheVariavel(id));
     };
 
-    this.escolheVariavel = function () {
+    this.escolheVariavel = function (id) {
         /*
          * Retorna o indice da variavel mais fracionaria do x do nodo atual
          */
-        var x = this.heap.array[this.atual].x;
+        var x = this.heap.array[id].x;
 
         var mini = 0;
         var minval = 1;
@@ -286,7 +342,7 @@ BranchBound = function () {
             if (i === this.heap.array.length)
                 return 0;
             else if (this.heap.array[i] == undefined ||
-                     isNaN(this.heap.array[i].z))
+                    isNaN(this.heap.array[i].z))
                 i++;
             else
                 break;
@@ -296,15 +352,15 @@ BranchBound = function () {
 
         //para cada solucao
         for (var j = i; j < this.heap.array.length; j++) {
-            if(this.heap.array[j] == undefined)
+            if (this.heap.array[j] == undefined)
                 continue
             //se solucao eh viavel
             else if (!isNaN(this.heap.array[j].z)) {
                 //e for melhor que a otima
                 if ((this.heap.array[j].problema === "Maximize" &&
                         this.heap.array[j].z > otim.z) ||
-                    (this.heap.array[j].problema === "Minimize" &&
-                        this.heap.array[j].z < otim.z))
+                        (this.heap.array[j].problema === "Minimize" &&
+                                this.heap.array[j].z < otim.z))
                     // passa a ser a nova otima
                     otim = this.heap.array[j];
             }
@@ -335,7 +391,7 @@ simplex = function (Nodo) {
 
     //    if (glp_get_num_int(lp) === 0 && glp_get_num_bin(lp) === 0) {
 
-    var smcp = new SMCP({ presolve: GLP_ON });
+    var smcp = new SMCP({presolve: GLP_ON});
     var r = glp_simplex(lp, smcp);
 
     if (r === 0) {
@@ -343,7 +399,7 @@ simplex = function (Nodo) {
         //alert("Solução Ótima encontrada por Simplex");
         var z = glp_get_obj_val(lp);
         var x = [];
-        for (var i = 0; i < glp_get_num_cols(lp) ; i++) {
+        for (var i = 0; i < glp_get_num_cols(lp); i++) {
             x[i] = glp_get_col_prim(lp, i + 1);
         }
         return {
