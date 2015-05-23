@@ -456,26 +456,29 @@ $(document).ready(function () {
     });
     //Analisar arquivo
     $('#analisarFile').click(function () {
-        //alert(reader.result);
-        t.reseta();
-        showFormProblema2();
-        var problema = analisarFile();
-        var c = document.getElementById("problema");
-        for (var i = 0; i < c.options.length; i++) {
-            if (c.options[i].value === problema["problema"]) {
-                c.options[i].selected = true;
-                break;
+        if (reader.result != null )  {
+            t.reseta();
+            showFormProblema2();
+            var problema = analisarFile();
+            var c = document.getElementById("problema");
+            for (var i = 0; i < c.options.length; i++) {
+                if (c.options[i].value === problema["problema"]) {
+                    c.options[i].selected = true;
+                    break;
+                }
             }
-        }
-        var d = document.getElementById("variaveis");
-        for (var k = 1; k <= d.options.length; k++) {
-            if (k === problema["nVariaveis"]) {
-                d.options[k - 1].selected = true;
-                break;
+            var d = document.getElementById("variaveis");
+            for (var k = 1; k <= d.options.length; k++) {
+                if (k === problema["nVariaveis"]) {
+                    d.options[k - 1].selected = true;
+                    break;
+                }
             }
-        }
-        t.carrega(problema);
+            t.carrega(problema);
+            showAlert("success", "Arquivo analisado com sucesso!");
 
+        }else
+            showAlert("danger", "Não foi possivel analisar o arquivo!");
     });
     //Executar Branch and Bound
     $('#executar').click(function () {
@@ -599,10 +602,12 @@ $(document).ready(function () {
             reader.onload = function (e) {
                 fileDisplayArea.innerText = reader.result;
             }
-
+            $('#analisarFile').prop('disabled', false);
+            showAlert("success", "Arquivo carregado com sucesso!");
             reader.readAsText(file);
         } else {
-            fileDisplayArea.innerText = "Arquivo não suportado!";
+            $('#analisarFile').prop('disabled', true);
+            fileDisplayArea.innerText = "Arquivo não suportado! ";
             showAlert("danger", "Arquivo não suportado!");
         }
     });
@@ -942,5 +947,4 @@ function analisarFile() {
         iRest: iRest
     };
 };
-
-
+    
