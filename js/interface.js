@@ -736,6 +736,15 @@ function hideFormProblema() {
     $('#proximoPasso').hide('fast');
 };
 
+function progressBar(type, percent) {
+    //Progress bar
+    var $pb = $('#progress-bar');
+    $('#rowProgress').show('fast');
+    $pb.removeClass();
+    $pb.addClass('progress-bar progress-bar-' + type + ' active');
+    $pb.width(percent + "%");
+};
+
 //Progress Bar
 function progressBarFile(type, percent) {
     //Progress bar
