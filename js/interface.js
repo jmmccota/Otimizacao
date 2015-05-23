@@ -605,24 +605,36 @@ $(document).ready(function () {
         var file = fileInput.files[0];
         var textType = /text.*/;
 
-        $("#rowFileDisplayArea").show();
+        $("#rowFileDisplayArea").show("2000");
         if (file.type.match(textType)) {
             reader = new FileReader();
 
             reader.onload = function (e) {
                 fileDisplayArea.innerText = reader.result;
             }
+
+            reader.onprogress = function (e) {
+                var percentUploaded = Math.floor(e.loaded * 100 / e.total);
+                progressBarFile("success", percentUploaded);
+            }
             $('#analisarFile').prop('disabled', false);
             showAlert("success", "Arquivo carregado com sucesso!");
+            analisarStyle("success");
             reader.readAsText(file);
         } else {
+            analisarStyle("danger");
+            $("#rowProgressFile").hide();
             $('#analisarFile').prop('disabled', true);
             fileDisplayArea.textContent = "Arquivo não suportado!";
             showAlert("danger", "Arquivo não suportado!");
         }
     });
 });
-
+function analisarStyle(type)
+{
+    $("#analisarFile").removeClass();
+    $("#analisarFile").addClass("btn btn-" + type);
+}
 //Define proximo passo a partir de selecao da variavel
 function selecionaX(xi) {
     if (b.terminou())
@@ -725,10 +737,10 @@ function hideFormProblema() {
 };
 
 //Progress Bar
-function progressBar(type, percent) {
+function progressBarFile(type, percent) {
     //Progress bar
-    var $pb = $('#progress-bar');
-    $('#rowProgress').show('fast');
+    var $pb = $('#progress-barFile');
+    $('#rowProgressFile').show('fast');
     $pb.removeClass();
     $pb.addClass('progress-bar progress-bar-' + type + ' active');
     $pb.width(percent + "%");
@@ -773,7 +785,7 @@ function removeStyle() {
 function analisarFile() {
     try {
         var source = "";
-        var restricoes = [];
+        var restricoes = []; analisarFile
         var relacoes = [];
         var rhs = [];
         var upper = [];
@@ -987,5 +999,5 @@ function escondeMPL() {
     $('#esconde').hide('fast');
     $('#div_mpl').hide('fast');
 }
-    
+
 //# sourceURL=interface.js
