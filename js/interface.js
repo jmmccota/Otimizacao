@@ -193,7 +193,7 @@ Tabela = function () {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 21) {
 
-                for (j = 2; j < (t.nRestri + 2); j++) {
+                for (j = 2; j < (t.nRestri + 2) ; j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -369,7 +369,7 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -448,7 +448,7 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -511,7 +511,7 @@ $(document).ready(function () {
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
-                $("html, body").animate({scrollTop: $(document).height() - 385}, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
 
                 $("#panelResultado").show();
 
@@ -539,7 +539,7 @@ $(document).ready(function () {
         if (!verificaTabela()) {
             a = new Arvore();
             b = new BranchBound();
-            $("html, body").animate({scrollTop: $(document).height() - 380}, 1500);
+            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
             $("#panelResultado").show();
             nodos = [];
 
@@ -562,10 +562,10 @@ $(document).ready(function () {
         nodos.push(res[0]);
         nodos.push(res[1]);
         for (var i = 0; i < nodos.length; i++) {
-        if (nodos[i] != undefined) {
-            a.adicionarNodo(nodos[i]);
-            a.adicionarAresta(nodos[i]);
-        }
+            if (nodos[i] != undefined) {
+                a.adicionarNodo(nodos[i]);
+                a.adicionarAresta(nodos[i]);
+            }
         }
         a.setContainer(document.getElementById("resultTree"));
         a.criarConexao(b);
@@ -580,11 +580,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
@@ -638,7 +638,7 @@ $(document).ready(function () {
     });
 });
 
-function analisarStyle(type){
+function analisarStyle(type) {
     $("#analisarFile").removeClass();
     $("#analisarFile").addClass("btn btn-" + type);
 }
@@ -680,15 +680,15 @@ function isInfinityKey(evt) {
         if (charCode >= 45 && charCode <= 46)
             valida = true;
         else
-        //inf minuscuto
-        if (charCode == 105 || charCode == 110 || charCode == 102)
-            valida = true;
-        else
-        //INF maiusculo
-        if (charCode == 70 || charCode == 73 || charCode == 78)
-            valida = true;
-        else
-            valida = false;
+            //inf minuscuto
+            if (charCode == 105 || charCode == 110 || charCode == 102)
+                valida = true;
+            else
+                //INF maiusculo
+                if (charCode == 70 || charCode == 73 || charCode == 78)
+                    valida = true;
+                else
+                    valida = false;
     }
     else
         valida = true;
@@ -710,6 +710,7 @@ function closeAlert() {
 
 //Mostra os botoes de controle da tabela
 function showFormProblema() {
+    $('#rowTable').show();
     $('#addRow').show('fast');
     $('#delRow').show('fast');
     $('#executar').show('fast');
@@ -996,16 +997,16 @@ function analisarFile() {
 }
 
 function mpl() {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "js/MathJax/MathJax.js?config=AM_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
+
+    addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
+    addHead("js/ASCIIMathML.js");
+
     $('#div_mpl').show();
     var mp = document.getElementById("div_mpl");
     var nodo = new Nodo(0, 0, 0, leituraParametros(), 0, 0);
     var bodyContent = nodo.modelo();
     mp.innerHTML = bodyContent;
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
 }
 
 function botaoMpl() {
@@ -1017,6 +1018,5 @@ function escondeMPL() {
     $('#esconde').hide('fast');
     $('#div_mpl').hide('fast');
 }
-
 
 //# sourceURL=interface.js
