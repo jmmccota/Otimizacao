@@ -330,10 +330,12 @@ $(document).ready(function () {
 
     hideFormProblema();
     t = Tabela();
-    //Verifica se a tabela está toda preenchida, evitando ficar mandando informção(submit)
+
+    //Evita ficar mandando informção(submit)
     $("form").submit(function (event) {
         event.preventDefault();
     });
+
     //Novo problema de otimizacao
     $("#novo").click(function () {
         $("#div_mpl").fadeOut("fast");
