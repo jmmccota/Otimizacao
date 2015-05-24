@@ -455,7 +455,7 @@ MathJax.Extension["MathML/content-mathml"] = (function (d) {
                         }
                         q.appendChild(n);
                         a.applyTransform(m, q, 0)
-                    }
+                }
             } else {
                 a.transforms.token("mn")(m, h)
             }
@@ -955,7 +955,7 @@ MathJax.Extension["MathML/content-mathml"] = (function (d) {
                                 a.applyTransform(t, h[1], 2)
                             } else {
                                 if (v.nodeName === "apply" && h.length > 2 && h[0].nodeName === "times" && h[1].nodeName === "cn" && (i = Number(a.getTextContent(h[1])) < 0)) {
-                                    a.appendToken(t, "mo", "\u2212"); a.getTextContent(h[1]) = - i; a.applyTransform(t, v, 2);} else {
+                                    a.appendToken(t, "mo", "\u2212"); a.getTextContent(h[1]) = - i; a.applyTransform(t, v, 2); } else {
                                     a.appendToken(t, "mo", "+");
                                     a.applyTransform(t, v, 2);
                                 }
@@ -1143,7 +1143,7 @@ MathJax.Extension["MathML/content-mathml"] = (function (d) {
                         default:
                             a.applyTransform(x, g[0], 0);
                             v = q
-                        }
+                    }
                 }
                 a.appendToken(z, "mi", "d");
                 if (k) {
@@ -1305,7 +1305,7 @@ MathJax.Extension["MathML/content-mathml"] = (function (d) {
                     default:
                         a.applyTransform(H, L, 0);
                         outNode = v
-                    }
+                }
             } else {
                 outNode = v
             }
