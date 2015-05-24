@@ -175,6 +175,9 @@ panel-primary {
     #footerwrap p {
         color: #bfc9d3;
     }
+    #footerwrap a {
+        color: #bfc9d3;
+    }
 
     #footerwrap h4 {
         color: white;
