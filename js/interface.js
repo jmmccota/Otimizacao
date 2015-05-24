@@ -193,7 +193,7 @@ Tabela = function () {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 21) {
 
-                for (j = 2; j < (t.nRestri + 2) ; j++) {
+                for (j = 2; j < (t.nRestri + 2); j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -371,7 +371,7 @@ $(document).ready(function () {
                 }
             });
         }
-            //Cria nova tabela
+        //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -450,7 +450,7 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
+                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -513,7 +513,7 @@ $(document).ready(function () {
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
-                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
+                $("html, body").animate({scrollTop: $(document).height() - 385}, 1500);
 
                 $("#panelResultado").show();
 
@@ -541,7 +541,7 @@ $(document).ready(function () {
         if (!verificaTabela()) {
             a = new Arvore();
             b = new BranchBound();
-            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
+            $("html, body").animate({scrollTop: $(document).height() - 380}, 1500);
             $("#panelResultado").show();
             nodos = [];
 
@@ -582,11 +582,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-            verticalOffset :
+                verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
+        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
     });
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
@@ -682,15 +682,15 @@ function isInfinityKey(evt) {
         if (charCode >= 45 && charCode <= 46)
             valida = true;
         else
-            //inf minuscuto
-            if (charCode == 105 || charCode == 110 || charCode == 102)
-                valida = true;
-            else
-                //INF maiusculo
-                if (charCode == 70 || charCode == 73 || charCode == 78)
-                    valida = true;
-                else
-                    valida = false;
+        //inf minuscuto
+        if (charCode == 105 || charCode == 110 || charCode == 102)
+            valida = true;
+        else
+        //INF maiusculo
+        if (charCode == 70 || charCode == 73 || charCode == 78)
+            valida = true;
+        else
+            valida = false;
     }
     else
         valida = true;
@@ -806,7 +806,8 @@ function removeStyle() {
 function analisarFile() {
     try {
         var source = "";
-        var restricoes = []; analisarFile
+        var restricoes = [];
+        analisarFile
         var relacoes = [];
         var rhs = [];
         var upper = [];
