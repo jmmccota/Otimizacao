@@ -235,7 +235,7 @@ MathJax.Hub.Config({
   //  the MathJax cookie when users change the menu settings).
   //  
   menuSettings: {
-    zoom: "Double-Click",        //  when to do MathZoom
+    zoom: false,        //  when to do MathZoom
     CTRL: false,         //    require CTRL for MathZoom?
     ALT: false,          //    require Alt or Option?
     CMD: false,          //    require CMD?
