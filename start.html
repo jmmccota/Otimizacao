@@ -190,7 +190,7 @@
                 <div class="col-lg-6">
                     <div class="row">
                         <div id="resultTree"></div>
-                        <div>
+                        <div class="row" style="margin-left: 20px;">
                             <button class="btn btn-info" id="proximoPasso">
                                 <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Pr&oacute;ximo Passo
                             </button>
@@ -199,7 +199,7 @@
                 </div>
                 <div class="col-lg-6">
                     <h3>Solução:</h3>
-                    <div class="list-group">
+                    <div class="list-group" style="margin-bottom: 0; padding-bottom: 0;">
                         <div class="list-group-item active" style="background-color:#337ab7;">
                             <h4 class="list-group-item-heading">Informações:</h4>
                             <p class="list-group-item-text">Clique no nó desejado para obter as informações.</p>
@@ -220,6 +220,9 @@
                             <h4 class="list-group-item-heading">Valores de X</h4>
                             <p class="list-group-item-text" id="novosX"></p>
                         </div>
+                    </div>
+                    <div class="row" style="padding-left: 18px; display:none;" id="rowObsProximoPasso">
+                        <small><b>Obs:</b> Clique no <b>nó</b> e então no <b>x</b> desejado, ou clique em <b>proximo passo</b> para prosseguir.</small>
                     </div>
                 </div>
             </div>

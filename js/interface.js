@@ -490,6 +490,7 @@ $(document).ready(function () {
     //Executar Branch and Bound
     $('#executar').click(function () {
         $('#proximoPasso').hide('fast');
+        $('#rowObsProximoPasso').hide('fast');
         if (!verificaTabela()) {
             try {
                 a = new Arvore();
@@ -552,6 +553,7 @@ $(document).ready(function () {
             a.setContainer(document.getElementById("resultTree"));
             a.criarConexao(b);
             $('#proximoPasso').show('fast');
+            $('#rowObsProximoPasso').show('fast');
         }
     });
     //Define botao para proximo passo
@@ -734,6 +736,7 @@ function showFormProblema2() {
     $secB.addClass("tab-pane fade");
     $secA.removeClass();
     $secA.addClass("tab-pane fade in active");
+    progressBarFile("default", 0);
     showFormProblema();
 }
 
@@ -806,7 +809,7 @@ function removeStyle() {
 function analisarFile() {
     try {
         var source = "";
-        var restricoes = []; analisarFile
+        var restricoes = []; 
         var relacoes = [];
         var rhs = [];
         var upper = [];
