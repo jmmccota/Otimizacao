@@ -818,7 +818,7 @@ function analisarFile() {
         var problema = "";
         var nVariaveis = 0;
         var iRest = 0;
-
+        var contLinha=0;
         source = reader.result;
         var linha = 1;
         var cont = 1;
@@ -836,16 +836,23 @@ function analisarFile() {
                 while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
                         && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
                         && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
+                    
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
                 }
                 p++;
             }
             if (p === 2) { //saber funÃ§ao objetivo
                 var linha = "";
                 while (source[cont] !== "\n") { //pega a linha inteira 
-
+                    
                     linha += source[cont];
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
                 }
 
                 for (i = 0; i < linha.length; i++) { //o numero de | Ã© o numero de variaveis
@@ -858,7 +865,12 @@ function analisarFile() {
                 while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
                         && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
                         && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9" && source[cont] !== "n") {//avanÃ§a ate as restriÃ§oes
+                    
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
+                    
                 }
                 if (source[cont] === "n") {
                     restricoes.push("n");
@@ -870,6 +882,9 @@ function analisarFile() {
                 while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") { //pega ate a relacao
                     linha += source[cont];
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
                 }
                 restricoes[iRest] = linha.split("|", nVariaveis);
                 iRest++;
@@ -890,6 +905,9 @@ function analisarFile() {
                 while (source[cont] !== "|") { //pega o lado direito
                     ld += source[cont];
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
                 }
 
                 rhs.push(ld);
@@ -905,11 +923,17 @@ function analisarFile() {
                         && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
                         && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
                 }
                 linha = "";
                 while (source[cont] !== "\n") { //pega a linha com os minimos
                     linha += source[cont];
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
                 }
                 var lw = linha.split("|", nVariaveis); //separa valores
                 for (i = 0; i < nVariaveis; i++) {
@@ -931,6 +955,9 @@ function analisarFile() {
 
                     }
                     cont++;
+                    if (cont>source.length){
+                        break;
+                    }
                 }
                 var up = linha.split("|", nVariaveis); //separa valores
 
