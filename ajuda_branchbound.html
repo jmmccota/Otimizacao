@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ajuda</title>
+    <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/leftBar.js"></script>
+    <script type="text/javascript" src="js/interface.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/ASCIIMathML.js"></script>
+    <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Branch-Bound</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">INÍCIO</a></li>
+                    <li class="active"><a href="ajuda_branchbound.html">AJUDA</a></li>
+                    <!--<li><a href="contato.html">CONTATO</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div id="masthead">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>
+                            Ajuda
+                            <p class="lead">Manual de ajuda ao usuário</p>
+                        </h1>
+                    </div>
+                </div>
+            </div><!--/container-->
+        </div><!--/masthead-->
+
+
+        <div class="container">
+
+            <div class="row">
+                <!--left-->
+                <div class="col-md-3" id="leftCol">
+                    <ul class="nav nav-stacked" id="sidebar">
+                        <li><a href="#sec0">Iniciando</a></li>
+                        <li><a href="#sec1">Modelo de PL</a></li>
+                        <li><a href="#sec2">Execução Completa</a></li>
+                        <li><a href="#sec3">Execução Passo a Passo</a></li>
+
+                    </ul>
+                </div><!--/left-->
+                <!--right-->
+                <div class="col-md-9" id="pagAjuda">
+                    <h2 id="sec0">Iniciando </h2>
+                    <hr>
+                    <p>
+                        O Projeto foi desenvolvido por alunos para a resolução de problemas de Programação Inteira. Foi usada a biblioteca glpk.js como algoritmo para
+                        o método Simplex. Para entender o funcionamento do algoritmo, na página inicial possui o botão "Mais sobre o modelo" que demonstra o funcionamento do algoritmo.
+                        Foi usada a biblioteca MathJax, para a exibição das equações. Caso o usuário queira configurá-la, basta clicar com o botão direito sobre a equação, que será apresentado um menu de opções do MathJax.
+                        É aconselhável o usuário utilizar o navegador
+                        Mozilla Firefox 38.0.1.
+                    </p>
+                    <p>
+                        Para iniciarmos, clique em <a href="" class="btn btn-success btn-xs" disabled><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Começar</a> e divirta-se!
+                    </p>
+                    <h2 id="sec1">Modelo de Programação Linear (PL)</h2><hr>
+                    <p>
+                        Na parte superior, pode-se criar um problema de otimização ou carregá-lo do seu dispositivo.
+                    </p>
+                    <p>
+                        Na opção "Carregar problema de otimização", deve-se escolher um arquivo .txt
+                        no botão "escolher arquivo". Esse arquivo deverá conter no máximo 20 restrições e 10 variáveis. Segue-se a seguir, um Modelo de programação linear e seu respectivo modelo de arquivo .txt em um formato
+                        que o solver reconhece.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-lg-offset-2">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/modelo2txt.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/modelotxt.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        Logo após selecionar o arquivo, clique em "analisar arquivo" para que o Problema seja
+                        carregado.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/load.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        Na opção "Criar novo problema de otimização", deve-se selecionar qual o tipo de problema a ser solucionado e qual o número de variáveis do problema, onde
+                        o solver aceita no máximo 20 restrições e 10 variáveis. Ao clicar em "Novo problema de otimização", será gerado um grid dinâmico, onde será digitado os valores da função objetivo.
+                        Para adicionar ou remover restrições ao problema, clique em "Adicionar restrição" ou "Excluir restrição". Os valores da função objetivo e das restrições podem ser inteiras ou reais(utilizando .). Deve-se digitar qual o limite superior e inferior de cada variável nas seções
+                        "Limite Superior" e "Limite Inferior", caso esses limites sejam infinitos deve-se escrever "inf" nos mesmos. Para visualizar o modelo criado, clique no botão
+                        "Mostrar modelo de Programação Linear".
+                    </p>
+                    <p>
+                        Ao clicar em "Limpar Tudo" todos os campos serão limpos para nova digitação pelo usuário. Ao clicar em Salvar problema, o modelo será salvo em um arquivo .txt, para que o usuário o possa carregar futuramente.
+                    </p>
+                    <p>
+                        O algoritmo poderá ser processado de duas maneiras. A primeira é clicando em "Executar Completo" e a segunda em "Passo a Passo".
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/MPL.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 id="sec2">Execução Completa</h2><hr>
+                    <p>
+                        Na opção "Executar Completo", será apresentada uma árvore contendo como nós um problema a ser executado pelo simplex. O nó com borda mais larga, representa a solução ótima. Ao passar o mouse por cima
+                        dos nós, será apresentado os valores de x e a solução ótima. O mesmo poderá ser visto clicando em um dos nós, sendo apresentado também o modelo de programação linear e o tipo de solução.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/executarcompleto.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 id="sec3">Execução Passo a Passo</h2><hr>
+                    <p>
+                        Ao clicar na opção Passo a passo, o usuário pode ir clicando no botão <a href="" class="btn btn-info btn-xs" disabled><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Pr&oacute;ximo Passo</a> para acompanhar como o algoritmo funciona em cada iteração.
+                        Se o usuário optar por selecionar o valor de x não inteiro do nó a ser fracionado, o usuário deve clicar em um nó, e nas informações geradas sobre esse nó na tabela a direita da árvore, na aba "Valores de x", o usuário deve clicar sobre o valor de x fracionado a se executar o simplex.
+                        Com isso, aparecerá as novas folhas na árvore que é o resultado da ramificação do referido valor de x selecionado. A execução para, sombreando o nó ótimo ao final da execução.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-lg-offset-3">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/passoapasso1.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/passoapasso2.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-body">
+                                    <img src="img/passoapasso3.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/right-->
+            </div><!--/row-->
+        </div>
+
+        <!--  FOOTER  -->
+        <div id="footerwrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4>Realizado por</h4>
+                        <div class="hline-w"></div>
+                        <p>Alunos de Engenharia de Computação, estudantes do CEFET-MG Campus VII</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4>Alunos</h4>
+                        <div class="hline-w"></div>
+                        <a href="mailto:">Andr&eacute; Malta,</a>
+                        <a href="mailto:">Daniel Gomes,</a>
+                        <a href="mailto:">Elias Luiz,</a><br />
+                        <a href="mailto:">Henrique Castro</a>
+                        <a href="mailto:">e Jo&atilde;o Marcos.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-top-wrapper ">
+            <span class="scroll-top-inner">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+            </span>
+        </div>
+</body>
+</html>
