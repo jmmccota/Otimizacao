@@ -113,7 +113,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
         for (i = 0; i < this.objetivo.length; i++) {
             source += "`";
             var aux = this.upper[i].toString().toUpperCase();
-            if(this.upper[i] == this.lower[i])
+            if (this.upper[i] == this.lower[i])
                 source += "x" + (i + 1) + "=" + this.lower[i];
             else
                 source += (aux === "INF") ? "x" + (i + 1) + ">=" + this.lower[i] :
@@ -198,10 +198,10 @@ BranchBound = function () {
         for (var i = 0; i < nodo.x.length; i++)
             tudoInteiro &= parseFloat(nodo.x[i]) == Math.floor(nodo.x[i]);
 
-        if(!tudoInteiro){
+        if (!tudoInteiro) {
             //cria 2 nodos filhos
             if (!isNaN(nodo.z)) {
-                this.heap.insereNodos(1, jQuery.extend(true, {}, nodo), 
+                this.heap.insereNodos(1, jQuery.extend(true, {}, nodo),
                         jQuery.extend(true, {}, nodo));
                 this.borda.push(2);
                 this.borda.push(3);
@@ -227,8 +227,8 @@ BranchBound = function () {
         if (this.borda.indexOf(id * 2) === -1 &&
                 this.borda.indexOf(id * 2 + 1) === -1)
             return undefined;
-        
-        if(Math.floor(this.heap.array[id].x[xi]) == this.heap.array[id].x[xi])
+
+        if (Math.floor(this.heap.array[id].x[xi]) == this.heap.array[id].x[xi])
             return [undefined, undefined];
 
         this.heap.array[id].xi = xi;
@@ -248,10 +248,10 @@ BranchBound = function () {
         var tudoInteiro = true;
         for (var i = 0; i < esq.x.length; i++)
             tudoInteiro &= parseFloat(esq.x[i]) == Math.floor(esq.x[i]);
-        if(!tudoInteiro){
+        if (!tudoInteiro) {
             //cria 2 nodos filhos
             if (!isNaN(esq.z)) {
-                this.heap.insereNodos(esq.id, jQuery.extend(true, {}, esq), 
+                this.heap.insereNodos(esq.id, jQuery.extend(true, {}, esq),
                         jQuery.extend(true, {}, esq));
                 this.borda.push(esq.id * 2);
                 this.borda.push(esq.id * 2 + 1);
@@ -263,7 +263,7 @@ BranchBound = function () {
             else
                 esq.z = "Inf";
         }
-        
+
         //RESOLVENDO NO DA DIREITA
         var dir = this.heap.array[id * 2 + 1];
         dir.id = id * 2 + 1;
@@ -279,10 +279,10 @@ BranchBound = function () {
         var tudoInteiro = true;
         for (var i = 0; i < dir.x.length; i++)
             tudoInteiro &= parseFloat(dir.x[i]) == Math.floor(dir.x[i]);
-        if(!tudoInteiro){
+        if (!tudoInteiro) {
             //cria 2 nodos filhos
             if (!isNaN(dir.z)) {
-                this.heap.insereNodos(dir.id, jQuery.extend(true, {}, dir), 
+                this.heap.insereNodos(dir.id, jQuery.extend(true, {}, dir),
                         jQuery.extend(true, {}, dir));
                 this.borda.push(dir.id * 2);
                 this.borda.push(dir.id * 2 + 1);
@@ -294,17 +294,17 @@ BranchBound = function () {
             else
                 dir.z = "Inf";
         }
-        
-        if(esq != undefined)
+
+        if (esq != undefined)
             this.borda.splice(this.borda.indexOf(esq.id), 1);
-        if(dir != undefined)
+        if (dir != undefined)
             this.borda.splice(this.borda.indexOf(dir.id), 1);
 
         return [esq, dir];
     };
 
     this.executar = function () {
-        var id = Math.floor(this.borda[0]/2);
+        var id = Math.floor(this.borda[0] / 2);
         return this.resolveNodos(id, this.escolheVariavel(id));
     };
 
