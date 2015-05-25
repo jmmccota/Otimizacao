@@ -1,0 +1,238 @@
+<script type="text/javascript" src="js/interface.js"></script>
+
+<body>
+    <span id="alert" style="display:none;"></span>
+    <div id="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>
+                        Branch-Bound
+                        <p class="lead">Programa&ccedil;&atilde;o Linear Inteira Mista(PLIM)</p>
+                    </h1>
+                </div>
+                <a href="#" id="back" onclick="backIndex()">
+                    <div class="col-md-2 col-md-offset-3">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <img src="img/back.png" class="img-responsive">
+                                </div>
+                                <div class="col-sm-4">
+                                    Voltar
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div><!--/container-->
+    </div><!--/masthead-->
+    <div class="container">
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active" id="a"><a data-toggle="tab" href="#sectionA"><span class="glyphicon glyphicon-new-window"></span><b> Criar novo Problema de Otimiza&ccedil;&atilde;o</b></a></li>
+            <li id="b"><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-upload"></span> <b>Carregar Problema de Otimiza&ccedil;&atilde;o</b></a></li>
+        </ul>
+        <div class="tab-content well">
+            <div id="sectionA" class="tab-pane fade in active">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div id="tabela1" class="col-lg-6">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-4" style="padding-top:7px;">
+                                        <label class="control-label">Problema:</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="problema">
+                                            <option value="Maximize">Maximiza&ccedil;&atilde;o</option>
+                                            <option value="Minimize">Minimiza&ccedil;&atilde;o</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:10px;">
+                                    <div class="col-lg-4" style="padding-top:7px;">
+                                        <label class="control-label">N&uacute;mero de Vari&aacute;veis:</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="variaveis" style="max-width:40%;">
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
+                                            <option value=5>5</option>
+                                            <option value=6>6</option>
+                                            <option value=7>7</option>
+                                            <option value=8>8</option>
+                                            <option value=9>9</option>
+                                            <option value=10>10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:10px; padding-bottom:10px;">
+                                    <div class="col-lg-10">
+                                        <button type="button" id="novo" class="btn btn-primary" style="width: 100%;">
+                                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema de Otimiza&ccedil;&atilde;o
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div id="mostrarmpl" class="col-lg-12">
+                                    <button id="mpl" type="button" class="btn btn-default" style="width:100%; " onclick="botaoMpl()">
+                                        Mostrar Modelo de Programa&ccedil;&atilde;o Linear
+                                    </button>
+                                </div>
+                                <div id="esconder" class="col-lg-12">
+                                    <button id="esconde" type="button" class="btn btn-default" style="width:100%; margin-top:10px;" onclick="escondeMPL()">
+                                        Esconder Modelo de Programa&ccedil;&atilde;o Linear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mpl col-lg-12" id="div_mpl" style="display:none;">
+
+                        </div>
+                    </div>
+                    <div class="row" id="rowTable" style="display: none;">
+                        <form action="#">
+                            <div id="mydata" style="margin-top: 20px;">
+                                <table id="myTableData" class="table table-hover table-striped"></table>
+                                <center>
+                                    <button type="button" class="btn btn-primary" id="addRow" value="">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Restri&ccedil;&atilde;o
+                                    </button>
+                                    <button type="button" class="btn btn-danger" id="delRow">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  Excluir Restri&ccedil;&atilde;o
+                                    </button>
+
+                                    <table id="myTableData2" class="table table-hover table-striped"></table>
+
+                                    <button type="submit" class="btn btn-success" id="salvar">
+                                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" id="executar">
+                                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
+                                    </button>
+                                    <button type="submit" class="btn btn-info" id="passoAPasso">
+                                        <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
+                                    </button>
+                                    <button type="button" class="btn btn-default" id="limpar">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Limpar Tudo
+                                    </button>
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row" style="margin-top:20px; display:none;" id="rowProgress">
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only" id="valorComplete"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sectionB" class="tab-pane fade">
+                <div class="container-fluid">
+                    <div class="row">
+                        <form id="formUpload" name="formulario">
+                            <div class="col-lg-6">
+                                <label class="control-label">Selecione o Arquivo:</label>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Procurar&hellip; <input type="file" id="fileInput">
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                                <span class="help-block">
+                                    Selecione um arquivo contendo o problema de otimização.
+                                </span>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label"></label>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-success" id="analisarFile" style="width:100%; margin-top:5px;" disabled>
+                                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row" style="margin-top:20px; display:none;" id="rowProgressFile">
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-barFile" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only" id="valorComplete"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center" style="display: none;" id="rowFileDisplayArea">
+                        <div id="fileDisplayArea"></div>
+                    </div>
+                </div>
+            </div>
+        </div> <!--end content-well-->
+
+        <div class="panel panel-default" id="panelResultado" tabindex="-1" style="display:none;">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="panel-title">Resultado</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div id="resultTree"></div>
+                        <div class="row" style="margin-left: 20px;">
+                            <button class="btn btn-info" id="proximoPasso">
+                                <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Pr&oacute;ximo Passo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3>Solução:</h3>
+                    <div class="list-group" style="margin-bottom: 0; padding-bottom: 0;">
+                        <div class="list-group-item active" style="background-color:#337ab7;">
+                            <h4 class="list-group-item-heading">Informações:</h4>
+                            <p class="list-group-item-text">Clique no nó desejado para obter as informações.</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">Modelo Simplex</h4>
+                            <p class="list-group-item-text" id="modelo"></p>
+                        </div>
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">Tipo de Solução</h4>
+                            <p class="list-group-item-text" id="tipoSol"></p>
+                        </div>
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">Valor de Z</h4>
+                            <p class="list-group-item-text" id="valorZ"></p>
+                        </div>
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">Valores de X</h4>
+                            <p class="list-group-item-text" id="novosX"></p>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left: 18px; display:none;" id="rowObsProximoPasso">
+                        <small><b>Obs:</b> Clique no <b>nó</b> e então no <b>x</b> desejado, ou clique em <b>proximo passo</b> para prosseguir.</small>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end container-->
+
+        <div class="scroll-top-wrapper ">
+            <span class="scroll-top-inner">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+            </span>
+        </div>
+    </div>
+
+</body>
