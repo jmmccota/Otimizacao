@@ -50,6 +50,24 @@ blockquote {
          Modificações no Bootstrap
 ---------------------------------------------------------------*/
 
+@media (min-width: 768px) {
+    .container {
+        width: 98%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 85%;
+    }
+}
+
 
 .navbar {
     min-height: 70px;
