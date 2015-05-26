@@ -125,6 +125,7 @@ panel-primary {
         SITE
 ################################################################# */
 
+/* Header*/
 #headerwrap {
     background-color: #00b3fe;
     min-height: 550px;
@@ -163,7 +164,7 @@ panel-primary {
 #headerwrap .img-responsive {
     margin: 0 auto;
 }
-
+/*-------------------------------------*/
 
 /* Footer */
 #footerwrap {
@@ -192,10 +193,9 @@ panel-primary {
         #footerwrap i:hover {
             color: #00b3fe;
         }
-/*********/
-#add {
-}
+/*-------------------------------------*/
 
+/*Gerais*/
 #myTableData {
     width: 100%;
 }
@@ -205,41 +205,12 @@ panel-primary {
     margin-top: 30px;
 }
 
-
-/* Sidebar Left*/
-#masthead {
-}
-
-.affix-top, .affix {
-    position: static;
-}
-
-@media (min-width: 979px) {
-    #sidebar.affix-top {
-        position: static;
-        margin-top: 30px;
-        width: 228px;
-    }
-
-    #sidebar.affix {
-        position: fixed;
-        top: 70px;
-        width: 228px;
-    }
-}
-
-#sidebar li.active {
-    border: 0 #00b3fe solid;
-    border-right-width: 6px;
-}
-
 #div_mpl {
     border-color: #66afe9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-
 
 .mpl span {
     font-size: 16.9px;
@@ -343,9 +314,6 @@ panel-primary {
         display: block;
     }
 
-#resultTree {
-}
-
 #pagAjuda {
     margin-bottom: 60px;
 }
@@ -369,6 +337,7 @@ panel-primary {
 
 .destacaXialt :hover {
     font-weight: bolder;
+    font-size: 20px;
 }
 
 #fileDisplayArea {
@@ -387,3 +356,31 @@ panel-primary {
     font-family: monospace, monospace;
     font-size: 1em;
 }
+/*-------------------------------------*/
+
+/* Sidebar Left*/
+
+.affix-top, .affix {
+    position: static;
+}
+
+@media (min-width: 979px) {
+    #sidebar.affix-top {
+        position: static;
+        margin-top: 30px;
+        width: 228px;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        top: 70px;
+        width: 228px;
+    }
+}
+
+#sidebar li.active {
+    border: 0 #00b3fe solid;
+    border-right-width: 6px;
+}
+/*-------------------------------------*/
+
