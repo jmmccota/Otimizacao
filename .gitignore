@@ -2,3 +2,6 @@ nbproject/
 .gitignore
 js/teste.html
 js/wsorp.js
+*.ppt*
+*.doc*
+*.pdf
