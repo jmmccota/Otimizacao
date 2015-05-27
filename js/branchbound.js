@@ -120,6 +120,19 @@ Nodo = function (id, pai, altura, modelo, z, x) {
                         this.lower[i] + "<=" + "x_" + (i + 1) + "<=" + this.upper[i];
             source += "`\n";
         }
+		
+		if(this.objetivo.length > 0){
+			source += "`";
+		}
+		for (i = 0; i < this.objetivo.length; i++) {
+			source += 'x_' + (i+1);
+			if(i != this.objetivo.length-1){
+				source += ', ';
+			}
+		}
+		if(this.objetivo.length > 0){
+			source += " \in \mathbb{Z}`";
+		}
         //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
         return source.replace(/\n/g, '<br>');
