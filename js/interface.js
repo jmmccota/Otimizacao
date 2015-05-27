@@ -621,7 +621,7 @@ $(document).ready(function () {
             reader = new FileReader();
 
             reader.onload = function (e) {
-                fileDisplayArea.innerText = reader.result;
+                fileDisplayArea.innerHTML = reader.result.replace(/\n/g,"<br>");
             }
 
             reader.onprogress = function (e) {
@@ -636,7 +636,7 @@ $(document).ready(function () {
             analisarStyle("danger");
             $("#rowProgressFile").hide();
             $('#analisarFile').prop('disabled', true);
-            fileDisplayArea.textContent = "Arquivo não suportado!";
+            fileDisplayArea.innerHTML = "Arquivo não suportado!";
             showAlert("danger", "Arquivo não suportado!");
         }
     });
