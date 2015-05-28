@@ -610,6 +610,8 @@ $(document).ready(function () {
         }
     });
     //Carregar, cria um evento de listener
+	var fileInput = document.getElementById('fileInput');
+        
     fileInput.addEventListener('change', function (e) {
         var fileInput = document.getElementById('fileInput');
         var fileDisplayArea = document.getElementById('fileDisplayArea');
