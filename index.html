@@ -1,154 +1,158 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
 
-    <title>Branch-Bound</title>
-    <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/vis.css" rel="stylesheet">
+        <title>Branch-Bound</title>
+        <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/vis.css" rel="stylesheet">
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/vis.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootbox.min.js"></script>
-    <script type="text/javascript" src="js/glpk.min.js"></script>
-    <script type="text/javascript" src="js/branchbound.js"></script>
-    <script type="text/javascript" src="js/FileSaver.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/vis.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootbox.min.js"></script>
+        <script type="text/javascript" src="js/glpk.min.js"></script>
+        <script type="text/javascript" src="js/branchbound.js"></script>
+        <script type="text/javascript" src="js/FileSaver.min.js"></script>
 
-    <script type="text/javascript">
-        function backIndex() {
-            $("#content").hide();
-            $("#headerwrap").fadeIn(1000);
+        <script type="text/javascript">
+            function backIndex() {
+                $("#content").hide();
+                $("#headerwrap").fadeIn(1000);
 
-        }
-        $(document).ready(function () {
-            $('#modelo,#start').click(function () {
-                var link = $(this).attr("href");
-                $('#content').load(link, function () {
-                    $("#content").fadeIn(1000);
+            }
+            $(document).ready(function () {
+                $('#modelo,#start').click(function () {
+                    var link = $(this).attr("href");
+                    $('#content').load(link, function () {
+                        $("#content").fadeIn(1000);
+                    });
+                    $("#headerwrap").fadeOut(1000);
+                    return false;
                 });
-                $("#headerwrap").fadeOut(1000);
-                return false;
-            });
 
-            //Start Tree
-            var nodes = [
-                { id: 1, label: 'S', level: 0 },
-                { id: 2, label: 'S1', level: 1 },
-                { id: 3, label: 'S2', level: 1 },
-                { id: 4, label: 'S11', level: 2 },
-                { id: 5, label: 'S12', level: 2 }
-            ];
-            // create an array with edges
-            var edges = [
-                { from: 1, to: 2 },
-                { from: 1, to: 3 },
-                { from: 2, to: 4 },
-                { from: 2, to: 5 }
-            ];
-            // create a network
-            var container = document.getElementById('mynetwork');
-            var data = {
-                nodes: nodes,
-                edges: edges,
-            };
-            var options = {
-                height: '200px',
-                edges: {
-                    width: 2
-                },
-                physics: {
-                    hierarchicalRepulsion: {
-                        centralGravity: 0.5,
-                        springLength: 50,
-                        springConstant: 0.05,
-                        nodeDistance: 120,
-                        damping: 0.09
+                //Start Tree
+                var nodes = [
+                    {id: 1, label: 'S', level: 0},
+                    {id: 2, label: 'S1', level: 1},
+                    {id: 3, label: 'S2', level: 1},
+                    {id: 4, label: 'S11', level: 2},
+                    {id: 5, label: 'S12', level: 2}
+                ];
+                // create an array with edges
+                var edges = [
+                    {from: 1, to: 2},
+                    {from: 1, to: 3},
+                    {from: 2, to: 4},
+                    {from: 2, to: 5}
+                ];
+                // create a network
+                var container = document.getElementById('mynetwork');
+                var data = {
+                    nodes: nodes,
+                    edges: edges,
+                };
+                var options = {
+                    height: '200px',
+                    edges: {
+                        width: 2
+                    },
+                    physics: {
+                        hierarchicalRepulsion: {
+                            centralGravity: 0.5,
+                            springLength: 50,
+                            springConstant: 0.05,
+                            nodeDistance: 120,
+                            damping: 0.09
+                        }
+                    },
+                    hierarchicalLayout: {
+                        enabled: true,
+                        levelSeparation: 50,
+                        nodeSpacing: 5,
+                        direction: "UD",
+                        layout: "direction"
                     }
-                },
-                hierarchicalLayout: {
-                    enabled: true,
-                    levelSeparation: 50,
-                    nodeSpacing: 5,
-                    direction: "UD",
-                    layout: "direction"
-                }
 
-            };
-            var network = new vis.Network(container, data, options);
-            //network.on('select', function (properties) {
-            // document.getElementById('info').innerHTML += 'Z: ' + JSON.stringify(properties) + '<br>';
-            //});
-            // set initial selection (id's of some nodes)
-            network.selectNodes([1, 2, 4]);
-        });</script>
-</head>
+                };
+                var network = new vis.Network(container, data, options);
+                //network.on('select', function (properties) {
+                // document.getElementById('info').innerHTML += 'Z: ' + JSON.stringify(properties) + '<br>';
+                //});
+                // set initial selection (id's of some nodes)
+                network.selectNodes([1, 2, 4]);
+            });</script>
+    </head>
 
-<body>
+    <body>
 
-    <!-- Navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Branch-Bound</a>
-            </div>
-            <div class="navbar-collapse collapse navbar-right">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">IN&Iacute;CIO</a></li>
-                    <li><a href="modelo_branchbound.html">DESCRI&Ccedil;&Amacr;O</a></li>
-                    <li><a href="ajuda_branchbound.html">AJUDA</a></li>
-                </ul>
+        <!-- Navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Branch-Bound</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">IN&Iacute;CIO</a></li>
+                        <li><a href="modelo_branchbound.html">DESCRI&Ccedil;&Amacr;O</a></li>
+                        <li><a href="ajuda_branchbound.html">AJUDA</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- HEADER - INFO-->
-    <div id="content" style="display: none;">
-    </div>
-    <div id="headerwrap">
-        <div class="container-fluid">
-            <div class="col-lg-12">
+        <!-- HEADER - INFO-->
+        <div id="content" style="display: none;">
+        </div>
+        <div id="headerwrap">
+            <div class="container-fluid">
                 <div class="row">
-                    <h3>Otimiza&ccedil;&atilde;o de Programa&ccedil;&atilde;o Linear Inteira Mista</h3>
-                    <h1>Branch-Bound</h1>
-                    <h5>Branch and bound &eacute; um algoritmo para encontrar solu&ccedil;&otilde;es &oacute;timas para v&aacute;rios problemas de otimiza&ccedil;&atilde;o. </h5>
-                    <h5>O modelo foi proposto em 1960 para programação discreta.</h5>
-                </div>
-                <div class="row" style="padding-top:2%;">
-                    <a href="index_branchbound.html" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Come&ccedil;ar</a>
-                </div>
+                    <div class="col-lg-4">
+                        <img class="img-rounded" src="img/arvore.jpg" alt="Branch and Bounch" width="140" height="140">
+                        <h2>Branch and Bound</h2>
+                        <p>Branch and bound consiste em uma enumeração sistemática de todos os candidatos a solução, através da qual grandes subconjuntos de candidatos infrutíferos são descartados em massa utilizando os limites superior e inferior da quantia otimizada.</p>
+                        <p><a href="index_branchbound.html" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Come&ccedil;ar</a></p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <img class="img-rounded" src="img/simplex.jpg" alt="Simplex" width="140" height="140">
+                        <h2>Simplex</h2>
+                        <p>Simplex é um algoritmo criado por George Dantzig que viabiliza a solução de muitos problemas da programação linear. Ele permite que se encontre valores ideais em situações em que diversos aspectos precisam ser respeitados.</p>
+                        <p><a href="" id="start" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Come&ccedil;ar</a></p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <img class="img-rounded" src="img/djikstra.jpg" alt="Djikstra" width="140" height="140">
+                        <h2>Djikstra</h2>
+                        <p>O algoritmo de Dijkstra soluciona o problema do caminho mais curto num grafo dirigido ou não dirigido com arestas de peso não negativo, em tempo computacional O([m+n]log n) onde m é o número de arestas e n é o número de vértices.</p>
+                        <p><a href="" id="start" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Come&ccedil;ar</a></p>
+                    </div><!-- /.col-lg-4 -->
+                </div><!-- /.row -->
+            </div>
+        </div><!-- /headerwrap style="display: none;" -->
+        <!--  FOOTER  -->
+        <div id="footerwrap">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-lg-offset-4" id="mynetwork">
+                    <div class="col-lg-4">
+                        <h4>Realizado por</h4>
+                        <div class="hline-w"></div>
+                        <p>Alunos de Engenharia de Computa&ccedil;&atilde;o, estudantes do CEFET-MG Campus VII</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4>Alunos</h4>
+                        <div class="hline-w"></div>
+                        <a href="mailto:">Andr&eacute; Malta,</a>
+                        <a href="mailto:">Daniel Gomes,</a>
+                        <a href="mailto:">Elias Luiz,</a><br />
+                        <a href="mailto:">Henrique Castro</a>
+                        <a href="mailto:">e Jo&atilde;o Marcos.</a>
                     </div>
                 </div>
-                <div id="info"></div>
             </div>
         </div>
-    </div><!-- /headerwrap style="display: none;" -->
-    <!--  FOOTER  -->
-    <div id="footerwrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h4>Realizado por</h4>
-                    <div class="hline-w"></div>
-                    <p>Alunos de Engenharia de Computa&ccedil;&atilde;o, estudantes do CEFET-MG Campus VII</p>
-                </div>
-                <div class="col-lg-6">
-                    <h4>Alunos</h4>
-                    <div class="hline-w"></div>
-                    <a href="mailto:">Andr&eacute; Malta,</a>
-                    <a href="mailto:">Daniel Gomes,</a>
-                    <a href="mailto:">Elias Luiz,</a><br />
-                    <a href="mailto:">Henrique Castro</a>
-                    <a href="mailto:">e Jo&atilde;o Marcos.</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
