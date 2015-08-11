@@ -13,22 +13,12 @@ Arvore = function () {
 
     this.adicionarNodo = function (nodo) {
         try {
-            if (nodo.id == this.bestNode.id) {
-                this.nodes.add({
-                    id: nodo.id,
-                    label: "" + nodo.numero,
-                    title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
-                    level: nodo.altura,
-                    group: 'betterSolution'
+            this.nodes.add({
+                id: nodo.id,
+                label: "" + nodo.numero,
+                title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
+                level: nodo.altura
             });
-            } else {
-                this.nodes.add({
-                    id: nodo.id,
-                    label: "" + nodo.numero,
-                    title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
-                    level: nodo.altura
-                });
-            }
         }
         catch (err) {
             alert(err);
@@ -93,7 +83,7 @@ Arvore = function () {
             groups: {
                 betterSolution: {
                     color: 'green'
-                }      
+                }
             }
         };
         this.network = new vis.Network(this.container, this.data, options);
