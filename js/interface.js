@@ -13,12 +13,22 @@ Arvore = function () {
 
     this.adicionarNodo = function (nodo) {
         try {
-            this.nodes.add({
-                id: nodo.id,
-                label: "" + nodo.numero,
-                title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
-                level: nodo.altura
+            if (nodo.id == this.bestNode.id) {
+                this.nodes.add({
+                    id: nodo.id,
+                    label: "" + nodo.numero,
+                    title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
+                    level: nodo.altura,
+                    group: 'betterSolution'
             });
+            } else {
+                this.nodes.add({
+                    id: nodo.id,
+                    label: "" + nodo.numero,
+                    title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
+                    level: nodo.altura
+                });
+            }
         }
         catch (err) {
             alert(err);
@@ -79,8 +89,12 @@ Arvore = function () {
                 nodeSpacing: 5,
                 direction: "UD",
                 layout: "direction"
+            },
+            groups: {
+                betterSolution: {
+                    color: 'green'
+                }      
             }
-
         };
         this.network = new vis.Network(this.container, this.data, options);
 
@@ -193,7 +207,7 @@ Tabela = function () {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 21) {
 
-                for (j = 2; j < (t.nRestri + 2); j++) {
+                for (j = 2; j < (t.nRestri + 2) ; j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
@@ -371,7 +385,7 @@ $(document).ready(function () {
                 }
             });
         }
-        //Cria nova tabela
+            //Cria nova tabela
         else
             t.novo();
         showFormProblema();
@@ -450,7 +464,7 @@ $(document).ready(function () {
                 }
                 source += "\r\n\r\n";
                 //alert(source);
-                var blob = new Blob([source], {type: "application/octet-stream;charset=utf-8"});
+                var blob = new Blob([source], { type: "application/octet-stream;charset=utf-8" });
                 saveAs(blob, "modelo.txt");
             }
         } catch (err) {
@@ -500,6 +514,7 @@ $(document).ready(function () {
                 //Adiciona nodo e aresta a arvore
                 a.adicionarNodo(res);
                 a.adicionarAresta(res);
+
                 while (!b.terminou()) {
                     res = b.executar();
                     //Adiciona nodo e aresta a arvore
@@ -514,7 +529,7 @@ $(document).ready(function () {
                 }
                 //Operações da arvore
                 var otimo = b.melhorSolucao();
-                $("html, body").animate({scrollTop: $(document).height() - 385}, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
 
                 $("#panelResultado").show();
 
@@ -542,7 +557,7 @@ $(document).ready(function () {
         if (!verificaTabela()) {
             a = new Arvore();
             b = new BranchBound();
-            $("html, body").animate({scrollTop: $(document).height() - 380}, 1500);
+            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
             $("#panelResultado").show();
             nodos = [];
 
@@ -584,11 +599,11 @@ $(document).ready(function () {
     //Ao clicar no botao volta para o topo
     $('.scroll-top-wrapper').on('click', function () {
         verticalOffset = typeof (verticalOffset) != 'undefined' ?
-                verticalOffset :
+            verticalOffset :
                 0;
         offset = $('body').offset();
         offsetTop = offset.top;
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+        $('html, body').animate({ scrollTop: offsetTop }, 500, 'linear');
     });
     //Ao clicar no botão file aparecer o caminho
     $(document).on('change', '.btn-file :file', function () {
@@ -610,8 +625,8 @@ $(document).ready(function () {
         }
     });
     //Carregar, cria um evento de listener
-	var fileInput = document.getElementById('fileInput');
-        
+    var fileInput = document.getElementById('fileInput');
+
     fileInput.addEventListener('change', function (e) {
         var fileInput = document.getElementById('fileInput');
         var fileDisplayArea = document.getElementById('fileDisplayArea');
@@ -623,7 +638,7 @@ $(document).ready(function () {
             reader = new FileReader();
 
             reader.onload = function (e) {
-                fileDisplayArea.innerHTML = reader.result.replace(/\n/g,"<br>");
+                fileDisplayArea.innerHTML = reader.result.replace(/\n/g, "<br>");
             }
 
             reader.onprogress = function (e) {
@@ -686,15 +701,15 @@ function isInfinityKey(evt) {
         if (charCode >= 45 && charCode <= 46)
             valida = true;
         else
-        //inf minuscuto
-        if (charCode == 105 || charCode == 110 || charCode == 102)
-            valida = true;
-        else
-        //INF maiusculo
-        if (charCode == 70 || charCode == 73 || charCode == 78)
-            valida = true;
-        else
-            valida = false;
+            //inf minuscuto
+            if (charCode == 105 || charCode == 110 || charCode == 102)
+                valida = true;
+            else
+                //INF maiusculo
+                if (charCode == 70 || charCode == 73 || charCode == 78)
+                    valida = true;
+                else
+                    valida = false;
     }
     else
         valida = true;
@@ -811,7 +826,7 @@ function removeStyle() {
 function analisarFile() {
     try {
         var source = "";
-        var restricoes = []; 
+        var restricoes = [];
         var relacoes = [];
         var rhs = [];
         var upper = [];
@@ -820,7 +835,7 @@ function analisarFile() {
         var problema = "";
         var nVariaveis = 0;
         var iRest = 0;
-        var contLinha=0;
+        var contLinha = 0;
         source = reader.result;
         var linha = 1;
         var cont = 1;
@@ -838,9 +853,9 @@ function analisarFile() {
                 while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
                         && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
                         && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
-                    
+
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
                 }
@@ -849,10 +864,10 @@ function analisarFile() {
             if (p === 2) { //saber funÃ§ao objetivo
                 var linha = "";
                 while (source[cont] !== "\n") { //pega a linha inteira 
-                    
+
                     linha += source[cont];
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
                 }
@@ -867,12 +882,12 @@ function analisarFile() {
                 while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
                         && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
                         && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9" && source[cont] !== "n") {//avanÃ§a ate as restriÃ§oes
-                    
+
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
-                    
+
                 }
                 if (source[cont] === "n") {
                     restricoes.push("n");
@@ -884,7 +899,7 @@ function analisarFile() {
                 while (source[cont] !== ">" && source[cont] !== "<" && source[cont] !== "=") { //pega ate a relacao
                     linha += source[cont];
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
                 }
@@ -907,7 +922,7 @@ function analisarFile() {
                 while (source[cont] !== "|") { //pega o lado direito
                     ld += source[cont];
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
                 }
@@ -925,7 +940,7 @@ function analisarFile() {
                         && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
                         && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
                 }
@@ -933,7 +948,7 @@ function analisarFile() {
                 while (source[cont] !== "\n") { //pega a linha com os minimos
                     linha += source[cont];
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
                 }
@@ -957,7 +972,7 @@ function analisarFile() {
 
                     }
                     cont++;
-                    if (cont>source.length){
+                    if (cont > source.length) {
                         break;
                     }
                 }

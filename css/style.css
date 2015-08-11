@@ -194,6 +194,7 @@ panel-primary {
     #footerwrap p {
         color: #bfc9d3;
     }
+
     #footerwrap a {
         color: #bfc9d3;
     }
@@ -399,6 +400,10 @@ panel-primary {
 #sidebar li.active {
     border: 0 #00b3fe solid;
     border-right-width: 6px;
+}
+
+#resultTree {
+    cursor: pointer;
 }
 /*-------------------------------------*/
 
