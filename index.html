@@ -23,7 +23,6 @@
         function backIndex() {
             $("#content").hide();
             $("#headerwrap").fadeIn(1000);
-
         }
         $(document).ready(function () {
             $('#modelo,#start').click(function () {
@@ -34,7 +33,6 @@
                 $("#headerwrap").fadeOut(1000);
                 return false;
             });
-
             //Start Tree
             var nodes = [
                 { id: 1, label: 'S', level: 0 },
@@ -77,7 +75,6 @@
                     direction: "UD",
                     layout: "direction"
                 }
-
             };
             var network = new vis.Network(container, data, options);
             //network.on('select', function (properties) {
@@ -99,6 +96,7 @@
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.html">IN&Iacute;CIO</a></li>
+                    <li><a href="modelo_branchbound.html">DESCRI&Ccedil;&Amacr;O</a></li>
                     <li><a href="ajuda_branchbound.html">AJUDA</a></li>
                 </ul>
             </div>
@@ -119,7 +117,6 @@
                 </div>
                 <div class="row" style="padding-top:2%;">
                     <a href="index_branchbound.html" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Come&ccedil;ar</a>
-                    <a href="modelo_branchbound.html" id="modelo" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Mais sobre o modelo</a>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-lg-offset-4" id="mynetwork">
