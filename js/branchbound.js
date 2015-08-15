@@ -18,6 +18,7 @@ Nodo = function (id, pai, altura, modelo, z, x) {
     this.lower = modelo["lower"];
     this.z = z;
     this.x = x;
+    this.otimo = false;
 
 
     this.toSource = function () {
@@ -193,7 +194,8 @@ BranchBound = function () {
      * Classe que controla a chamada do simplex
      * Usa um heap para simular a arvore de possibilidades
      */
-
+    
+    this.melhor = "";
 
     this.resolveRaiz = function () {
         var nodo = new Nodo(1, 0, 0, leituraParametros(), 0, 0);
@@ -236,14 +238,19 @@ BranchBound = function () {
     };
 
     this.resolveNodos = function (id, xi) {
-        //se nodo nao vai ter filhos
-        if (this.borda.indexOf(id * 2) === -1 &&
-                this.borda.indexOf(id * 2 + 1) === -1)
+        if (  this.borda.indexOf(id * 2) === -1
+            &&this.borda.indexOf(id * 2 + 1) === -1)
             return undefined;
 
         if (Math.floor(this.heap.array[id].x[xi]) == this.heap.array[id].x[xi])
             return [undefined, undefined];
-
+        //?
+        /*
+        if (this.heap.array[id].x.length === 0){
+            this.borda.splice(this.borda.indexOf(dir.id), 1);
+            return [undefined, undefined];
+        }
+        */
         this.heap.array[id].xi = xi;
 
         //RESOLVENDO NO DA ESQUERDA
@@ -257,26 +264,6 @@ BranchBound = function () {
         esq.x = res["x"];
         esq.z = res["z"];
 
-        //Olha se nodo vai gerar filhos (para saber se vai terminar)
-        var tudoInteiro = true;
-        for (var i = 0; i < esq.x.length; i++)
-            tudoInteiro &= parseFloat(esq.x[i]) == Math.floor(esq.x[i]);
-        if (!tudoInteiro) {
-            //cria 2 nodos filhos
-            if (!isNaN(esq.z)) {
-                this.heap.insereNodos(esq.id, jQuery.extend(true, {}, esq),
-                        jQuery.extend(true, {}, esq));
-                this.borda.push(esq.id * 2);
-                this.borda.push(esq.id * 2 + 1);
-            }
-
-            //altera o valor de Z
-            if (esq.problema === "Maximize")
-                esq.z = "-Inf";
-            else
-                esq.z = "Inf";
-        }
-
         //RESOLVENDO NO DA DIREITA
         var dir = this.heap.array[id * 2 + 1];
         dir.id = id * 2 + 1;
@@ -288,13 +275,60 @@ BranchBound = function () {
         dir.x = res["x"];
         dir.z = res["z"];
 
-        //Olha se nodo vai gerar filhos (para saber se vai terminar)
-        var tudoInteiro = true;
-        for (var i = 0; i < dir.x.length; i++)
-            tudoInteiro &= parseFloat(dir.x[i]) == Math.floor(dir.x[i]);
-        if (!tudoInteiro) {
+
+
+        var tudoInteiroEsq = false, tudoInteiroDir = false;
+        //Olha se nodo esq vai gerar filhos (para saber se vai terminar)
+        if(!isNaN(esq.z)){
+            tudoInteiroEsq = true;
+            for (var i = 0; i < esq.x.length; i++)
+                tudoInteiroEsq &= parseFloat(esq.x[i]) == Math.floor(esq.x[i]);
+        }
+        //Olha se nodo dir vai gerar filhos (para saber se vai terminar)
+        if(!isNaN(dir.z)){
+            tudoInteiroDir = true;
+            for (var i = 0; i < dir.x.length; i++)
+                tudoInteiroDir &= parseFloat(dir.x[i]) == Math.floor(dir.x[i]);
+        }
+        
+        
+        //Olha se esq melhor ate agora
+        if(tudoInteiroEsq
+           &&(  (esq.problema === "Maximize" && esq.z)
+              ||(esq.problema === "Minimize" && esq.z)
+              ||this.melhor !== "")){
+           this.melhor = esq.z;
+        }
+        //Olha se dir melhor ate agora
+        if(tudoInteiroDir
+           &&(  (esq.problema === "Maximize" && dir.z > this.melhor)
+              ||(esq.problema === "Minimize" && dir.z < this.melhor)
+              ||this.melhor !== "")){
+           this.melhor = dir.z;
+        }
+        
+        if (!tudoInteiroEsq && !isNaN(esq.z)) {
             //cria 2 nodos filhos
-            if (!isNaN(dir.z)) {
+            if (  (esq.problema == "Maximize" && esq.z >= this.melhor)
+                ||(esq.problema == "Minimize" && esq.z <= this.melhor)
+                ||this.melhor == "") {
+                this.heap.insereNodos(esq.id, jQuery.extend(true, {}, esq),
+                        jQuery.extend(true, {}, esq));
+                this.borda.push(esq.id * 2);
+                this.borda.push(esq.id * 2 + 1);
+            }
+            
+            //altera o valor de Z
+            if (esq.problema === "Maximize")
+                esq.z = "-Inf";
+            else
+                esq.z = "Inf";
+        }
+        if (!tudoInteiroDir && !isNaN(dir.z)) {
+            //cria 2 nodos filhos
+            if (  (dir.problema == "Maximize" && dir.z >= this.melhor)
+                ||(dir.problema == "Minimize" && dir.z <= this.melhor)
+                ||this.melhor == "") {
                 this.heap.insereNodos(dir.id, jQuery.extend(true, {}, dir),
                         jQuery.extend(true, {}, dir));
                 this.borda.push(dir.id * 2);
@@ -384,6 +418,10 @@ BranchBound = function () {
                     otim = this.heap.array[j];
             }
         }
+
+
+        //ALTERAR PARA EM VEZ DE RETORNAR O INDEX ALTERAR UM VALOR DENTRO DO NODO
+        //PERMITINDO MULTIPLAS SOLUCOES OTIMAS
 
         return otim;
     };
