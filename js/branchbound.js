@@ -383,25 +383,25 @@ BranchBound = function () {
 
     this.melhorSolucao = function () {
         /*
-         * retorna o nodo com maior/menor Z
-         * retorna 0 caso nao haja solucao inteira viavels
+         * procura os nos com solucao otima e altera seu atributo
+         * otimo para true
          */
 
         //procura a 1a solucao inteira viavel
-        //    se nao houver nenhuma retorna null
+        //    se nao houver nenhuma interrompe execucao
         //    se encontrar seta como otima
         var i = 1;
         while (i <= this.heap.array.length) {
             if (i === this.heap.array.length)
-                return 0;
+                return;
             else if (this.heap.array[i] == undefined ||
                     isNaN(this.heap.array[i].z))
                 i++;
-            else
+            else{
+                var otim = this.heap.array[i].z;
                 break;
+            }
         }
-
-        var otim = this.heap.array[i];
 
         //para cada solucao
         for (var j = i; j < this.heap.array.length; j++) {
@@ -411,19 +411,27 @@ BranchBound = function () {
             else if (!isNaN(this.heap.array[j].z)) {
                 //e for melhor que a otima
                 if ((this.heap.array[j].problema === "Maximize" &&
-                        this.heap.array[j].z > otim.z) ||
+                        this.heap.array[j].z > otim) ||
                         (this.heap.array[j].problema === "Minimize" &&
-                                this.heap.array[j].z < otim.z))
+                                this.heap.array[j].z < otim))
                     // passa a ser a nova otima
-                    otim = this.heap.array[j];
+                    otim = this.heap.array[j].z;
+            }
+        }
+
+        //para cada solucao
+        for (var j = i; j < this.heap.array.length; j++) {
+            if (this.heap.array[j] == undefined)
+                continue
+            //se solucao eh otima
+            else if (this.heap.array[j].z === otim) {
+                this.heap.array[j].otimo = true;
             }
         }
 
 
         //ALTERAR PARA EM VEZ DE RETORNAR O INDEX ALTERAR UM VALOR DENTRO DO NODO
         //PERMITINDO MULTIPLAS SOLUCOES OTIMAS
-
-        return otim;
     };
 };
 
