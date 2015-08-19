@@ -18,6 +18,8 @@ Arvore = function () {
                 estilo = "betterSolution"
             } else {
                 if (nodo.z === "-Inf" || nodo.z === "Inf") {
+                    estilo = "";
+                } else {
                     estilo = "wrongSolution";
                 }
             }
