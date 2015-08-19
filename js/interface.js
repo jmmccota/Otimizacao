@@ -13,12 +13,12 @@ Arvore = function () {
 
     this.adicionarNodo = function (nodo) {
         try {
-            var estilo = "";
+            var estilo = 0;
             if (nodo.otimo) {
-                estilo = "betterSolution"
+                estilo = "betterSolution";
             } else {
                 if (nodo.z === "-Inf" || nodo.z === "Inf") {
-                    estilo = "";
+                    estilo = 0;
                 } else {
                     estilo = "wrongSolution";
                 }
@@ -94,10 +94,10 @@ Arvore = function () {
             },
             groups: {
                 betterSolution: {
-                    color: 'green'
+                    color: '#C2FABC'
                 },
                 wrongSolution: {
-                    color: 'red'
+                    color: '#FB7E81'
                 }
             }
         };
@@ -131,7 +131,6 @@ function exibirNodo(nodo, otimo) {
     $("#tipoSol").empty();
     $("#novosX").empty();
     $("#modelo").empty();
-
 
     if (nodo.z === "-Inf") {
         $("#tipoSol").append("Solução não é inteira");
