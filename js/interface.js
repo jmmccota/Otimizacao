@@ -13,12 +13,22 @@ Arvore = function () {
 
     this.adicionarNodo = function (nodo) {
         try {
+            var estilo = "";
+            if (nodo.otimo) {
+                estilo = "betterSolution"
+            } else {
+                if (nodo.z === "-Inf" || nodo.z === "Inf") {
+                    estilo = "wrongSolution";
+                }
+            }
             this.nodes.add({
                 id: nodo.id,
                 label: "" + nodo.numero,
                 title: "<p>z: " + nodo.z + "</p>x: " + nodo.x + "</p>",
-                level: nodo.altura
+                level: nodo.altura,
+                group: estilo
             });
+
         }
         catch (err) {
             alert(err);
@@ -83,6 +93,9 @@ Arvore = function () {
             groups: {
                 betterSolution: {
                     color: 'green'
+                },
+                wrongSolution: {
+                    color: 'red'
                 }
             }
         };
@@ -92,7 +105,11 @@ Arvore = function () {
             try {
                 nodoSelecionado = properties.nodes;
                 nodo = b.heap.array[properties.nodes];
-                exibirNodo(nodo, b.melhorSolucao());
+                if (nodo.otimo) {
+                    exibirNodo(nodo, nodo);
+                } else {
+                    exibirNodo(nodo, 0);
+                }
                 showAlert('info', 'Nó ' + nodo.numero + ' selecionado.');
             }
             catch (err) {
@@ -500,25 +517,28 @@ $(document).ready(function () {
                 a = new Arvore();
                 b = new BranchBound();
 
-                var res = b.resolveRaiz();
-                //Adiciona nodo e aresta a arvore
-                a.adicionarNodo(res);
-                a.adicionarAresta(res);
+                var res = new Array();
+                res.push(b.resolveRaiz());
 
                 while (!b.terminou()) {
-                    res = b.executar();
-                    //Adiciona nodo e aresta a arvore
-                    if (res[0] != undefined) {
-                        a.adicionarNodo(res[0]);
-                        a.adicionarAresta(res[0]);
+                    temp = b.executar();
+                    if (temp[0] != undefined) {
+                        res.push(temp[0]);
                     }
-                    if (res[1] != undefined) {
-                        a.adicionarNodo(res[1]);
-                        a.adicionarAresta(res[1]);
+                    if (temp[1] != undefined) {
+                        res.push(temp[1]);
                     }
                 }
+                b.melhorSolucao();
                 //Operações da arvore
-                var otimo = b.melhorSolucao();
+                for (var i = 0; i < res.length; i++) {
+                    a.adicionarNodo(res[i]);
+                    a.adicionarAresta(res[i]);
+                    if (res[i].otimo) {
+                        otimo = res[i];
+                    }
+                }
+
                 $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
 
                 $("#panelResultado").show();
