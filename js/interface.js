@@ -16,12 +16,10 @@ Arvore = function () {
             var estilo = 0;
             if (nodo.otimo) {
                 estilo = "betterSolution";
+            } else if (nodo.z === "-Inf" || nodo.z === "Inf" || !isNaN(nodo.z)) {
+                estilo = 0;
             } else {
-                if (nodo.z === "-Inf" || nodo.z === "Inf") {
-                    estilo = 0;
-                } else {
-                    estilo = "wrongSolution";
-                }
+                estilo = "wrongSolution";
             }
             this.nodes.add({
                 id: nodo.id,
@@ -584,13 +582,15 @@ $(document).ready(function () {
     });
     //Define botao para proximo passo
     $('#proximoPasso').click(function () {
-        if (b.terminou())
+        if (b.terminou()){
             a.definirOtimo(b.melhorSolucao());
+        }
         delete a;
         a = new Arvore();
         var res = b.executar();
-        nodos.push(res[0]);
-        nodos.push(res[1]);
+        b.melhorSolucao()
+        nodos.push(b.heap.array[res[0].id]);
+        nodos.push(b.heap.array[res[1].id]);
         for (var i = 0; i < nodos.length; i++) {
             if (nodos[i] != undefined) {
                 a.adicionarNodo(nodos[i]);
@@ -681,8 +681,9 @@ function selecionaX(xi) {
     delete a;
     a = new Arvore();
     var res = b.resolveNodos(nodoSelecionado, xi);
-    nodos.push(res[0]);
-    nodos.push(res[1]);
+    b.melhorSolucao()
+    nodos.push(b.heap.array[res[0].id]);
+    nodos.push(b.heap.array[res[1].id]);
     for (var i = 0; i < nodos.length; i++) {
         if (nodos[i] != undefined) {
             a.adicionarNodo(nodos[i]);
