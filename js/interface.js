@@ -134,15 +134,15 @@ function exibirNodo(nodo, otimo) {
         $("#tipoSol").append("Solução não é inteira");
         $("#valorZ").append("`z = -\infty`");
     }
-    else if (nodo.z === "-Inf" || nodo.z === "Inf") {
+    else if (nodo.z === "Inf") {
         $("#tipoSol").append("Solução não é inteira");
         $("#valorZ").append("`z = \infty`");
     }
-    else if (otimo === 0 || typeof (nodo.z) === "string") {
+    else if (typeof (nodo.z) === "string") {
         $("#tipoSol").append(nodo.z);
         $("#valorZ").append("Não possui solução viável");
     }
-    else if (nodo.id === otimo.id) {
+    else if (nodo.otimo) {
         $("#tipoSol").append("Solução ótima");
         $("#valorZ").append("`z = " + nodo.z + "`");
     }
