@@ -196,6 +196,7 @@ BranchBound = function () {
      */
     
     this.melhor = "";
+    this.exec = [];
 
     this.resolveRaiz = function () {
         var nodo = new Nodo(1, 0, 0, leituraParametros(), 0, 0);
@@ -207,6 +208,7 @@ BranchBound = function () {
         //completa o nodo
         nodo.x = res["x"];
         nodo.z = res["z"];
+        nodo.apareceu = true;
 
         //Olha se nodo vai gerar filhos
         var tudoInteiro = true;
@@ -228,6 +230,8 @@ BranchBound = function () {
             else
                 nodo.z = "Inf";
         }
+        
+        this.exec.push(1);
 
         return nodo;
     };
@@ -256,6 +260,8 @@ BranchBound = function () {
         //RESOLVENDO NO DA ESQUERDA
         var esq = this.heap.array[id * 2];
         esq.id = id * 2;
+        esq.otimo = false;
+        esq.apareceu = true;
         //adiciona restricao
         esq.upper[xi] = Math.floor(this.heap.array[id].x[xi]);
         //resolve o simplex
@@ -267,6 +273,8 @@ BranchBound = function () {
         //RESOLVENDO NO DA DIREITA
         var dir = this.heap.array[id * 2 + 1];
         dir.id = id * 2 + 1;
+        dir.otimo = false;
+        dir.apareceu = true;
         //adiciona restricao
         dir.lower[xi] = Math.ceil(this.heap.array[id].x[xi]);
         //resolve o simplex
@@ -346,6 +354,9 @@ BranchBound = function () {
             this.borda.splice(this.borda.indexOf(esq.id), 1);
         if (dir != undefined)
             this.borda.splice(this.borda.indexOf(dir.id), 1);
+        
+        this.exec.push(esq.id);
+        this.exec.push(dir.id);
 
         return [esq, dir];
     };
@@ -386,52 +397,63 @@ BranchBound = function () {
          * procura os nos com solucao otima e altera seu atributo
          * otimo para true
          */
+        
+        for (var i = 1; i < this.heap.array.length; i++)
+            if(this.heap.array[i] != undefined)
+                this.heap.array[i].otimo = false;
 
         //procura a 1a solucao inteira viavel
         //    se nao houver nenhuma interrompe execucao
         //    se encontrar seta como otima
-        var i = 1;
-        while (i <= this.heap.array.length) {
-            if (i === this.heap.array.length)
+        var i = 0;
+        while (this.exec[i] != undefined) {
+            var j = this.exec[i];
+            if (j === this.heap.array.length)
                 return;
-            else if (this.heap.array[i] == undefined ||
-                    isNaN(this.heap.array[i].z))
-                i++;
-            else{
-                var otim = this.heap.array[i].z;
+            if (!(this.heap.array[j] == undefined ||
+                  isNaN(this.heap.array[j].z))){
+                var otim = this.heap.array[j].z;
                 break;
             }
+            i++;
         }
 
         //para cada solucao
-        for (var j = i; j < this.heap.array.length; j++) {
+        var i = 0;
+        while (this.exec[i] != undefined) {
+            var j = this.exec[i];
             if (this.heap.array[j] == undefined)
                 continue
             //se solucao eh viavel
             else if (!isNaN(this.heap.array[j].z)) {
                 //e for melhor que a otima
-                if ((this.heap.array[j].problema === "Maximize" &&
+                if (((this.heap.array[j].problema === "Maximize" &&
                         this.heap.array[j].z > otim) ||
-                        (this.heap.array[j].problema === "Minimize" &&
-                                this.heap.array[j].z < otim))
+                    (this.heap.array[j].problema === "Minimize" &&
+                        this.heap.array[j].z < otim))
+                    && this.heap.array[j].apareceu)
                     // passa a ser a nova otima
                     otim = this.heap.array[j].z;
             }
+            i++
         }
-
+        
+        var id = 0;
         //para cada solucao
-        for (var j = i; j < this.heap.array.length; j++) {
+        var i = 0;
+        while (this.exec[i] != undefined) {
+            var j = this.exec[i];
             if (this.heap.array[j] == undefined)
                 continue
             //se solucao eh otima
             else if (this.heap.array[j].z === otim) {
+                id = j;
                 this.heap.array[j].otimo = true;
             }
+            i++;
         }
-
-
-        //ALTERAR PARA EM VEZ DE RETORNAR O INDEX ALTERAR UM VALOR DENTRO DO NODO
-        //PERMITINDO MULTIPLAS SOLUCOES OTIMAS
+        
+        return id;
     };
 };
 
