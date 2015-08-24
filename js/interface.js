@@ -564,6 +564,7 @@ $(document).ready(function () {
     $('#passoAPasso').click(function () {
         $("#div_mpl").fadeOut("fast");
         if (!verificaTabela()) {
+            $("#proximoPasso").prop('disabled', false);
             a = new Arvore();
             b = new BranchBound();
             $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
@@ -582,9 +583,6 @@ $(document).ready(function () {
     });
     //Define botao para proximo passo
     $('#proximoPasso').click(function () {
-        if (b.terminou()){
-            a.definirOtimo(b.melhorSolucao());
-        }
         delete a;
         a = new Arvore();
         var res = b.executar();
@@ -599,6 +597,9 @@ $(document).ready(function () {
         }
         a.setContainer(document.getElementById("resultTree"));
         a.criarConexao(b);
+        if (b.terminou()) {
+            $("#proximoPasso").prop('disabled', true);
+        }
     });
     //Ao rolar a pagina adiciona o botao de voltar ao topo
     $(document).on('scroll', function () {
