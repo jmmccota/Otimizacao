@@ -39,6 +39,7 @@ Simplex = function(){
         this.solver = new Solver();
         
         
+        this.terminado = false;
         //Controla se o simplex vai ser executado mais de uma vez
         //True indica que e a ultima execucao
         this.execucaoFinal = true;
@@ -161,11 +162,79 @@ Simplex = function(){
          *      adaptando para o modelo Duas Fases a ser jogado para o solver
          */
         
-        /////////////////////////////
-        //          TO DO          //
-        // Ajuste modelo fase 1    //
-        // Chamada Solver          //
-        /////////////////////////////
+        //Criando tabela basica
+        for(var i = 0; i < this.objetivo.length; i++)
+            this.tabela[0].push(0);
+        for(var i = 0; i < this.restricoes.length; i++)
+            this.tabela[i+1] = this.restricoes[i];
+        
+        //Adicionando limites superior e inferior
+        for(var i = 0; i < this.lower.length; i++){
+            //Limite inferior
+            if(this.lower[i] !== 0){
+                this.tabela.push([]);
+                for(var j = 0; j < this.lower.length; j++){
+                    if(j === i)
+                        this.tabela[this.tabela.lenght-1].push(1);
+                    else
+                        this.tabela[this.tabela.lenght-1].push(0);
+                }
+                this.relacoes.push(">=");
+                this.rhs.push(this.lower[i]);
+            }
+            //Limite superior
+            if(this.upper[i] !== "inf"){
+                this.tabela.push([]);
+                for(var j = 0; j < this.upper.length; j++){
+                    if(j === i)
+                        this.tabela[this.tabela.lenght-1].push(1);
+                    else
+                        this.tabela[this.tabela.lenght-1].push(0);
+                }
+                this.relacoes.push("<=");
+                this.rhs.push(this.upper[i]);
+            }
+        }
+        
+        //Gerando modelo aumentado
+        for(var i = 0; i < this.relacoes.length; i++){
+            if(this.relacoes[i] === "<="){
+                //Variaveis de folga
+                for(var j = 0; j < this.tabela.lenght; j++){
+                    if(j === i + 1)
+                        this.tabela[j].push(1);
+                    else
+                        this.tabela[j].push(0);
+                }
+            }
+            else{
+                //Variaveis artificiais
+                this.tabela[0].push(1);
+                for(var j = 1; j < this.tabela.lenght; j++){
+                    if(j === i + 1)
+                        this.tabela[j].push(1);
+                    else
+                        this.tabela[j].push(0);
+                }
+                if(this.relacoes[i] === ">="){
+                    //Variaveis de sobra
+                    for(var j = 1; j < this.tabela.lenght; j++){
+                        if(j === i + 1)
+                            this.tabela[j].push(-1);
+                        else
+                            this.tabela[j].push(0);
+                    }
+                }
+            }
+        }
+        
+        //Adicionando coluna Solucao
+        this.tabela[0].push(0);
+        for(var i = 0; i < this.rhs.length; i++){
+            this.tabela[i+1].push(this.rhs[i]);
+        }
+        
+        this.solver.init({tabela : this.tabela});
     };
     
     this.duasFases2 = function(){
@@ -179,11 +248,23 @@ Simplex = function(){
          *      adaptando para o modelo Duas Fases a ser jogado para o solver
          */
         
-        /////////////////////////////
-        //          TO DO          //
-        // Ajuste modelo fase 2    //
-        // Chamada Solver          //
-        /////////////////////////////
+        //Recebe resultado da fase 1
+        var tabela = this.solver.tabela;
+        
+        //Criando tabela basica
+        if(this.problema === "Maximize")
+            for(var i = 0; i < this.objetivo.length; i++)
+                this.tabela[0].push(-this.objetivo[i]);
+        else
+            this.tabela[0] = this.objetivo;
+        for(var i = 0; i < tabela.length; i++)
+            for(var j = 0; j < this.restricoes[0].length; j++)
+                this.tabela[i+1][j] = tabela[i+1][j];
+        for(var i = 0; i < tabela.length; i++)
+            this.tabela[i].push(tabela[i][tabela.lenght-1]);
+        
+        this.solver = new Solver();
+        this.solver.init({tabela : this.tabela});
     };
     
     this.generalizado = function(){
@@ -197,31 +278,81 @@ Simplex = function(){
          *      adaptando para o modelo generalizado a ser jogado para o solver
          */
         
-        
-        /////////////////////////////
-        //          TO DO          //
-        // Ajuste modelo           //
-        // Chamada Solver          //
-        /////////////////////////////
-        
     };
     
     this.iteracao = function(entra, sai){
-        /*************/
-        /**  TO DO  **/
-        /*************/
+        /*
+         * Argumentos:
+         *      entra = indice da coluna que ira entrar na base
+         *      sai = 
+         *          Caso comum: indice da linha que ira sair da base
+         *          Caso degenerado: lista com indices das linhas degeneradas
+         *          Caso ilimitado: NaN
+         * Retorno:
+         *      tabela = Nova tabela simplex apos troca de variavel na base
+         * Objetivo:
+         *      Trocar uma variavel da base e ajustar a tabela, escalonando para
+         *      manter a consistencia dos dados
+         */
+        
+        if(this.terminou() && this.execucaoFinal)
+            return this.solver.tabela;
+        
         return this.solver.iteracao(entra, sai);
     };
     
     this.proximoPasso = function(){
+        /*
+         * Argumentos:
+         *      nulo
+         * Retorno:
+         *      tabela = Nova tabela simplex apos troca de variavel na base
+         * Objetivo:
+         *      Executa uma iteracao do algoritmo
+         */
         var res = this.solver.escolheVariavel();
         return this.iteracao(res[0], res[1]);
     };
     
     this.terminou = function(){
-        /*************/
-        /**  TO DO  **/
-        /*************/
+        /*
+         * Argumentos:
+         *      nulo
+         * Retorno:
+         *      Bool = True caso o simplex tenha terminado sua execucao, 
+         *      False caso contrario
+         * Objetivo:
+         *      Informar a quem esta utilizando o algoritmo se ha mais iteracoes
+         *      a serem executadas e faz a chamada caso precisa passar de fase (duas fases)
+         */
+        if(this.terminado || this.solver.terminou()){
+            if(this.execucaoFinal){
+                this.terminado = true;
+            }
+            else{
+                this.duasFases2();
+                this.terminado = false;
+                this.execucaoFinal = true;
+            }
+        }
+        return this.terminado;
+    };
+    
+    this.executa = function(){
+        /*
+         * Argumentos:
+         *      nulo
+         * Retorno:
+         *      tabela = Nova tabela simplex apos execucao completa do algoritmo
+         * Objetivo:
+         *      Realizar iteracoes sucessivas ate encontrar a solucao otima ou
+         *      um "erro" no modelo
+         */
+        
+        while(!this.terminou())
+            this.solver.executa();
+        
+        return this.solver.tabela;
     };
     
 };
@@ -281,10 +412,10 @@ Solver = function(){
         
         for(var i = 0; i < this.tabela[0].lenght-1; i++)
             if (this.tabela[0][i] < 0) 
-                return false;
+                this.terminado = false;
         
         this.terminado = true;
-        return true;
+        return this.terminado;
     };
     
     this.escolheVariavel = function(){
@@ -401,9 +532,11 @@ Solver = function(){
         }
         
         //Degeneracao
-        /*************/
-        /**  TO DO  **/
-        /*************/
+        /***********************/
+        /***********************/
+        /*******  TO DO  *******/
+        /***********************/
+        /***********************/
         
         //Normalizando a linha de quem entra
         var razao = 1 / this.tabela[sai][entra];
