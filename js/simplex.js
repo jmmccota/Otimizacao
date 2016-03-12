@@ -34,7 +34,7 @@ Simplex = function(){
         this.rhs = modelo["rhs"];
         this.upper = modelo["upper"];
         this.lower = modelo["lower"];
-        this.tabela = [];
+        this.tabela = [[]];
         //Instanciar solver
         this.solver = new Solver();
         
@@ -86,12 +86,19 @@ Simplex = function(){
         for(var i = 0; i < this.lower.length; i++){
             //Limite inferior
             if(this.lower[i] !== 0){
+                //Tratamento negativo
+                /***********************/
+                /***********************/
+                /*******  TO DO  *******/
+                /***********************/
+                /***********************/
+                
                 this.tabela.push([]);
                 for(var j = 0; j < this.lower.length; j++){
                     if(j === i)
-                        this.tabela[this.tabela.lenght-1].push(1);
+                        this.tabela[this.tabela.length-1].push(1);
                     else
-                        this.tabela[this.tabela.lenght-1].push(0);
+                        this.tabela[this.tabela.length-1].push(0);
                 }
                 this.relacoes.push(">=");
                 this.rhs.push(this.lower[i]);
@@ -101,9 +108,9 @@ Simplex = function(){
                 this.tabela.push([]);
                 for(var j = 0; j < this.upper.length; j++){
                     if(j === i)
-                        this.tabela[this.tabela.lenght-1].push(1);
+                        this.tabela[this.tabela.length-1].push(1);
                     else
-                        this.tabela[this.tabela.lenght-1].push(0);
+                        this.tabela[this.tabela.length-1].push(0);
                 }
                 this.relacoes.push("<=");
                 this.rhs.push(this.upper[i]);
@@ -114,7 +121,7 @@ Simplex = function(){
         for(var i = 0; i < this.relacoes.length; i++){
             if(this.relacoes[i] === "<="){
                 //Variaveis de folga
-                for(var j = 0; j < this.tabela.lenght; j++){
+                for(var j = 0; j < this.tabela.length; j++){
                     if(j === i + 1)
                         this.tabela[j].push(1);
                     else
@@ -124,7 +131,7 @@ Simplex = function(){
             else{
                 //Variaveis artificiais
                 this.tabela[0].push(M);
-                for(var j = 1; j < this.tabela.lenght; j++){
+                for(var j = 1; j < this.tabela.length; j++){
                     if(j === i + 1)
                         this.tabela[j].push(1);
                     else
@@ -132,7 +139,7 @@ Simplex = function(){
                 }
                 if(this.relacoes[i] === ">="){
                     //Variaveis de sobra
-                    for(var j = 1; j < this.tabela.lenght; j++){
+                    for(var j = 1; j < this.tabela.length; j++){
                         if(j === i + 1)
                             this.tabela[j].push(-1);
                         else
@@ -148,10 +155,10 @@ Simplex = function(){
             this.tabela[i+1].push(this.rhs[i]);
         }
         
-        this.solver.init({tabela : this.tabela});
+        this.solver.init({tabela : this.tabela, generalizado: false});
     };
     
-    this.duasFases1 = function(){
+    this.duasFases = function(){
         /*
          * Argumentos:
          *      nulo
@@ -161,6 +168,19 @@ Simplex = function(){
          *      Inicializar o simplex com os valores lidos da entrada do usuario
          *      adaptando para o modelo Duas Fases a ser jogado para o solver
          */
+        
+        //Checando se precisa ser feito pelo metodo duas fases
+        isDuasFases = false;
+        for(var i = 0; i < this.relacoes.length; i++)
+            if(this.relacoes[i] !== "<="){
+                isDuasFases = true;
+                break;
+            }
+        if(!isDuasFases){
+            this.execucaoFinal = true;
+            this.grandeM();
+            return;
+        }
         
         //Criando tabela basica
         for(var i = 0; i < this.objetivo.length; i++)
@@ -175,9 +195,9 @@ Simplex = function(){
                 this.tabela.push([]);
                 for(var j = 0; j < this.lower.length; j++){
                     if(j === i)
-                        this.tabela[this.tabela.lenght-1].push(1);
+                        this.tabela[this.tabela.length-1].push(1);
                     else
-                        this.tabela[this.tabela.lenght-1].push(0);
+                        this.tabela[this.tabela.length-1].push(0);
                 }
                 this.relacoes.push(">=");
                 this.rhs.push(this.lower[i]);
@@ -187,9 +207,9 @@ Simplex = function(){
                 this.tabela.push([]);
                 for(var j = 0; j < this.upper.length; j++){
                     if(j === i)
-                        this.tabela[this.tabela.lenght-1].push(1);
+                        this.tabela[this.tabela.length-1].push(1);
                     else
-                        this.tabela[this.tabela.lenght-1].push(0);
+                        this.tabela[this.tabela.length-1].push(0);
                 }
                 this.relacoes.push("<=");
                 this.rhs.push(this.upper[i]);
@@ -200,7 +220,7 @@ Simplex = function(){
         for(var i = 0; i < this.relacoes.length; i++){
             if(this.relacoes[i] === "<="){
                 //Variaveis de folga
-                for(var j = 0; j < this.tabela.lenght; j++){
+                for(var j = 0; j < this.tabela.length; j++){
                     if(j === i + 1)
                         this.tabela[j].push(1);
                     else
@@ -210,7 +230,7 @@ Simplex = function(){
             else{
                 //Variaveis artificiais
                 this.tabela[0].push(1);
-                for(var j = 1; j < this.tabela.lenght; j++){
+                for(var j = 1; j < this.tabela.length; j++){
                     if(j === i + 1)
                         this.tabela[j].push(1);
                     else
@@ -218,7 +238,7 @@ Simplex = function(){
                 }
                 if(this.relacoes[i] === ">="){
                     //Variaveis de sobra
-                    for(var j = 1; j < this.tabela.lenght; j++){
+                    for(var j = 1; j < this.tabela.length; j++){
                         if(j === i + 1)
                             this.tabela[j].push(-1);
                         else
@@ -234,7 +254,7 @@ Simplex = function(){
             this.tabela[i+1].push(this.rhs[i]);
         }
         
-        this.solver.init({tabela : this.tabela});
+        this.solver.init({tabela : this.tabela, generalizado: false});
     };
     
     this.duasFases2 = function(){
@@ -261,7 +281,7 @@ Simplex = function(){
             for(var j = 0; j < this.restricoes[0].length; j++)
                 this.tabela[i+1][j] = tabela[i+1][j];
         for(var i = 0; i < tabela.length; i++)
-            this.tabela[i].push(tabela[i][tabela.lenght-1]);
+            this.tabela[i].push(tabela[i][tabela.length-1]);
         
         this.solver = new Solver();
         this.solver.init({tabela : this.tabela});
@@ -278,6 +298,11 @@ Simplex = function(){
          *      adaptando para o modelo generalizado a ser jogado para o solver
          */
         
+        /***********************/
+        /***********************/
+        /*******  TO DO  *******/
+        /***********************/
+        /***********************/
     };
     
     this.iteracao = function(entra, sai){
@@ -383,6 +408,9 @@ Solver = function(){
          */
         this.tabela = modelo["tabela"];
         
+        //Booleano para indicar se e generalizado ou nao
+        this.generalizado = modelo["generalizado"];
+        
         //Permite saber rapidamente se o metodo terminou
         this.terminado = false;
         
@@ -394,6 +422,9 @@ Solver = function(){
          * Objetiva parar loops infinitos causados por ciclagem
          */
         this.limiteIteracoes = 1000;
+        
+        //Lista com os elementos que ainda nao foram tratados em degeneracao
+        this.degenerados = [];
     };
     
     this.terminou = function(){
@@ -407,14 +438,23 @@ Solver = function(){
          *      Informar a quem esta utilizando o solver se ha mais iteracoes
          *      a serem executadas
          */
+        var setou = false;
+        
         if(this.terminado)
             return true;
         
-        for(var i = 0; i < this.tabela[0].lenght-1; i++)
-            if (this.tabela[0][i] < 0) 
+        for(var i = 0; i < this.tabela[0].length-1; i++){
+            if (this.tabela[0][i] < 0){
+                setou = true;
                 this.terminado = false;
+                break;
+            }
+        }
         
-        this.terminado = true;
+        if(!setou){
+            this.terminado = true;
+        }
+        
         return this.terminado;
     };
     
@@ -439,32 +479,45 @@ Solver = function(){
          *      da base
          */
         
+        
+        var idxEntra = -1;
+        
+        
         //VARIAVEL BASICA NAO ZERO NA F OBJ
-        for (var j = 0; j < this.tabela[0].lenght-1; j++){
+        for (var j = 0; j < this.tabela[0].length-1; j++){
             //Se variavel for nao-basica idxBasica = -1
             //Caso seja idxBasica = linha da base
-            var idxBasica = -1;
+            idxEntra = -1;
             var um = false;
-            for (var i = 1; i < this.tabela.lenght; i++){
-                if(this.tabela[i][j] === 1 && !um) 
+            var basica = true;
+            for (var i = 1; i < this.tabela.length; i++){
+                if(this.tabela[i][j] === 1 && !um)
                     um = true;
-                else if (this.tabela !== 0){
-                    idxBasica = i;
+                else if(this.tabela[i][j] !== 0){
+                    basica = false;
                     break;
                 }
             }
-            //Se for basica e tiver valor nao zero na f obj
-            if (idxBasica !== -1 && this.tabela[0][j] !== 0)
-                return [idxBasica, j];
+            if(um && basica && this.tabela[0][j] !== 0){
+                idxEntra = j;
+                break;
+            }
         }
         
         
-        //SOLUCAO NAO OTIMA
+        //SOLUCAO INVIAVEL
+        if(this.generalizado){
+            
+        }
+        
+        
         //variavel que entra
-        var idxEntra = 0;
-        for(var i = 1; i < this.tabela[0].lenght-1; i++)
-            if(this.tabela[0][i] < this.tabela[0][idxEntra])
-                idxEntra = i;
+        if(idxEntra === -1){
+            idxEntra = 0;
+            for(var i = 1; i < this.tabela[0].length-1; i++)
+                if(this.tabela[0][i] < this.tabela[0][idxEntra])
+                    idxEntra = i;
+        }
         
         //variavel que sai da base
         var idxSai = 0;
@@ -472,9 +525,9 @@ Solver = function(){
         var rmin = 0 / 0; 
         //Armazena o valor da razao que ocorreu mais de uma vez
         var degenerado = 0 / 0;
-        for(var i = 1; i < this.tabela.lenght; i++){
+        for(var i = 1; i < this.tabela.length; i++){
             if (this.tabela[i][idxEntra] !== 0){
-                var ri = this.tabela[i][this.tabela[i].lenght-1] / this.tabela[i][idxEntra];
+                var ri = this.tabela[i][this.tabela[i].length-1] / this.tabela[i][idxEntra];
                 if ((ri < rmin || isNaN(rmin)) && ri > 0){
                     rmin = ri;
                     idxSai = i;
@@ -490,8 +543,8 @@ Solver = function(){
         //SOLUCAO DEGENERADA
         if(degenerado === rmin && rmin > 0){
             idxSai = [];
-            for(var i = 1; i < this.tabela.lenght; i++){
-                if (rmin === this.tabela[i][this.tabela[i].lenght-1] / this.tabela[i][idxEntra]){
+            for(var i = 1; i < this.tabela.length; i++){
+                if (rmin === this.tabela[i][this.tabela[i].length-1] / this.tabela[i][idxEntra]){
                     idxSai.push(i);
                 }
             }
@@ -503,7 +556,7 @@ Solver = function(){
             idxSai = 0 / 0;
         }
         
-        return [idxSai, idxEntra];
+        return [idxEntra, idxSai];
     };
     
     this.iteracao = function(entra, sai){
@@ -531,23 +584,55 @@ Solver = function(){
             return this.tabela;
         }
         
+        
+        //Caso seja uma solucao inviavel
+        if(this.generalizado){
+            
+        }
+        
+        
         //Degeneracao
-        /***********************/
-        /***********************/
-        /*******  TO DO  *******/
-        /***********************/
-        /***********************/
+        var zerarEntrada = false;
+        if(Array.isArray(sai)){
+            for(var i = 0; i < sai.length; i++){
+                if(this.degenerados.indexOf(sai[i]) === -1){
+                    this.degenerados.push(sai[i]);
+                }
+                if(i > 0){
+                    this.tabela[sai[i]][this.tabela[0].length - 1] = 0;
+                }
+            }
+            sai = sai[0];
+            if(this.tabela[sai][this.tabela[0].length - 1] === 0){
+                zerarEntrada = true;
+            }
+        }
+        
         
         //Normalizando a linha de quem entra
         var razao = 1 / this.tabela[sai][entra];
-        for(var i = 0; i < this.tabela[sai].lenght; i++)
-            this.tabela[sai][i] *= razao;
+        if(razao !== 1)
+            for(var i = 0; i < this.tabela[sai].length; i++)
+                this.tabela[sai][i] *= razao;
+        
         
         //Escalonando as outras linhas
-        for(var i = 0; i < this.tabela.lenght; i++)
-            if (i !== sai && this.tabela[i][entra] !== 0)
-                for(var j = 0; j < this.tabela[i].lenght; j++)
-                    this.tabela[i][j] -= this.tabela[sai][j] * this.tabela[i][entra];
+        for(var i = 0; i < this.tabela.length; i++){
+            if (i !== sai && this.tabela[i][entra] !== 0){
+                razao = this.tabela[i][entra];
+                for(var j = 0; j < this.tabela[i].length; j++)
+                    this.tabela[i][j] -= this.tabela[sai][j] * razao;
+            }
+        }
+        
+        
+        //Caso tenha sido degenerado
+        if(this.degenerados.indexOf(sai) !== -1){
+            this.degenerados.splice(this.degenerados.indexOf(sai));
+            if(zerarEntrada){
+                this.tabela[sai][this.tabela[0].length - 1] = 0;
+            }
+        }
         
         return this.tabela;
     };
