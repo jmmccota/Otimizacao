@@ -43,9 +43,13 @@ Simplex = function(){
         //Controla se o simplex vai ser executado mais de uma vez
         //True indica que e a ultima execucao
         this.execucaoFinal = true;
+        //Controla se esta iniciando o simplex duas fases
+        this.isDuasFases = false;
         if(this.metodo === "Duas Fases"){
             this.execucaoFinal = false;
-            this.duasFases1();
+            this.isDuasFases = true;
+            this.solver.isDuasFases = true;
+            this.duasFases();
         }
         else if(this.metodo === "Grande M"){
             this.grandeM();
@@ -350,6 +354,11 @@ Simplex = function(){
          *      Informar a quem esta utilizando o algoritmo se ha mais iteracoes
          *      a serem executadas e faz a chamada caso precisa passar de fase (duas fases)
          */
+        if(this.isDuasFases){
+            this.isDuasFases = false;
+            return false;
+        }
+
         if(this.terminado || this.solver.terminou()){
             if(this.execucaoFinal){
                 this.terminado = true;
@@ -425,6 +434,9 @@ Solver = function(){
         
         //Lista com os elementos que ainda nao foram tratados em degeneracao
         this.degenerados = [];
+
+        //Controla se esta iniciando o simplex duas fases
+        this.isDuasFases = false;
     };
     
     this.terminou = function(){
@@ -438,6 +450,11 @@ Solver = function(){
          *      Informar a quem esta utilizando o solver se ha mais iteracoes
          *      a serem executadas
          */
+        if(this.isDuasFases){
+            this.isDuasFases = false;
+            return false;
+        }
+
         var setou = false;
         
         if(this.terminado)
