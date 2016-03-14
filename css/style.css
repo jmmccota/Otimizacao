@@ -147,7 +147,7 @@ panel-primary {
 #headerwrap {
     background-color: #00b3fe;
     min-height: 550px;
-    padding-top: 10%;
+    padding-top: 7%;
     padding-bottom: 3.35%;
     text-align: center;
 }
@@ -411,3 +411,13 @@ panel-primary {
 }
 /*-------------------------------------*/
 
+.box {
+	border-top-color:#008fcb;
+	border-left-color:#008fcb;
+	border-bottom-color: #00B3FE;
+	border-right-color: #00B3FE;
+	border-style: solid;
+	border-radius:25px;
+	height:500px;
+	background: linear-gradient(to bottom right, #008fcb, #00B3FE);
+}
