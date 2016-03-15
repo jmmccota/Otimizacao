@@ -302,11 +302,90 @@ Simplex = function(){
          *      adaptando para o modelo generalizado a ser jogado para o solver
          */
         
-        /***********************/
-        /***********************/
-        /*******  TO DO  *******/
-        /***********************/
-        /***********************/
+        //Criando tabela basica
+        if(this.problema === "Maximize")
+            for(var i = 0; i < this.objetivo.length; i++)
+                this.tabela[0].push(-this.objetivo[i]);
+        else
+            this.tabela[0] = this.objetivo;
+
+        //Adiciona as restricoes
+        for(var i = 0; i < this.restricoes.length; i++){
+
+            //Transforma as igualdades em duas desigualdades
+            if(this.relacoes[i] === "="){
+                this.restricoes.splice(i+1, 0, []);
+                for(var j = 0; j < this.restricoes[i].length; j++){
+                    this.restricoes[i+1].push(-this.restricoes[i][j]);
+                }
+                this.relacoes[i] = "<=";
+                this.relacoes.splice(i+1, 0, "<=");
+                this.rhs.splice(i+1, 0, -this.rhs[i]);
+            }
+            else if(this.relacoes[i] === ">="){
+                for(var j = 0; j < this.restricoes[i].length; j++){
+                    this.restricoes[i][j] = -this.restricoes[i][j];
+                }
+                this.relacoes = "<=";
+                this.rhs[i] = -this.rhs[i];
+            }
+            
+            this.tabela[i+1] = this.restricoes[i];
+        }
+        
+        //Adicionando limites superior e inferior
+        for(var i = 0; i < this.lower.length; i++){
+            //Limite inferior
+            if(this.lower[i] !== 0){
+                //Tratamento negativo
+                /***********************/
+                /***********************/
+                /*******  TO DO  *******/
+                /***********************/
+                /***********************/
+                
+                this.tabela.push([]);
+                for(var j = 0; j < this.lower.length; j++){
+                    if(j === i)
+                        this.tabela[this.tabela.length-1].push(1);
+                    else
+                        this.tabela[this.tabela.length-1].push(0);
+                }
+                this.relacoes.push(">=");
+                this.rhs.push(this.lower[i]);
+            }
+            //Limite superior
+            if(this.upper[i] !== "inf"){
+                this.tabela.push([]);
+                for(var j = 0; j < this.upper.length; j++){
+                    if(j === i)
+                        this.tabela[this.tabela.length-1].push(1);
+                    else
+                        this.tabela[this.tabela.length-1].push(0);
+                }
+                this.relacoes.push("<=");
+                this.rhs.push(this.upper[i]);
+            }
+        }
+        
+        //Gerando modelo aumentado
+        for(var i = 0; i < this.relacoes.length; i++){
+            //Variaveis de folga
+            for(var j = 0; j < this.tabela.length; j++){
+                if(j === i + 1)
+                    this.tabela[j].push(1);
+                else
+                    this.tabela[j].push(0);
+            }
+        }
+        
+        //Adicionando coluna Solucao
+        this.tabela[0].push(0);
+        for(var i = 0; i < this.rhs.length; i++){
+            this.tabela[i+1].push(this.rhs[i]);
+        }
+        
+        this.solver.init({tabela : this.tabela, generalizado: true});
     };
     
     this.iteracao = function(entra, sai){
@@ -491,6 +570,10 @@ Solver = function(){
          *          [idxSai, idxEntra] = [NaN, int]
          *          idxSai = NaN indica que nenhuma linha sai da base
          *          idxEntra = indice da coluna que ira entrar na base
+         *      Em caso de solucao inviavel retornara:
+         *          [-idxSai, -idxEntra] = [int, int] ???????????????????????????????????????????????????
+         *          idxSai = indice da linha que ira sair da base
+         *          idxEntra = indice da coluna que ira entrar na base
          * Objetivo:
          *      Determinar quais variaveis do modelo entrarao e sairam
          *      da base
@@ -524,7 +607,34 @@ Solver = function(){
         
         //SOLUCAO INVIAVEL
         if(this.generalizado){
-            
+            var menor = 0, idxSai = -1;
+            for(var i = 0; i < this.tabela.length; i++) {
+                if(this.tabela[i][this.tabela[i].length - 1] < menor) {
+                    idxSai = i;
+                    menor = this.tabela[i][this.tabela[i].length - 1];
+                }
+            }
+
+            if(idxSai !== -1){
+                var razao = 0;
+                idxEntra = 0;
+                for(var j = 1; j < this.tabela[0].length; j++) {
+                    if(this.tabela[0][j] < 0 && this.tabela[idxSai][j] < 0){
+                        razao = this.tabela[0][j] / this.tabela[idxSai][j];
+                        idxEntra = j;
+                    }
+                }
+
+                for(var j = idxEntra; j < this.tabela[0].length; j++) {
+                    var r = this.tabela[0][j] / this.tabela[idxSai][j];
+                    if(r < razao && r > 0){
+                        razao = r;
+                        idxEntra = j;
+                    }
+                }
+
+                return [idxEntra, idxSai];
+            }
         }
         
         
