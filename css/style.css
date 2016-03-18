@@ -2133,7 +2133,6 @@
 		left: 45px; 
 		width: 101px;
 		height: 93px;
-		background: url(../img/template/blockquote-bg.png) top left no-repeat;
 		content: " ";
 	}
 	
@@ -2904,24 +2903,6 @@
     cursor: pointer;
     box-shadow: 0 0 10px 0 #000;
 }
-/*
-.alert {
-    position: fixed;
-    bottom: 25%;
-    right: 0;
-    margin-bottom: 0;
-    font-size: 1.2em;
-    padding: 1em 8em;
-    z-index: 2000;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.alert--finch {
-    display: block;
-    font-weight: bold;
-    text-align: center;
-}*/
 
 .scroll-top-wrapper {
     cursor: pointer;
