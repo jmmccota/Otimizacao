@@ -75,7 +75,7 @@ Tabela = function() {
                 showAlert('warning', 'Limite máximo de restrições atingido: 20');
             }
         }
-        
+
         //Limite superior e inferior
         var table = document.getElementById("myTableData2");
         var rowCount = table.rows.length;
@@ -175,6 +175,108 @@ Tabela = function() {
             table.deleteRow(t.nRestri + 2);
         }
     };
+
     t.existe = false;
     return t;
 };
+
+leituraParametros = function(tipo) {
+    /*
+     * Le os dados informados na tabela de entrada e deixa no formato utilizado.
+     * Parametros: 
+     *      tipo = {
+     *          1 - SIMPLEX
+     *          2 - BRANCHBOUND
+     *      }
+     */
+
+    var metodo = (tipo == 1) ? document.getElementById("metodo").value : "";
+    var problema = document.getElementById("problema").value;
+    var objetivo = [];
+    var restricoes = [];
+    var relacoes = [];
+    var rhs = [];
+    var upper = [];
+    var lower = [];
+
+    //Pegando dados da Tabela
+    $(".fObj").each(function() {
+        objetivo.push(parseFloat($(this).val()));
+    });
+
+    var i = 0;
+    var nRest = 0;
+    var nVar = objetivo.length;
+    restricoes[0] = [];
+    $(".xRest").each(function() {
+        restricoes[nRest].push(parseFloat($(this).val()));
+        i++;
+        if (i === nVar) {
+            i = 0;
+            nRest++;
+            restricoes[nRest] = [];
+        }
+    });
+    restricoes.pop();
+
+    $(".relacao").each(function() {
+        relacoes.push($(this).val());
+    });
+    $(".ladoDir").each(function() {
+        rhs.push(parseFloat($(this).val()));
+    });
+    $(".limSup").each(function() {
+        upper.push($(this).val());
+    });
+    $(".limInf").each(function() {
+        lower.push(parseFloat($(this).val()));
+    });
+
+    return {
+        metodo: metodo,
+        problema: problema,
+        objetivo: objetivo,
+        restricoes: restricoes,
+        relacoes: relacoes,
+        rhs: rhs,
+        upper: upper,
+        lower: lower
+    };
+
+}
+
+verificaTabela = function() {
+    var bool = false;
+    $(".fObj").each(function() {
+        bool = ($(this).val() === '' || $(this).val() === null);
+    });
+    if (!bool) {
+        $(".xRest").each(function() {
+            bool = ($(this).val() === '' || $(this).val() === null);
+        });
+        if (!bool) {
+            $(".relacao").each(function() {
+                bool = ($(this).val() === '' || $(this).val() === null);
+            });
+            if (!bool) {
+                $(".ladoDir").each(function() {
+                    bool = ($(this).val() === '' || $(this).val() === null);
+                });
+                if (!bool) {
+                    $(".limSup").each(function() {
+                        bool = ($(this).val() === '' || $(this).val() === null);
+                    });
+                    if (!bool) {
+                        $(".limInf").each(function() {
+                            bool = ($(this).val() === '' || $(this).val() === null);
+                        });
+                    }
+                }
+            }
+        }
+    }
+
+    return bool;
+}
+
+//# sourceURL=tabelaProblema.js

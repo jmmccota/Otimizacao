@@ -244,7 +244,6 @@ $(document).ready(function() {
                     className: "btn-success",
                     callback: function() {
                         $("#panelResultado").fadeOut("fast");
-                        $('#rowProgress').fadeOut('fast');
                         $("#myTableData").empty();
                         $("#myTableData2").empty();
                         t.novo();
@@ -259,7 +258,7 @@ $(document).ready(function() {
     $('#salvar').click(function() {
         try {
             var source = "";
-            var x = leituraParametros();
+            var x = leituraParametros(2);
             if (!verificaTabela()) {
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
@@ -320,6 +319,7 @@ $(document).ready(function() {
                     }
                 }
                 b.melhorSolucao();
+
                 //Operações da arvore
                 for (var i = 0; i < res.length; i++) {
                     a.adicionarNodo(res[i]);
@@ -446,4 +446,4 @@ function selecionaX(xi) {
     a.criarConexao(b);
 }
 
-//# sourceURL=interface.js
+//# sourceURL=interfaceBranchBound.js

@@ -68,7 +68,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="parent"><a href="#">Branch and Bound</a>
+                        <li class="parent"><a href="branchbound.html">Branch and Bound</a>
                             <ul>
                                 <li>Branch and Bound
                                     <ul>
@@ -135,16 +135,27 @@
                         <div id="sectionA">
                             <form>
                                 <div id="tabela1" class="col-md-6">
-
                                     <div class="col-md-5" style="margin-top:10px;">
-                                        <label class="control-label">Tipo do Problema:</label>
+                                        <label class="control-label">Tipo do Simplex:</label>
                                     </div>
                                     <div class="col-md-6">
+                                        <select class="form-control" id="metodo">
+                                            <option value="Duas Fases">Duas Fases</option>
+                                            <option value="Grande M">Grande M</option>
+                                            <option value="Generalizado">Generalizado</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-5" style="margin-top:20px;">
+                                        <label class="control-label">Tipo do Problema:</label>
+                                    </div>
+                                    <div class="col-md-6" style="padding-top:10px;">
                                         <select class="form-control" id="problema">
                                             <option value="Maximize">Maximiza&ccedil;&atilde;o</option>
                                             <option value="Minimize">Minimiza&ccedil;&atilde;o</option>
                                         </select>
                                     </div>
+
                                     <div class="col-md-5" style="margin-top:20px;">
                                         <label class="control-label">N&uacute;mero de Vari&aacute;veis:</label>
                                     </div>
@@ -241,7 +252,13 @@
             </div>
 
             <!--end content-well-->
-
+            <div class=" row panel panel-default" id="panelResultado" tabindex="-1" style="display:none; ">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="panel-title"><label>Resultado</label></h3>
+                </div>
+                <div class="panel-body">
+                </div>
+            </div>
 
             <!-- end container-->
         </div>
@@ -299,8 +316,10 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootbox.min.js"></script>
     <script type="text/javascript" src="js/glpk.min.js"></script>
+    <script type="text/javascript" src="js/simplex/simplex.js"></script>
     <script type="text/javascript" src="js/FileSaver.min.js"></script>
     <script type="text/javascript" src="js/tabelaProblema.js"></script>
+    <script type="text/javascript" src="js/simplex/interface.js"></script>
 
     <script type="text/javascript" src="js/ASCIIMathML.js"></script>
     <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
