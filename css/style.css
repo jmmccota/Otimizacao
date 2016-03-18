@@ -2918,7 +2918,6 @@
     font-size: 20px;
     opacity: 0.8;
     color: #fff;
-    background: #00b3fe;
     visibility: hidden;
     overflow: hidden;
     -webkit-transition: all 0.5s ease-in-out;
@@ -2926,10 +2925,11 @@
     -ms-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+     background-color: rgb(72,150,245);
 }
 
     .scroll-top-wrapper:hover {
-        background-color: rgb(60,159,255);
+        background-color: inherit;
         color: #666;
     }
 

@@ -80,3 +80,25 @@ ul.jsonSuggest li,
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(137,179,19)', endColorstr='rgb(170,198,29)',GradientType=1 ); /* IE6-9 */
 }
 
+scroll-top-wrapper {
+    background-color: rgb(170,198,29);
+}
+
+    .scroll-top-wrapper:hover {
+      background-color: rgb(137,179,19);
+    }
+    
+
+    .scroll-top-wrapper.show {
+         background-color: rgb(170,198,29);
+
+    }
+   
+    .panel-primary {
+        border-color: rgb(170,198,29);
+    }
+    .panel-primary > .panel-heading{
+        border-color: rgb(170,198,29);
+         background-color: rgb(137,179,19);
+    }
+   

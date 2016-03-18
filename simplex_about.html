@@ -9,7 +9,7 @@
     <!-- End of meta -->
 
     <!-- Title -->
-    <title>Solver - BranchBound</title>
+    <title>Solver - Simplex</title>
     <!-- End of title -->
 
     <!-- Stylesheets -->
@@ -18,11 +18,11 @@
     <link rel="stylesheet" type="text/css" href="css/responsive-nav.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/colors/blue.css" id="colors" />
     <link rel="stylesheet" type="text/css" href="css/opensans.css">
+    <link rel="stylesheet" type="text/css" href="css/colors/green.css" id="colors" />
     <!-- End of stylesheets -->
 
-    <link href="img/branchbound/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="img/simplex/favicon.ico" rel="icon" type="image/x-icon" />
 
 </head>
 
@@ -63,7 +63,7 @@
                                 <li>Simplex
                                     <ul>
                                         <li><a href="simplex.html">Começar</a></li>
-                                        <li><a href="simplex_about.html">Mais sobre o Modelo</a></li>
+                                        <li><a href="#">Mais sobre o Modelo</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -73,7 +73,7 @@
                                 <li>Branch and Bound
                                     <ul>
                                         <li><a href="branchbound.html">Começar</a></li>
-                                        <li><a href="#">Mais sobre o Modelo</a></li>
+                                        <li><a href="branchbound_about.html">Mais sobre o Modelo</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -100,8 +100,8 @@
 
     <!-- Page Title -->
     <div id="page-title">
-        <h1 class="container">Branch and Bound
-    <span class="sub-title">Programação Linear Inteira Mista</span>
+        <h1 class="container">Simplex
+    <span class="sub-title">Programação Linear</span>
     </h1>
     </div>
     <!-- End of page title -->
@@ -127,102 +127,98 @@
                     <h2 id="sec0">Introdução </h2>
                     <hr>
                     <p>
-                        A programação Linear Inteira Mista tem uma grande vantagem em relação a Programação Inteira que é permitir que sejam incluídos
-                        na análise os custos fixos, bem como diferentes níveis de custos variáveis para as instalações. Estes
-                        problemas possuem soluções mais complexa em relação aqueles que utilizam a Programação Linear. Contudo
-                        na Programação Linear, existem condições necessárias e suficientes de otimização teoricamente provadas
-                        que podem ser utilizadas para testar eficientemente se uma dada solução viável é uma solução ótima
-                        ou não.
+                        A Programação Linear (PL) tem sido uma importante ferramenta de análise para grandes empresas pelo mundo. Em um breve resumo,
+                        ela se propôe a otimizar recursos limitados para atividades que competem entre si.
                     </p>
                     <p>
-                        A Programação Linear está preocupada com a maximização ou minimização de uma equação sobre certos critérios ou restrições.
-                        Abaixo temos um exemplo:
+                        A Programação Linear utiliza de um modelo matemático para descrever o problema proposto. Através desse modelo proposto, é
+                        feita uma análise gráfica, mostrando qual será a região de soluções viáveis. Segue-se abaixo um exemplo
+                        da região com as retas de restriçoes de um problema:
                     </p>
-
                     <div class="row">
-                        <div class="col-md-12 col-sm-12">
+                        <div class="col-md-6 col-sm-6 col-md-offset-3">
                             <div class="panel panel-primary secondary ">
                                 <div class="panel-heading">
                                     <h4> Exemplo:</h4></div>
                                 <div class="panel-body">
-                                    <center>
-                                        <img src="img/branchbound/exemplo1.png" class="img-responsive">
-                                    </center>
+                                    <img src="img/simplex/img_solviavel.png" class="img-responsive">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-sm-12">
-                            <blockquote>
-                                <p> Este problema pode ser resolvido pelo Método Simplex ou Simplex duas Fases. A solução ótima
-                                    se encontra abaixo: </p>
-                                <center>
-                                    `x = (x_1,x_2,x_3) = (0.5,0,1.5)`
-                                </center>
-                            </blockquote>
-                        </div>
 
                     </div>
-                    <p>
-                        Problemas como estes são utilizados em todas as empresas para minimizar o desperdício, maximizar lucro, ou otimizar a outros
-                        aspectos do negócio . No entanto, algumas partes da solução pode ser limitada a números inteiros,
-                        `x in Z^+`
-                    </p>
-                    <p>
-                        Programação linear inteira mista é uma PL(Programação Linear) que existe alguma ou todas as variáveis não inteiras. Portanto
-                        precisamos de encontrar uma nova solução ótima para evitarmos casos de números parciais. Simplesmente
-                        com o arredondamento, a solução muitas vezes pode sair da região viável, comprometendo a otimalidade.
-                    </p>
-
-                    <br>
-                    <h2 id="sec1">Resolvendo PLIM Usando Branch-Bound</h2>
-                    <hr>
-                    <p>
-                        O problema com a resolu&ccedil;&atilde;o de PLIMs usando o m&eacute;todo Simplex &eacute; que ele frequentemente retorna
-                        partes de ` x = (x_1,x_2,x_3)` que n&atilde;o est&atilde;o em forma de n&uacute;mero inteiro.
-                    </p>
-                    <p>
-                        Para resolver usando o Branch and Bound, primeiro resolvemos o problema usando o Relaxamento, o que significa resolv&ecirc;-lo
-                        pelo Simplex Revisado como se n&atilde;o houvesse restri&ccedil;&odblac;es inteiras. Assim, obtemos:
-                        ` z = cx`.
-                    </p>
-                    <p>
-                        Como o exemplo usado envolve um problema de maximiza&ccedil;&atilde;o que engloba todas as solu&ccedil;&odblac;es inteiras,
-                        ent&atilde;o esse &eacute; um limite superior da PLIM. Em seguida, escolhe-se uma vari&aacute;vel
-                        n&atilde;o inteira. Comumente, escolhe-se a vari&aacute;vel mais fracionada, que esteja mais pr&oacute;xima
-                        do valor mediano ou mais distante de um n&uacute;mero inteiro.
-                    </p>
-                    <p>
-                        Por exemplo, em ` x = (1.25, 3.45, 2.75, 5)`, escolhe-se ramificar em `x_2`, pois `0.45` est&aacute; mais pr&oacute;ximo
-                        de `0.5` do que as outras fra&ccedil;&odblac;es. A partir disso, criamos dois subproblemas ou dois
-                        nodos de nossa &aacute;rvore. Em um n&oacute; adicionamos a restri&ccedil;&atilde;o `x_2
-                        <=3`, na outra adicionamos `x_2>=4`. Seja `S` o conjunto solu&ccedil;&atilde;o vi&aacute;vel do relaxamento: `S = {x: Ax
-                            <=b\ e\ x>=0}`, temos que:
-                    </p>
+                    <p> A determinação da solução ótima requer identificar a direção na qual a função objetivo z aumenta (maximização)
+                        ou diminue (minimização). O ponto dentro da região viável onde z é maior (maximização) ou menor (minimização)
+                        será a solução ótima.</p>
+                    <p>Segue-se abaixo um exemplo:</p>
                     <div class="row">
-                        <div class="col-md-4 col-sm-4 col-md-offset-4">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading">
+                                    <h4> Exemplo:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/simplex/img_solviavel2.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
                             <blockquote>
+                                <p> Solução: </p>
                                 <center>
-                                    ` S_1 = S \cap{x:x_j
-                                    <=\ lfloor\hat{x}_j\rfloor\} ` ` S_1=S \cap{x:x_j>= \ceil{hat{x}_j}} `
+                                    A solução ótima se encontra no ponto C.
                                 </center>
                             </blockquote>
                         </div>
                     </div>
-                    <p>
-                        Ent&atilde;o, cada um dos n&oacute;s devem ser resolvidos com suas novas restri&ccedil;&odblac;es pelo m&eacute;todo Dual
-                        Simplex. Caso o problema seja invi&aacute;vel, ent&atilde;o o n&oacute; &eacute; cortado por inviabilidade.
-                        A solu&ccedil;&atilde;o &oacute;tima &eacute; encontrada quando todos os n&oacute;s fracion&aacute;rios
-                        s&atilde;o cortados.
-                    </p>
-
-
+                    <br>
+                    <h2 id="sec1">Resolvendo PL Usando método Simplex </h2>
+                    <p>O método Simplex não enumera todas as soluções básicas (pontos extremos), porém ele analisa algumas dessas
+                        soluções selecionadas.</p>
+                    <p>Abaixo é representado um modelo de PL com a região de soluções viável.</p>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="panel panel-primary secondary ">
+                            <div class="panel-heading">
+                                <h4> Modelo de PL:</h4></div>
+                            <div class="panel-body">
+                                <img src="img/simplex/exemplo2.png" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="panel panel-primary secondary ">
+                            <div class="panel-heading">
+                                <h4> Região de Soluções viável:</h4></div>
+                            <div class="panel-body">
+                                <img src="img/simplex/exemplo3.png" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                    <p>O método iterativo normalmente inicia no ponto de origem A. Logo após, é analisada se a utilização de
+                        um ponto com x1 ou x2 maior que 0 poderia melhorar a função objetivo z. Analisando a função objetivo
+                        podemos afirmar que sim.</p>
+                    <p>O projeto Simplex exige que se melhore apenas uma variável por vez, analisando qual delas traria uma
+                        maior taxa de melhora para a função objetivo. Para o exemplo citado, o valor da função objetivo aumentará
+                        em 2 para cada unidade de x1 e 3 para cada unidade de x2. Portanto, a variável escolhida seria x2.
+                        A figura mostra que x2 será aumentado até alcançar o ponto extremo B.</p>
+                    <p>Logo após, o valor de x1 será aumentado até alcançar o ponto C que é o ótimo. Portanto, o método percorre
+                        um caminho pelas bordas, até atingir um valor ótimo.
+                        <p>Segue-se abaixo uma estrutura de representação para o método:</p>
+                        <div class="col-md-10 col-sm-10 col-md-offset-1">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading">
+                                    <h4> Estrutura do Simplex:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/simplex/exemplo4.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <!--/right-->
             </div>
-            <!--/row-->
-
+            <!--/right-->
         </div>
-        <!-- end container-->
+        <!--/row-->
+    </div>
+    <!-- end container-->
     </div>
     <!-- End of content -->
 

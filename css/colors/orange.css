@@ -80,3 +80,25 @@ ul.jsonSuggest li,
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(255,113,13)', endColorstr='rgb(255, 150, 50)',GradientType=1 ); /* IE6-9 */
 }
 
+scroll-top-wrapper {
+    background-color: rgb(255, 150, 50);
+}
+
+    .scroll-top-wrapper:hover {
+      background-color: rgb(255,113,13);
+    }
+    
+
+    .scroll-top-wrapper.show {
+         background-color: rgb(255, 150, 50);
+
+    }
+   
+    .panel-primary {
+        border-color: rgb(255, 150, 50);
+    }
+    .panel-primary > .panel-heading{
+        border-color: rgb(255, 150, 50);
+         background-color: rgb(255,113,13);
+    }
+   

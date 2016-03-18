@@ -81,3 +81,10 @@ ul.jsonSuggest li,
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(72,150,245)', endColorstr='rgb(109,191,254)',GradientType=1 ); /* IE6-9 */
 }
 
+scroll-top-wrapper {
+    background: rgb(109,191,254);
+}
+
+    .scroll-top-wrapper:hover {
+      background-color: rgb(72,150,245);
+    }
