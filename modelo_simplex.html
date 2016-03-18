@@ -56,6 +56,7 @@
                         <ul class="nav nav-stacked" id="sidebar">
                             <li><a href="#sec0">Introdução</a></li>
                             <li><a href="#sec1">Utilizando Método Simplex</a></li>
+                            <li><a href="#sec2">Simplex Grande-M</a></li>
                         </ul>
                     </div><!--/left-->
                     <!--right-->
@@ -124,10 +125,10 @@
                             </div>
                         </div>
                         <p>O método iterativo normalmente inicia no ponto de origem A. Logo após, é analisada se a utilização de um ponto com x1 ou x2 maior que 0
-                        poderia melhorar a função objetivo z. Analisando a função objetivo podemos afirmar que sim.</p>
+                            poderia melhorar a função objetivo z. Analisando a função objetivo podemos afirmar que sim.</p>
                         <p>O projeto Simplex exige que se melhore apenas uma variável por vez, analisando qual delas traria uma maior taxa de melhora para a função objetivo.
-                        Para o exemplo citado, o valor da função objetivo aumentará em 2 para cada unidade de x1 e 3 para cada unidade de x2. Portanto, a variável escolhida seria
-                        x2. A figura mostra que x2 será aumentado até alcançar o ponto extremo B.</p>
+                            Para o exemplo citado, o valor da função objetivo aumentará em 2 para cada unidade de x1 e 3 para cada unidade de x2. Portanto, a variável escolhida seria
+                            x2. A figura mostra que x2 será aumentado até alcançar o ponto extremo B.</p>
                         <p>Logo após, o valor de x1 será aumentado até alcançar o ponto C que é o ótimo. Portanto, o método percorre um caminho pelas bordas, até atingir um valor ótimo.
                         <p>Segue-se abaixo uma estrutura de representação para o método:</p>
                         <div class="col-md-10 col-sm-10 col-md-offset-1">
@@ -138,6 +139,34 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <h2 id="sec2">Método Simplex de Grande-M</h2>
+                        <p>
+                            De acordo com o problema de PL, se houverem restrições do problema que demandem variáveis artificiais,
+                            elas são adicionadaspara formar uma solução inicial semelhante é solução básica em que todas as variáveis são de folga.
+                            Contudo, como essas variáveis não fazem parte do modelo original, elas recebem punições muito alta na função objetivo, forçando-as
+                            a ter o valor 0 na solução ótima.
+                        <p>Portanto, para o problema abaixo, é inserida variáveis artificiais para as 2 primeiras equações, e elas são inseridas com suas punições na função
+                            objetivo (a soma delas é pelo fato do problema ser de minimização).</p>
+                        <p>O valor de M a ser usado depende do problema, ele deve ser suficientemente grande em relação
+                        aos coeficientes da função objetivo original.</p>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading"><h4> Modelo de PL:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/exemplo5.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading"><h4> Método Grande-M</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/exemplo6.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div><!--/right-->
