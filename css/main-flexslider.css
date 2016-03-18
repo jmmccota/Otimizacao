@@ -1,0 +1,103 @@
+/*
+ * jQuery FlexSlider v2.0
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the GPLv2 license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Tyler Smith (@mbmufffin)
+ */
+
+ 
+/* Browser Resets */
+.main-flex-container a:active,
+.main-flexslider a:active,
+.main-flex-container a:focus,
+.main-flexslider a:focus  {outline: none;}
+.slides,
+.main-flex-control-nav,
+.main-flex-direction-nav {margin: 0; padding: 0; list-style: none;} 
+
+/* FlexSlider Necessary Styles
+*********************************/ 
+.main-flexslider { position: relative; margin: 0; padding: 0;}
+.main-flexslider .slides > li {display: none; -webkit-backface-visibility: hidden; height: 100%;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.main-flexslider .slides img {display: block;}
+.main-flex-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] .slides {display: block;} 
+* html .slides {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js .slides > li:first-child {display: block;}
+
+.main-flex-overlay {
+        position:absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 70%;
+        background-color: transparent;
+        z-index: 9999;
+    }
+
+/* FlexSlider Default Theme
+*********************************/
+.main-flexslider ul.slides,
+.main-flexslider ul.slides li {
+	position: relative;
+	overflow: hidden;
+}
+
+.main-flex-viewport {max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;}
+.loading .main-flex-viewport {max-height: 300px;}
+.main-flexslider .slides {zoom: 1;}
+
+.carousel li {margin-right: 5px;}
+
+/* Direction Nav */
+
+.main-flex-direction-nav {
+	position: absolute;
+	right: 120px;
+	top: 130px;
+}
+
+.main-flex-next, .main-flex-prev {
+	position: absolute;
+	display: block;
+	width: 43px;
+	height: 83px;
+	transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+}
+
+.main-flex-next { background-image: url(../img/template/main-next-arrow.png); }
+.main-flex-prev { background-image: url(../img/template/main-prev-arrow.png); top: 190px; }
+
+.main-flex-direction-nav .main-flex-disabled {opacity: .3!important; filter:alpha(opacity=30); cursor: default;}
+
+/* Control Nav */
+.main-flex-control-nav { width: 100%; margin: 10px 0px; clear:both; }
+.main-flex-control-nav li {margin-right: 12px; display: inline-block; zoom: 1; *display: inline;}
+.main-flex-control-paging li a { width: 7px; height: 7px; display: block; background: rgba(25,25,25,1); cursor: pointer; text-indent: -9999px; border-radius: 50%; transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; }
+.main-flex-control-paging li a:hover { background: rgba(25,25,25,0.8) }
+.main-flex-control-paging li a.main-flex-active { cursor: default; transform: scale(1.3,1.3); }
+
+.main-flex-control-thumbs {margin: 5px 0 0; position: static; overflow: hidden; text-align:center;}
+.main-flex-control-thumbs li {width: 24%; display: inline-block; margin: 0 1% 0 0;}
+.main-flex-control-thumbs img {width: 100%; display: block; opacity: 1; cursor: pointer; transition: all 0.1s ease-in-out; -moz-transition: all 0.1s ease-in-out; -webkit-transition: all 0.1s ease-in-out; -o-transition: all 0.1s ease-in-out; }
+.main-flex-control-thumbs img:hover {opacity: .6;}
+.main-flex-control-thumbs .main-flex-active {cursor: default; border: 2px solid; box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+
+@media screen and (max-width: 860px) {
+  .main-flex-direction-nav .main-flex-prev {opacity: 1; left: 0;}
+  .main-flex-direction-nav .main-flex-next {opacity: 1; right: 0;}
+}

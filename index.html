@@ -1,165 +1,216 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="utf-8">
+
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Algoritmos de Pesquisa Operacional">
+    <!-- End of meta -->
 
-    <title>Branch-Bound</title>
-    <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/vis.css" rel="stylesheet">
+    <!-- Title -->
+    <title>Solver - Pesquisa Operacional</title>
+    <!-- End of title -->
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/vis.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootbox.min.js"></script>
-    <script type="text/javascript" src="js/glpk.min.js"></script>
-    <script type="text/javascript" src="js/branchbound.js"></script>
-    <script type="text/javascript" src="js/FileSaver.min.js"></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/light.css" id="scheme" />
+    <link rel="stylesheet" type="text/css" href="css/colors/blue.css" id="colors" />
+    <link rel="stylesheet" type="text/css" href="css/responsive-nav.css" />
+    <link rel="stylesheet" type="text/css" href="css/flexslider.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/opensans.css" />
+    <!-- End of stylesheets -->
 
-    <script type="text/javascript">
-        function backIndex() {
-            $("#content").hide();
-            $("#headerwrap").fadeIn(1000);
-        }
-        $(document).ready(function () {
-            $('#modelo,#start').click(function () {
-                var link = $(this).attr("href");
-                $('#content').load(link, function () {
-                    $("#content").fadeIn(1000);
-                });
-                $("#headerwrap").fadeOut(1000);
-                return false;
-            });
-            //Start Tree
-            var nodes = [
-                { id: 1, label: 'S', level: 0 },
-                { id: 2, label: 'S1', level: 1 },
-                { id: 3, label: 'S2', level: 1 },
-                { id: 4, label: 'S11', level: 2 },
-                { id: 5, label: 'S12', level: 2 }
-            ];
-            // create an array with edges
-            var edges = [
-                { from: 1, to: 2 },
-                { from: 1, to: 3 },
-                { from: 2, to: 4 },
-                { from: 2, to: 5 }
-            ];
-            // create a network
-            var container = document.getElementById('mynetwork');
-            var data = {
-                nodes: nodes,
-                edges: edges,
-            };
-            var options = {
-                height: '200px',
-                edges: {
-                    width: 2
-                },
-                physics: {
-                    hierarchicalRepulsion: {
-                        centralGravity: 0.5,
-                        springLength: 50,
-                        springConstant: 0.05,
-                        nodeDistance: 120,
-                        damping: 0.09
-                    }
-                },
-                hierarchicalLayout: {
-                    enabled: true,
-                    levelSeparation: 50,
-                    nodeSpacing: 5,
-                    direction: "UD",
-                    layout: "direction"
-                }
-            };
-            var network = new vis.Network(container, data, options);
-            //network.on('select', function (properties) {
-            // document.getElementById('info').innerHTML += 'Z: ' + JSON.stringify(properties) + '<br>';
-            //});
-            // set initial selection (id's of some nodes)
-            network.selectNodes([1, 2, 4]);
-        });</script>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Pesquisa Operacional</a>
+    <!-- Header -->
+    <header>
+        <div class="top container">
+            <!-- Logo area -->
+            <div class="logo-left-bg"></div>
+            <div class="logo-left one-fourth">
+                <!-- Logo -->
+                <a class="logo">Solver<span>Pesquisa Operacional</span></a>
+                <!-- End of logo -->
             </div>
-            <div class="navbar-collapse collapse navbar-right">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">IN&Iacute;CIO</a></li>
+            <!-- End of logo area -->
+            <!-- Top right -->
+            <div class="top-right three-fourth last-in-row">
+                <!-- Top bar -->
+                <div class="top-bar">
+                    <!-- Social icons -->
+                    <div class="top-social-icons">
+                        <ul class="footer-social social-icons">
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                            <li><a href="https://github.com/jmmccota/Otimizacao"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- End of social icons-->
+                </div>
+                <!-- End of top bar -->
+                <!-- Main navigation -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li class="parent"><a href="simplex.html">Simplex</a>
+                            <ul>
+                                <li>Simplex
+                                    <ul>
+                                        <li><a href="simplex.html">Começar</a></li>
+                                        <li><a href="simplex_about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="branchbound.html">Branch and Bound</a>
+                            <ul>
+                                <li>Branch and Bound
+                                    <ul>
+                                        <li><a href="branchbound.html">Começar</a></li>
+                                        <li><a href="branchbound-about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="#">Transporte</a>
+                            <ul>
+                                <li>Canto Noroeste
+                                    <ul>
+                                        <li><a href="#">Começar</a></li>
+                                        <li><a href="#">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--<li><a href="contato.html">Contato</a></li>-->
+                    </ul>
+                </nav>
+                <!-- End of main navigation -->
+            </div>
+            <!-- End of top right -->
+        </div>
+    </header>
+    <!-- End of header -->
+
+    <!-- Slider -->
+    <div id="slider">
+        <div class="slider-content container">
+            <div class="main-flexslider">
+                <ul class="slides">
+                    <li>
+                        <h1>Algoritmos de Pesquisa Operacional</h1>
+                        <div class="metro-boxes">
+                            <!--<a class="metro-box blue-gradient wide" href="project-details.html">
+                      <div class="metro-box-photo"><img src="images/projects/project_01.jpg" alt=""/></div>
+                      <div class="metro-box-icon"><i class="icon-play"></i></div>
+                  </a>-->
+                            <a class="metro-box orange-gradient wide first-in-row" href="simplex.html">
+                                <div class="metro-box-icon"><i class="icon-play"></i></div>
+                                <div class="metro-box-title">
+                                    <h5>Simplex</h5></div>
+                            </a>
+                            <a class="metro-box blue-gradient wide first-in-row" href="branchbound.html">
+                                <div class="metro-box-icon"><i class="icon-play"></i></div>
+                                <div class="metro-box-title">
+                                    <h5>Branch and Bound</h5></div>
+                            </a>
+
+                            <a class="metro-box green-gradient wide last-in-row" href="transporte.html">
+                                <div class="metro-box-icon"><i class="icon-play"></i></div>
+                                <div class="metro-box-title">
+                                    <h5>Transporte</h5></div>
+                            </a>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </div>
     </div>
+    <!-- End of slider -->
 
-    <!-- HEADER - INFO-->
-    <div id="content" style="display: none;">
-    </div>
-    <div id="headerwrap">
-        <div class="container-fluid">
-            <div class="col-lg-6 col-sm-12 box" >
-                <div class="row">
-                    <h3>Programa&ccedil;&atilde;o Linear Inteira Mista</h3>
-                    <h1>Branch-Bound</h1>
-                    <h5>Branch and bound &eacute; um algoritmo para encontrar solu&ccedil;&otilde;es &oacute;timas para v&aacute;rios problemas de otimiza&ccedil;&atilde;o. </h5>
-                    <h5>O modelo foi proposto em 1960 para programação discreta.</h5>
-                </div>
-                <div class="row" style="padding-top:2%;">
-					<a href="index_branchbound.html" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Come&ccedil;ar</a>
-                    <a href="ajuda_branchbound.html" id="start" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Ajuda</a>
-					<a href="modelo_branchbound.html" id="start" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Modelo</a>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-lg-offset-4" id="mynetwork">
-                    </div>
-                </div>
-                <div id="info"></div>
-			</div>
-			<div class="col-lg-6 col-sm-12 box">
-				<div class="row">
-					<h3>Programa&ccedil;&atilde;o Linear</h3>
-					<h1>Metodo Simplex</h1>
-					<h5>O método Simplex é um procedimento algébrico para solucionar problemas de programação linear. É um método com uso frequente para imensos problemas computacionais. </h5>
-					<h5>O modelo foi proposto em 1947 por George Dantzig.</h5>
-                </div>
-                <div class="row" style="padding-top:2%;">
-					<a href="index_simplex.html" id="start" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Come&ccedil;ar</a>
-                    <a href="ajuda_simplex.html" id="start" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Ajuda</a>
-					<a href="modelo_simplex.html" id="start" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Modelo</a>
-                </div>
-                <div id="info"></div>
-            </div>
-        </div>
-    </div><!-- /headerwrap style="display: none;" -->
-    <!--  FOOTER  -->
-    <div id="footerwrap">
+    <!-- Content -->
+    <div id="content" class="clearfix">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h4>Realizado por</h4>
-                    <div class="hline-w"></div>
-                    <p>Alunos de Engenharia de Computa&ccedil;&atilde;o, estudantes do CEFET-MG Campus VII</p>
-                </div>
-                <div class="col-lg-6">
-                    <h4>Alunos</h4>
-                    <div class="hline-w"></div>
-                    <a href="mailto:">Andr&eacute; Malta,</a>
-                    <a href="mailto:">Daniel Gomes,</a>
-                    <a href="mailto:">Elias Luiz,</a><br />
-                    <a href="mailto:">Henrique Castro</a>
-                    <a href="mailto:">e Jo&atilde;o Marcos.</a>
-                </div>
+            <hr class="sep40" />
+            <!-- Text slider -->
+            <div class="text-slides flexslider">
+                <ul class="slides">
+                    <li>
+                        <h1 class="intro-header"><strong>Simplex</strong> </h1>
+                        <p class="intro">Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit
+                            vehicula est, in consequat libero. Lorem ipsum dolor sit amet. Consectetur adipiscing elit.</p>
+                        <a class="button-outline orange" href="simplex.html">Começar</a>
+                        <a class="button-outline grey" href="simplex_about.html">Mais sobre o Modelo</a>
+                    </li>
+                    <li>
+                        <h1 class="intro-header"><strong>Branch and Bound</strong> </h1>
+                        <p class="intro">Amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat libero. Lorem ipsum
+                            dolor sit amet. Consectetur adipiscing elit.</p>
+                        <a class="button-outline defalut" href="branchbound.html">Começar</a>
+                        <a class="button-outline grey" href="branchbound_about.html">Mais sobre o Modelo</a>
+                    </li>
+                    <li>
+                        <h1 class="intro-header"><strong>Transporte</strong></h1>
+                        <p class="intro">Donec hendrerit vehicula est, in consequat libero. Lorem ipsum dolor sit amet. Consectetur adipiscing
+                            elit dolor sit amet.</p>
+                        <a class="button-outline green" href="#">Começar</a>
+                        <a class="button-outline grey" href="#">Mais sobre o Modelo</a>
+                    </li>
+                </ul>
             </div>
         </div>
+        <hr class="sep40" />
+
     </div>
+    <!-- End of content -->
+
+    <!-- Footer -->
+    <footer>
+        <!-- Footer second row -->
+        <div class="footer-second-row">
+            <div class="container">
+                <!-- Logo area -->
+                <div class="logo-left-bg"></div>
+                <div class="logo-left one-fourth">
+                    <!-- Logo -->
+                    <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
+                    <!-- End of logo -->
+                </div>
+                <!-- End of logo area -->
+                <!-- Copyright and small menu -->
+                <div class="copyright-area three-fourth last-in-row">
+                    <span class="copyright">© Copyright 2016 by CEFET-MG. Todos os direitos reservados.</span>
+                    <ul class="small-menu">
+                        <li><a href="faq.html">Dúvidas</a></li>
+                        <li><a href="http://timoteo.cefetmg.br">CEFET-MG Campus Timóteo</a></li>
+                        <li><a href="contato.html">Entre em contato</a></li>
+                    </ul>
+                </div>
+                <!-- End of copyright and small menu -->
+            </div>
+        </div>
+        <!-- End of footer second row -->
+    </footer>
+    <!-- End of footer -->
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="js/responsive-nav.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.touchSwipe.min.js"></script>
+    <!-- End of scripts -->
+
+    <!-- Scripts Configuration -->
+    <script type="text/javascript" src="js/features.js"></script>
+    <!-- End of scripts configuration -->
 </body>
+
 </html>
