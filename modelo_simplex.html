@@ -104,21 +104,54 @@
                         </div>
                         <br>
                         <h2 id="sec1">Resolvendo PL Usando método Simplex </h2>
-                        
+                        <p>O método Simplex não enumera todas as soluções básicas (pontos extremos), porém ele analisa algumas
+                            dessas soluções selecionadas.</p>
+                        <p>Abaixo é representado um modelo de PL com a região de soluções viável.</p>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading"><h4> Modelo de PL:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/exemplo2.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading"><h4> Região de Soluções viável:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/exemplo3.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <p>O método iterativo normalmente inicia no ponto de origem A. Logo após, é analisada se a utilização de um ponto com x1 ou x2 maior que 0
+                        poderia melhorar a função objetivo z. Analisando a função objetivo podemos afirmar que sim.</p>
+                        <p>O projeto Simplex exige que se melhore apenas uma variável por vez, analisando qual delas traria uma maior taxa de melhora para a função objetivo.
+                        Para o exemplo citado, o valor da função objetivo aumentará em 2 para cada unidade de x1 e 3 para cada unidade de x2. Portanto, a variável escolhida seria
+                        x2. A figura mostra que x2 será aumentado até alcançar o ponto extremo B.</p>
+                        <p>Logo após, o valor de x1 será aumentado até alcançar o ponto C que é o ótimo. Portanto, o método percorre um caminho pelas bordas, até atingir um valor ótimo.
+                        <p>Segue-se abaixo uma estrutura de representação para o método:</p>
+                        <div class="col-md-10 col-sm-10 col-md-offset-1">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading"><h4> Estrutura do Simplex:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/exemplo4.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-
-                    </div><!--/right-->
-                </div><!--/row-->
-            </div><!--/container-->
-            <div class="scroll-top-wrapper ">
-                <span class="scroll-top-inner">
-                    <i class="glyphicon glyphicon-arrow-up"></i>
-                </span>
-            </div>
+                </div><!--/right-->
+            </div><!--/row-->
+        </div><!--/container-->
+        <div class="scroll-top-wrapper ">
+            <span class="scroll-top-inner">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+            </span>
         </div>
-    </body>
+    </div>
+</body>
 
-    <script type="text/javascript" src="js/leftBar.js"></script>
-    <script type="text/javascript" src="js/ASCIIMathML.js"></script>
-    <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
+<script type="text/javascript" src="js/leftBar.js"></script>
+<script type="text/javascript" src="js/ASCIIMathML.js"></script>
+<script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
 
