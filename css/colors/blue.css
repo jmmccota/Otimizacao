@@ -1,0 +1,90 @@
+
+/*-----------------------------------------*/
+/* Blue Color Version */
+/*-----------------------------------------*/
+
+
+/* Color */
+
+a,
+.highlighted,
+.logo span,
+#nav ul li.parent:hover:after,
+#nav a:hover,
+.input-submit i,
+.project-slides h1 span,
+ul.small-menu,
+.flex-direction-nav li a:hover,
+#nav > ul > li > ul > li li,
+ul.contact-list li i,
+ul.contact-list li span,
+#nav > ul > li > ul > li > a:hover:after,
+blockquote .quote-meta span,
+#page-title .sub-title,
+.feature-icon,
+.breadcumbs a:hover,
+#filter li.active,
+.numeral-info-number,
+.member-type,
+ul.nav-list li:hover:after,
+.widget-twitter .tweet_time,
+span.ui-accordion-header-icon,
+ul.arrow li:before, ul.check li:before,
+.pricing-table-defalut .type {
+	color: rgb(60,159,255);
+}
+
+header,
+input.special, textarea.special,
+#nav > ul > li > ul,
+.numeral-info-description,
+.tabs ul.nav-tabs .ui-tabs-active, .tabs ul.nav-tabs .ui-tabs-active:last-child,
+h5.ui-accordion-header-active,
+ul.comment-children .comment-content,
+.pagination li.active,
+.pricing-table-defalut .premium,
+.button-outline.defalut,
+.end-of-content h1, .end-of-content h2, .end-of-content h3, .end-of-content h4,
+.member-box:hover,
+.top-social-icons {
+	border-color: rgb(60,159,255);
+}
+
+ul.social-icons li a:hover,
+.flex-control-paging li a.flex-active, .flex-control-paging li a.flex-active:hover, .main-flex-control-paging li a.main-flex-active, .main-flex-control-paging li a.main-flex-active:hover,
+.jcarousel-pagination .active,
+.post-slides .day,
+.footer-second-row ul.small-menu li a:hover:before,
+ul.jsonSuggest li,
+.post-date .day,
+.button-outline.defalut:hover {
+	background-color: rgb(60,159,255);
+}
+
+/* Header */
+
+.logo-left-bg {
+	background-color: rgb(72,150,245);
+}
+
+/* Gradient */
+
+.logo-left
+{
+	background: rgb(109,191,254); /* Old browsers */
+	background: -moz-linear-gradient(left,  rgb(72,150,245) 0%, rgb(109,191,254) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(72,150,245)), color-stop(100%,rgb(109,191,254))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgb(72,150,245) 0%,rgb(109,191,254) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgb(72,150,245) 0%,rgb(109,191,254) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgb(72,150,245) 0%,rgb(109,191,254) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgb(72,150,245) 0%,rgb(109,191,254) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(72,150,245)', endColorstr='rgb(109,191,254)',GradientType=1 ); /* IE6-9 */
+}
+
+scroll-top-wrapper {
+    background: rgb(109,191,254);
+}
+
+    .scroll-top-wrapper:hover {
+      background-color: rgb(72,150,245);
+    }

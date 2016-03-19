@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Algoritmos de Pesquisa Operacional">
+    <!-- End of meta -->
+
+    <!-- Title -->
+    <title>Solver - BranchBound</title>
+    <!-- End of title -->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/light.css" id="scheme" />
+    <link rel="stylesheet" type="text/css" href="css/responsive-nav.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/vis.css">
+    <link rel="stylesheet" type="text/css" href="css/opensans.css">
+    <link rel="stylesheet" type="text/css" href="css/colors/blue.css" id="colors" />
+    <!-- End of stylesheets -->
+
+    <link href="img/branchbound/favicon.ico" rel="icon" type="image/x-icon" />
+
+</head>
+
+<body>
+    <span id="alert" style="display:none;"></span>
+    <!-- Header -->
+    <header>
+        <div class="top container">
+            <!-- Logo area -->
+            <div class="logo-left-bg"></div>
+            <div class="logo-left one-fourth">
+                <!-- Logo -->
+                <a class="logo">Solver<span>Pesquisa Operacional</span></a>
+                <!-- End of logo -->
+            </div>
+            <!-- End of logo area -->
+            <!-- Top right -->
+            <div class="top-right three-fourth last-in-row">
+                <!-- Top bar -->
+                <div class="top-bar">
+                    <!-- Social icons -->
+                    <div class="top-social-icons">
+                        <ul class="footer-social social-icons">
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                            <li><a href="https://github.com/jmmccota/Otimizacao"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- End of social icons-->
+                </div>
+                <!-- End of top bar -->
+                <!-- Main navigation -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li class="parent"><a href="simplex.html">Simplex</a>
+                            <ul>
+                                <li>Simplex
+                                    <ul>
+                                        <li><a href="simplex.html">Começar</a></li>
+                                        <li><a href="simplex_about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="#">Branch and Bound</a>
+                            <ul>
+                                <li>Branch and Bound
+                                    <ul>
+                                        <li><a href="#">Começar</a></li>
+                                        <li><a href="branchbound-about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="#">Transporte</a>
+                            <ul>
+                                <li>Canto Noroeste
+                                    <ul>
+                                        <li><a href="#">Começar</a></li>
+                                        <li><a href="#">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--<li><a href="contato.html">Contato</a></li>-->
+                    </ul>
+                </nav>
+                <!-- End of main navigation -->
+            </div>
+            <!-- End of top right -->
+        </div>
+    </header>
+    <!-- End of header -->
+
+    <!-- Page Title -->
+    <div id="page-title">
+        <h1 class="container">Branch and Bound
+    <span class="sub-title">Programação Linear Inteira Mista</span>
+    </h1>
+    </div>
+    <!-- End of page title -->
+
+    <!-- Content -->
+    <div id="content" class="clearfix">
+        <!-- Breadcumbs -->
+        <div class="breadcumbs">
+            <div class="container">
+                <a href="branchbound_about.html">Mais sobre o Modelo</a>
+                <!--<a class="current" href="#">Como usar o sistema</a>-->
+                <a href="ajuda.html">Como usar o sistema</a>
+            </div>
+        </div>
+        <!-- End of breadcumbs -->
+        <div class="container">
+            <div class="row">
+                <!-- Intro -->
+                <h1 class="intro-header" style="padding-top: 10px;"><strong>Problema</strong> de Otimização</h1>
+                <p class="intro">Para executar basta digitar o modelo de programação ou carrega-lo. É possivel realizar a execução passo-a-passo(modo
+                    interativo) ou por completo.</p>
+                <!-- End of intro -->
+            </div>
+            <div class="row">
+
+                <!-- Tabs -->
+                <div class="tabs" style="margin-top: 20px; margin-bottom: 20px; ">
+                    <ul class="nav-tabs">
+                        <li><a href="#sectionA" style="text-decoration: none; border: none;" visited="text-decoration: none;">Criar Novo Problema</a></li>
+                        <li><a href="#sectionB">Carregar Problema</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="sectionA">
+                            <form>
+                                <div id="tabela1" class="col-md-6">
+
+                                    <div class="col-md-5" style="margin-top:10px;">
+                                        <label class="control-label">Tipo do Problema:</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="problema">
+                                            <option value="Maximize">Maximiza&ccedil;&atilde;o</option>
+                                            <option value="Minimize">Minimiza&ccedil;&atilde;o</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5" style="margin-top:20px;">
+                                        <label class="control-label">N&uacute;mero de Vari&aacute;veis:</label>
+                                    </div>
+                                    <div class="col-md-6" style="padding-top:10px;">
+                                        <select class="form-control" id="variaveis" style="max-width:50%;">
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
+                                            <option value=5>5</option>
+                                            <option value=6>6</option>
+                                            <option value=7>7</option>
+                                            <option value=8>8</option>
+                                            <option value=9>9</option>
+                                            <option value=10>10</option>
+                                        </select>
+                                    </div>
+                                    <center>
+                                        <button type="button" id="novo" class="button-outline defalut" style="width: 90%; margin-top:10px;">
+                                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Novo Problema
+                                            de Otimiza&ccedil;&atilde;o
+                                        </button>
+                                    </center>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="sectionB">
+                            <form id="formUpload" name="formulario">
+                                <div class="col-md-8">
+                                    <label class="control-label">Selecione o Arquivo:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Procurar&hellip; <input type="file" id="fileInput">
+                                        </span>
+                                        </span>
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                    <span class="help-block">
+                                    Selecione um arquivo contendo o problema de otimização.
+                                </span>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="control-label"></label>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="button-outline defalut" id="analisarFile" style="width:100%; margin-top:5px;" disabled>
+                                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Analisar Arquivo
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="col-md-12">
+                                <div class="row text-center" style="display: none;" id="rowFileDisplayArea">
+                                    <div id="fileDisplayArea"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of tabs -->
+            </div>
+
+            <div class="row" id="rowTable" style="display: none;">
+                <form action="#">
+                    <div id="mydata">
+                        <table id="myTableData" class="table table-hover table-striped" style="border: 1px solid rgb(230,230,230); box-shadow: 3px 0px 3px 3px rgb(240,240,240);"></table>
+                        <center>
+                            <button type="button" class="btn btn-primary" id="addRow" value="">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Restri&ccedil;&atilde;o
+                            </button>
+                            <button type="button" class="btn btn-danger" id="delRow">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Excluir Restri&ccedil;&atilde;o
+                            </button>
+
+                            <table id="myTableData2" class="table table-hover table-striped" style="border: 1px solid rgb(230,230,230); box-shadow: 3px 0px 3px 3px rgb(240,240,240);"></table>
+
+                            <button type="submit" class="btn btn-success" id="salvar">
+                                <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="executar">
+                                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Executar Completo
+                            </button>
+                            <button type="submit" class="btn btn-info" id="passoAPasso">
+                                <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Passo a Passo
+                            </button>
+                            <button type="button" class="btn btn-default" id="limpar">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Limpar Tudo
+                            </button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="row" style="margin-top:20px; display:none;" id="rowProgress">
+                <div class="progress">
+                    <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only" id="valorComplete"></span>
+                    </div>
+                </div>
+            </div>-->
+            <!--end content-well-->
+
+            <div class=" row panel panel-default" id="panelResultado" tabindex="-1" style="display:none; ">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="panel-title"><label>Resultado</label></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div id="resultTree"></div>
+                            <div class="row" style="margin-left: 20px;">
+                                <button class="btn btn-info" id="proximoPasso">
+                                    <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Pr&oacute;ximo
+                                    Passo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Solução:</label>
+                        <div class="list-group" style="margin-bottom: 0; padding-bottom: 0;">
+                            <div class="list-group-item active" style="background-color:rgb(60,159,255);">
+                                <h4 class="list-group-item-heading">Informações:</h4>
+                                <p class="list-group-item-text" style="color: #fff;">Clique no nó desejado para obter as informações.</p>
+                            </div>
+                            <div class="list-group-item">
+                                <h4 class="list-group-item-heading">Modelo Simplex</h4>
+                                <p class="list-group-item-text" id="modelo"></p>
+                            </div>
+                            <div class="list-group-item">
+                                <h4 class="list-group-item-heading">Tipo de Solução</h4>
+                                <p class="list-group-item-text" id="tipoSol"></p>
+                            </div>
+                            <div class="list-group-item">
+                                <h4 class="list-group-item-heading">Valor de Z</h4>
+                                <p class="list-group-item-text" id="valorZ"></p>
+                            </div>
+                            <div class="list-group-item">
+                                <h4 class="list-group-item-heading">Valores de X</h4>
+                                <p class="list-group-item-text" id="novosX"></p>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-left: 18px; display:none;" id="rowObsProximoPasso">
+                            <small><b>Obs:</b> Clique no <b>nó</b> e então no <b>x</b> desejado, ou clique em <b>proximo passo</b> para prosseguir.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end container-->
+        </div>
+    </div>
+    <!-- End of content -->
+
+    <div class="scroll-top-wrapper ">
+        <span class="scroll-top-inner">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+        </span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Footer second row -->
+        <div class="footer-second-row">
+            <div class="container">
+                <!-- Logo area -->
+                <div class="logo-left-bg"></div>
+                <div class="logo-left one-fourth">
+                    <!-- Logo -->
+                    <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
+                    <!-- End of logo -->
+                </div>
+                <!-- End of logo area -->
+                <!-- Copyright and small menu -->
+                <div class="copyright-area three-fourth last-in-row">
+                    <span class="copyright">© Copyright 2016 by CEFET-MG. Todos os direitos reservados.</span>
+                    <ul class="small-menu">
+                        <li><a href="faq.html">Dúvidas</a></li>
+                        <li><a href="http://timoteo.cefetmg.br">CEFET-MG Campus Timóteo</a></li>
+                        <!--<li><a href="contato.html">Contato</a></li>-->
+                    </ul>
+                </div>
+                <!-- End of copyright and small menu -->
+            </div>
+        </div>
+        <!-- End of footer second row -->
+    </footer>
+    <!-- End of footer -->
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="js/responsive-nav.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.touchSwipe.min.js"></script>
+
+   <!-- Scripts Configuration -->
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/features.js"></script>
+    <!-- End of scripts configuration -->
+
+    <script type="text/javascript" src="js/branchbound/vis.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootbox.min.js"></script>
+    <script type="text/javascript" src="js/glpk.min.js"></script>
+    <script type="text/javascript" src="js/branchbound/branchbound.js"></script>
+    <script type="text/javascript" src="js/FileSaver.min.js"></script>
+    <script type="text/javascript" src="js/tabelaProblema.js"></script>
+    <script type="text/javascript" src="js/branchbound/interface.js"></script>
+
+    <script type="text/javascript" src="js/ASCIIMathML.js"></script>
+    <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
+    <!-- End of scripts -->
+</body>
+
+</html>

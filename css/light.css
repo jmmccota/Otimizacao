@@ -1,0 +1,52 @@
+header {
+	background: rgba(255,255,255,0.7);
+	border-top: 3px solid;
+}
+
+header .search-box input {
+	color: inherit;
+}
+
+header .logo-left-bg {
+	background: rgba(255,255,255,0.1) !important;
+}
+
+header .logo-left {
+	background: rgba(255,255,255,0.1) !important;
+}
+
+.logo {
+	color: inherit;
+}
+
+#nav > ul > li > ul {
+   background: rgb(255,255,255);
+}
+
+#slider {
+	background: rgb(255,255,255);
+}
+
+footer {
+	color: rgb(255,255,255);
+	background-color: rgb(10,10,10);
+}
+
+.footer-second-row {
+	background: rgba(0,0,0,0.9)
+}
+
+footer .logo span {
+	color: rgba(0,0,0,0.8) !important;
+}
+
+.newsletter .input-submit i {
+	color: rgb(255,255,255) !important;
+}
+
+.main-flex-next { background-image: url(../img/template/main-next-arrow_black.png) !important; }
+.main-flex-prev { background-image: url(../img/template/main-prev-arrow_black.png) !important; }
+
+footer .social-icons li {
+	background: rgba(0,0,0,0.6) !important;
+}

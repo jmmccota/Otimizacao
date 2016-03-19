@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Algoritmos de Pesquisa Operacional">
+    <!-- End of meta -->
+
+    <!-- Title -->
+    <title>Solver - Simplex</title>
+    <!-- End of title -->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/light.css" id="scheme" />
+    <link rel="stylesheet" type="text/css" href="css/responsive-nav.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/opensans.css">
+    <link rel="stylesheet" type="text/css" href="css/colors/green.css" id="colors" />
+    <!-- End of stylesheets -->
+
+    <link href="img/simplex/favicon.ico" rel="icon" type="image/x-icon" />
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="top container">
+            <!-- Logo area -->
+            <div class="logo-left-bg"></div>
+            <div class="logo-left one-fourth">
+                <!-- Logo -->
+                <a class="logo">Solver<span>Pesquisa Operacional</span></a>
+                <!-- End of logo -->
+            </div>
+            <!-- End of logo area -->
+            <!-- Top right -->
+            <div class="top-right three-fourth last-in-row">
+                <!-- Top bar -->
+                <div class="top-bar">
+                    <!-- Social icons -->
+                    <div class="top-social-icons">
+                        <ul class="footer-social social-icons">
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                            <li><a href="https://github.com/jmmccota/Otimizacao"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- End of social icons-->
+                </div>
+                <!-- End of top bar -->
+                <!-- Main navigation -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li class="parent"><a href="simplex.html">Simplex</a>
+                            <ul>
+                                <li>Simplex
+                                    <ul>
+                                        <li><a href="simplex.html">Começar</a></li>
+                                        <li><a href="#">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="branchbound.html">Branch and Bound</a>
+                            <ul>
+                                <li>Branch and Bound
+                                    <ul>
+                                        <li><a href="branchbound.html">Começar</a></li>
+                                        <li><a href="branchbound_about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="#">Transporte</a>
+                            <ul>
+                                <li>Canto Noroeste
+                                    <ul>
+                                        <li><a href="#">Começar</a></li>
+                                        <li><a href="#">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--<li><a href="contato.html">Contato</a></li>-->
+                    </ul>
+                </nav>
+                <!-- End of main navigation -->
+            </div>
+            <!-- End of top right -->
+        </div>
+    </header>
+    <!-- End of header -->
+
+    <!-- Page Title -->
+    <div id="page-title">
+        <h1 class="container">Simplex
+    <span class="sub-title">Programação Linear</span>
+    </h1>
+    </div>
+    <!-- End of page title -->
+
+    <!-- Content -->
+    <div id="content" class="clearfix">
+        <!-- Breadcumbs -->
+        <div class="breadcumbs">
+            <div class="container">
+                <a href="#">Mais sobre o Modelo</a>
+                <!--<a class="current" href="#">Como usar o sistema</a>-->
+                <a href="ajuda.html">Como usar o sistema</a>
+            </div>
+        </div>
+        <!-- End of breadcumbs -->
+
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+
+                <!--right-->
+                <div class="col-md-12" id="pagModelo">
+                    <h2 id="sec0">Introdução </h2>
+                    <hr>
+                    <p>
+                        A Programação Linear (PL) tem sido uma importante ferramenta de análise para grandes empresas pelo mundo. Em um breve resumo,
+                        ela se propôe a otimizar recursos limitados para atividades que competem entre si.
+                    </p>
+                    <p>
+                        A Programação Linear utiliza de um modelo matemático para descrever o problema proposto. Através desse modelo proposto, é
+                        feita uma análise gráfica, mostrando qual será a região de soluções viáveis. Segue-se abaixo um exemplo
+                        da região com as retas de restriçoes de um problema:
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-md-offset-3">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading">
+                                    <h4> Exemplo:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/simplex/img_solviavel.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p> A determinação da solução ótima requer identificar a direção na qual a função objetivo z aumenta (maximização)
+                        ou diminue (minimização). O ponto dentro da região viável onde z é maior (maximização) ou menor (minimização)
+                        será a solução ótima.</p>
+                    <p>Segue-se abaixo um exemplo:</p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading">
+                                    <h4> Exemplo:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/simplex/img_solviavel2.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <blockquote>
+                                <p> Solução: </p>
+                                <center>
+                                    A solução ótima se encontra no ponto C.
+                                </center>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <br>
+                    <h2 id="sec1">Resolvendo PL Usando método Simplex </h2>
+                    <p>O método Simplex não enumera todas as soluções básicas (pontos extremos), porém ele analisa algumas dessas
+                        soluções selecionadas.</p>
+                    <p>Abaixo é representado um modelo de PL com a região de soluções viável.</p>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="panel panel-primary secondary ">
+                            <div class="panel-heading">
+                                <h4> Modelo de PL:</h4></div>
+                            <div class="panel-body">
+                                <img src="img/simplex/exemplo2.png" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="panel panel-primary secondary ">
+                            <div class="panel-heading">
+                                <h4> Região de Soluções viável:</h4></div>
+                            <div class="panel-body">
+                                <img src="img/simplex/exemplo3.png" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                    <p>O método iterativo normalmente inicia no ponto de origem A. Logo após, é analisada se a utilização de
+                        um ponto com x1 ou x2 maior que 0 poderia melhorar a função objetivo z. Analisando a função objetivo
+                        podemos afirmar que sim.</p>
+                    <p>O projeto Simplex exige que se melhore apenas uma variável por vez, analisando qual delas traria uma
+                        maior taxa de melhora para a função objetivo. Para o exemplo citado, o valor da função objetivo aumentará
+                        em 2 para cada unidade de x1 e 3 para cada unidade de x2. Portanto, a variável escolhida seria x2.
+                        A figura mostra que x2 será aumentado até alcançar o ponto extremo B.</p>
+                    <p>Logo após, o valor de x1 será aumentado até alcançar o ponto C que é o ótimo. Portanto, o método percorre
+                        um caminho pelas bordas, até atingir um valor ótimo.
+                        <p>Segue-se abaixo uma estrutura de representação para o método:</p>
+                        <div class="col-md-10 col-sm-10 col-md-offset-1">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading">
+                                    <h4> Estrutura do Simplex:</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/simplex/exemplo4.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!--/right-->
+        </div>
+        <!--/row-->
+    </div>
+    <!-- end container-->
+    </div>
+    <!-- End of content -->
+
+    <div class="scroll-top-wrapper ">
+        <span class="scroll-top-inner">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+        </span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Footer second row -->
+        <div class="footer-second-row">
+            <div class="container">
+                <!-- Logo area -->
+                <div class="logo-left-bg"></div>
+                <div class="logo-left one-fourth">
+                    <!-- Logo -->
+                    <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
+                    <!-- End of logo -->
+                </div>
+                <!-- End of logo area -->
+                <!-- Copyright and small menu -->
+                <div class="copyright-area three-fourth last-in-row">
+                    <span class="copyright">© Copyright 2016 by CEFET-MG. Todos os direitos reservados.</span>
+                    <ul class="small-menu">
+                        <li><a href="faq.html">Dúvidas</a></li>
+                        <li><a href="http://timoteo.cefetmg.br">CEFET-MG Campus Timóteo</a></li>
+                        <!--<li><a href="contato.html">Contato</a></li>-->
+                    </ul>
+                </div>
+                <!-- End of copyright and small menu -->
+            </div>
+        </div>
+        <!-- End of footer second row -->
+    </footer>
+    <!-- End of footer -->
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="js/responsive-nav.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.touchSwipe.min.js"></script>
+
+    <!-- Scripts Configuration -->
+    <script type="text/javascript" src="js/custom.js"></script>
+    <!-- End of scripts configuration -->
+
+    <script type="text/javascript" src="js/ASCIIMathML.js"></script>
+    <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
+    <script>
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    </script>
+    <!-- End of scripts -->
+</body>
+
+</html>
