@@ -470,6 +470,36 @@ Simplex = function(){
         
         return this.iteracoes;
     };
+
+    this.resultado = function(nIteracao){
+        var tabela = this.iteracoes[nIteracao];
+
+        var lin = tabela.length, col = tabela[0].length;
+
+        //Valor da funcao objetivo
+        var resultado["FuncaoObjetivo"] = tabela[0][col-1];
+
+        //Vetor contendo o valor das variaveis
+        resultado["Variaveis"] = this.restricoes[0];
+        for(var j = 0; j < resultado["Variaveis"].length && basica; j++){
+            linhaBase = -1;
+            basica = true;
+            for(var i = 0; i < lin; i++){
+                if(tabela[i][j] === 1)
+                    if(linhaBase === -1)
+                        linhaBase = i;
+                    else
+                        basica = false;
+                else if(tabela[i][j] !== 0)
+                    basica = false;
+            }
+            resultado["Variaveis"] = basica && linhaBase !== -1 ? tabela[linhaBase][col-1] : 0;
+        }
+
+        resultado["TipoResultado"] = this.solver.tipoRes;
+
+        return resultado;
+    };
     
 };
 
@@ -512,7 +542,7 @@ Solver = function(){
          * Limite de iteracoes para o metodo
          * Objetiva parar loops infinitos causados por ciclagem
          */
-        this.limiteIteracoes = 1000;
+        this.limiteIteracoes = 100;
         
         //Lista com os elementos que ainda nao foram tratados em degeneracao
         this.degenerados = [];
@@ -521,7 +551,7 @@ Solver = function(){
         this.isDuasFases = false;
 
         //Controla se a execucao foi interrompida ou nao
-        this.interrompido = false;
+        this.tipoRes = "";
     };
     
     this.terminou = function(){
@@ -556,6 +586,11 @@ Solver = function(){
         if(!setou){
             this.terminado = true;
         }
+
+        if(this.terminado &&
+           this.tipoRes.indexOf("Solução Ilimitada. ") === -1 &&
+           this.tipoRes.indexOf("Limite de iterações atingido. ") === -1)
+            this.tipoRes += "Solução Ótima. "
         
         return this.terminado;
     };
@@ -713,21 +748,20 @@ Solver = function(){
         
         //Caso tenha acontecido uma solucao ilimitada ou um loop infinito
         if(isNaN(sai) || this.nIteracoes === this.limiteIteracoes){
-            this.interrompido = true;
+            if(isNaN(sai) && this.tipoRes.indexOf("Solução Ilimitada. ") === -1 )
+                this.tipoRes += "Solução Ilimitada. ";
+            else if(this.tipoRes.indexOf("Limite de iterações atingido. ") === -1 )
+                this.tipoRes += "Limite de iterações atingido. ";
             this.terminado = true;
             return this.tabela;
-        }
-        
-        
-        //Caso seja uma solucao inviavel
-        if(this.generalizado){
-            
         }
         
         
         //Degeneracao
         var zerarEntrada = false;
         if(Array.isArray(sai)){
+            if(this.tipoRes.indexOf("Solução degenerada. ") === -1 )
+                this.tipoRes += "Solução degenerada. ";
             for(var i = 0; i < sai.length; i++){
                 if(this.degenerados.indexOf(sai[i]) === -1){
                     this.degenerados.push(sai[i]);
