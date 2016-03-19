@@ -35,6 +35,8 @@ Simplex = function(){
         this.upper = modelo["upper"];
         this.lower = modelo["lower"];
         this.tabela = [[]];
+        //Armazena todas as iteracoes do simplex
+        this.iteracoes = [];
         //Instanciar solver
         this.solver = new Solver();
         
@@ -414,12 +416,13 @@ Simplex = function(){
          * Argumentos:
          *      nulo
          * Retorno:
-         *      tabela = Nova tabela simplex apos troca de variavel na base
+         *      iteracoes = Vetor com todas as iteracoes, incluindo a nova tabela simplex apos troca de variavel na base
          * Objetivo:
          *      Executa uma iteracao do algoritmo
          */
         var res = this.solver.escolheVariavel();
-        return this.iteracao(res[0], res[1]);
+        this.iteracoes.push(this.iteracao(res[0], res[1]))
+        return this.iteracoes;
     };
     
     this.terminou = function(){
@@ -456,16 +459,16 @@ Simplex = function(){
          * Argumentos:
          *      nulo
          * Retorno:
-         *      tabela = Nova tabela simplex apos execucao completa do algoritmo
+         *      tabela = Vetor com todas as iteracoes simplex apos execucao completa do algoritmo
          * Objetivo:
          *      Realizar iteracoes sucessivas ate encontrar a solucao otima ou
          *      um "erro" no modelo
          */
         
         while(!this.terminou())
-            this.solver.executa();
+            this.solver.proximoPasso();
         
-        return this.solver.tabela;
+        return this.iteracoes;
     };
     
 };
@@ -516,6 +519,9 @@ Solver = function(){
 
         //Controla se esta iniciando o simplex duas fases
         this.isDuasFases = false;
+
+        //Controla se a execucao foi interrompida ou nao
+        this.interrompido = false;
     };
     
     this.terminou = function(){
@@ -707,6 +713,7 @@ Solver = function(){
         
         //Caso tenha acontecido uma solucao ilimitada ou um loop infinito
         if(isNaN(sai) || this.nIteracoes === this.limiteIteracoes){
+            this.interrompido = true;
             this.terminado = true;
             return this.tabela;
         }
