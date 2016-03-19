@@ -1,12 +1,34 @@
 ////////////////////////////////////////////////////
 //         FUNCOES DA TABELA DE RESULTADO         //
 ////////////////////////////////////////////////////
-TabelaSimplex = function() {
+SimplexTable = function() {
 
-    this.addRow = function() {
+    this.reseta = function() {
+        $("#myTableResult").empty();
+    };
 
-    }
+    this.draw = function(result) {
+        this.tableObj = document.getElementById("myTableResult");
+        this.reseta();
 
+        var row = this.tableObj.insertRow(0);
+
+        //Cabeçalho
+        for (var i = 1; i < result[0].length; i++) {
+            row.insertCell(i - 1).innerHTML = '<b class="text-center">x' + i + '</b>';
+        }
+        row.insertCell().innerHTML = '<b class="text-center">Resultado</b>';
+
+        //Valores
+        for (var i = 0; i < result.length; i++) {
+            row = this.tableObj.insertRow(i + 1);
+            for (var j = 0; j < result[i].length; j++) {
+                row.insertCell(j).innerHTML = '<p>' + result[i][j].toFixed(4) + '</p>';
+            }
+        }
+    };
+
+    return this;
 }
 
 ////////////////////////////////////////////////////
@@ -144,12 +166,19 @@ $(document).ready(function() {
         $('#proximoPasso').hide('fast');
         if (!verificaTabela()) {
             try {
-                var tabelaSimplex = new TabelaSimplex();
+                var simplexTable = new SimplexTable();
                 var simplex = new Simplex();
                 var modelo = leituraParametros(1);
-                
+
                 simplex.init(modelo);
-                simplex.executa();
+                var temp = simplex.executa();
+                simplexTable.draw(temp);
+
+                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
+                $("#panelResultado").show();
+
+
+
             }
             catch (err) {
                 showAlert("danger", "" + err);
