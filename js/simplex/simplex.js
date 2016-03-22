@@ -466,7 +466,7 @@ Simplex = function(){
          */
         
         while(!this.terminou())
-            this.solver.proximoPasso();
+            this.proximoPasso();
         
         return this.iteracoes;
     };
