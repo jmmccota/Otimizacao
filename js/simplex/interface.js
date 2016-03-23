@@ -20,10 +20,10 @@ SimplexTable = function() {
         row.insertCell().innerHTML = '<b class="text-center">Resultado</b>';
 
         //Valores
-        for (var i = 0; i < result.length; i++) {
+        for (var i = 0; i < result[0].length; i++) {
             row = this.tableObj.insertRow(i + 1);
-            for (var j = 0; j < result[i].length; j++) {
-                row.insertCell(j).innerHTML = '<p>' + result[i][j].toFixed(4) + '</p>';
+            for (var j = 0; j < result[0][0].length; j++) {
+                row.insertCell(j).innerHTML = '<p>' + result[result.length-1][i][j].toFixed(4) + '</p>';
             }
         }
     };

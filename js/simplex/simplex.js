@@ -477,11 +477,12 @@ Simplex = function(){
         var lin = tabela.length, col = tabela[0].length;
 
         //Valor da funcao objetivo
-        var resultado["FuncaoObjetivo"] = tabela[0][col-1];
+        var res;
+        res["FuncaoObjetivo"] = tabela[0][col-1];
 
         //Vetor contendo o valor das variaveis
-        resultado["Variaveis"] = this.restricoes[0];
-        for(var j = 0; j < resultado["Variaveis"].length && basica; j++){
+        res["Variaveis"] = this.restricoes[0];
+        for(var j = 0; j < res["Variaveis"].length && basica; j++){
             linhaBase = -1;
             basica = true;
             for(var i = 0; i < lin; i++){
@@ -493,12 +494,12 @@ Simplex = function(){
                 else if(tabela[i][j] !== 0)
                     basica = false;
             }
-            resultado["Variaveis"] = basica && linhaBase !== -1 ? tabela[linhaBase][col-1] : 0;
+            res["Variaveis"] = basica && linhaBase !== -1 ? tabela[linhaBase][col-1] : 0;
         }
 
-        resultado["TipoResultado"] = this.solver.tipoRes;
+        res["TipoResultado"] = this.solver.tipoRes;
 
-        return resultado;
+        return res;
     };
     
 };
