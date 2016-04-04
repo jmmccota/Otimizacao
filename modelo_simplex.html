@@ -57,6 +57,7 @@
                             <li><a href="#sec0">Introdução</a></li>
                             <li><a href="#sec1">Utilizando Método Simplex</a></li>
                             <li><a href="#sec2">Simplex Grande-M</a></li>
+                            <li><a href="#sec3">Simplex Duas Fases</a></li>
                         </ul>
                     </div><!--/left-->
                     <!--right-->
@@ -149,7 +150,7 @@
                         <p>Portanto, para o problema abaixo, é inserida variáveis artificiais para as 2 primeiras equações, e elas são inseridas com suas punições na função
                             objetivo (a soma delas é pelo fato do problema ser de minimização).</p>
                         <p>O valor de M a ser usado depende do problema, ele deve ser suficientemente grande em relação
-                        aos coeficientes da função objetivo original.</p>
+                            aos coeficientes da função objetivo original.</p>
                         <div class="col-md-6 col-sm-6">
                             <div class="panel panel-primary secondary ">
                                 <div class="panel-heading"><h4> Modelo de PL:</h4></div>
@@ -166,7 +167,24 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <br>
+                        <h2 id="sec3">Método Simplex de Duas Fases</h2>
+                        <p>No método do Simplex Grande-M, as punições M devem ser grandes em relação aos coeficientes da função objetivo, resultando
+                            assim em erros significativos de arredondamento. O método do Simplex Duas Fases elimina essa constante M.</p>
+                        <p>O método Duas Fases como o nome já diz, resolve o problema em duas fases:</p>
+                        <ul>
+                            <li>Fase I: Tenta achar uma solução básica inicial, e se ela for encontrada passa para a Fase II.</li>
+                            <li>Fase II: É invocada para resolver o problema original.</li>
+                        </ul>
+                        <p> Como um resumo de atuação do método, temos:</p>
+                        <div class="col-md-8 col-sm-8 col-md-offset-2">
+                            <div class="panel panel-primary secondary ">
+                                <div class="panel-heading"><h4> Resumo do Método das Duas Fases</h4></div>
+                                <div class="panel-body">
+                                    <img src="img/exemplo7.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div><!--/right-->
