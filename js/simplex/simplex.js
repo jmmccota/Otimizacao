@@ -36,7 +36,7 @@ Simplex = function(){
         this.lower = modelo["lower"];
         this.tabela = [[]];
         //Armazena todas as iteracoes do simplex
-        this.iteracoes = [];
+        this.iteracoes = [[]];
         //Instanciar solver
         this.solver = new Solver();
         
@@ -62,7 +62,7 @@ Simplex = function(){
 
         //Insere tabela original
         for(var i = 0; i < this.tabela.length; i++){
-            this.iteracoes.push([]);
+            this.iteracoes[0].push([]);
             for(var j = 0; j < this.tabela[0].length; j++){
                 this.iteracoes[0][i].push(this.tabela[i][j]);
             }
