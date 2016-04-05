@@ -7,23 +7,30 @@ SimplexTable = function() {
         $("#myTableResult").empty();
     };
 
-    this.draw = function(result) {
+    this.draw = function(result, interacao) {
         this.tableObj = document.getElementById("myTableResult");
         this.reseta();
 
-        var row = this.tableObj.insertRow(0);
+        if (interacao === "all") {
 
-        //Cabeçalho
-        for (var i = 1; i < result[0].length; i++) {
-            row.insertCell(i - 1).innerHTML = '<b class="text-center">x' + i + '</b>';
         }
-        row.insertCell().innerHTML = '<b class="text-center">Resultado</b>';
+        else if (interacao === "last") {
+            var row = this.tableObj.insertRow(0);
 
-        //Valores
-        for (var i = 0; i < result.length; i++) {
-            row = this.tableObj.insertRow(i + 1);
-            for (var j = 0; j < result[i].length; j++) {
-                row.insertCell(j).innerHTML = '<p>' + result[i][j].toFixed(4) + '</p>';
+            var lastIt = result.length - 1;
+
+            //Cabeçalho
+            for (var i = 1; i < result[lastIt][0].length; i++) {
+                row.insertCell(i - 1).innerHTML = '<center><b>x' + i + '</b></center>';
+            }
+            row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
+
+            //Valores
+            for (var i = 0; i < result[lastIt].length; i++) {
+                row = this.tableObj.insertRow(i + 1);
+                for (var j = 0; j < result[lastIt][0].length; j++) {
+                    row.insertCell(j).innerHTML = '<p class="simplex">' + result[lastIt][i][j].toFixed(4) + '</p>';
+                }
             }
         }
     };
@@ -172,7 +179,7 @@ $(document).ready(function() {
 
                 simplex.init(modelo);
                 var temp = simplex.executa();
-                simplexTable.draw(temp);
+                simplexTable.draw(temp, "last");
 
                 $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
                 $("#panelResultado").show();
