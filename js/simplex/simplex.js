@@ -59,6 +59,14 @@ Simplex = function(){
         else{
             this.generalizado();
         }
+
+        //Insere tabela original
+        for(var i = 0; i < res.length; i++){
+            this.iteracoes.push([]);
+            for(var j = 0; j < res[0].length; j++){
+                this.iteracoes[0][i].push(this.tabela[i][j]);
+            }
+        }
     };
     
     this.grandeM = function(){
@@ -409,6 +417,8 @@ Simplex = function(){
             return this.solver.tabela;
 
         var res = this.solver.iteracao(entra, sai);
+
+        //Copia tabela
         var copia = [];
         for(var i = 0; i < res.length; i++){
             copia.push([]);
