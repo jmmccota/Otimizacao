@@ -14,8 +14,13 @@ SimplexTable = function() {
         if (interacao === "all") {
             for (var cont = 0; cont < result.length; cont++) {
                 //Timeline
-                $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014">Iteração ' + cont + '</a></li>');
-
+                if (cont == 0) {
+                    $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014">Tabela Inicial</a></li>');
+                } else if(cont == result.length-1){
+                    $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014" class="selected" >Iteração ' + cont + '</a></li>');                        
+                }else{
+                    $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014">Iteração ' + cont + '</a></li>');                                            
+                }
                 var row = this.tableObj.insertRow(0);
 
                 //Cabeçalho
