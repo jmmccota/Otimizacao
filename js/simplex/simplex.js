@@ -407,8 +407,17 @@ Simplex = function(){
         
         if(this.terminou() && this.execucaoFinal)
             return this.solver.tabela;
+
+        var res = this.solver.iteracao(entra, sai);
+        var copia = [];
+        for(var i = 0; i < res.length; i++){
+            copia.push([]);
+            for(var j = 0; j < res[0].length; j++){
+                copia[i].push(res[i][j]);
+            }
+        }
         
-        return this.solver.iteracao(entra, sai);
+        return copia;
     };
     
     this.proximoPasso = function(){
@@ -466,7 +475,7 @@ Simplex = function(){
          */
         
         while(!this.terminou())
-            this.solver.proximoPasso();
+            this.proximoPasso();
         
         return this.iteracoes;
     };
