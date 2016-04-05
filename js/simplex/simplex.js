@@ -61,9 +61,9 @@ Simplex = function(){
         }
 
         //Insere tabela original
-        for(var i = 0; i < res.length; i++){
+        for(var i = 0; i < this.tabela.length; i++){
             this.iteracoes.push([]);
-            for(var j = 0; j < res[0].length; j++){
+            for(var j = 0; j < this.tabela[0].length; j++){
                 this.iteracoes[0][i].push(this.tabela[i][j]);
             }
         }
