@@ -12,7 +12,26 @@ SimplexTable = function() {
         this.reseta();
 
         if (interacao === "all") {
+            for (var cont = 0; cont < result.length; cont++) {
+                //Timeline
+                $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014">Iteração ' + cont + '</a></li>');
 
+                var row = this.tableObj.insertRow(0);
+
+                //Cabeçalho
+                for (var i = 1; i < result[cont][0].length; i++) {
+                    row.insertCell(i - 1).innerHTML = '<center><b>x' + i + '</b></center>';
+                }
+                row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
+
+                //Valores
+                for (var i = 0; i < result[cont].length; i++) {
+                    row = this.tableObj.insertRow(i + 1);
+                    for (var j = 0; j < result[cont][0].length; j++) {
+                        row.insertCell(j).innerHTML = '<p class="simplex">' + result[cont][i][j].toFixed(2) + '</p>';
+                    }
+                }
+            }
         }
         else if (interacao === "last") {
             var row = this.tableObj.insertRow(0);
@@ -179,12 +198,10 @@ $(document).ready(function() {
 
                 simplex.init(modelo);
                 var temp = simplex.executa();
-                simplexTable.draw(temp, "last");
+                simplexTable.draw(temp, "all");
 
                 $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
                 $("#panelResultado").show();
-
-
 
             }
             catch (err) {
