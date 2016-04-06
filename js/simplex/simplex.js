@@ -46,11 +46,11 @@ Simplex = function(){
         //True indica que e a ultima execucao
         this.execucaoFinal = true;
         //Controla se esta iniciando o simplex duas fases
-        this.isDuasFases = false;
+
+        this.artificiais = [];
+
         if(this.metodo === "Duas Fases"){
             this.execucaoFinal = false;
-            this.isDuasFases = true;
-            this.solver.isDuasFases = true;
             this.duasFases();
         }
         else if(this.metodo === "Grande M"){
@@ -60,7 +60,7 @@ Simplex = function(){
             this.generalizado();
         }
 
-        //Insere tabela original
+        //Insere tabela original na lista de iteracoes
         for(var i = 0; i < this.tabela.length; i++){
             this.iteracoes[0].push([]);
             for(var j = 0; j < this.tabela[0].length; j++){
@@ -244,6 +244,7 @@ Simplex = function(){
             else{
                 //Variaveis artificiais
                 this.tabela[0].push(1);
+                this.artificiais.push(this.tabela[0].length-1);
                 for(var j = 1; j < this.tabela.length; j++){
                     if(j === i + 1)
                         this.tabela[j].push(1);
@@ -269,6 +270,21 @@ Simplex = function(){
         }
         
         this.solver.init({tabela : this.tabela, generalizado: false});
+
+        //Ajustando modelo da primeira fase
+        while(this.solver.terminou()){
+            var base = this.solver.escolheVariavel();
+            this.solver.terminado = false;
+            var res = this.solver.iteracao(base[0], base[1]);
+            var copia = [];
+            for(var i = 0; i < res.length; i++){
+                copia.push([]);
+                for(var j = 0; j < res[0].length; j++){
+                    copia[i].push(res[i][j]);
+                }
+            }
+            this.iteracoes.push(copia);
+        }
     };
     
     this.duasFases2 = function(){
@@ -286,19 +302,40 @@ Simplex = function(){
         var tabela = this.solver.tabela;
         
         //Criando tabela basica
-        if(this.problema === "Maximize")
-            for(var i = 0; i < this.objetivo.length; i++)
-                this.tabela[0].push(-this.objetivo[i]);
-        else
-            this.tabela[0] = this.objetivo;
-        for(var i = 0; i < tabela.length; i++)
+        //Funcao objetivo original
+        for(var i = 0; i < this.objetivo.length; i++)
+            if(this.problema === "Maximize")
+                this.tabela[0][i] = -this.objetivo[i];
+            else
+                this.tabela[0][i] = this.objetivo[i];
+        var tam = this.tabela[0].length;
+        for(var i = this.objetivo.length; i < tam; i++)
+                this.tabela[0][i] = 0;
+        //Restricoes da fase 1
+        for(var i = 0; i < this.restricoes.length; i++)
             for(var j = 0; j < this.restricoes[0].length; j++)
                 this.tabela[i+1][j] = tabela[i+1][j];
+        /*
         for(var i = 0; i < tabela.length; i++)
-            this.tabela[i].push(tabela[i][tabela.length-1]);
+            this.tabela[i][this.tabela[0].length-1] = tabela[i][tabela.length-1];
+        */
+
+        //Removendo variaveis artificiais
+        for(var idx = 0; idx < this.artificiais.length; idx++)
+            for(var i = 0; i < this.tabela.length; i++)
+                this.tabela[i].splice(this.artificiais[idx], 1);    
+
+
+        //Insere tabela da fase 2 na lista de iteracoes
+        for(var i = 0; i < this.tabela.length; i++){
+            this.iteracoes[0].push([]);
+            for(var j = 0; j < this.tabela[0].length; j++){
+                this.iteracoes[0][i].push(this.tabela[i][j]);
+            }
+        }
         
         this.solver = new Solver();
-        this.solver.init({tabela : this.tabela});
+        this.solver.init({tabela : this.tabela, generalizado: false});
     };
     
     this.generalizado = function(){
@@ -455,11 +492,6 @@ Simplex = function(){
          *      Informar a quem esta utilizando o algoritmo se ha mais iteracoes
          *      a serem executadas e faz a chamada caso precisa passar de fase (duas fases)
          */
-        if(this.isDuasFases){
-            this.isDuasFases = false;
-            return false;
-        }
-
         if(this.terminado || this.solver.terminou()){
             if(this.execucaoFinal){
                 this.terminado = true;
@@ -520,6 +552,24 @@ Simplex = function(){
 
         return res;
     };
+
+    this.pivo = function(nIteracao){
+
+        //Copia tabela
+        var copia = [];
+        for(var i = 0; i < this.solver.tabela.length; i++){
+            copia.push([]);
+            for(var j = 0; j < this.solver.tabela[0].length; j++){
+                copia[i].push(this.solver.tabela[i][j]);
+            }
+        }
+
+        this.solver.tabela = this.iteracoes[nIteracao];
+        var res = this.solver.escolheVariavel();
+        this.solver.tabela = copia;
+
+        return res;
+    }
     
 };
 
@@ -568,8 +618,7 @@ Solver = function(){
         this.degenerados = [];
 
         //Controla se esta iniciando o simplex duas fases
-        this.isDuasFases = false;
-
+        
         //Controla se a execucao foi interrompida ou nao
         this.tipoRes = "";
     };
@@ -585,11 +634,6 @@ Solver = function(){
          *      Informar a quem esta utilizando o solver se ha mais iteracoes
          *      a serem executadas
          */
-        if(this.isDuasFases){
-            this.isDuasFases = false;
-            return false;
-        }
-
         var setou = false;
         
         if(this.terminado)
@@ -716,7 +760,7 @@ Solver = function(){
         for(var i = 1; i < this.tabela.length; i++){
             if (this.tabela[i][idxEntra] !== 0){
                 var ri = this.tabela[i][this.tabela[i].length-1] / this.tabela[i][idxEntra];
-                if ((ri < rmin || isNaN(rmin)) && ri > 0){
+                if ((ri < rmin || isNaN(rmin)) && ri >= 0){
                     rmin = ri;
                     idxSai = i;
                 }
@@ -821,6 +865,15 @@ Solver = function(){
                 this.tabela[sai][this.tabela[0].length - 1] = 0;
             }
         }
+
+
+        //==================================
+        //Remocao de erro de ponto flutuante
+        for(var i = 0; i < this.tabela.length; i++)
+            for(var j = 0; j < this.tabela[i].length; j++)
+                if(this.tabela[i][j] > -0.0000000000001 &&
+                   this.tabela[i][j] <  0.0000000000001)
+                    this.tabela[i][j] = 0;
         
         return this.tabela;
     };
