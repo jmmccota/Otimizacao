@@ -1,59 +1,59 @@
+
+
+////////////////////////////////////////////////////
+//         FUNCOES DA TABELA DE RESULTADO         //
+////////////////////////////////////////////////////
+Timeline = function() {
+
+    this.reseta = function() {
+        $('#myTimeline ul').empty();
+    }
+
+    this.drawTimeline = function(nIteracao) {
+
+
+    };
+
+    return this;
+}
 ////////////////////////////////////////////////////
 //         FUNCOES DA TABELA DE RESULTADO         //
 ////////////////////////////////////////////////////
 SimplexTable = function() {
 
-    this.reseta = function() {
-        $("#myTableResult").empty();
+    this.reseta = function(cont) {
+        $("#myTableResult" + cont).empty();
     };
 
-    this.draw = function(result, interacao) {
-        this.tableObj = document.getElementById("myTableResult");
-        this.reseta();
 
-        if (interacao === "all") {
-            for (var cont = 0; cont < result.length; cont++) {
-                //Timeline
-                if (cont == 0) {
-                    $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014">Tabela Inicial</a></li>');
-                } else if(cont == result.length-1){
-                    $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014" class="selected" >Iteração ' + cont + '</a></li>');                        
-                }else{
-                    $('#myTimelineHead').append('<li><a href="#0" data-date="28/02/2014">Iteração ' + cont + '</a></li>');                                            
-                }
-                var row = this.tableObj.insertRow(0);
+    this.drawTable = function(result, interacao) {
+        for (var cont = 0; cont < result.length; cont++) {
+            //Cria MytableResult
+            $('#panelResultado').append(
+                ' <div class="row panel panel-default" tabindex="-1">' +
+                '  <div class="panel-heading"> ' +
+                '      <h3 class="panel-title" id="panel-title"><label>Tabela Smiplex - Iteração ' + cont + '</label></h3>' +
+                ' </div>' +
+                ' <div class="panel-body" style="padding: 0;">' +
+                '     <table id="myTableResult' + cont + '" class="table table-condensed"></table>' +
+                ' </div>' +
+                ' </div>');
 
-                //Cabeçalho
-                for (var i = 1; i < result[cont][0].length; i++) {
-                    row.insertCell(i - 1).innerHTML = '<center><b>x' + i + '</b></center>';
-                }
-                row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
+            this.tableObj = document.getElementById("myTableResult" + cont);
 
-                //Valores
-                for (var i = 0; i < result[cont].length; i++) {
-                    row = this.tableObj.insertRow(i + 1);
-                    for (var j = 0; j < result[cont][0].length; j++) {
-                        row.insertCell(j).innerHTML = '<p class="simplex">' + result[cont][i][j].toFixed(2) + '</p>';
-                    }
-                }
-            }
-        }
-        else if (interacao === "last") {
             var row = this.tableObj.insertRow(0);
 
-            var lastIt = result.length - 1;
-
             //Cabeçalho
-            for (var i = 1; i < result[lastIt][0].length; i++) {
+            for (var i = 1; i < result[cont][0].length; i++) {
                 row.insertCell(i - 1).innerHTML = '<center><b>x' + i + '</b></center>';
             }
             row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
 
             //Valores
-            for (var i = 0; i < result[lastIt].length; i++) {
+            for (var i = 0; i < result[cont].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
-                for (var j = 0; j < result[lastIt][0].length; j++) {
-                    row.insertCell(j).innerHTML = '<p class="simplex">' + result[lastIt][i][j].toFixed(4) + '</p>';
+                for (var j = 0; j < result[cont][0].length; j++) {
+                    row.insertCell(j).innerHTML = '<p class="simplex">' + result[cont][i][j].toFixed(2) + '</p>';
                 }
             }
         }
@@ -201,12 +201,14 @@ $(document).ready(function() {
                 var simplex = new Simplex();
                 var modelo = leituraParametros(1);
 
+                $("#panelResultado").show();
+
                 simplex.init(modelo);
                 var temp = simplex.executa();
-                simplexTable.draw(temp, "all");
+                simplexTable.drawTable(temp, "all");
 
                 $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
-                $("#panelResultado").show();
+
 
             }
             catch (err) {
