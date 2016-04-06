@@ -286,11 +286,14 @@ Simplex = function(){
         var tabela = this.solver.tabela;
         
         //Criando tabela basica
-        if(this.problema === "Maximize")
-            for(var i = 0; i < this.objetivo.length; i++)
-                this.tabela[0].push(-this.objetivo[i]);
-        else
-            this.tabela[0] = this.objetivo;
+        for(var i = 0; i < this.objetivo.length; i++)
+            if(this.problema === "Maximize")
+                this.tabela[0][i] = -this.objetivo[i];
+            else
+                this.tabela[0][i] = this.objetivo[i];
+        var tam = this.tabela[0].length + 1;
+        for(var i = this.objetivo.length; i < tam; i++)
+                this.tabela[0][i] = 0;
         for(var i = 0; i < tabela.length; i++)
             for(var j = 0; j < this.restricoes[0].length; j++)
                 this.tabela[i+1][j] = tabela[i+1][j];
@@ -520,6 +523,24 @@ Simplex = function(){
 
         return res;
     };
+
+    this.pivo = function(nIteracao){
+
+        //Copia tabela
+        var copia = [];
+        for(var i = 0; i < this.solver.tabela.length; i++){
+            copia.push([]);
+            for(var j = 0; j < this.solver.tabela[0].length; j++){
+                copia[i].push(this.solver.tabela[i][j]);
+            }
+        }
+
+        this.solver.tabela = this.iteracoes[nIteracao];
+        var res = this.solver.escolheVariavel();
+        this.solver.tabela = copia;
+
+        return res;
+    }
     
 };
 
