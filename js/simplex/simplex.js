@@ -291,17 +291,17 @@ Simplex = function(){
                 this.tabela[0][i] = -this.objetivo[i];
             else
                 this.tabela[0][i] = this.objetivo[i];
-        var tam = this.tabela[0].length + 1;
+        var tam = this.tabela[0].length;
         for(var i = this.objetivo.length; i < tam; i++)
                 this.tabela[0][i] = 0;
-        for(var i = 0; i < tabela.length; i++)
+        for(var i = 0; i < this.restricoes.length; i++)
             for(var j = 0; j < this.restricoes[0].length; j++)
                 this.tabela[i+1][j] = tabela[i+1][j];
         for(var i = 0; i < tabela.length; i++)
             this.tabela[i].push(tabela[i][tabela.length-1]);
         
         this.solver = new Solver();
-        this.solver.init({tabela : this.tabela});
+        this.solver.init({tabela : this.tabela, generalizado: false});
     };
     
     this.generalizado = function(){
@@ -458,11 +458,6 @@ Simplex = function(){
          *      Informar a quem esta utilizando o algoritmo se ha mais iteracoes
          *      a serem executadas e faz a chamada caso precisa passar de fase (duas fases)
          */
-        if(this.isDuasFases){
-            this.isDuasFases = false;
-            return false;
-        }
-
         if(this.terminado || this.solver.terminou()){
             if(this.execucaoFinal){
                 this.terminado = true;
