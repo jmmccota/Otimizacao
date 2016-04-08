@@ -1,5 +1,5 @@
 
-
+var simplex = null;
 ////////////////////////////////////////////////////
 //         FUNCOES DA TABELA DE RESULTADO         //
 ////////////////////////////////////////////////////
@@ -27,33 +27,44 @@ SimplexTable = function() {
 
 
     this.drawTable = function(result, interacao) {
-        for (var cont = 0; cont < result.length; cont++) {
+
+        $("#result").empty();
+
+        for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
+
             //Cria MytableResult
-            $('#panelResultado').append(
+            $('#result').append(
                 ' <div class="row panel panel-default" tabindex="-1">' +
                 '  <div class="panel-heading"> ' +
-                '      <h3 class="panel-title" id="panel-title"><label>Tabela Smiplex - Iteração ' + cont + '</label></h3>' +
+                '      <h3 class="panel-title" id="panel-title"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
                 ' </div>' +
                 ' <div class="panel-body" style="padding: 0;">' +
-                '     <table id="myTableResult' + cont + '" class="table table-condensed"></table>' +
+                '     <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
                 ' </div>' +
                 ' </div>');
 
-            this.tableObj = document.getElementById("myTableResult" + cont);
+            this.tableObj = document.getElementById("myTableResult" + nIteracao);
+            this.reseta(nIteracao);
 
             var row = this.tableObj.insertRow(0);
 
             //Cabeçalho
-            for (var i = 1; i < result[cont][0].length; i++) {
+            for (var i = 1; i < result[nIteracao][0].length; i++) {
                 row.insertCell(i - 1).innerHTML = '<center><b>x' + i + '</b></center>';
             }
             row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
 
+            //Elemento pivo
+            var pivo = ((nIteracao != result.length - 1) ? simplex.pivo(nIteracao) : '');
+
             //Valores
-            for (var i = 0; i < result[cont].length; i++) {
+            for (var i = 0; i < result[nIteracao].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
-                for (var j = 0; j < result[cont][0].length; j++) {
-                    row.insertCell(j).innerHTML = '<p class="simplex">' + result[cont][i][j].toFixed(2) + '</p>';
+                row.className = (pivo[1] == i) ? 'pivo' : '';
+                for (var j = 0; j < result[nIteracao][0].length; j++) {
+                    var cell = row.insertCell(j);
+                    cell.innerHTML = '<p class="simplex">' + result[nIteracao][i][j].toFixed(4).replace('.', ',') + '</p>';
+                    cell.className = (pivo[0] == j) ? 'pivo' : ''
                 }
             }
         }
@@ -198,7 +209,7 @@ $(document).ready(function() {
         if (!verificaTabela()) {
             try {
                 var simplexTable = new SimplexTable();
-                var simplex = new Simplex();
+                simplex = new Simplex();
                 var modelo = leituraParametros(1);
 
                 $("#panelResultado").show();
@@ -208,8 +219,6 @@ $(document).ready(function() {
                 simplexTable.drawTable(temp, "all");
 
                 $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
-
-
             }
             catch (err) {
                 showAlert("danger", "" + err);

@@ -2842,7 +2842,7 @@ th {
 .table {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
     .table > thead > tr > th,
