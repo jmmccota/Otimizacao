@@ -78,7 +78,6 @@
  	----------------------------------------------------------------------------- */	
 	
 	p {
-		font-weight: normal;
 		line-height: 24px;
 	}
 	
@@ -2859,18 +2858,19 @@
 	}
 
 }
-
-
 /*-------------------------------------*/
 
 /*Gerais*/
 #myTableData {
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #myTableData2 {
     width: 75%;
     margin-top: 30px;
+    margin-bottom: 20px;
+    
 }
 
 #div_mpl {
@@ -3029,4 +3029,21 @@
     font-size: 12px;
     text-align: center;
     font-weight: 650;
+}
+
+.container-big{
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+    width: 80%;
+}
+
+.pivo{
+    background-color:rgba(137, 179, 19, 0.24);
+    font-weight: bold;
+    box-shadow: inset 1px 1px 0px 0px rgb(230,230,230), inset -1px -1px 0px 0px rgb(230,230,230);
+    overflow: visible !important;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }

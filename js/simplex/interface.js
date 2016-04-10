@@ -1,35 +1,70 @@
+
+var simplex = null;
+////////////////////////////////////////////////////
+//         FUNCOES DA TABELA DE RESULTADO         //
+////////////////////////////////////////////////////
+Timeline = function() {
+
+    this.reseta = function() {
+        $('#myTimeline ul').empty();
+    }
+
+    this.drawTimeline = function(nIteracao) {
+
+
+    };
+
+    return this;
+}
 ////////////////////////////////////////////////////
 //         FUNCOES DA TABELA DE RESULTADO         //
 ////////////////////////////////////////////////////
 SimplexTable = function() {
 
-    this.reseta = function() {
-        $("#myTableResult").empty();
+    this.reseta = function(cont) {
+        $("#myTableResult" + cont).empty();
     };
 
-    this.draw = function(result, interacao) {
-        this.tableObj = document.getElementById("myTableResult");
-        this.reseta();
 
-        if (interacao === "all") {
+    this.drawTable = function(result, interacao) {
 
-        }
-        else if (interacao === "last") {
+        $("#result").empty();
+
+        for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
+
+            //Cria MytableResult
+            $('#result').append(
+                ' <div class="row panel panel-default" tabindex="-1">' +
+                '  <div class="panel-heading"> ' +
+                '      <h3 class="panel-title" id="panel-title"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
+                ' </div>' +
+                ' <div class="panel-body" style="padding: 0;">' +
+                '     <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
+                ' </div>' +
+                ' </div>');
+
+            this.tableObj = document.getElementById("myTableResult" + nIteracao);
+            this.reseta(nIteracao);
+
             var row = this.tableObj.insertRow(0);
 
-            var lastIt = result.length - 1;
-
             //Cabeçalho
-            for (var i = 1; i < result[lastIt][0].length; i++) {
+            for (var i = 1; i < result[nIteracao][0].length; i++) {
                 row.insertCell(i - 1).innerHTML = '<center><b>x' + i + '</b></center>';
             }
             row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
 
+            //Elemento pivo
+            var pivo = ((nIteracao != result.length - 1) ? simplex.pivo(nIteracao) : '');
+
             //Valores
-            for (var i = 0; i < result[lastIt].length; i++) {
+            for (var i = 0; i < result[nIteracao].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
-                for (var j = 0; j < result[lastIt][0].length; j++) {
-                    row.insertCell(j).innerHTML = '<p class="simplex">' + result[lastIt][i][j].toFixed(4) + '</p>';
+                row.className = (pivo[1] == i) ? 'pivo' : '';
+                for (var j = 0; j < result[nIteracao][0].length; j++) {
+                    var cell = row.insertCell(j);
+                    cell.innerHTML = '<p class="simplex">' + result[nIteracao][i][j].toFixed(4).replace('.', ',') + '</p>';
+                    cell.className = (pivo[0] == j) ? 'pivo' : ''
                 }
             }
         }
@@ -174,18 +209,16 @@ $(document).ready(function() {
         if (!verificaTabela()) {
             try {
                 var simplexTable = new SimplexTable();
-                var simplex = new Simplex();
+                simplex = new Simplex();
                 var modelo = leituraParametros(1);
+
+                $("#panelResultado").show();
 
                 simplex.init(modelo);
                 var temp = simplex.executa();
-                simplexTable.draw(temp, "last");
+                simplexTable.drawTable(temp, "all");
 
                 $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
-                $("#panelResultado").show();
-
-
-
             }
             catch (err) {
                 showAlert("danger", "" + err);
