@@ -88,10 +88,10 @@ Simplex = function(){
                 source = 'Maximizar';
             if (this.problema === "Minimize")
                 source = 'Minimizar';
-            source += " `z = ";
+            source += "\n`z = ";
             var primeiro = true;
             for (var i = 0; i < this.objetivo.length; i++) {
-                if (this.objetivo[i] === 0)
+                if (this.objetivo[i] === "0")
                     continue;
                 if (!primeiro)
                     source += (this.objetivo[i] > 0) ? " + " : " ";
@@ -112,7 +112,7 @@ Simplex = function(){
                     var primeiro = true;
                     source += "`";
                     for (var j = 0; j < this.objetivo.length; j++) {
-                        if (this.restricoes[i][j] === 0)
+                        if (this.restricoes[i][j] === "0")
                             continue;
                         if (!primeiro)
                             source += (this.restricoes[i][j] > 0) ? " + " : " ";
