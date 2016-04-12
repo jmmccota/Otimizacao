@@ -618,7 +618,7 @@ Solver = function(){
          * Limite de iteracoes para o metodo
          * Objetiva parar loops infinitos causados por ciclagem
          */
-        this.limiteIteracoes = 100;
+        this.limiteIteracoes = 70;
         
         //Lista com os elementos que ainda nao foram tratados em degeneracao
         this.degenerados = [];
@@ -658,7 +658,8 @@ Solver = function(){
         }
 
         if(this.terminado &&
-           this.tipoRes.indexOf("Solução Ilimitada. ") === -1 &&
+           this.tipoRes.indexOf("Solução ilimitada. ") === -1 &&
+           this.tipoRes.indexOf("Solução dual inexistente. ") === -1 &&
            this.tipoRes.indexOf("Limite de iterações atingido. ") === -1)
             this.tipoRes += "Solução Ótima. "
         
@@ -728,13 +729,18 @@ Solver = function(){
 
             if(idxSai !== -1){
                 var razao = 0;
-                idxEntra = 0;
+                idxEntra = -1;
                 //Encontra a primeira possivel variavel a entrar
-                for(var j = 1; j < this.tabela[0].length; j++) {
+                for(var j = 0; j < this.tabela[0].length; j++) {
                     if(this.tabela[0][j] < 0 && this.tabela[idxSai][j] < 0){
                         razao = this.tabela[0][j] / this.tabela[idxSai][j];
                         idxEntra = j;
                     }
+                }
+
+                //Se solucao dual inviavel
+                if(idxEntra === -1){
+                    return []
                 }
 
                 for(var j = idxEntra; j < this.tabela[0].length; j++) {
@@ -818,10 +824,12 @@ Solver = function(){
             return this.tabela;
         
         //Caso tenha acontecido uma solucao ilimitada ou um loop infinito
-        if(isNaN(sai) || this.nIteracoes === this.limiteIteracoes){
-            if(isNaN(sai) && this.tipoRes.indexOf("Solução Ilimitada. ") === -1 )
-                this.tipoRes += "Solução Ilimitada. ";
-            else if(this.tipoRes.indexOf("Limite de iterações atingido. ") === -1 )
+        if(isNaN(sai) || this.nIteracoes === this.limiteIteracoes || isNaN(entra)){
+            if(isNaN(sai) && this.tipoRes.indexOf("Solução ilimitada. ") === -1 )
+                this.tipoRes += "Solução ilimitada. ";
+            if(isNaN(entra) && this.tipoRes.indexOf("Solução dual inexistente. ") === -1 )
+                this.tipoRes += "Solução dual inexistente. ";
+            if(this.tipoRes.indexOf("Limite de iterações atingido. ") === -1 )
                 this.tipoRes += "Limite de iterações atingido. ";
             this.terminado = true;
             return this.tabela;
