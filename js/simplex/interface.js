@@ -3,22 +3,6 @@ var simplex = null;
 ////////////////////////////////////////////////////
 //         FUNCOES DA TABELA DE RESULTADO         //
 ////////////////////////////////////////////////////
-Timeline = function() {
-
-    this.reseta = function() {
-        $('#myTimeline ul').empty();
-    }
-
-    this.drawTimeline = function(nIteracao) {
-
-
-    };
-
-    return this;
-}
-////////////////////////////////////////////////////
-//         FUNCOES DA TABELA DE RESULTADO         //
-////////////////////////////////////////////////////
 SimplexTable = function() {
 
     this.reseta = function(cont) {
@@ -26,22 +10,23 @@ SimplexTable = function() {
     };
 
 
-    this.drawTable = function(result, interacao) {
+    this.drawTable = function(result) {
 
         $("#result").empty();
+        $("#resultInfo").empty();
 
         for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
 
             //Cria MytableResult
             $('#result').append(
-                ' <div class="row panel panel-default" tabindex="-1">' +
-                '  <div class="panel-heading"> ' +
+                '<div class="row panel panel-default" tabindex="-1">' +
+                '   <div class="panel-heading"> ' +
                 '      <h3 class="panel-title" id="panel-title"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
-                ' </div>' +
-                ' <div class="panel-body" style="padding: 0;">' +
-                '     <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
-                ' </div>' +
-                ' </div>');
+                '   </div>' +
+                '   <div class="panel-body" style="padding: 0;">' +
+                '      <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
+                '   </div>' +
+                '</div>');
 
             this.tableObj = document.getElementById("myTableResult" + nIteracao);
             this.reseta(nIteracao);
@@ -57,7 +42,7 @@ SimplexTable = function() {
             //Elemento pivo
             var pivo = ((nIteracao != result.length - 1) ? simplex.pivo(nIteracao) : '');
 
-            //Valores
+            //Valores de cada Iteração
             for (var i = 0; i < result[nIteracao].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
                 row.className = (pivo[1] == i) ? 'pivo' : '';
@@ -68,7 +53,19 @@ SimplexTable = function() {
                 }
             }
         }
+
+        //Mostra tipo de solução e valor de Z
+        var z = simplex.resultado(result.length - 1);
+        $("resultInfo").append(
+            '<div class="numeral-info-box one-third">' +
+            '   <span class="numeral-info-number" id="valorZ">' + z["FuncaoObjetivo"] + '</span>' +
+            '   <span class="numeral-info-description" id="tipoSolucao">' + z["TipoResultado"] + '</span>' +
+            '</div>');
     };
+
+    this.drawTable = function(result, nIteracao) {
+
+    }
 
     return this;
 }
@@ -84,7 +81,6 @@ $(document).ready(function() {
 
     //Novo problema de otimizacao
     $("#novo").click(function() {
-
         if (t.existe) {
             var nVariaveis = document.getElementById("variaveis").value;
             if (nVariaveis > 1)
@@ -164,7 +160,7 @@ $(document).ready(function() {
     $('#salvar').click(function() {
         try {
             var source = "";
-            var x = t.leituraParametros();
+            var x = leituraParametros(2);
             if (!verificaTabela()) {
                 source = x['problema'] + '\r\n\r\n';
                 for (var i = 0; i < x.objetivo.length; i++) {
@@ -216,7 +212,7 @@ $(document).ready(function() {
 
                 simplex.init(modelo);
                 var temp = simplex.executa();
-                simplexTable.drawTable(temp, "all");
+                simplexTable.drawTable(temp);
 
                 $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
             }
@@ -239,7 +235,6 @@ $(document).ready(function() {
 
     });
 
-    //Analisar arquivo
     $('#analisarFile').click(function() {
         try {
             if (reader.result != null) {
