@@ -53,7 +53,7 @@ SimplexTable = function() {
                 }
             }
         }
-
+        /*
         //Mostra tipo de solução e valor de Z
         var z = simplex.resultado(result.length - 1);
         $("resultInfo").append(
@@ -61,12 +61,13 @@ SimplexTable = function() {
             '   <span class="numeral-info-number" id="valorZ">' + z["FuncaoObjetivo"] + '</span>' +
             '   <span class="numeral-info-description" id="tipoSolucao">' + z["TipoResultado"] + '</span>' +
             '</div>');
+        */
     };
-
+/*
     this.drawTable = function(result, nIteracao) {
 
     }
-
+*/
     return this;
 }
 
