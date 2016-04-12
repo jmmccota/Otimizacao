@@ -1,3 +1,5 @@
+__global__executando__ = "branchbound";
+
 Nodo = function (id, pai, altura, modelo, z, x) {
     /* 
      * Classe que sera usada como elemento do heap.

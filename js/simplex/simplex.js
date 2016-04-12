@@ -1,3 +1,5 @@
+__global__executando__ = "simplex"
+
 Simplex = function(){
         /*
          * Objetivos:
@@ -365,10 +367,14 @@ Simplex = function(){
             this.solver.terminado = false;
             var res = this.solver.iteracao(base[0], base[1]);
             var copia = [];
+            //Copia tabela
             for(var i = 0; i < res.length; i++){
                 copia.push([]);
                 for(var j = 0; j < res[0].length; j++){
-                    copia[i].push(res[i][j]);
+                    if(i === 0 && this.problema === "Minimize")
+                        copia[i].push(-res[i][j]);
+                    else
+                        copia[i].push(res[i][j]);
                 }
             }
             this.iteracoes.push(copia);
@@ -550,7 +556,10 @@ Simplex = function(){
         for(var i = 0; i < res.length; i++){
             copia.push([]);
             for(var j = 0; j < res[0].length; j++){
-                copia[i].push(res[i][j]);
+                if(i === 0 && this.problema === "Minimize")
+                    copia[i].push(-res[i][j]);
+                else
+                    copia[i].push(res[i][j]);
             }
         }
         
@@ -647,10 +656,13 @@ Simplex = function(){
 
         //Copia tabela
         var copia = [];
-        for(var i = 0; i < this.solver.tabela.length; i++){
+        for(var i = 0; i < res.length; i++){
             copia.push([]);
-            for(var j = 0; j < this.solver.tabela[0].length; j++){
-                copia[i].push(this.solver.tabela[i][j]);
+            for(var j = 0; j < res[0].length; j++){
+                if(i === 0 && this.problema === "Minimize")
+                    copia[i].push(-res[i][j]);
+                else
+                    copia[i].push(res[i][j]);
             }
         }
 

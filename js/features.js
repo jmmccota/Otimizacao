@@ -330,12 +330,18 @@ function mpl(modelos) {
     //$('#div_mpl').show();
     var mp = document.getElementById('fileDisplayArea');
     //mp.innerHTML = "";
-    var nodo = new Nodo(0, 0, 0, modelos, 0, 0);
-    var bodyContent = nodo.modelo();
+    var x;
+    if(__global__executando__ === "simplex"){
+        x = new Simplex();
+        x.init(modelos);
+    }
+    else if(__global__executando__ === "branchbound"){
+        x = new Nodo(0, 0, 0, modelos, 0, 0);
+    }
+    var bodyContent = x.modelo();
     mp.innerHTML = bodyContent;
 
-}
-;
+};
 
 
 
