@@ -50,8 +50,8 @@ function analisarFile() {
                     throw "Tipo do problema indefinido";
                 }
                 while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
-                    && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
-                    && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
+                        && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                        && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
 
                     cont++;
                     if (cont > source.length) {
@@ -79,8 +79,8 @@ function analisarFile() {
                 objetivo = linha.split("|", nVariaveis); //funÃ§ao objetivo
                 p++;
                 while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
-                    && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
-                    && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9" && source[cont] !== "n") {//avanÃ§a ate as restriÃ§oes
+                        && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                        && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9" && source[cont] !== "n") {//avanÃ§a ate as restriÃ§oes
 
                     cont++;
                     if (cont > source.length) {
@@ -136,8 +136,8 @@ function analisarFile() {
             }
             if (p === 4) { //pega lower
                 while (source[cont] !== "-" && source[cont] !== "0" && source[cont] !== "1" && source[cont] !== "2"
-                    && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
-                    && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
+                        && source[cont] !== "3" && source[cont] !== "4" && source[cont] !== "5" && source[cont] !== "6"
+                        && source[cont] !== "7" && source[cont] !== "8" && source[cont] !== "9") {
                     cont++;
                     if (cont > source.length) {
                         break;
@@ -189,7 +189,6 @@ function analisarFile() {
     } catch (err) {
         throw "Erro: Modelo no formato incorreto. " + err;
     }
-
     return {
         problema: problema,
         objetivo: objetivo,
@@ -281,15 +280,15 @@ function isInfinityKey(evt) {
         if (charCode >= 45 && charCode <= 46)
             valida = true;
         else
-            //inf minuscuto
-            if (charCode == 105 || charCode == 110 || charCode == 102)
-                valida = true;
-            else
-                //INF maiusculo
-                if (charCode == 70 || charCode == 73 || charCode == 78)
-                    valida = true;
-                else
-                    valida = false;
+        //inf minuscuto
+        if (charCode == 105 || charCode == 110 || charCode == 102)
+            valida = true;
+        else
+        //INF maiusculo
+        if (charCode == 70 || charCode == 73 || charCode == 78)
+            valida = true;
+        else
+            valida = false;
     }
     else
         valida = true;
@@ -323,28 +322,45 @@ function hideFormProblema() {
     $('#proximoPasso').hide('fast');
 }
 
-$(document).ready(function() {
+
+function mpl(modelos) {
+
+    addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
+    addHead("js/ASCIIMathML.js");
+    //$('#div_mpl').show();
+    var mp = document.getElementById('fileDisplayArea');
+    //mp.innerHTML = "";
+    var nodo = new Nodo(0, 0, 0, modelos, 0, 0);
+    var bodyContent = nodo.modelo();
+    mp.innerHTML = bodyContent;
+
+}
+;
+
+
+
+$(document).ready(function () {
 
     // **************************************************** FORM FUNCTION *****************************************************
     //Evita ficar mandando informção(submit)
-    $("form").submit(function(event) {
+    $("form").submit(function (event) {
         event.preventDefault();
     });
 
     // **************************************************** FILE FUNCTION *****************************************************
     //Ao clicar no botão file aparecer o caminho
-    $(document).on('change', '.btn-file :file', function() {
+    $(document).on('change', '.btn-file :file', function () {
         var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.trigger('fileselect', [numFiles, label]);
     });
 
     //Botão file
-    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+    $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
         var input = $(this).parents('.input-group').find(':text'),
-            log = numFiles > 1 ? numFiles + ' arquivos selecionados' : label;
+                log = numFiles > 1 ? numFiles + ' arquivos selecionados' : label;
         if (input.length) {
             input.val(log);
         } else {
@@ -356,7 +372,7 @@ $(document).ready(function() {
     //Carregar, cria um evento de listener
     var fileInput = document.getElementById('fileInput');
 
-    fileInput.addEventListener('change', function(e) {
+    fileInput.addEventListener('change', function (e) {
         var fileInput = document.getElementById('fileInput');
         var fileDisplayArea = document.getElementById('fileDisplayArea');
         var file = fileInput.files[0];
@@ -366,9 +382,12 @@ $(document).ready(function() {
         if (file.type.match(textType)) {
             reader = new FileReader();
 
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 fileDisplayArea.innerHTML = reader.result.replace(/\n/g, "<br>");
             }
+
+
+
 
             // reader.onprogress = function(e) {
             //     var percentUploaded = Math.floor(e.loaded * 100 / e.total);
@@ -379,6 +398,11 @@ $(document).ready(function() {
             showAlert("success", "Arquivo carregado com sucesso");
             analisarStyle("success");
             reader.readAsText(file);
+
+            reader.onload = function (evt) {
+				mpl(analisarFile());
+            };
+
         } else {
             analisarStyle("danger");
             // $("#rowProgressFile").hide();
@@ -386,7 +410,8 @@ $(document).ready(function() {
             fileDisplayArea.innerHTML = "Arquivo não suportado";
             showAlert("danger", "Erro: Arquivo não suportado");
         }
-    });
+    }, false);
+
 });
 
 //# sourceURL=features.js
