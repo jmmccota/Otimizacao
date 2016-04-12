@@ -70,6 +70,90 @@ Simplex = function(){
             i++;
         };
     };
+
+    this.modelo = function () {
+        /*
+         * Argumentos:
+         *      nulo
+         * Retorno:
+         *      String contendo modelo em notacao TeX
+         * Objetivo:
+         *      Fazer o modelo MathJax do problema
+         */
+            var source = "";
+
+            if (this.problema === "Maximize")
+                source = 'Maximizar';
+            if (this.problema === "Minimize")
+                source = 'Minimizar';
+            source += " `z = ";
+            var primeiro = true;
+            for (var i = 0; i < this.objetivo.length; i++) {
+                if (this.objetivo[i] === 0)
+                    continue;
+                if (!primeiro)
+                    source += (this.objetivo[i] > 0) ? " + " : " ";
+                else
+                    primeiro = false;
+                source += (this.objetivo[i] === "1") ?
+                             (" x_" + (i + 1) + " ") :
+                             ((this.objetivo[i] === "-1") ?
+                                (" -x_" + (i + 1) + " ") :
+                                this.objetivo[i] + "x_" + (i + 1) + " ");
+            }
+            source += "`";
+
+            source += "\n" + "Sujeito a:" + "\n";
+
+            if (this.restricoes.length !== 0) {
+                for (i = 0; i < this.restricoes.length; i++) {
+                    var primeiro = true;
+                    source += "`";
+                    for (var j = 0; j < this.objetivo.length; j++) {
+                        if (this.restricoes[i][j] === 0)
+                            continue;
+                        if (!primeiro)
+                            source += (this.restricoes[i][j] > 0) ? " + " : " ";
+                        else
+                            primeiro = false;
+                        source += (this.restricoes[i][j] === "1") ?
+                                     (" x_" + (j + 1) + " ") :
+                                     ((this.restricoes[i][j] === "-1") ?
+                                        (" -x_" + (j + 1) + " ") :
+                                        this.restricoes[i][j] + "x_" + (j + 1) + " ");
+                    }
+                    source += this.relacoes[i] + " " + this.rhs[i];
+                    source += "`\n";
+                }
+            }
+
+            for (i = 0; i < this.objetivo.length; i++) {
+                source += "`";
+                var aux = this.upper[i].toString().toUpperCase();
+                if (this.upper[i] == this.lower[i])
+                    source += "x" + (i + 1) + "=" + this.lower[i];
+                else
+                    source += (aux === "INF") ? "x" + (i + 1) + ">=" + this.lower[i] :
+                            this.lower[i] + "<=" + "x_" + (i + 1) + "<=" + this.upper[i];
+                source += "`\n";
+            }
+            
+            if(this.objetivo.length > 0){
+                source += "`";
+            }
+            for (i = 0; i < this.objetivo.length; i++) {
+                source += 'x_' + (i+1);
+                if(i != this.objetivo.length-1){
+                    source += ', '; 
+                }
+            }
+            if(this.objetivo.length > 0){
+                source += " \in \mathbb{R}`";
+            }
+            //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+            return source.replace(/\n/g, '<br>');
+        };    
     
     this.grandeM = function(){
         /*

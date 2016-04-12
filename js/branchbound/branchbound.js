@@ -83,9 +83,11 @@ Nodo = function (id, pai, altura, modelo, z, x) {
                 source += (this.objetivo[i] > 0) ? " + " : " ";
             else
                 primeiro = false;
-            source += (this.objetivo[i] === 1) ?
-                    " x_" + (i + 1) + " " :
-                    this.objetivo[i] + " x_" + (i + 1) + " ";
+            source += (this.objetivo[i] === "1") ?
+                        (" x_" + (i + 1) + " ") :
+                        ((this.objetivo[i] === "-1") ?
+                            (" -x_" + (i + 1) + " ") :
+                            this.objetivo[i] + "x_" + (i + 1) + " ");
         }
         source += "`";
 
@@ -102,9 +104,11 @@ Nodo = function (id, pai, altura, modelo, z, x) {
                         source += (this.restricoes[i][j] > 0) ? " + " : " ";
                     else
                         primeiro = false;
-                    source += (this.restricoes[i][j] === 1) ?
-                            " x_" + (j + 1) + " " :
-                            this.restricoes[i][j] + "x_" + (j + 1) + " ";
+                    source += (this.restricoes[i][j] === "1") ?
+                                (" x_" + (j + 1) + " ") :
+                                ((this.restricoes[i][j] === "-1") ?
+                                    (" -x_" + (j + 1) + " ") :
+                                    this.restricoes[i][j] + "x_" + (j + 1) + " ");
                 }
                 source += this.relacoes[i] + " " + this.rhs[i];
                 source += "`\n";
