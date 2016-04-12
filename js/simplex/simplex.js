@@ -61,12 +61,14 @@ Simplex = function(){
         }
 
         //Insere tabela original na lista de iteracoes
-        for(var i = 0; i < this.tabela.length; i++){
+        var i = 0;
+        while(i < this.tabela.length){
             this.iteracoes[0].push([]);
             for(var j = 0; j < this.tabela[0].length; j++){
                 this.iteracoes[0][i].push(this.tabela[i][j]);
-            }
-        }
+            };
+            i++;
+        };
     };
     
     this.grandeM = function(){
@@ -153,6 +155,7 @@ Simplex = function(){
                 }
                 if(this.relacoes[i] === ">="){
                     //Variaveis de sobra
+                    this.tabela[0].push(0);
                     for(var j = 1; j < this.tabela.length; j++){
                         if(j === i + 1)
                             this.tabela[j].push(-1);
@@ -242,7 +245,7 @@ Simplex = function(){
                 }
             }
             else{
-                //Variaveis artificiais
+                //Variaveis armazenartificiais
                 this.tabela[0].push(1);
                 this.artificiais.push(this.tabela[0].length-1);
                 for(var j = 1; j < this.tabela.length; j++){
@@ -253,6 +256,7 @@ Simplex = function(){
                 }
                 if(this.relacoes[i] === ">="){
                     //Variaveis de sobra
+                    this.tabela[0].push(0);
                     for(var j = 1; j < this.tabela.length; j++){
                         if(j === i + 1)
                             this.tabela[j].push(-1);
@@ -327,10 +331,12 @@ Simplex = function(){
 
 
         //Insere tabela da fase 2 na lista de iteracoes
+        var pos = this.iteracoes.length;
+        this.iteracoes.push([]);
         for(var i = 0; i < this.tabela.length; i++){
-            this.iteracoes[0].push([]);
+            this.iteracoes[pos].push([]);
             for(var j = 0; j < this.tabela[0].length; j++){
-                this.iteracoes[0][i].push(this.tabela[i][j]);
+                this.iteracoes[pos][i].push(this.tabela[i][j]);
             }
         }
         
@@ -373,7 +379,7 @@ Simplex = function(){
                 for(var j = 0; j < this.restricoes[i].length; j++){
                     this.restricoes[i][j] = -this.restricoes[i][j];
                 }
-                this.relacoes = "<=";
+                this.relacoes[i] = "<=";
                 this.rhs[i] = -this.rhs[i];
             }
             
@@ -676,7 +682,7 @@ Solver = function(){
          *          idxSai = NaN indica que nenhuma linha sai da base
          *          idxEntra = indice da coluna que ira entrar na base
          *      Em caso de solucao inviavel retornara:
-         *          [-idxSai, -idxEntra] = [int, int] ???????????????????????????????????????????????????
+         *          [-idxSai, -idxEntra] = [int, int]
          *          idxSai = indice da linha que ira sair da base
          *          idxEntra = indice da coluna que ira entrar na base
          * Objetivo:
@@ -723,6 +729,7 @@ Solver = function(){
             if(idxSai !== -1){
                 var razao = 0;
                 idxEntra = 0;
+                //Encontra a primeira possivel variavel a entrar
                 for(var j = 1; j < this.tabela[0].length; j++) {
                     if(this.tabela[0][j] < 0 && this.tabela[idxSai][j] < 0){
                         razao = this.tabela[0][j] / this.tabela[idxSai][j];
