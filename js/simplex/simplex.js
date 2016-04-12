@@ -645,8 +645,18 @@ Solver = function(){
         if(this.terminado)
             return true;
         
+        //Otimalidade
         for(var i = 0; i < this.tabela[0].length-1; i++){
             if (this.tabela[0][i] < 0){
+                setou = true;
+                this.terminado = false;
+                break;
+            }
+        }
+
+        //Viabilidade
+        for(var i = 1; i < this.tabela.length && !setou; i++){
+            if (this.tabela[i][this.tabela[0].length-1] < 0){
                 setou = true;
                 this.terminado = false;
                 break;
@@ -718,7 +728,7 @@ Solver = function(){
         
         
         //SOLUCAO INVIAVEL
-        if(this.generalizado){
+        if(this.generalizado && idxEntra === -1){
             var menor = 0, idxSai = -1;
             for(var i = 0; i < this.tabela.length; i++) {
                 if(this.tabela[i][this.tabela[i].length - 1] < menor) {
@@ -729,10 +739,16 @@ Solver = function(){
 
             if(idxSai !== -1){
                 var razao = 0;
-                idxEntra = -1;
+                idxEntra = -1;/*
                 //Encontra a primeira possivel variavel a entrar
                 for(var j = 0; j < this.tabela[0].length; j++) {
                     if(this.tabela[0][j] < 0 && this.tabela[idxSai][j] < 0){
+                        razao = this.tabela[0][j] / this.tabela[idxSai][j];
+                        idxEntra = j;
+                    }
+                }*/
+                for(var j = 0; j < this.tabela[0].length; j++) {
+                    if(this.tabela[0][j]){
                         razao = this.tabela[0][j] / this.tabela[idxSai][j];
                         idxEntra = j;
                     }
