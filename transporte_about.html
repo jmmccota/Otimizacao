@@ -145,6 +145,60 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <h2 id="sec1">O algoritmo para o problema de Transporte</h2>
+                        <p>O algoritmo para o problema de Transporte seguem as mesmas etapas do Simplex. Abaixo
+                        vemos essas etapas em paralelo com as etapas do Simplex.</p>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-lg-offset-2">
+                                <div class="panel panel-primary secondary ">
+                                    <div class="panel-heading"><h4>Etapas do Algoritmo para o problema de Transporte</h4></div>
+                                    <div class="panel-body">
+                                        <img src="img/exemplo12.png" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Podemos escolher três métodos para garantir uma solução básica inicial não artificial: </p>
+                        <ul>
+                            <li>1) Método do canto noroeste;</li>
+                            <li>2) Método do menor custo;</li>
+                            <li>3) Método de aproximação de Vogel (MAV).</li>
+                        </ul>
+                        <br>
+                        <h2 id="sec2">Método do canto noroeste</h2>
+                        <p>O método começa na célula do canto noroeste da tabela Simplex. Abaixo veremos as etapas do método.</p>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-lg-offset-2">
+                                <div class="panel panel-primary secondary ">
+                                    <div class="panel-heading"><h4>Etapas do método do canto noroeste</h4></div>
+                                    <div class="panel-body">
+                                        <img src="img/exemplo13.png" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <h2 id="sec3">Método do menor custo</h2>
+                        <p>O método acha uma solução inicial melhor baseando-se nas rotas mais baratas. A rota designa o máximo a célula que tiver o
+                        menor custo unitário (empates são resolvidos arbritariamente). Logo após, a linha ou coluna que foi satisfeita é cancelada
+                        e as quantidades de fornecimento ou demanda são ajustadas.</p>
+                        <p>Se tanto linha como coluna forem satisfeitas, apenas uma delas será cancelada. Logo após, procure a célula não cancelada
+                        de menor custo e repita todo o processo até que reste apenas uma linha ou coluna não cancelada.</p>
+                        <br>
+                        <h2 id="sec4">Método de aproximação de Vogel (MAV)</h2>
+                        <p>O MAV é uma versão melhorada do método de menor custo, que em geral, produz soluções iniciais melhores. As etapas do método são descritas
+                        abaixo.</p>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-lg-offset-2">
+                                <div class="panel panel-primary secondary ">
+                                    <div class="panel-heading"><h4>Etapas do método de aproximação de Vogel (MAV)</h4></div>
+                                    <div class="panel-body">
+                                        <img src="img/exemplo14.png" class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!--/right-->
