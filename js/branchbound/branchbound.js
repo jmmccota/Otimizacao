@@ -213,6 +213,10 @@ BranchBound = function () {
         var res = simplex(nodo);
         //completa o nodo
         nodo.x = res["x"];
+        //remocao de erro de ponto flutuante perto de 0
+        for (var i = 0; i < nodo.x.length; i++)
+            if(nodo.x[i] < 0.0000000001 && nodo.x[i] > -0.0000000001)
+                nodo.x[i] = 0;
         nodo.z = res["z"];
         nodo.apareceu = true;
 
@@ -274,6 +278,10 @@ BranchBound = function () {
         var res = simplex(esq);
         //completa o nodo
         esq.x = res["x"];
+        //remocao de erro de ponto flutuante perto de 0
+        for (var i = 0; i < esq.x.length; i++)
+            if(esq.x[i] < 0.0000000001 && esq.x[i] > -0.0000000001)
+                esq.x[i] = 0;
         esq.z = res["z"];
 
         //RESOLVENDO NO DA DIREITA
@@ -287,6 +295,10 @@ BranchBound = function () {
         var res = simplex(dir);
         //completa o nodo
         dir.x = res["x"];
+        //remocao de erro de ponto flutuante perto de 0
+        for (var i = 0; i < dir.x.length; i++)
+            if(dir.x[i] < 0.0000000001 && dir.x[i] > -0.0000000001)
+                dir.x[i] = 0;
         dir.z = res["z"];
 
 
@@ -513,7 +525,7 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_ECOND:
-                z = "Número de condição muito grande para a matriz base inicial. ";
+                z = "Número de condições muito grande para a matriz base inicial. ";
                 break;
 
             case GLP_EBOUND:
@@ -541,11 +553,11 @@ simplex = function (Nodo) {
                 break;
 
             case GLP_ENOPFS:
-                z = "Não tem solução viável primal. ";
+                z = "Não existe solução viável primal. ";
                 break;
 
             case GLP_ENODFS:
-                z = "Não tem solução viável dual. ";
+                z = "Não existe solução viável dual. ";
         }
 
         return {
