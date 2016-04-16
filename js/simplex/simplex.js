@@ -421,7 +421,7 @@ Simplex = function(){
         */
 
         //Removendo variaveis artificiais
-        for(var idx = 0; idx < this.artificiais.length; idx++)
+        for(var idx = this.artificiais.length - 1; idx >= 0; idx--)
             for(var i = 0; i < this.tabela.length; i++)
                 this.tabela[i].splice(this.artificiais[idx], 1);    
 
@@ -551,11 +551,11 @@ Simplex = function(){
          *      Trocar uma variavel da base e ajustar a tabela, escalonando para
          *      manter a consistencia dos dados
          */
-        
+        var res;
         if(this.terminou() && this.execucaoFinal)
-            return this.solver.tabela;
-
-        var res = this.solver.iteracao(entra, sai);
+            res = this.solver.tabela;
+        else
+            res = this.solver.iteracao(entra, sai);
 
         //Copia tabela
         var copia = [];
@@ -625,8 +625,6 @@ Simplex = function(){
             this.proximoPasso();
         }while(!this.terminou())
 
-        this.iteracoes.push(this.solver.tabela);
-
         //Copia lista de iteracoes, deixando no formato de saida
         var copia = [];
         for(var k = 0; k < this.iteracoes.length; k++){
@@ -634,9 +632,6 @@ Simplex = function(){
             for(var i = 0; i < this.iteracoes[k].length; i++){
                 copia[k].push([]);
                 for(var j = 0; j < this.iteracoes[k][i].length; j++){
-                    if(i === 0 && this.problema === "Minimize")
-                        copia[k][i].push(-this.iteracoes[k][i][j]);
-                    else
                         copia[k][i].push(this.iteracoes[k][i][j]);
                 }
             }            
