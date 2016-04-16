@@ -45,11 +45,16 @@ SimplexTable = function() {
             //Valores de cada Iteração
             for (var i = 0; i < result[nIteracao].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
-                row.className = (pivo[1] == i) ? 'pivo' : '';
+                //Se for ultima iteracao fase 1 do duas fases nao mostra o pivo 
+                if(nIteracao < result.length-1 &&
+                   result[nIteracao][0].length <= result[nIteracao+1][0].length)
+                    row.className = (pivo[1] == i) ? 'pivo' : '';
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
                     var cell = row.insertCell(j);
                     cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
-                    cell.className = (pivo[0] == j) ? 'pivo' : ''
+                    if(nIteracao < result.length-1 &&
+                       result[nIteracao][0].length <= result[nIteracao+1][0].length)
+                        cell.className = (pivo[0] == j) ? 'pivo' : '';
                 }
             }
         }
