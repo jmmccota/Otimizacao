@@ -632,11 +632,11 @@ Simplex = function(){
             for(var i = 0; i < this.iteracoes[k].length; i++){
                 copia[k].push([]);
                 for(var j = 0; j < this.iteracoes[k][i].length; j++){
-                        copia[k][i].push(this.iteracoes[k][i][j]);
+                    copia[k][i].push(this.iteracoes[k][i][j]);
                 }
             }            
         }
-            
+        
         return copia;
     };
 
@@ -861,7 +861,7 @@ Solver = function(){
         //SOLUCAO INVIAVEL
         if(this.generalizado && idxEntra === -1){
             var menor = 0, idxSai = -1;
-            for(var i = 0; i < this.tabela.length; i++) {
+            for(var i = 1; i < this.tabela.length; i++) {
                 if(this.tabela[i][this.tabela[i].length - 1] < menor) {
                     idxSai = i;
                     menor = this.tabela[i][this.tabela[i].length - 1];
@@ -869,19 +869,14 @@ Solver = function(){
             }
 
             if(idxSai !== -1){
-                var razao = 0;
-                idxEntra = -1;/*
+                var razao;
+                idxEntra = -1;
                 //Encontra a primeira possivel variavel a entrar
-                for(var j = 0; j < this.tabela[0].length; j++) {
-                    if(this.tabela[0][j] < 0 && this.tabela[idxSai][j] < 0){
-                        razao = this.tabela[0][j] / this.tabela[idxSai][j];
-                        idxEntra = j;
-                    }
-                }*/
-                for(var j = 0; j < this.tabela[0].length; j++) {
-                    if(this.tabela[0][j]){
+                for(var j = 0; j < this.tabela[0].length-1; j++) {
+                    if(this.tabela[idxSai][j] < 0){
                         razao = Math.abs(this.tabela[0][j] / this.tabela[idxSai][j]);
                         idxEntra = j;
+                        break;
                     }
                 }
 
@@ -890,9 +885,10 @@ Solver = function(){
                     return []
                 }
 
-                for(var j = idxEntra; j < this.tabela[0].length; j++) {
-                    var r = this.tabela[0][j] / this.tabela[idxSai][j];
-                    if(r < razao){
+                //Melhor variavel para entrar
+                for(var j = idxEntra; j < this.tabela[0].length-1; j++) {
+                    var r = Math.abs(this.tabela[0][j] / this.tabela[idxSai][j]);
+                    if(this.tabela[idxSai][j] < 0 && r < razao){
                         razao = r;
                         idxEntra = j;
                     }
@@ -912,13 +908,13 @@ Solver = function(){
         }
         
         //variavel que sai da base
-        var idxSai = 0;
+        var idxSai = -1;
         //NaN, usado como infinito
         var rmin = 0 / 0; 
         //Armazena o valor da razao que ocorreu mais de uma vez
         var degenerado = 0 / 0;
         for(var i = 1; i < this.tabela.length; i++){
-            if (this.tabela[i][idxEntra] !== 0){
+            if (this.tabela[i][idxEntra] > 0){
                 var ri = this.tabela[i][this.tabela[i].length-1] / this.tabela[i][idxEntra];
                 if ((ri < rmin || isNaN(rmin)) && ri >= 0){
                     rmin = ri;
@@ -1035,9 +1031,9 @@ Solver = function(){
         //Remocao de erro de ponto flutuante
         for(var i = 0; i < this.tabela.length; i++)
             for(var j = 0; j < this.tabela[i].length; j++)
-                if(this.tabela[i][j] > -0.0000000000001 &&
-                   this.tabela[i][j] <  0.0000000000001)
-                    this.tabela[i][j] = 0;
+                if(this.tabela[i][j] < Math.round(this.tabela[i][j]) + 0.0000000001 && 
+                   this.tabela[i][j] > Math.round(this.tabela[i][j]) - 0.0000000001)
+                    this.tabela[i][j] = Math.round(this.tabela[i][j]);
         
         return this.tabela;
     };

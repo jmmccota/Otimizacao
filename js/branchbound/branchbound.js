@@ -213,10 +213,10 @@ BranchBound = function () {
         var res = simplex(nodo);
         //completa o nodo
         nodo.x = res["x"];
-        //remocao de erro de ponto flutuante perto de 0
+        //remocao de erro de ponto flutuante
         for (var i = 0; i < nodo.x.length; i++)
-            if(nodo.x[i] < 0.0000000001 && nodo.x[i] > -0.0000000001)
-                nodo.x[i] = 0;
+            if(nodo.x[i] < Math.round(nodo.x[i]) + 0.0000000001 && nodo.x[i] > Math.round(nodo.x[i]) - 0.0000000001)
+                nodo.x[i] = Math.round(nodo.x[i]);
         nodo.z = res["z"];
         nodo.apareceu = true;
 
@@ -278,10 +278,10 @@ BranchBound = function () {
         var res = simplex(esq);
         //completa o nodo
         esq.x = res["x"];
-        //remocao de erro de ponto flutuante perto de 0
+        //remocao de erro de ponto flutuante
         for (var i = 0; i < esq.x.length; i++)
-            if(esq.x[i] < 0.0000000001 && esq.x[i] > -0.0000000001)
-                esq.x[i] = 0;
+            if(esq.x[i] < Math.round(esq.x[i]) + 0.0000000001 && esq.x[i] > Math.round(esq.x[i]) - 0.0000000001)
+                esq.x[i] = Math.round(esq.x[i]);
         esq.z = res["z"];
 
         //RESOLVENDO NO DA DIREITA
@@ -295,10 +295,10 @@ BranchBound = function () {
         var res = simplex(dir);
         //completa o nodo
         dir.x = res["x"];
-        //remocao de erro de ponto flutuante perto de 0
+        //remocao de erro de ponto flutuante
         for (var i = 0; i < dir.x.length; i++)
-            if(dir.x[i] < 0.0000000001 && dir.x[i] > -0.0000000001)
-                dir.x[i] = 0;
+            if(dir.x[i] < Math.round(dir.x[i]) + 0.0000000001 && dir.x[i] > Math.round(dir.x[i]) - 0.0000000001)
+                dir.x[i] = Math.round(dir.x[i]);
         dir.z = res["z"];
 
 
