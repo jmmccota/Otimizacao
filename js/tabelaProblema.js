@@ -137,13 +137,13 @@ Tabela = function() {
         row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
         for (i = 1; i <= t.nVar; i++) {
             row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
-                    class="limSup form-control" onkeypress="return isInfinityKey(event)" required  step="any">';
+                    class="limSup form-control" onkeypress="return isInfinityKey(event)" required value="inf" step="any">';
         }
         row = table.insertRow(rowCount + 1);
         row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
-                    class="limInf form-control" onkeypress="return isInfinityKey(event)" required  step="any">';
+                    class="limInf form-control" onkeypress="return isInfinityKey(event)" required value="0" step="any">';
     };
 
     //Adiciona restricoes ao modelo
