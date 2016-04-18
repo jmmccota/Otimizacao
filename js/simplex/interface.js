@@ -39,6 +39,7 @@ SimplexTable = function() {
                 row.insertCell(i).innerHTML = '<center><b>x' + i + '</b></center>';
             }
             row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
+            row.insertCell().innerHTML = '<center><b>Raz&atilde;o</b></center>';
 
             //Elemento pivo
             var pivo = ((nIteracao != result.length - 1) ? simplex.pivo(nIteracao) : '');
@@ -52,17 +53,25 @@ SimplexTable = function() {
                 if(nIteracao < result.length-1 &&
                    result[nIteracao][0].length <= result[nIteracao+1][0].length)
                     row.className = (pivo[1] == i) ? 'pivo' : '';
-                var cell = row.insertCell(0);
                 if(i == 0)
-                    cell.innerHTML = '<p class="simplex">z</p>';
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>z</b></p>';
                 else
-                    cell.innerHTML = '<p class="simplex">x' + ((+base[i])+1) + '</p>';
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>x' + ((+base[i])+1) + '</b></p>';
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
                     var cell = row.insertCell(j+1);
                     cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
                     if(nIteracao < result.length-1 &&
                        result[nIteracao][0].length <= result[nIteracao+1][0].length)
                         cell.className = (pivo[0] == j) ? 'pivo' : '';
+                }
+                if(nIteracao < result.length-1 && i > 0){
+                    row.insertCell().innerHTML = '<p class="simplex">' + 
+                    ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length-1] /
+                               result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito')
+                    + '</p>';
+                }
+                else{
+                    row.insertCell().innerHTML = '<p class="simplex"></p>';
                 }
             }
         }

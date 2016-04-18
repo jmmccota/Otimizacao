@@ -236,9 +236,9 @@ Simplex = function(){
             else{
                 //Variaveis artificiais
                 if(this.problema === "Maximize")
-                    this.tabela[0].push(-M);
-                else
                     this.tabela[0].push(M);
+                else
+                    this.tabela[0].push(-M);
                 for(var j = 1; j < this.tabela.length; j++){
                     if(j === i + 1)
                         this.tabela[j].push(1);
@@ -632,9 +632,9 @@ Simplex = function(){
             for(var i = 0; i < this.iteracoes[k].length; i++){
                 copia[k].push([]);
                 for(var j = 0; j < this.iteracoes[k][i].length; j++){
-                    copia[k][i].push(this.iteracoes[k][i][j]);
+                        copia[k][i].push(this.iteracoes[k][i][j]);
                 }
-            }            
+            }
         }
         
         return copia;
