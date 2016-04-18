@@ -687,7 +687,33 @@ Simplex = function(){
         this.solver.tabela = copia;
 
         return res;
-    }
+    };
+
+    this.base = function(nIteracao){
+        var tabela = this.iteracoes[nIteracao];
+        var base = [];
+
+        for (var j = 0; j < tabela[0].length-1; j++){
+            var um = false;
+            var basica = true;
+            var pos;
+            for (var i = 1; i < tabela.length; i++){
+                if(tabela[i][j] === 1 && !um){
+                    um = true;
+                    pos = i;
+                }
+                else if(tabela[i][j] !== 0){
+                    basica = false;
+                    break;
+                }
+            }
+            if(um && basica){
+                base[pos] = j;
+            }
+        }
+
+        return base;
+    };
     
 };
 

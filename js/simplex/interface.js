@@ -34,13 +34,16 @@ SimplexTable = function() {
             var row = this.tableObj.insertRow(0);
 
             //Cabeçalho
+            row.insertCell(0).innerHTML = '<center><b>Base</b></center>';
             for (var i = 1; i < result[nIteracao][0].length; i++) {
-                row.insertCell(i - 1).innerHTML = '<center><b>x' + i + '</b></center>';
+                row.insertCell(i).innerHTML = '<center><b>x' + i + '</b></center>';
             }
             row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
 
             //Elemento pivo
             var pivo = ((nIteracao != result.length - 1) ? simplex.pivo(nIteracao) : '');
+
+            var base = simplex.base(nIteracao);
 
             //Valores de cada Iteração
             for (var i = 0; i < result[nIteracao].length; i++) {
@@ -49,8 +52,13 @@ SimplexTable = function() {
                 if(nIteracao < result.length-1 &&
                    result[nIteracao][0].length <= result[nIteracao+1][0].length)
                     row.className = (pivo[1] == i) ? 'pivo' : '';
+                var cell = row.insertCell(0);
+                if(i == 0)
+                    cell.innerHTML = '<p class="simplex">z</p>';
+                else
+                    cell.innerHTML = '<p class="simplex">x' + ((+base[i])+1) + '</p>';
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
-                    var cell = row.insertCell(j);
+                    var cell = row.insertCell(j+1);
                     cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
                     if(nIteracao < result.length-1 &&
                        result[nIteracao][0].length <= result[nIteracao+1][0].length)
