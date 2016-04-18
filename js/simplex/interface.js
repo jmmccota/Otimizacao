@@ -67,7 +67,7 @@ SimplexTable = function() {
                 if(nIteracao < result.length-1 && i > 0){
                     row.insertCell().innerHTML = '<p class="simplex">' + 
                     ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length-1] /
-                               result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito')
+                               result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado')
                     + '</p>';
                 }
                 else{
