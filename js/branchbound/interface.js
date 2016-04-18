@@ -416,13 +416,15 @@ $(document).ready(function() {
                 }
 
                 t.carrega(problema);
+				$('#ui-id-1').click();
                 showAlert("success", "Arquivo analisado com sucesso");
-
+				
             } else
                 throw "Não foi possível analisar o arquivo";
         } catch (err) {
             showAlert("danger", "Erro: " + err);
         }
+		
     });
 });
 

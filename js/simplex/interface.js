@@ -279,7 +279,7 @@ $(document).ready(function() {
                         break;
                     }
                 }
-
+				$('#ui-id-1').click();
                 t.carrega(problema);
                 showAlert("success", "Arquivo analisado com sucesso");
 
