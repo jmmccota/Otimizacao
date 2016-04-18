@@ -94,6 +94,7 @@ $(document).ready(function() {
     t = Tabela();
 
     //Novo problema de otimizacao
+	/*
     $("#novo").click(function() {
         if (t.existe) {
             var nVariaveis = document.getElementById("variaveis").value;
@@ -130,7 +131,7 @@ $(document).ready(function() {
             t.novo();
         showFormProblema();
     });
-
+*/
     //Adiciona Restricao
     $('#addRow').click(function() {
         t.addRow();
