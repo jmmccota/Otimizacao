@@ -85,80 +85,80 @@ Simplex = function(){
          * Objetivo:
          *      Fazer o modelo MathJax do problema
          */
-            var source = "";
+        var source = "";
 
-            if (this.problema === "Maximize")
-                source = 'Maximizar';
-            if (this.problema === "Minimize")
-                source = 'Minimizar';
-            source += "\n`z = ";
-            var primeiro = true;
-            for (var i = 0; i < this.objetivo.length; i++) {
-                if (this.objetivo[i] === "0")
-                    continue;
-                if (!primeiro)
-                    source += (this.objetivo[i] > 0) ? " + " : " ";
-                else
-                    primeiro = false;
-                source += (this.objetivo[i] === "1") ?
-                             (" x_" + (i + 1) + " ") :
-                             ((this.objetivo[i] === "-1") ?
-                                (" -x_" + (i + 1) + " ") :
-                                this.objetivo[i] + "x_" + (i + 1) + " ");
-            }
-            source += "`";
+        if (this.problema === "Maximize")
+            source = 'Maximizar';
+        if (this.problema === "Minimize")
+            source = 'Minimizar';
+        source += "\n`z = ";
+        var primeiro = true;
+        for (var i = 0; i < this.objetivo.length; i++) {
+            if (this.objetivo[i] === "0")
+                continue;
+            if (!primeiro)
+                source += (this.objetivo[i] > 0) ? " + " : " ";
+            else
+                primeiro = false;
+            source += (this.objetivo[i] === "1") ?
+                         (" x_" + (i + 1) + " ") :
+                         ((this.objetivo[i] === "-1") ?
+                            (" -x_" + (i + 1) + " ") :
+                            this.objetivo[i] + "x_" + (i + 1) + " ");
+        }
+        source += "`";
 
-            source += "\n" + "Sujeito a:" + "\n";
+        source += "\n" + "Sujeito a:" + "\n";
 
-            if (this.restricoes.length !== 0) {
-                for (i = 0; i < this.restricoes.length; i++) {
-                    var primeiro = true;
-                    source += "`";
-                    for (var j = 0; j < this.objetivo.length; j++) {
-                        if (this.restricoes[i][j] === "0")
-                            continue;
-                        if (!primeiro)
-                            source += (this.restricoes[i][j] > 0) ? " + " : " ";
-                        else
-                            primeiro = false;
-                        source += (this.restricoes[i][j] === "1") ?
-                                     (" x_" + (j + 1) + " ") :
-                                     ((this.restricoes[i][j] === "-1") ?
-                                        (" -x_" + (j + 1) + " ") :
-                                        this.restricoes[i][j] + "x_" + (j + 1) + " ");
-                    }
-                    source += this.relacoes[i] + " " + this.rhs[i];
-                    source += "`\n";
-                }
-            }
-
-            for (i = 0; i < this.objetivo.length; i++) {
+        if (this.restricoes.length !== 0) {
+            for (i = 0; i < this.restricoes.length; i++) {
+                var primeiro = true;
                 source += "`";
-                var aux = this.upper[i].toString().toUpperCase();
-                if (this.upper[i] == this.lower[i])
-                    source += "x" + (i + 1) + "=" + this.lower[i];
-                else
-                    source += (aux === "INF") ? "x" + (i + 1) + ">=" + this.lower[i] :
-                            this.lower[i] + "<=" + "x_" + (i + 1) + "<=" + this.upper[i];
+                for (var j = 0; j < this.objetivo.length; j++) {
+                    if (this.restricoes[i][j] === "0")
+                        continue;
+                    if (!primeiro)
+                        source += (this.restricoes[i][j] > 0) ? " + " : " ";
+                    else
+                        primeiro = false;
+                    source += (this.restricoes[i][j] === "1") ?
+                                 (" x_" + (j + 1) + " ") :
+                                 ((this.restricoes[i][j] === "-1") ?
+                                    (" -x_" + (j + 1) + " ") :
+                                    this.restricoes[i][j] + "x_" + (j + 1) + " ");
+                }
+                source += this.relacoes[i] + " " + this.rhs[i];
                 source += "`\n";
             }
-            
-            if(this.objetivo.length > 0){
-                source += "`";
-            }
-            for (i = 0; i < this.objetivo.length; i++) {
-                source += 'x_' + (i+1);
-                if(i != this.objetivo.length-1){
-                    source += ', '; 
-                }
-            }
-            if(this.objetivo.length > 0){
-                source += " \in \mathbb{R}`";
-            }
-            //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
 
-            return source.replace(/\n/g, '<br>');
-        };    
+        for (i = 0; i < this.objetivo.length; i++) {
+            source += "`";
+            var aux = this.upper[i].toString().toUpperCase();
+            if (this.upper[i] == this.lower[i])
+                source += "x" + (i + 1) + "=" + this.lower[i];
+            else
+                source += (aux === "INF") ? "x" + (i + 1) + ">=" + this.lower[i] :
+                        this.lower[i] + "<=" + "x_" + (i + 1) + "<=" + this.upper[i];
+            source += "`\n";
+        }
+        
+        if(this.objetivo.length > 0){
+            source += "`";
+        }
+        for (i = 0; i < this.objetivo.length; i++) {
+            source += 'x_' + (i+1);
+            if(i != this.objetivo.length-1){
+                source += ', '; 
+            }
+        }
+        if(this.objetivo.length > 0){
+            source += " \in \mathbb{R}`";
+        }
+        //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+        return source.replace(/\n/g, '<br>');
+    };    
     
     this.grandeM = function(){
         /*
@@ -400,6 +400,62 @@ Simplex = function(){
         
         //Recebe resultado da fase 1
         var tabela = this.solver.tabela;
+
+        //Teste para saber se e viavel
+        var terminou = false;
+        if(tabela[0][tabela[0].length-1] !== 0){
+            terminou = true;
+        }
+        else{
+            for(var idx = 0; idx < this.artificiais.length; idx++){
+                var j = this.artificiais[idx];
+                var um = -1;
+                var basica = true;
+                for (var i = 1; i < this.tabela.length; i++){
+                    if(this.tabela[i][j] === 1 && um === -1)
+                        um = i;
+                    else if(this.tabela[i][j] !== 0){
+                        basica = false;
+                        break;
+                    }
+                }
+                if(um !== -1 && basica && this.tabela[0][j] !== 0){
+                    //Se artificial da base maior que zero
+                    if(tabela[um][tabela[um].length] > 0){
+                        terminou = true;
+                    }
+                    //Se artificial da base zero
+                    else if(tabela[um][tabela[um].length] === 0){
+                        for(var j = 0; j < tabela[0].length; j++){
+                            if(tabela[0][j] === 0){
+                                var umLinha = -1;
+                                var basica = true;
+                                for (var i = 1; i < this.tabela.length; i++){
+                                    if(this.tabela[i][j] === 1 && umLinha === -1)
+                                        umLinha = i;
+                                    else if(this.tabela[i][j] !== 0){
+                                        basica = false;
+                                        break;
+                                    }
+                                }
+                                //Se nao e basica
+                                if(umLinha === -1 || !basica){
+                                    this.solver.iteracao(j, um);
+                                    //Reinicia a funcao
+                                    this.duasFases2();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(terminou){
+            this.solver.tipoRes += "Solução inexistente. ";
+            this.terminado = true;
+            this.execucaoFinal = true;
+        }
         
         //Criando tabela basica
         //Funcao objetivo original
@@ -411,6 +467,7 @@ Simplex = function(){
         var tam = this.tabela[0].length;
         for(var i = this.objetivo.length; i < tam; i++)
                 this.tabela[0][i] = 0;
+
         //Restricoes da fase 1
         for(var i = 0; i < this.restricoes.length; i++)
             for(var j = 0; j < this.restricoes[0].length; j++)
@@ -996,8 +1053,8 @@ Solver = function(){
         if((isNaN(sai) && !Array.isArray(sai)) || this.nIteracoes === this.limiteIteracoes || isNaN(entra)){
             if((isNaN(sai) && !Array.isArray(sai)) && this.tipoRes.indexOf("Solução ilimitada. ") === -1 )
                 this.tipoRes += "Solução ilimitada. ";
-            if(isNaN(entra) && this.tipoRes.indexOf("Solução dual inexistente. ") === -1 )
-                this.tipoRes += "Solução dual inexistente. ";
+            if(isNaN(entra) && this.tipoRes.indexOf("Solução inexistente. ") === -1 )
+                this.tipoRes += "Solução inexistente. ";
             if(this.nIteracoes === this.limiteIteracoes && this.tipoRes.indexOf("Limite de iterações atingido. ") === -1 )
                 this.tipoRes += "Limite de iterações atingido. ";
             this.terminado = true;
