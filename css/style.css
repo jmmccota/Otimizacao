@@ -1699,7 +1699,7 @@
 		z-index:1;
 		overflow: hidden;
 		padding-top: 180px;
-		padding-bottom: 30px;
+		padding-bottom: 20px;
 	}
 	
 	#page-title:before {
@@ -3046,4 +3046,30 @@
     box-sizing:border-box;
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box;
+}
+
+/*Scroll bar vertical */
+
+#styleScroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+    height: 8px;
+}
+
+#styleScroll::-webkit-scrollbar
+{
+    height: 8px;
+	background-color: #F5F5F5;
+}
+
+#styleScroll::-webkit-scrollbar-thumb
+{
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear,
+									   40% 0%,
+									   75% 84%,
+									   from(rgb(125,188,29)),
+									   to(rgb(125,215,45)),
+									   color-stop(.6,rgb(125,215,70)))
 }

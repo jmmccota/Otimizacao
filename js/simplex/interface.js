@@ -19,7 +19,7 @@ SimplexTable = function() {
 
             //Cria MytableResult
             $('#result').append(
-                '<div class="row panel panel-default" tabindex="-1">' +
+                '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
                 '   <div class="panel-heading"> ' +
                 '      <h3 class="panel-title" id="panel-title"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
                 '   </div>' +
@@ -44,33 +44,36 @@ SimplexTable = function() {
             //Elemento pivo
             var pivo = ((nIteracao != result.length - 1) ? simplex.pivo(nIteracao) : '');
 
+            //Variaveis basicas
             var base = simplex.base(nIteracao);
 
             //Valores de cada Iteração
             for (var i = 0; i < result[nIteracao].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
                 //Se for ultima iteracao fase 1 do duas fases nao mostra o pivo 
-                if(nIteracao < result.length-1 &&
-                   result[nIteracao][0].length <= result[nIteracao+1][0].length)
+                if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
                     row.className = (pivo[1] == i) ? 'pivo' : '';
-                if(i == 0)
+                }
+                if (i == 0) {
                     row.insertCell(0).innerHTML = '<p class="simplex"><b>z</b></p>';
-                else
-                    row.insertCell(0).innerHTML = '<p class="simplex"><b>x' + ((+base[i])+1) + '</b></p>';
+                }
+                else {
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>x' + ((+base[i]) + 1) + '</b></p>';
+                }
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
-                    var cell = row.insertCell(j+1);
+                    var cell = row.insertCell(j + 1);
                     cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
-                    if(nIteracao < result.length-1 &&
-                       result[nIteracao][0].length <= result[nIteracao+1][0].length)
+                    if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
                         cell.className = (pivo[0] == j) ? 'pivo' : '';
+                    }
                 }
-                if(nIteracao < result.length-1 && i > 0){
-                    row.insertCell().innerHTML = '<p class="simplex">' + 
-                    ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length-1] /
-                               result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado')
-                    + '</p>';
+                if (nIteracao < result.length - 1 && i > 0) {
+                    row.insertCell().innerHTML = '<p class="simplex">' +
+                        ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length - 1] /
+                            result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado')
+                        + '</p>';
                 }
-                else{
+                else {
                     row.insertCell().innerHTML = '<p class="simplex"></p>';
                 }
             }
@@ -85,11 +88,11 @@ SimplexTable = function() {
             '</div>');
         */
     };
-/*
-    this.drawTable = function(result, nIteracao) {
-
-    }
-*/
+    /*
+        this.drawTable = function(result, nIteracao) {
+    
+        }
+    */
     return this;
 }
 
@@ -279,7 +282,7 @@ $(document).ready(function() {
                         break;
                     }
                 }
-				$('#ui-id-1').click();
+                $('#ui-id-1').click();
                 t.carrega(problema);
                 showAlert("success", "Arquivo analisado com sucesso");
 
