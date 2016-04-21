@@ -290,7 +290,7 @@ $(document).ready(function() {
                     }
                 }
 
-                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 
                 $("#panelResultado").show();
 
@@ -313,43 +313,53 @@ $(document).ready(function() {
 
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function() {
-        if (!verificaTabela()) {
-            $("#proximoPasso").prop('disabled', false);
-            a = new Arvore();
-            b = new BranchBound();
-            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
-            $("#panelResultado").show();
-            nodos = [];
+        try {
+            if (!verificaTabela()) {
+                $("#proximoPasso").prop('disabled', false);
+                a = new Arvore();
+                b = new BranchBound();
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                $("#panelResultado").show();
+                nodos = [];
 
-            var nodo = b.resolveRaiz();
-            a.adicionarNodo(nodo);
-            a.adicionarAresta(nodo);
-            nodos.push(nodo);
-            a.setContainer(document.getElementById("resultTree"));
-            a.criarConexao(b);
-            $('#proximoPasso').show('fast');
-            $('#rowObsProximoPasso').show('fast');
+                var nodo = b.resolveRaiz();
+                a.adicionarNodo(nodo);
+                a.adicionarAresta(nodo);
+                nodos.push(nodo);
+                a.setContainer(document.getElementById("resultTree"));
+                a.criarConexao(b);
+                $('#proximoPasso').show('fast');
+                $('#rowObsProximoPasso').show('fast');
+            }
+        }
+        catch (err) {
+            showAlert("danger", "" + err);
         }
     });
 
     //Define botao para proximo passo
     $('#proximoPasso').click(function() {
-        delete a;
-        a = new Arvore();
-        var res = b.executar();
-        b.melhorSolucao()
-        nodos.push(b.heap.array[res[0].id]);
-        nodos.push(b.heap.array[res[1].id]);
-        for (var i = 0; i < nodos.length; i++) {
-            if (nodos[i] != undefined) {
-                a.adicionarNodo(nodos[i]);
-                a.adicionarAresta(nodos[i]);
+        try {
+            delete a;
+            a = new Arvore();
+            var res = b.executar();
+            b.melhorSolucao()
+            nodos.push(b.heap.array[res[0].id]);
+            nodos.push(b.heap.array[res[1].id]);
+            for (var i = 0; i < nodos.length; i++) {
+                if (nodos[i] != undefined) {
+                    a.adicionarNodo(nodos[i]);
+                    a.adicionarAresta(nodos[i]);
+                }
+            }
+            a.setContainer(document.getElementById("resultTree"));
+            a.criarConexao(b);
+            if (b.terminou()) {
+                $("#proximoPasso").prop('disabled', true);
             }
         }
-        a.setContainer(document.getElementById("resultTree"));
-        a.criarConexao(b);
-        if (b.terminou()) {
-            $("#proximoPasso").prop('disabled', true);
+        catch (err) {
+            showAlert("danger", "" + err);
         }
     });
 

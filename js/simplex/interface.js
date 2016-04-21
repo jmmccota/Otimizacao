@@ -6,15 +6,14 @@ var simplexTable = null;
 ////////////////////////////////////////////////////
 SimplexTable = function() {
 
-    this
+    $("#result").empty();
+    $("#resultInfo").empty();
 
     this.reseta = function(cont) {
         $("#myTableResult" + cont).empty();
     };
 
     this.drawTableStep = function(result, nIteracao) {
-        $("#result").empty();
-        $("#resultInfo").empty();
 
         $('#result').append(
             '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
@@ -78,9 +77,6 @@ SimplexTable = function() {
     };
 
     this.drawTable = function(result) {
-
-        $("#result").empty();
-        $("#resultInfo").empty();
 
         for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
 
@@ -264,7 +260,7 @@ $(document).ready(function() {
                 var temp = simplex.executa();
                 simplexTable.drawTable(temp);
 
-                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
             catch (err) {
                 showAlert("danger", "" + err);
@@ -291,6 +287,8 @@ $(document).ready(function() {
 
                 $("#proximoPasso").prop('disabled', false);
                 $('#proximoPasso').show('fast');
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+
 
             } catch (err) {
                 showAlert("danger", "" + err);
@@ -301,9 +299,9 @@ $(document).ready(function() {
     //Define botao para proximo passo
     $('#proximoPasso').click(function() {
         try {
-
             if (!simplex.terminou()) {
                 simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             } else {
                 $("#proximoPasso").prop('disabled', true);
             }
