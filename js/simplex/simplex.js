@@ -681,7 +681,7 @@ Simplex = function(){
         do{
             this.proximoPasso();
         }while(!this.terminou())
-/*
+
         //Copia lista de iteracoes, deixando no formato de saida
         var copia = [];
         for(var k = 0; k < this.iteracoes.length; k++){
@@ -694,8 +694,7 @@ Simplex = function(){
             }
         }
         
-        return copia;*/
-        return this.iteracoes;
+        return copia;
     };
 
     this.resultado = function(nIteracao){
@@ -704,14 +703,14 @@ Simplex = function(){
         var lin = tabela.length, col = tabela[0].length;
 
         //Valor da funcao objetivo
-        var res;
+        var res = {};
         res["FuncaoObjetivo"] = tabela[0][col-1];
 
         //Vetor contendo o valor das variaveis
-        res["Variaveis"] = this.restricoes[0];
-        for(var j = 0; j < res["Variaveis"].length && basica; j++){
-            linhaBase = -1;
-            basica = true;
+        res["Variaveis"] = [];
+        for(var j = 0; j < this.tabela[0].length-1; j++){
+            var linhaBase = -1;
+            var basica = true;
             for(var i = 0; i < lin; i++){
                 if(tabela[i][j] === 1)
                     if(linhaBase === -1)
@@ -721,7 +720,7 @@ Simplex = function(){
                 else if(tabela[i][j] !== 0)
                     basica = false;
             }
-            res["Variaveis"] = basica && linhaBase !== -1 ? tabela[linhaBase][col-1] : 0;
+            res["Variaveis"][j] = (basica && linhaBase !== -1) ? tabela[linhaBase][col-1] : 0;
         }
 
         res["TipoResultado"] = this.solver.tipoRes;
