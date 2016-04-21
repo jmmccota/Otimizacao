@@ -49,7 +49,7 @@ SimplexTable = function() {
             row = this.tableObj.insertRow(i + 1);
             //Se for ultima iteracao fase 1 do duas fases nao mostra o pivo 
             if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
-                row.className = (pivo[1] == i) ? 'pivo' : '';
+                row.className = (pivo[1] == i || (Array.isArray(pivo[1]) && pivo[1].indexOf(i) !== -1)) ? 'pivo' : '';
             }
             if (i == 0) {
                 row.insertCell(0).innerHTML = '<p class="simplex"><b>z</b></p>';
@@ -64,7 +64,7 @@ SimplexTable = function() {
                     cell.className = (pivo[0] == j) ? 'pivo' : '';
                 }
             }
-            if (nIteracao < result.length - 1 && i > 0) {
+            if (nIteracao < result.length - 1 && i > 0 && !isNaN(pivo[1])) {
                 row.insertCell().innerHTML = '<p class="simplex">' +
                     ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length - 1] /
                         result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado')
@@ -299,12 +299,13 @@ $(document).ready(function() {
     //Define botao para proximo passo
     $('#proximoPasso').click(function() {
         try {
-            if (!simplex.terminou()) {
+            if (simplex.terminou()) {
+                $("#proximoPasso").prop('disabled', true);
                 simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-            } else {
-                $("#proximoPasso").prop('disabled', true);
             }
+            simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         }
         catch (err) {
             showAlert("danger", "" + err);

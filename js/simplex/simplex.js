@@ -681,7 +681,7 @@ Simplex = function(){
         do{
             this.proximoPasso();
         }while(!this.terminou())
-
+/*
         //Copia lista de iteracoes, deixando no formato de saida
         var copia = [];
         for(var k = 0; k < this.iteracoes.length; k++){
@@ -694,7 +694,8 @@ Simplex = function(){
             }
         }
         
-        return copia;
+        return copia;*/
+        return this.iteracoes;
     };
 
     this.resultado = function(nIteracao){
@@ -910,6 +911,10 @@ Solver = function(){
          *          [-idxSai, -idxEntra] = [int, int]
          *          idxSai = indice da linha que ira sair da base
          *          idxEntra = indice da coluna que ira entrar na base
+         *      Em caso de haver terminado retornara:
+         *          [-idxSai, -idxEntra] = [NaN, NaN]
+         *          idxSai = NaN indica que nenhuma linha sai da base
+         *          idxEntra = NaN indica que nenhuma linha entra na base
          * Objetivo:
          *      Determinar quais variaveis do modelo entrarao e sairam
          *      da base
@@ -984,30 +989,35 @@ Solver = function(){
         
         //variavel que entra
         if(idxEntra === -1){
-            idxEntra = 0;
-            for(var i = 1; i < this.tabela[0].length-1; i++)
-                if(this.tabela[0][i] < this.tabela[0][idxEntra])
+            for(var i = 0; i < this.tabela[0].length-1; i++)
+                if(this.tabela[0][i] < this.tabela[0][idxEntra] || 
+                   (idxEntra === -1 && this.tabela[0][i] < 0))
                     idxEntra = i;
         }
         
-        //variavel que sai da base
-        var idxSai = -1;
-        //NaN, usado como infinito
-        var rmin = 0 / 0; 
-        //Armazena o valor da razao que ocorreu mais de uma vez
-        var degenerado = 0 / 0;
-        for(var i = 1; i < this.tabela.length; i++){
-            if (this.tabela[i][idxEntra] > 0){
-                var ri = this.tabela[i][this.tabela[i].length-1] / this.tabela[i][idxEntra];
-                if ((ri < rmin || isNaN(rmin)) && ri >= 0){
-                    rmin = ri;
-                    idxSai = i;
-                }
-                //Indica se houveram razoes iguais
-                else if(ri === rmin){
-                    degenerado = rmin;
+        if(idxEntra !== -1){
+            //variavel que sai da base
+            var idxSai = -1;
+            //NaN, usado como infinito
+            var rmin = 0 / 0; 
+            //Armazena o valor da razao que ocorreu mais de uma vez
+            var degenerado = 0 / 0;
+            for(var i = 1; i < this.tabela.length; i++){
+                if (this.tabela[i][idxEntra] > 0){
+                    var ri = this.tabela[i][this.tabela[i].length-1] / this.tabela[i][idxEntra];
+                    if ((ri < rmin || isNaN(rmin)) && ri >= 0){
+                        rmin = ri;
+                        idxSai = i;
+                    }
+                    //Indica se houveram razoes iguais
+                    else if(ri === rmin){
+                        degenerado = rmin;
+                    }
                 }
             }
+        }
+        else{
+            return [0/0, 0/0];
         }
         
         
