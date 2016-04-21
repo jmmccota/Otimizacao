@@ -1,19 +1,82 @@
 
 var simplex = null;
+var simplexTable = null;
 ////////////////////////////////////////////////////
 //         FUNCOES DA TABELA DE RESULTADO         //
 ////////////////////////////////////////////////////
 SimplexTable = function() {
 
+    $("#result").empty();
+    $("#resultInfo").empty();
+
     this.reseta = function(cont) {
         $("#myTableResult" + cont).empty();
     };
 
+    this.drawTableStep = function(result, nIteracao) {
+
+        $('#result').append(
+            '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
+            '   <div class="panel-heading"> ' +
+            '      <h3 class="panel-title" id="panel-title"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
+            '   </div>' +
+            '   <div class="panel-body" style="padding: 0;">' +
+            '      <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
+            '   </div>' +
+            '</div>');
+
+        this.tableObj = document.getElementById("myTableResult" + nIteracao);
+        this.reseta(nIteracao);
+
+        var row = this.tableObj.insertRow(0);
+
+        //Cabeçalho
+        row.insertCell(0).innerHTML = '<center><b>Base</b></center>';
+        for (var i = 1; i < result[nIteracao][0].length; i++) {
+            row.insertCell(i).innerHTML = '<center><b>x' + i + '</b></center>';
+        }
+        row.insertCell().innerHTML = '<center><b>Resultado</b></center>';
+        row.insertCell().innerHTML = '<center><b>Raz&atilde;o</b></center>';
+
+        //Elemento pivo
+        var pivo = ((nIteracao != result.length - 1) ? simplex.pivo(nIteracao) : '');
+
+        //Variaveis basicas
+        var base = simplex.base(nIteracao);
+
+        //Valores de cada Iteração
+        for (var i = 0; i < result[nIteracao].length; i++) {
+            row = this.tableObj.insertRow(i + 1);
+            //Se for ultima iteracao fase 1 do duas fases nao mostra o pivo 
+            if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
+                row.className = (pivo[1] == i) ? 'pivo' : '';
+            }
+            if (i == 0) {
+                row.insertCell(0).innerHTML = '<p class="simplex"><b>z</b></p>';
+            }
+            else {
+                row.insertCell(0).innerHTML = '<p class="simplex"><b>x' + ((+base[i]) + 1) + '</b></p>';
+            }
+            for (var j = 0; j < result[nIteracao][0].length; j++) {
+                var cell = row.insertCell(j + 1);
+                cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
+                    cell.className = (pivo[0] == j) ? 'pivo' : '';
+                }
+            }
+            if (nIteracao < result.length - 1 && i > 0) {
+                row.insertCell().innerHTML = '<p class="simplex">' +
+                    ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length - 1] /
+                        result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado')
+                    + '</p>';
+            }
+            else {
+                row.insertCell().innerHTML = '<p class="simplex"></p>';
+            }
+        }
+    };
 
     this.drawTable = function(result) {
-
-        $("#result").empty();
-        $("#resultInfo").empty();
 
         for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
 
@@ -78,21 +141,16 @@ SimplexTable = function() {
                 }
             }
         }
-        /*
-        //Mostra tipo de solução e valor de Z
-        var z = simplex.resultado(result.length - 1);
-        $("resultInfo").append(
-            '<div class="numeral-info-box one-third">' +
-            '   <span class="numeral-info-number" id="valorZ">' + z["FuncaoObjetivo"] + '</span>' +
-            '   <span class="numeral-info-description" id="tipoSolucao">' + z["TipoResultado"] + '</span>' +
-            '</div>');
-        */
+
+        // Mostra tipo de solução e valor de Z
+        // var z = simplex.resultado(result.length - 1);
+        // $("resultInfo").append(
+        //     '<div class="numeral-info-box one-third">' +
+        //     '   <span class="numeral-info-number" id="valorZ">' + z["FuncaoObjetivo"] + '</span>' +
+        //     '   <span class="numeral-info-description" id="tipoSolucao">' + z["TipoResultado"] + '</span>' +
+        //     '</div>');
     };
-    /*
-        this.drawTable = function(result, nIteracao) {
-    
-        }
-    */
+
     return this;
 }
 
@@ -105,45 +163,6 @@ $(document).ready(function() {
     hideFormProblema();
     t = Tabela();
 
-    //Novo problema de otimizacao
-	/*
-    $("#novo").click(function() {
-        if (t.existe) {
-            var nVariaveis = document.getElementById("variaveis").value;
-            if (nVariaveis > 1)
-                mensagem = "Ser&aacute; criado uma nova tabela com<b> " + nVariaveis + " </b>vari&aacute;veis."
-            else
-                mensagem = "Ser&aacute; criado uma nova tabela com<b> 1 </b>variável"
-            bootbox.dialog({
-                title: '<center><b>Aviso</b></center>',
-                message: '<center><p>Todas as informa&ccedil;&otilde;es ser&atilde;o perdidas.</p></center>' +
-                '<center><p>' + mensagem + '</p></center>' +
-                '<center><p>Tem certeza disso? </p></center>',
-                buttons: {
-                    main: {
-                        label: "Cancelar",
-                        className: "btn-default"
-                    },
-                    success: {
-                        label: "Sim",
-                        className: "btn-success",
-                        callback: function() {
-                            $("#panelResultado").fadeOut("fast");
-                            $("#myTableData").empty();
-                            $("#myTableData2").empty();
-                            t.novo();
-                            showAlert('success', 'Nova tabela gerada. ' + nVariaveis + ' vari&aacute;veis criadas');
-                        }
-                    }
-                }
-            });
-        }
-        //Cria nova tabela
-        else
-            t.novo();
-        showFormProblema();
-    });
-*/
     //Adiciona Restricao
     $('#addRow').click(function() {
         t.addRow();
@@ -231,7 +250,7 @@ $(document).ready(function() {
         $('#proximoPasso').hide('fast');
         if (!verificaTabela()) {
             try {
-                var simplexTable = new SimplexTable();
+                simplexTable = new SimplexTable();
                 simplex = new Simplex();
                 var modelo = leituraParametros(1);
 
@@ -241,7 +260,7 @@ $(document).ready(function() {
                 var temp = simplex.executa();
                 simplexTable.drawTable(temp);
 
-                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
             catch (err) {
                 showAlert("danger", "" + err);
@@ -249,17 +268,47 @@ $(document).ready(function() {
         }
     });
 
+
+    var nIteracao = 0;
     //Executar Simplex Passo a Passo
     $('#passoAPasso').click(function() {
         if (!verificaTabela()) {
-            $("#proximoPasso").prop('disabled', false);
-            $('#proximoPasso').show('fast');
+            try {
+                simplexTable = new SimplexTable();
+                simplex = new Simplex();
+                var modelo = leituraParametros(1);
+
+                $("#panelResultado").show();
+
+                simplex.init(modelo);
+                nIteracao = 0;
+
+                simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
+
+                $("#proximoPasso").prop('disabled', false);
+                $('#proximoPasso').show('fast');
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+
+
+            } catch (err) {
+                showAlert("danger", "" + err);
+            }
         }
     });
 
     //Define botao para proximo passo
     $('#proximoPasso').click(function() {
-
+        try {
+            if (!simplex.terminou()) {
+                simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            } else {
+                $("#proximoPasso").prop('disabled', true);
+            }
+        }
+        catch (err) {
+            showAlert("danger", "" + err);
+        }
     });
 
     $('#analisarFile').click(function() {

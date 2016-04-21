@@ -398,7 +398,7 @@ $(document).ready(function () {
             t.novo();
         showFormProblema();
     });
-	
+    
     //Botão file
     $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 

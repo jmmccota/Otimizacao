@@ -176,46 +176,6 @@ $(document).ready(function() {
     hideFormProblema();
     t = Tabela();
 
-    //Novo problema de otimizacao
-	/*
-    $("#novo").click(function() {
-
-        if (t.existe) {
-            var nVariaveis = document.getElementById("variaveis").value;
-            if (nVariaveis > 1)
-                mensagem = "Ser&aacute; criado uma nova tabela com<b> " + nVariaveis + " </b>vari&aacute;veis."
-            else
-                mensagem = "Ser&aacute; criado uma nova tabela com<b> 1 </b>variável"
-            bootbox.dialog({
-                title: '<center><b>Aviso</b></center>',
-                message: '<center><p>Todas as informa&ccedil;&otilde;es ser&atilde;o perdidas.</p></center>' +
-                '<center><p>' + mensagem + '</p></center>' +
-                '<center><p>Tem certeza disso? </p></center>',
-                buttons: {
-                    main: {
-                        label: "Cancelar",
-                        className: "btn-default"
-                    },
-                    success: {
-                        label: "Sim",
-                        className: "btn-success",
-                        callback: function() {
-                            $("#panelResultado").fadeOut("fast");
-                            $("#myTableData").empty();
-                            $("#myTableData2").empty();
-                            t.novo();
-                            showAlert('success', 'Nova tabela gerada. ' + nVariaveis + ' vari&aacute;veis criadas');
-                        }
-                    }
-                }
-            });
-        }
-        //Cria nova tabela
-        else
-            t.novo();
-        showFormProblema();
-    });
-*/
     //Adiciona Restricao
     $('#addRow').click(function() {
         t.addRow();
@@ -330,7 +290,7 @@ $(document).ready(function() {
                     }
                 }
 
-                $("html, body").animate({ scrollTop: $(document).height() - 385 }, 1500);
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 
                 $("#panelResultado").show();
 
@@ -353,43 +313,53 @@ $(document).ready(function() {
 
     //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function() {
-        if (!verificaTabela()) {
-            $("#proximoPasso").prop('disabled', false);
-            a = new Arvore();
-            b = new BranchBound();
-            $("html, body").animate({ scrollTop: $(document).height() - 380 }, 1500);
-            $("#panelResultado").show();
-            nodos = [];
+        try {
+            if (!verificaTabela()) {
+                $("#proximoPasso").prop('disabled', false);
+                a = new Arvore();
+                b = new BranchBound();
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                $("#panelResultado").show();
+                nodos = [];
 
-            var nodo = b.resolveRaiz();
-            a.adicionarNodo(nodo);
-            a.adicionarAresta(nodo);
-            nodos.push(nodo);
-            a.setContainer(document.getElementById("resultTree"));
-            a.criarConexao(b);
-            $('#proximoPasso').show('fast');
-            $('#rowObsProximoPasso').show('fast');
+                var nodo = b.resolveRaiz();
+                a.adicionarNodo(nodo);
+                a.adicionarAresta(nodo);
+                nodos.push(nodo);
+                a.setContainer(document.getElementById("resultTree"));
+                a.criarConexao(b);
+                $('#proximoPasso').show('fast');
+                $('#rowObsProximoPasso').show('fast');
+            }
+        }
+        catch (err) {
+            showAlert("danger", "" + err);
         }
     });
 
     //Define botao para proximo passo
     $('#proximoPasso').click(function() {
-        delete a;
-        a = new Arvore();
-        var res = b.executar();
-        b.melhorSolucao()
-        nodos.push(b.heap.array[res[0].id]);
-        nodos.push(b.heap.array[res[1].id]);
-        for (var i = 0; i < nodos.length; i++) {
-            if (nodos[i] != undefined) {
-                a.adicionarNodo(nodos[i]);
-                a.adicionarAresta(nodos[i]);
+        try {
+            delete a;
+            a = new Arvore();
+            var res = b.executar();
+            b.melhorSolucao()
+            nodos.push(b.heap.array[res[0].id]);
+            nodos.push(b.heap.array[res[1].id]);
+            for (var i = 0; i < nodos.length; i++) {
+                if (nodos[i] != undefined) {
+                    a.adicionarNodo(nodos[i]);
+                    a.adicionarAresta(nodos[i]);
+                }
+            }
+            a.setContainer(document.getElementById("resultTree"));
+            a.criarConexao(b);
+            if (b.terminou()) {
+                $("#proximoPasso").prop('disabled', true);
             }
         }
-        a.setContainer(document.getElementById("resultTree"));
-        a.criarConexao(b);
-        if (b.terminou()) {
-            $("#proximoPasso").prop('disabled', true);
+        catch (err) {
+            showAlert("danger", "" + err);
         }
     });
 
@@ -416,15 +386,15 @@ $(document).ready(function() {
                 }
 
                 t.carrega(problema);
-				$('#ui-id-1').click();
+                $('#ui-id-1').click();
                 showAlert("success", "Arquivo analisado com sucesso");
-				
+
             } else
                 throw "Não foi possível analisar o arquivo";
         } catch (err) {
             showAlert("danger", "Erro: " + err);
         }
-		
+
     });
 });
 
