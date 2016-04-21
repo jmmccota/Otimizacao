@@ -176,46 +176,6 @@ $(document).ready(function() {
     hideFormProblema();
     t = Tabela();
 
-    //Novo problema de otimizacao
-	/*
-    $("#novo").click(function() {
-
-        if (t.existe) {
-            var nVariaveis = document.getElementById("variaveis").value;
-            if (nVariaveis > 1)
-                mensagem = "Ser&aacute; criado uma nova tabela com<b> " + nVariaveis + " </b>vari&aacute;veis."
-            else
-                mensagem = "Ser&aacute; criado uma nova tabela com<b> 1 </b>variável"
-            bootbox.dialog({
-                title: '<center><b>Aviso</b></center>',
-                message: '<center><p>Todas as informa&ccedil;&otilde;es ser&atilde;o perdidas.</p></center>' +
-                '<center><p>' + mensagem + '</p></center>' +
-                '<center><p>Tem certeza disso? </p></center>',
-                buttons: {
-                    main: {
-                        label: "Cancelar",
-                        className: "btn-default"
-                    },
-                    success: {
-                        label: "Sim",
-                        className: "btn-success",
-                        callback: function() {
-                            $("#panelResultado").fadeOut("fast");
-                            $("#myTableData").empty();
-                            $("#myTableData2").empty();
-                            t.novo();
-                            showAlert('success', 'Nova tabela gerada. ' + nVariaveis + ' vari&aacute;veis criadas');
-                        }
-                    }
-                }
-            });
-        }
-        //Cria nova tabela
-        else
-            t.novo();
-        showFormProblema();
-    });
-*/
     //Adiciona Restricao
     $('#addRow').click(function() {
         t.addRow();
@@ -416,15 +376,15 @@ $(document).ready(function() {
                 }
 
                 t.carrega(problema);
-				$('#ui-id-1').click();
+                $('#ui-id-1').click();
                 showAlert("success", "Arquivo analisado com sucesso");
-				
+
             } else
                 throw "Não foi possível analisar o arquivo";
         } catch (err) {
             showAlert("danger", "Erro: " + err);
         }
-		
+
     });
 });
 
