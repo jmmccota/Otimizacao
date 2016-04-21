@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {2}Usage}{2}
+\contentsline {subsection}{\numberline {2.1}Package options}{2}
+\contentsline {subsection}{\numberline {2.2}Float environments}{2}
+\contentsline {subsection}{\numberline {2.3}Other environments and commands}{2}
+\contentsline {subsection}{\numberline {2.4}Positioning}{3}
+\contentsline {section}{\numberline {3}Setup}{3}
+\contentsline {section}{\numberline {4}Turning and rotation environments}{4}
+\contentsline {section}{\numberline {5}Sideways figures and tables}{5}
+\contentsline {subsection}{\numberline {5.1}Rotated captions only}{10}
+\contentsline {section}{\numberline {6}Last-minute infrastructure}{10}
+\contentsline {section}{\numberline {7}History}{10}

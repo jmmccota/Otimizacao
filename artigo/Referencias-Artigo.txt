@@ -1,0 +1,111 @@
+@BOOK{HILLIER2011,
+  title = {Introdução à Pesquisa Operacional},
+  publisher = {McGraw-Hill},
+  year = {2011},
+  author = {Frederick S. Hillier, Gerald J. Lieberman},
+  edition = {9}
+}
+@ONLINE{IBM,
+author = {CPLEX},
+title = {IBM CPLEX Optimizer {@ONLINE}},
+month = dec,
+year = {2004},
+url = {http://www-01.ibm.com/software/commerce/optimization/cplex-optimizer/}
+ }
+
+@ONLINE{GUROBI,
+author = {Gurobi},
+title = {Gurobi Optimizer {@ONLINE}},
+month = dec,
+year = {2009},
+url = {http://www.gurobi.com/}
+ }
+
+@ONLINE{LINDO,
+author = {Lindo},
+title = {LINDO API {@ONLINE}},
+year = {2007},
+url = {http://www.lindo.com}
+ }
+
+@ONLINE{LINGO,
+author = {Lingo},
+title = {LINGO{@ONLINE}},
+year = {2007},
+url = {http://www.lindo.com/}
+ }
+
+@ONLINE{GLPK,
+author = {GLPK},
+title = {GNU Linear Programming Kit {@ONLINE}},
+month = oct,
+year = {2009},
+url = {http://www.gnu.org/software/glpk/}
+ }
+
+@ONLINE{LPSOLV,
+author = {lp\_solve},
+title = {lpsolve 5.5 {@ONLINE}},
+year = {2007},
+url = {http://lpsolve.sourceforge.net}
+ }
+
+@ONLINE{PROLIN,
+author = {PROLIN},
+title = {-PROLIN- Sistema para Programação Linear{@ONLINE}},
+month = oct,
+year = {2002},
+url = {http://www.prolin.ufv.br/}
+ }
+
+@BOOK{TAHA2008,
+  title = {Pesquisa Operacional},
+  publisher = {Pearson Education Inc.},
+  year = {2008},
+  author = {Taha},
+  edition = {8}
+}
+
+
+@BOOK{SANTOS2003,
+  title = {ADAPTAÇÃO DO PROLIN (SISTEMA PARA PROGRAMAÇÃO LINEAR) 
+PARA USO VIA WEB},
+  publisher = {Universidade Federal de Viçosa -UFV},
+  year = {2003},
+  author = {Alexandre Sant`Anna dos Santos},
+}
+
+@BOOK{Kantor,
+  title = {Mathematical Programming in GNU MathProg},
+  year = {2008},
+  author = {Jeffrey Kantor}
+}
+
+@BOOK{CERON2006,
+  title = {The GNU Linear Programming Kit, Part 1: Introduction to linear optimization},
+  publisher = {IBM},
+  year = {2006},
+  author = {Rodrigo Ceron},
+  edition = {1}
+} 
+
+@BOOK{GRANNEL2007,
+  title = {The Essential Guide to CSS and HTML Web Design},
+  publisher = {Friendsof},
+  year = {2007},
+  author = {Craig Grannel}
+}
+
+@BOOK{SERRA2012,
+  title = {Interfaces tácteis baseadas em HTML5/CSS3/JavaScript},
+  publisher = {Novatec Editora Ltda.},
+  year = {2012},
+  author = {Serra},
+}
+
+@book{taha2008pesquisa,
+  title={Pesquisa operacional},
+  author={Taha, Hamdy A and Marques, Arlete Simille and Scarpel, Rodrigo Arnaldo},
+  year={2008},
+  publisher={Pearson Education do Brasil}
+}
