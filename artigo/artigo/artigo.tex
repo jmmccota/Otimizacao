@@ -125,36 +125,33 @@ This paper presents a multiobjective approach for the strategic management of a 
 
 \section{Introdução}\label{sec:introducao}
 
-Segundo \cite{trindade2008}, o Brasil é o sexto maior produtor de leite do mundo. O país cresce a uma taxa anual de $ 0,04 $, superior à de todos os países que ocupam os primeiros lugares, respondendo por $ 0,66 $ do volume total de leite produzido nos países que compõem o Mercosul. A importância relativa do produto no contexto do agronegócio nacional, pode ser avaliada pelo faturamento de alguns produtos da indústria brasileira de alimentos, na última década, registrando $ 248\% $ de aumento contra $ 78\% $ de todos os segmentos.
+Após a Revolução Industrial, houve um contínuo crescimento de organizações pelo mundo, fazendo com que as pequenas oficinas de artesãos dessem lugar a grandes organizações com variados setores, o que agregou complexidade de produção de produtos. Devido a essa complexidade surgiu a Pesquisa Operacional (PO), que segundo \cite{hillier; lieberman, 2013} é aplicada a problemas envolvendo como conduzir e coordenar as operações (isto é, as atividades) em uma organização. A PO abrange diversas áreas como manufatura, transportes, construção, telecomunicações, planejamento financeiro, entre outros. Para se encontrar a melhor solução (solução ótima) de um problema de otimização, um modelo matemático deve ser gerado mantendo as características e restrições do problema.
 
-Devido à sua importância, é comum o emprego de técnicas de pesquisa operacional para melhorar a eficiência dos diversos processos executados na cadeia de produção do leite e derivados. Nos parágrafos abaixo segue alguns exemplos encontrados na literatura. 
+Para a otimização de um problema em PO, são utilizadas algumas métricas de cálculos para a sua solução. Tais métricas podem ser trabalhosas se executadas manualmente em problemas com muitas variáveis e restrições. Para tal problema, existem algumas ferramentas que resolvem tais problemas de PO, conhecidos como solvers. Alguns desses solvers são o Gurobi da Gurobi Optimization, Inc. (GUROBI, 2014), o Lingo e Lindo da Lindo System, Inc. (LINDO Systems, Inc., 2013, 2014), o GNU Linear Programming Kit GLPK (GNU Project, 2010) e o lpsolve (LPSOLVE, 2015). Outro problema enfrentado em geral por estudantes, é a dificuldade de entender como funcionam os algoritmos usados em PO em um problema. Para isso, existem solvers de fins didáticos tanto acompanhadas de livros de PO como o TORA (TAHA, 2008), quanto disponíveis na web como o PROLIN(DPI-UFV, 2012). 
 
-Os autores em \cite{junior2005} desenvolveram um sistema de apoio à decisão para determinar o planejamento da produção de produtos lácteos. O sistema utiliza a programação linear para definir o mix semanal de produtos ao maximizar da margem de contribuição considerando 
-restrições produtivas, operacionais e mercadológicas.
+Existem poucos solvers didáticos gratuitos disponíveis na web que apresentem a resolução detalhada de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Grande parte desses solvers não possuem uma interface intuitiva para o usuário ou demandam muito tempo do usuário na inserção de valores de um determinado problema a cada vez que se tem acesso ao sistema.
 
-Em \cite{miranda2007uso}, os autores estudaram a aplicação de um modelo de programação linear para maximização de resultados em uma indústria de laticínios, utilizando a margem de contribuição. O sistema avalia a melhor combinação de produtos a serem fabricados em um ambiente com múltiplas restrições. O modelo de otimização linear propôs encontrar o melhor mix de produtos que maximize o lucro. 
+Este trabalho apresenta o SIMPL(Sistema Interativo para Métodos de Programação Linear), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Branch-and-Bounch (PLI), Métodos Simplex (PL) e de Problemas de Transporte. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo TXT. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O SIMPL foi desenvolvido utilizando as linguagens Javascript, CSS3 e HTML5 e o framework Bootstrap para desenvolvimento da interface. A biblioteca glpk.js foi utilizada para a resolução dos problemas inseridos.
 
-A dissertação de mestrado \cite{faoro2009} apresentou um modelo de programação não linear multiobjetivo para auxiliar a produção leiteira em uma fazenda. As funções objetivo neste trabalho consideram desempenho econômico, o custo produtivo, a produção de gases de efeito estufa e a perda de solos por processos erosivos. Assim, são considerados o aumento da atividade leiteira, o emprego de maiores níveis de adubação, alimentação concentrada e suplementos volumosos, além da possibilidade de escolha de diferentes pastagens.
-
-No artigo \cite{oliszeski2009}, os autores relatam desafios de aplicar a pesquisa operacional em agroindústrias de pequeno e médio porte. Com isso, pretendem proporcionar uma ferramenta de auxílio para as pequenas e médias empresas do setor, para que estas mantenham-se no mercado e aumentem o poder de competição frente as empresas maiores.
-
-No artigo \cite{gameiro2011}, os autores criaram um modelo matemático para otimizar e avaliar uma unidade produtora de leite com intuito de maximizar a soma do lucro mensal de uma unidade produtora. Durante um período de $ 60 $ meses, foram analisados através do modelo matemático a quantidade de animais e hectares a serem cultivadas.
-
-O trabalho \cite{kawano2012otimizaccao} buscou avaliar o potencial de ganho em eficiência energética na indústria de laticínios. A partir do problema tratado, analisou-se a aplicação de ferramentas da engenharia econômica e da otimização. Foi desenvolvido três estudos de caso para analisar subproblemas, envolvendo a viabilidade técnico-econômica da substituição de motores elétricos de um laticínio, maximização da margem de contribuição de $ 6 $ produtos, e o aproveitamento do calor residual da caldeira para aquecimento de água utilizado nos diversos processos.
-
-A tese de doutorado \cite{meneghini2013} desenvolveu um modelo de programação linear para a maximização da margem de contribuição total e precificação do leite cru através da determinação do mix ótimo de produtos lácteos. O modelo criado foi simulado em diversos cenários diários em épocas de alta e baixa disponibilidade de matéria-prima. As soluções ótimas foram comparadas com resultados reais de um laticínio do sudeste do Brasil. Além disto, foram realizadas análises de sensibilidade dos componentes nutritivos de dois tipos de leite cru com diferentes composições para determinar os preços-sombras. 
-
-Este trabalho apresenta uma abordagem multiobjetivo para determinar o planejamento da produção de um laticínio. Deseja-se definir a quantidade de cada um dos $ 7 $ produtos, derivados do leite cru, a ser produzida de modo a maximizar o retorno com as vendas, minimizando concomitantemente os custos de investimentos. As variáveis de decisão são reais, a função objetivo de custo é linear e a de custos com investimentos é quadrática. As restrições dizem respeito às capacidades e regras de produção. Este problema de otimização multiobjetivo é solucionado através da técnica $ P_{\lambda} $ \cite{takahashi2007otimizacao}, no qual diferentes amostras do conjunto Pareto ótimo são obtidas em um processo de Monte Carlo \cite{doucet2001introduction} com o auxílio de uma tabela hash \cite{cormen2001introduction}.
-
-As soluções ótimas do conjunto não dominado são analisadas e particionadas em dois subconjuntos, um que possui exclusivamente soluções lucrativas e um outro que possui somente soluções danosas. Este conjunto com estratégias lucrativas é o resultado final deste trabalho que deve ser entregue ao tomador de decisões. Este é o responsável por selecionar a solução com melhor relação de compromisso entre custo de investimento e retorno com as vendas.
-
-O trabalho está organizado da seguinte forma: a seção \ref{sec:otmulti} apresenta uma definição breve e formal de otimização multiobjetivo e do método $ P_\lambda $ com tabela hash; a seção \ref{sec:modelo} define o problema e apresenta o modelo de otimização multiobjetivo deste trabalho; a seção \ref{sec:resultados} apresenta os resultados computacionais; e por fim, a seção \ref{sec:conclusao} apresenta as conclusões e os possíveis trabalhos futuros.
+O trabalho está organizado da seguinte forma: a seção \ref{sec:metodos} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL;
 
 
-\section{Otimização Multiobjetivo}
-\label{sec:otmulti}
+\section{Métodos de resolução de Problemas de Programação Linear}
+\label{sec:metodos}
 
-\subsection{Problema de Otimização Multiobjetivo}
+\subsection{Método Simplex}
+
+O método Simplex proposto por George Dantzig, é um método matricial para resolver problemas de Programação Linear. Ele executa iterativamente em busca da solução ótima entre as soluções básicas viáveis. 
+
+Na figura 2, é apresentado os passos iterativos do método em busca da solução ótima.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\textwidth]{img/img1.png}
+\caption[]{Estrutura iterativa do método}
+\label{fig:figura2}
+\end{figure}
+
 
 Sem perda de generalidade, considere o problema de maximização multiobjetivo com $n$ variáveis, $m$ objetivos e $p$ restrições, apresentado na Equação \ref{eq:pmobjlin}. A variável $\mathbf{x} = \left[ x_1 \, x_2 \, \ldots \, x_n \right]' \in X \subseteq \mathbb{R}^n$ é o vetor  coluna de decisão. O espaço de soluções factíveis $X$, com $n$ dimensões, é composto pelas soluções que satisfazem todas as restrições do problema, sendo elas de limites de valores ou funcionais. O vetor coluna de $m$ objetivos de $\mathbf{x}$, $F(\mathbf{x}) = \left[ f_1(\mathbf{x}) \, \ldots \, f_m(\mathbf{x}) \right]' \in \mathbb{R}^m$, é o conjunto de critérios conflituosos que se deseja otimizar concomitantemente. O conjunto de restrições do problema é representado pela multiplicação matricial de $A \in \mathbb{R}^{p \times n}$ por $\mathbf{x}$, que deve ser igual ao vetor coluna de termos independentes $\mathbf{b} \in \mathbb{R}^p$. Considere que as devidas variáveis de desvio (folga ou sobra) já foram inclusas no modelo. Cada linha de $A$ e $\mathbf{b}$ possui os termos de cada uma das $p$ restrições. O resultado desejado do processo de otimização multiobjetivo é o conjunto de soluções eficientes ou Pareto-ótimo, $X^{*} \subseteq X$, que consiste de todas as soluções factíveis para o qual o vetor de objetivos não pode ser melhorado em qualquer dimensão sem degradar algum outro. Em outras palavras, $X^{*}$ possui todas as soluções viáveis para o qual existe uma relação de compromisso entre os critérios de avaliação \cite{steuer1986multiple,takahashi2007otimizacao}.
 
