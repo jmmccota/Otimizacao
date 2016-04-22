@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.15)  15 APR 2016 17:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.15)  22 APR 2016 20:49
 entering extended mode
 **./artigo.tex
 (artigo.tex
@@ -646,19 +646,19 @@ Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
  (artigo.aux)
 \openout1 = `artigo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 75.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 89.
 
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -723,128 +723,50 @@ Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 82.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 95.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 82.
-LaTeX Font Info:    Try loading font information for U+msa on input line 88.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 95.
+LaTeX Font Info:    Try loading font information for U+msa on input line 103.
 
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 88.
+LaTeX Font Info:    Try loading font information for U+msb on input line 103.
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 Package babel Warning: You haven't loaded the language english yet
 (babel)                I'll proceed, but expect unexpected results.
-(babel)                Reported on input line 117.
+(babel)                Reported on input line 134.
 
 
 Package babel Warning: You haven't loaded the language english yet
 (babel)                I'll proceed, but expect unexpected results.
-(babel)                Reported on input line 121.
+(babel)                Reported on input line 138.
 
 [1
 
-{C:/Users/elias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-[3] [4]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 224.
-
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 224.
-[5]
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 269.
-
-Overfull \hbox (1.56068pt too wide) in paragraph at lines 270--270
- []|\T1/ptm/b/n/8 Proporção 
- []
-
-
-Overfull \hbox (3.89905pt too wide) in paragraph at lines 273--273
- []|\T1/ptm/b/n/8 Embalagem| 
- []
-
-
-Overfull \hbox (0.95683pt too wide) in paragraph at lines 267--289
- [][] 
- []
-
-[6] [7]
-Package epstopdf Info: Source file: <img/fronteira-lucro.eps>
-(epstopdf)                    date: 2014-05-14 18:59:24
-(epstopdf)                    size: 16465 bytes
-(epstopdf)             Output file: <img/fronteira-lucro-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-14 19:08:42
-(epstopdf)                    size: 5946 bytes
-(epstopdf)             Command: <epstopdf --outfile=img/fronteira-lucro-eps-con
-verted-to.pdf img/fronteira-lucro.eps>
-(epstopdf)             \includegraphics on input line 479.
-Package epstopdf Info: Output file is already uptodate.
-
-<img/fronteira-lucro-eps-converted-to.pdf, id=37, 493.845pt x 405.515pt>
-File: img/fronteira-lucro-eps-converted-to.pdf Graphic file (type pdf)
-
-<use img/fronteira-lucro-eps-converted-to.pdf>
-Package pdftex.def Info: img/fronteira-lucro-eps-converted-to.pdf used on input
- line 479.
-(pdftex.def)             Requested size: 341.43306pt x 280.36252pt.
-Package epstopdf Info: Source file: <img/hist-lucro.eps>
-(epstopdf)                    date: 2014-05-14 19:47:06
-(epstopdf)                    size: 10530 bytes
-(epstopdf)             Output file: <img/hist-lucro-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-14 19:48:04
-(epstopdf)                    size: 3846 bytes
-(epstopdf)             Command: <epstopdf --outfile=img/hist-lucro-eps-converte
-d-to.pdf img/hist-lucro.eps>
-(epstopdf)             \includegraphics on input line 490.
-Package epstopdf Info: Output file is already uptodate.
-
-<img/hist-lucro-eps-converted-to.pdf, id=38, 487.8225pt x 392.46625pt>
-File: img/hist-lucro-eps-converted-to.pdf Graphic file (type pdf)
-
-<use img/hist-lucro-eps-converted-to.pdf>
-Package pdftex.def Info: img/hist-lucro-eps-converted-to.pdf used on input line
- 490.
-(pdftex.def)             Requested size: 341.43306pt x 274.69453pt.
- [8] [9] [10 <./img/fronteira-lucro-eps-converted-to.pdf> <./img/hist-lucro-eps
--converted-to.pdf>] (artigo.bbl
-[11]) [12] (artigo.aux) ) 
+{C:/Users/elias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(artigo.bbl [2]) [3] (artigo.aux) ) 
 Here is how much of TeX's memory you used:
- 6189 strings out of 493634
- 89898 string characters out of 3135239
- 237518 words of memory out of 3000000
- 9388 multiletter control sequences out of 15000+200000
- 35235 words of font info for 60 fonts, out of 3000000 for 9000
+ 6064 strings out of 493634
+ 88264 string characters out of 3135239
+ 163507 words of memory out of 3000000
+ 9298 multiletter control sequences out of 15000+200000
+ 20770 words of font info for 41 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 44i,13n,42p,1668b,638s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/font
-s/enc/dvips/fontname/8r.enc}<C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/elias/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/elias/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/eli
-as/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-<C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmmi8.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmmib10.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/elias/AppData/Local/Programs/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/elias/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/elias/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Us
-ers/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
-8.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/symbols/msbm10.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/urw/times/utmb8a.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/urw/times/utmr8a.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artigo.pdf (12 pages, 222236 bytes).
+ 44i,5n,42p,323b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/elias/AppData/Local/Programs/MiKTe
+X 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Users/elias/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/elias/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/elias/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/el
+ias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/User
+s/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on artigo.pdf (3 pages, 80058 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
+ 33 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

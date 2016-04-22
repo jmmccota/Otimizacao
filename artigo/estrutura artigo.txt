@@ -1,0 +1,34 @@
+SIMPL - Sistema Interativo para Métodos de Programação Linear
+Título: ??
+
+1) Resumo
+2) Introdução
+    Definição do que será abordado (po na educação)
+    Definição do problema (motivação)
+    Definição do estado atual
+3) Fundamentação Teórica
+    3.1) Simplex
+        Explicação superficial do método
+    3.2) Branch and Bound
+        Explicação superficial do método
+    3.3) Algoritmos de Transporte
+        Explicação superficial da aplicação
+        3.3.1) Canto Noroeste
+            Explicação superficial do método
+        3.3.2) Menor Custo
+            Explicação superficial do método
+        3.3.3) Aproximação de Vogel
+            Explicação superficial do método
+4) Desenvolvimento
+    Ferramentas utilizadas
+    Possibilidades de uso do sistema
+    ??
+5) Resultados
+    ??
+6) Conclusões
+    Falar sobre o que aconteceu
+    Trabalhos futuros
+
+
+Linhas numeradas: seções, subseções
+Linhas não numeradas: comentários sobre o que o texto deve tratar
