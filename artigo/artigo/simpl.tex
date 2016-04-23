@@ -129,7 +129,7 @@ Para a otimização de um problema em PO, são utilizadas algumas métricas de c
 
 Existem poucos solvers didáticos gratuitos disponíveis na web que apresentem a resolução detalhada de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Grande parte desses solvers não possuem uma interface intuitiva para o usuário ou demandam muito tempo do usuário na inserção de valores de um determinado problema a cada vez que se tem acesso ao sistema.
 
-Este trabalho apresenta o SIMPL(Sistema Interativo para Métodos de Programação Linear), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Branch-and-Bounch (PLI), Métodos Simplex (PL) e de Problemas de Transporte. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo TXT. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O SIMPL foi desenvolvido utilizando as linguagens Javascript, CSS3 e HTML5 e o framework Bootstrap para desenvolvimento da interface. A biblioteca glpk.js foi utilizada para a resolução dos problemas inseridos.
+Este trabalho apresenta o SIMPL(Sistema Interativo para Métodos de Programação Linear), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Branch-and-Bounch (PLI), Métodos Simplex (PL) e de Problemas de Transporte(PL). Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo TXT. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O SIMPL foi desenvolvido utilizando as linguagens Javascript, CSS3 e HTML5 e o framework Bootstrap para desenvolvimento da interface. A biblioteca glpk.js foi utilizada para a resolução dos problemas inseridos.
 
 O trabalho está organizado da seguinte forma: a seção \ref{sec:metodos} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL;
 
@@ -147,7 +147,7 @@ Na figura 2, é apresentado os passos iterativos do método em busca da soluçã
 \centering
 \includegraphics[width=0.5\textwidth]{img/img1.png}
 \caption[]{Estrutura iterativa do método}
-\label{fig:figura2}
+\label{fig:figura1}
 \end{figure}
 
 Em um problema de PL, se houverem restrições que demandem variáveis artificiais, elas são inseridas para formar uma solução inicial semelhante a um problema em que todas as variáveis são de folga. O Simplex Grande M consiste em aplicar grandes punições as variáveis artificiais na função objetivo, fazendo com que essas variáveis tenham valor 0 na solução ótima.
@@ -170,6 +170,24 @@ Como o exemplo usado envolve um problema de maximização que engloba todas as s
 Quando a solução não apresentar mais valores fracionados, então é encontrado a solução ótima inteira. 
 
 \subsection{Problema de Transporte}
+
+O problema de transporte é uma sub-classe de Programação Linear que trata do envio de mercadorias de uma origem a um destino, sendo executada através de uma rota ótima, ou seja, com menor custo, tempo e que satisfaça as restrições de fornecimento e demanda. Tal analogia pode ser abrangida para outras áreas como controle de estoque, programação de empregos, entre outros.
+
+Segundo \cite{TAHA}, O problema geral consiste em m origens e n destinos, cada um representado por um nó, conforme mostra a Figura 2. Os arcos representam o trajeto entre origem e destino. Em um trajeto, são determinadas duas características:
+
+    1) O custo de transporte por unidade em um trajeto;
+    2) A quantidade enviada.
+
+O objetivo do problema é determinar essa quantidade enviada ótima, de forma a satisfazer as restrições de demanda e suprimento.
+
+As etapas seguidas pelo algoritmo do problema de transporte são as mesmas presentes no método Simplex.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\textwidth]{img/img2.png}
+\caption[]{Esquematização do Problema de Transporte}
+\label{fig:figura2}
+\end{figure}
 
 \section{Resultados}
 \label{sec:resultados}
