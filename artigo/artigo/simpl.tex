@@ -189,6 +189,20 @@ As etapas seguidas pelo algoritmo do problema de transporte são as mesmas prese
 \label{fig:figura2}
 \end{figure}
 
+\subsubsection{Método do canto do Noroeste}
+
+O método do Canto Noroeste consiste em iniciar o método iterativo pela primeira célula da tabela simplex(x11), ou seja, pelo canto Noroeste da tabela.
+
+\subsubsection{Método do menor custo}
+
+O método do menor custo se concentra em rotas mais baratas. Ou seja, ela denota maior peso possível a célula da tabela que tiver o menor valor. Em seguida, tal coluna ou linha selecionada é cancelada e o valores em demanda ou fornecimento é reajustado.
+
+Se houver uma linha e uma coluna satisfeitas simultaneamente, apenas uma delas será cancelada. Logo após, selecione novamente a célula de menor valor e repita o processo até restar apenas uma linha ou coluna.
+
+\subsubsection{Método de aproximação de Vogel (MAV)}
+
+Segundo \cite{TAHA}, o MAV é uma versão melhorada do método de menor custo, que em geral, produz soluções iniciais melhores.
+
 \section{Resultados}
 \label{sec:resultados}
 
