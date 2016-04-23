@@ -159,6 +159,18 @@ Porém, esses altos valores de M podem gerar grandes erros de arredondamento. O 
 
 O Simplex generalizado é usado quando a solução básica inicial é não factível e não ótima. Portanto, quando a solução é infactível, usa-se as regras do simplex dual até reestabelecer a viabilidade ou certificar que não existe solução factível. Quando a solução é factível, basta aplicar as regras do simplex primal.
 
+\subsection{Branch-and-Bounch}
+
+A Programação linear inteira mista(PLIM) é uma PL(Programação Linear) que existe alguma ou todas as variáveis não inteiras. Portanto precisamos de encontrar uma nova solução ótima para evitarmos casos de números parciais. Simplesmente com o arredondamento, a solução muitas vezes pode sair da região viável, comprometendo a otimalidade. 
+
+Para resolver usando o Branch and Bound, primeiro resolvemos o problema usando o Relaxamento, o que significa resolvê-lo pelo Simplex Revisado como se não houvesse restriçőes inteiras.
+
+Como o exemplo usado envolve um problema de maximização que engloba todas as soluçőes inteiras, então esse é um limite superior da PLIM. Em seguida, escolhe-se uma variável não inteira. Comumente, escolhe-se a variável mais fracionada, que esteja mais próxima do valor mediano ou mais distante de um número inteiro.
+
+Quando a solução não apresentar mais valores fracionados, então é encontrado a solução ótima inteira. 
+
+\subsection{Problema de Transporte}
+
 \section{Resultados}
 \label{sec:resultados}
 
