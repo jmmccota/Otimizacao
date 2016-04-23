@@ -82,8 +82,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%											 ATUALIZAR												%%
-\newcommand{\sigla}[1] {SIMPL}
-\newcommand{\nome}[1] {Sistema Interativo para Métodos de Programação Linear}
+\newcommand{\sigla}[0] {SIMPL}
+\newcommand{\nome}[0] {Sistema Interativo para Métodos de Programação Linear}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -141,14 +141,70 @@ $\beta$  \\
 \newpage
 
 \section{Introdução}\label{sec:introducao}
+Após a Revolução Industrial, houve um contínuo crescimento de organizações pelo mundo, fazendo com que as pequenas oficinas de artesãos dessem lugar a grandes organizações com variados setores, o que agregou complexidade de produção de produtos. Devido a essa complexidade surgiu a Pesquisa Operacional (PO), que segundo \cite{hillier} é aplicada a problemas envolvendo como conduzir e coordenar as operações (isto é, as atividades) em uma organização. A PO abrange diversas áreas como manufatura, transportes, construção, telecomunicações, planejamento financeiro, entre outros. Para se encontrar a melhor solução (solução ótima) de um problema de otimização, um modelo matemático deve ser gerado mantendo as características e restrições do problema.
 
+Para a otimização de um problema em PO, são utilizadas algumas métricas de cálculos para a sua solução. Tais métricas podem ser trabalhosas se executadas manualmente em problemas com muitas variáveis e restrições. Para tal problema, existem algumas ferramentas que resolvem tais problemas de PO, conhecidos como solvers. Alguns desses solvers são o Gurobi da Gurobi Optimization, Inc. (GUROBI, 2014), o Lingo e Lindo da Lindo System, Inc. (LINDO Systems, Inc., 2013, 2014), o GNU Linear Programming Kit GLPK (GNU Project, 2010) e o lpsolve (LPSOLVE, 2015). Outro problema enfrentado em geral por estudantes, é a dificuldade de entender como funcionam os algoritmos usados em PO em um problema. Para isso, existem solvers de fins didáticos tanto acompanhadas de livros de PO como o TORA (TAHA, 2008), quanto disponíveis na web como o PROLIN(DPI-UFV, 2012). 
+
+Existem poucos solvers didáticos gratuitos disponíveis na web que apresentem a resolução detalhada de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Grande parte desses solvers não possuem uma interface intuitiva para o usuário ou demandam muito tempo do usuário na inserção de valores de um determinado problema a cada vez que se tem acesso ao sistema.
+
+Este trabalho apresenta o \sigla (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Branch-and-Bounch (PLI), Simplex (PL) e de Problemas de Transporte. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla foi desenvolvido utilizando as linguagens Javascript, CSS3 e HTML5 e o framework Bootstrap para desenvolvimento da interface. A biblioteca glpk.js foi utilizada para a resolução dos problemas inseridos.
+
+O trabalho está organizado da seguinte forma: a seção \ref{sec:fundamentacao} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL;
 
 \section{Fundamentação Teórica}\label{sec:fundamentacao}
 
 
 \subsection{Simplex}\label{subsec:simplex}
 
+O método Simplex proposto por George Dantzig, é um método matricial para resolver problemas de Programação Linear. Ele executa iterativamente em busca da solução ótima entre as soluções básicas viáveis. 
+
+Abaixo são apresentados os passos iterativos do método em busca da solução ótima.
+
+\begin{enumerate}
+	\item \textbf{Inicialização}: Configurar para iniciar iterações, inclusive encontrar uma solução ponto extremo viável.
+	\item \textbf{Teste de Otimalidade}: A solução ponto extremo viável atual é ótima?
+	\begin{itemize}
+		\item \textit{Caso positivo}: Pare e retorne a solução.
+		\item \textit{Caso negativo}: Continue a iteração.
+	\end{itemize}
+	\item \textbf{Iteração}: Encontre uma solução ponto extremo viável adjacente melhor que a atual e vá para o passo 2.
+\end{enumerate}
+
+\subsubsection{Método do Grade M}\label{subsubsec:grandem}
+
+Em um problema de PL, se houverem restrições que demandem variáveis artificiais, elas são inseridas para formar uma solução inicial semelhante a um problema em que todas as variáveis são de folga. O Simplex Grande M consiste em aplicar grandes punições as variáveis artificiais na função objetivo, fazendo com que essas variáveis tenham valor 0 na solução ótima.
+Porém, esses altos valores de M podem gerar grandes erros de arredondamento. 
+
+\subsubsection{Método das Duas Fases}\label{subsubsec:duasfases}
+
+O método Duas Fases elimina essa constante M e resolve o método através de duas fases:
+
+\begin{enumerate}
+	\item Tenta encontrar uma solução inicial básica. Se achar, passa para a fase 2.
+	\item É chamada para resolver o problema original.
+\end{enumerate}
+
+\subsubsection{Método do Simplex Generalizado}\label{subsubsec:generalizado}
+
+O Simplex generalizado é usado quando a solução básica inicial é não factível e não ótima. Portanto, quando a solução é infactível, usa-se as regras do simplex dual até reestabelecer a viabilidade ou certificar que não existe solução factível. Quando a solução é factível, basta aplicar as regras do simplex primal.
+
 \subsection{Branch and Bound}\label{subsec:bnb}
+
+O Branch and Bound é uma técnica desenvolvida para resolver problemas de PLI utilizando o método simplex. Cada iteração da técnica é composta por um problema de PL solucionado através do algoritmo Simplex. Essa iteração é um nó na árvore de soluções, e a partir do resultado obtido esse nó pode ou não se tornar raiz de uma subárvore de possíveis soluções.
+
+O algoritmo é descrito a seguir:
+
+\bigskip
+
+\noindent O modelo no nó analisado é resolvido pelo Simplex. Verificamos se o valor da função objetivo $Z$ é melhor que o da solução ótima atual.
+\begin{itemize}
+	\item \textit{Caso positivo}: Verificamos o conjunto de variáveis $x$, testando se $\forall  x_{i} \in x, x_{i} \in \mathbb{Z}$.
+	\begin{itemize}
+		\item \textit{Caso positivo}: O nó atual passa a ser a nova solução ótima.
+		\item \textit{Caso negativo}: O valor da função objetivo $Z$ é substituído por $-\infty$ em problemas de maximização e $\infty$ nos de minimização. Escolhe-se uma variável $x_{i} \in x | x_{i} \notin \mathbb{Z}$ e gere dois novos modelos, adicionando para um a restrição $x_{i}' \leq \lfloor x_{i} \rfloor$ e para o outro $x_{i}'' \geq \lceil x_{i} \rceil$.
+	\end{itemize}
+	\item \textit{Caso negativo}: A solução é descartada. 
+\end{itemize}
 
 \subsection{Algoritmos de Transporte}\label{subsec:transporte}
 
@@ -163,6 +219,7 @@ $\beta$  \\
 
 
 \section{Resultados}\label{sec:resultados}
+
 
 
 \section{Conclusões}\label{sec:conclusao}

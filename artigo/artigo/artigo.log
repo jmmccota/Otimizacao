@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.15)  22 APR 2016 20:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.15)  23 APR 2016 15:46
 entering extended mode
 **./artigo.tex
 (artigo.tex
@@ -748,25 +748,43 @@ Package babel Warning: You haven't loaded the language english yet
 [1
 
 {C:/Users/elias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(artigo.bbl [2]) [3] (artigo.aux) ) 
+
+LaTeX Warning: Citation `hillier' on page 2 undefined on input line 144.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 167.
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 167.
+[2] (artigo.bbl [3] [4]) [5] (artigo.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 6064 strings out of 493634
- 88264 string characters out of 3135239
- 163507 words of memory out of 3000000
- 9298 multiletter control sequences out of 15000+200000
+ 6086 strings out of 493634
+ 88690 string characters out of 3135239
+ 165541 words of memory out of 3000000
+ 9317 multiletter control sequences out of 15000+200000
  20770 words of font info for 41 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 44i,5n,42p,323b,301s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/elias/AppData/Local/Programs/MiKTe
-X 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Users/elias/AppData/Local/Programs/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/elias/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/elias/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/el
-ias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/User
-s/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artigo.pdf (3 pages, 80058 bytes).
+ 44i,8n,42p,894b,305s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/fontname/8r
+.enc}<C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmmi8.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/elias/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/elias/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Us
+ers/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C
+:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
+b><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri
+8a.pfb>
+Output written on artigo.pdf (5 pages, 108047 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
+ 51 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
