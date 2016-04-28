@@ -316,11 +316,13 @@ Os passos seguidos pelo método são:
 %%											 ESCREVER												%%
 \section{Desenvolvimento}\label{sec:desenvolvimento}
 
+O trabalho realizado foi construído utilizando-se a linguagem de programação JavaScript, pois não há a necessidade de comunicação com o servidor para obtenção dos resultados. Todos os métodos são processados no lado do cliente, gerando assim um bom desempenho para os cálculos. Utilizou-se o CSS3 como o elemento de definição de estilos para páginas WEB, devido ao seu padrão ser adotado pela grande parte dos navegadores disponíveis. 
+
 Para a construção de todos os métodos contidos no trabalho, utilizou-se do pacote GLPK (GNU Linear Programming Kit) implementada em JavaScript sobre a biblioteca glpk.js, que é uma ferramenta disponível gratuitamente para resolver problemas de Programação linear(PI), Programação Inteira Mista(PIM), entre outros. Tal ferramenta pode ser usada com grande volume de dados de entrada, ou seja, com modelos matemáticos que tenham muitas variáveis e/ou restrições. A biblioteca contém os métodos de simplex primal e dual, método primal-dual de pontos interiores, método branch-and-cut, tradutor para GNU MathProg e a interface de programação de modelos. O pacote contém documentação com manual de referência e a descrição da linguagem de modelagem do GNU MathProg.
 
-Para que o método Branch-and-Bound se mantivesse didaticamente intuitivo, foi necessário a contrução de uma árvore de representção de seus ramos. Para a construção de árvores do Branch-and-Bound, utilizou-se da plataforma VIS em JavaScript pela biblioteca vis.js, que é uma ferramenta capaz de exibir grande volume de dados, mantém fácil interação com usuário para dados de entrada e possui dinamismo compatível com variados navegadores.
+Para que o método Branch-and-Bound se mantivesse didaticamente intuitivo, foi necessário a contrução de uma árvore de representção de seus ramos. Para a construção de árvores do Branch-and-Bound, utilizou-se da plataforma VIS em JavaScript pela biblioteca vis.js, que é uma ferramenta capaz de exibir grande volume de dados, que mantém fácil interação com usuário para a inserção de dados de entrada e possui dinamismo compatível com variados navegadores.
 
-Para a construção visual do trabalho realizado, utilizou-se do Bootstrap, que é uma ferramenta de desenvolvimento WEB utilizando HTML, CSS e JavaScript, para sistemas responsivos. A ferramenta utiliza-se dos pré-processadores LESS e Sass, auxiliando na produtividade de desenvolvimento do sistema e utiliza de enquadramento de conteúdo em grid, gerindo um padrão de utilização para exibição de elementos em tela.
+Para a construção visual do trabalho realizado, utilizou-se do Bootstrap, que é uma ferramenta de desenvolvimento WEB utilizando HTML, CSS e JavaScript, para sistemas responsivos. A ferramenta utiliza-se dos pré-processadores LESS e Sass que auxiliam na produtividade de desenvolvimento do sistema e utiliza de enquadramento de conteúdo em grid, gerindo um padrão de utilização para exibição de elementos em tela.
 
  
 
