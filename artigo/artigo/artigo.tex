@@ -1,5 +1,7 @@
 \documentclass [11pt]{articleSBPO}
 
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -104,7 +106,7 @@
 Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG)  Campus Timóteo, \\
 Rua 19 de Novembro, 121 – Centro, Timóteo - MG, Brasil \\
 \{andrmalta, eliasluizjr\}@gmail.com \\
-\{, joao\_marcos\_cota\}@hotmail.com.com \\
+\{daniel22390, joao\_marcos\_cota\}@hotmail.com.com \\
 \par
 $\alpha$ Graduando em Engenharia da Computação \\
 $\beta$  \\ 
@@ -140,16 +142,19 @@ $\beta$  \\
 
 \newpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%											 REVISAR												%%
 \section{Introdução}\label{sec:introducao}
-Após a Revolução Industrial, houve um contínuo crescimento de organizações pelo mundo, fazendo com que as pequenas oficinas de artesãos dessem lugar a grandes organizações com variados setores, o que agregou complexidade de produção de produtos. Devido a essa complexidade surgiu a Pesquisa Operacional (PO), que segundo \cite{hillier} é aplicada a problemas envolvendo como conduzir e coordenar as operações (isto é, as atividades) em uma organização. A PO abrange diversas áreas como manufatura, transportes, construção, telecomunicações, planejamento financeiro, entre outros. Para se encontrar a melhor solução (solução ótima) de um problema de otimização, um modelo matemático deve ser gerado mantendo as características e restrições do problema.
+Após a Revolução Industrial, houve um contínuo crescimento de organizações pelo mundo, fazendo com que as pequenas oficinas de artesãos dessem lugar a grandes organizações com variados setores, o que agregou complexidade de produção de produtos. Devido a essa complexidade surgiu a Pesquisa Operacional (PO), que segundo \cite{hillier} é aplicada a problemas envolvendo como conduzir e coordenar as operações (isto é, as atividades) em uma organização. A PO abrange diversas áreas como manufatura, transportes, construção, telecomunicações, planejamento financeiro, entre outros. Para se encontrar a melhor solução, também chamada solução ótima, de um problema de otimização, um modelo matemático deve ser gerado mantendo as características e restrições do problema.
 
-Para a otimização de um problema em PO, são utilizadas algumas métricas de cálculos para a sua solução. Tais métricas podem ser trabalhosas se executadas manualmente em problemas com muitas variáveis e restrições. Para tal problema, existem algumas ferramentas que resolvem tais problemas de PO, conhecidos como solvers. Alguns desses solvers são o Gurobi da Gurobi Optimization, Inc. (GUROBI, 2014), o Lingo e Lindo da Lindo System, Inc. (LINDO Systems, Inc., 2013, 2014), o GNU Linear Programming Kit GLPK (GNU Project, 2010) e o lpsolve (LPSOLVE, 2015). Outro problema enfrentado em geral por estudantes, é a dificuldade de entender como funcionam os algoritmos usados em PO em um problema. Para isso, existem solvers de fins didáticos tanto acompanhadas de livros de PO como o TORA (TAHA, 2008), quanto disponíveis na web como o PROLIN(DPI-UFV, 2012). 
+Para a otimização de um problema em PO, são utilizadas algumas métricas de cálculos para a sua solução. Tais métricas podem ser trabalhosas se executadas manualmente em problemas com muitas variáveis e restrições. Para tal problema, existem algumas ferramentas que resolvem tais problemas de PO, conhecidos como solvers. Alguns desses solvers são o Gurobi da Gurobi Optimization, Inc. (GUROBI, 2014), o Lingo e Lindo da Lindo System, Inc. (LINDO Systems, Inc., 2013, 2014), o GNU Linear Programming Kit GLPK (GNU Project, 2010) e o lpsolve (LPSOLVE, 2015). Outro problema enfrentado em geral por estudantes, é a dificuldade de entender como funcionam os algoritmos usados em PO em um problema. Para isso, existem solvers de fins didáticos acompanhadas de livros de PO como o TORA (TAHA, 2008). 
 
 Existem poucos solvers didáticos gratuitos disponíveis na web que apresentem a resolução detalhada de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Grande parte desses solvers não possuem uma interface intuitiva para o usuário ou demandam muito tempo do usuário na inserção de valores de um determinado problema a cada vez que se tem acesso ao sistema.
 
-Este trabalho apresenta o \sigla (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Branch-and-Bounch (PLI), Simplex (PL) e de Problemas de Transporte. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla foi desenvolvido utilizando as linguagens Javascript, CSS3 e HTML5 e o framework Bootstrap para desenvolvimento da interface. A biblioteca glpk.js foi utilizada para a resolução dos problemas inseridos.
+Este trabalho apresenta o \sigla (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Simplex, Branch-and-Bounch e de alguns métodos de alocação de recurso, como o Canto Noroeste, Menor Custo e Aproximação de Vogel. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla foi desenvolvido utilizando as linguagens Javascript, CSS3 e HTML5 e o framework Bootstrap para desenvolvimento da interface. A biblioteca glpk.js foi utilizada para a resolução de alguns problemas inseridos.
 
-O trabalho está organizado da seguinte forma: a seção \ref{sec:fundamentacao} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL;
+O trabalho está organizado da seguinte forma: a seção \ref{sec:fundamentacao} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL; a seção \ref{sec:desenvolvimento} explica de forma mais técnica como o sistema foi desenvolvido. Já na seção \ref{sec:resultados} é mostrado o funcionamento do sistema final. Por fim, na seção \ref{sec:conclusao} há as considerações finais e sugestões de trabalhos futuros.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Fundamentação Teórica}\label{sec:fundamentacao}
 
@@ -208,25 +213,121 @@ O algoritmo é descrito a seguir:
 
 \subsection{Algoritmos de Transporte}\label{subsec:transporte}
 
+O problema de transporte é uma sub-classe de Programação Linear que trata do envio de mercadorias de uma origem a um destino, sendo executada através de uma rota ótima, ou seja, com menor custo, tempo e que satisfaça as restrições de fornecimento e demanda. Tal analogia pode ser abrangida para outras áreas que lidam com alocação de recursos, como controle de estoque, programação de empregos, entre outros.
+
+Segundo \cite{TAHA}, O problema geral consiste em $m$ origens e $n$ destinos, cada um representado por um nó, conforme mostra a Figura \ref{fig:grafotransporte}. As arestas representam o trajeto entre origem e destino. Em cada um, são determinadas duas características:
+
+\begin{itemize}
+	\item O custo de transporte por unidade em um trajeto;
+	\item A quantidade enviada.
+\end{itemize}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/grafotransporte.png}
+	\caption[]{Grafo esquemático de um problema de transporte genérico}
+	\label{fig:grafotransporte}
+\end{figure}
+
+\begin{table}[]
+	\centering
+	\caption[]{Representação em forma tabular de um problema de transporte genérico}
+	\label{fig:tabelatransporte}
+	\begin{tabular}{ l | l  l  l  l | l }
+				& $b_{1}$ 	& $b_{2}$ 	& ... & $b_{n}$  & Suprimento\\
+				\hline
+	$a_{1}$		& $c_{11}$ 	& $c_{12}$	&  	  & $c_{1n}$ & $s_{1}$\\
+	$a_{2}$		& $c_{21}$ 	& $c_{22}$	&  	  & $c_{2n}$ & $s_{2}$\\
+	...			&  &  &  &  & \\
+	$a_{m}$		& $c_{m1}$ 	& $c_{m1}$	&  	  & $c_{mn}$ & $s_{m}$\\
+				\hline
+	$Demanda$	& $d_{1}$ 	& $d_{2}$ 	& 	  & $d_{n}$	 & \\
+	\end{tabular}
+\end{table}
+
+Sendo $a_{i}$ a origem de um trajeto, $b_{j}$ o destino, $c_{ij}$ o custo do trajeto, $x_{ij}$ a quantidade alocada para o trajeto, $s_{i}$ o suprimento máximo fornecido por $a_{i}$ e $d_{j}$ a demanda máximo de $b_{j}$
+
+O objetivo do problema é determinar essa quantidade enviada ótima, de forma a satisfazer as restrições de demanda e suprimento.
+
+Podemos determinar a quantidade enviada através de cada trajeto utilizando o método simplex. Porém há outras técnicas mais rápidas e que garantem resultados próximos ao ótimo. Essas técnicas, apresentadas nos próximos tópicos, são preferidas para modelos muito grandes justamente pela sua simplicidade.
+
+%\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm, thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+%
+%\node[main node] (1) {$a_{1}$};
+%\node[main node] (2) [below of=1] {$a_{2}$};
+%\node[main node] (3) [below of=2] {$a_{m}$};
+%\node[main node] (4) [right of=1] {$b_{1}$};
+%\node[main node] (5) [below of=4] {$b_{2}$};
+%\node[main node] (6) [below of=5] {$b_{n}$};
+%
+%\path[every node/.style={font=\sffamily\small}]
+%(1) edge [left] {$c_{11} * x_{11}$} (4)
+%	edge [left] (5)
+%	edge [left] (6)
+%(2) edge [left] (4)
+%	edge [left] (5)
+%	edge [left] (6)
+%(3) edge [left] (4)
+%	edge [left] (5)
+%	edge [left] (6);
+%\end{tikzpicture}
+
 \subsubsection{Método do Canto Noroeste}\label{subsubsec:noroeste}
+
+O mais simples dos métodos, porém o que pode apresentar pior resultado.
+
+Seu princípio consiste em alocar recursos de acordo com a posição do trajeto na tabela de custos. Isso o torna altamente sensível à organização dos dados.
+
+Segue o algoritmo abaixo:
+
+\begin{enumerate}
+	\item Inicia-se o algoritmo na primeira linha e primeira coluna.
+	\item Aloca-se à célula atual o máximo de recursos permitidos pela oferta e demanda. \label{cantonoroeste:laco}
+	\item Caso o suprimento da linha atual seja esgotado, desloca-se para a linha de baixo.
+	\item Caso a demanda da coluna atual seja suprida, desloca-se para a coluna à direita.
+	\item Se ainda houverem demandas a serem supridas retornar ao passo \ref{cantonoroeste:laco}.
+\end{enumerate}
 
 \subsubsection{Método do Menor Custo}\label{subsubsec:menorcusto}
 
+O método do menor custo se concentra em rotas mais baratas. Com isso, seus resultados costumam ser melhores que o canto noroeste e não dependem de como o problema foi organizado na forma tabular.
+
+Segue o algoritmo abaixo:
+
+\begin{enumerate}
+	\item Escolhe-se a célula com menor custo dentre as quais há demanda e oferta. \label{menorcusto:laco}
+	\item Aloca-se à célula atual o máximo de recursos permitidos pela oferta e demanda. Resolva empates arbitrariamente.
+	\item Caso ainda seja necessário alocar recursos, retornar ao passo \ref{menorcusto:laco}.
+\end{enumerate}
+
 \subsubsection{Método da Aproximação de Vogel}\label{subsubsec:mav}
 
+Segundo \cite{TAHA}, o MAV é uma versão melhorada do método de menor custo e costuma produzir soluções melhores já que usa uma heurística mais complexa para determinar as melhores rotas.
 
+Os passos seguidos pelo método são:
+
+\begin{enumerate}
+	\item Para cada linha e coluna determina-se uma multa subtraindo o menor custo do segundo menor custo. \label{mav:laco}
+	\item Na linha ou coluna com maior multa escolha a célula com menor custo. Resolva empates arbitrariamente.
+	\item Caso ainda não tenha completado o processo de alocação, retornar ao passo \ref{mav:laco}.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%											 ESCREVER												%%
 \section{Desenvolvimento}\label{sec:desenvolvimento}
 
 
 \section{Resultados}\label{sec:resultados}
 
 
-
 \section{Conclusões}\label{sec:conclusao}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%											 ATUALIZAR												%%
 \bibliography{referencias}
 \bibliographystyle{abnt-alf}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
