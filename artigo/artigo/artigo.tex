@@ -316,7 +316,7 @@ Os passos seguidos pelo método são:
 %%											 ESCREVER												%%
 \section{Desenvolvimento}\label{sec:desenvolvimento}
 
-O trabalho realizado foi construído utilizando-se a linguagem de programação JavaScript, pois não há a necessidade de comunicação com o servidor para obtenção dos resultados. Todos os métodos são processados no lado do cliente, gerando assim um bom desempenho para os cálculos. Utilizou-se o CSS3 como o elemento de definição de estilos para páginas WEB, devido ao seu padrão ser adotado pela grande parte dos navegadores disponíveis. 
+O trabalho realizado foi construído utilizando-se a linguagem de programação JavaScript, pois não há a necessidade de comunicação com o servidor para obtenção dos resultados. Todos os métodos são processados no lado do cliente, gerando assim um bom desempenho para os cálculos. O CSS3 (Cascading Style Sheets versão 3) é o elemento de definição de estilos para páginas WEB, e foi utilizado no trabalho devido ao seu padrão ser adotado pela grande parte dos navegadores disponíveis. O HTML (Hypertext Markup Language) é uma linguagem para estruturação e apresentação de conteúdo em páginas WEB. A versão 5 do HTML foi utilizada, devido as suas novas funcionalidades como semântica, multimídia, interação e portabilidade \cite{LUBBERS}, que são nativas da linguagem, sem a necessidade de uso de outras tecnologias.
 
 Para a construção de todos os métodos contidos no trabalho, utilizou-se do pacote GLPK (GNU Linear Programming Kit) implementada em JavaScript sobre a biblioteca glpk.js, que é uma ferramenta disponível gratuitamente para resolver problemas de Programação linear(PI), Programação Inteira Mista(PIM), entre outros. Tal ferramenta pode ser usada com grande volume de dados de entrada, ou seja, com modelos matemáticos que tenham muitas variáveis e/ou restrições. A biblioteca contém os métodos de simplex primal e dual, método primal-dual de pontos interiores, método branch-and-cut, tradutor para GNU MathProg e a interface de programação de modelos. O pacote contém documentação com manual de referência e a descrição da linguagem de modelagem do GNU MathProg.
 
@@ -324,7 +324,9 @@ Para que o método Branch-and-Bound se mantivesse didaticamente intuitivo, foi n
 
 Para a construção visual do trabalho realizado, utilizou-se do Bootstrap, que é uma ferramenta de desenvolvimento WEB utilizando HTML, CSS e JavaScript, para sistemas responsivos. A ferramenta utiliza-se dos pré-processadores LESS e Sass que auxiliam na produtividade de desenvolvimento do sistema e utiliza de enquadramento de conteúdo em grid, gerindo um padrão de utilização para exibição de elementos em tela.
 
- 
+O SIMPL é uma ferramenta desenvolvida com o intuito de fornecer o entendimento sistêmico do comportamento dos métodos de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Para tal, a ferramenta possui uma didática de ensino, não focando em massivos dados de entrada. Portanto, tal ferramenta é apropriada a todos os que desejarem ter maior conhecimento das técnicas e métodos utilizados para resolver variados problemas de Pesquisa Operacional, e interagir com o sistema gerindo decisões a serem tomadas sobre os passos dos algoritmos.
+
+Para utilizar o SIMPL, seleciona-se na página inicial o método em que se deseja resolver tal problema. Logo após, um novo problema pode ser criado preenchendo os campos com os dados particulares do método e do modelo matemático, inserindo o tipo de problema (maximização ou minimização), o número de variáveis (com o máximo de dez variáveis), os valores da função objetivo e de suas restrições. Tal modelo criado pode ser salvo para ser carregado posteriormente. O problema pode ser resolvido com execução completa, mostrando todas as etapas do algoritmo até o resultado final, ou com as etapas exibidas passo-a-passo para maior detalhamento do caminho percorrido pelo algoritmo.
 
 \section{Resultados}\label{sec:resultados}
 
