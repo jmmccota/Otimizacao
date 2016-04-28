@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.24)  28 APR 2016 00:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.24)  28 APR 2016 00:24
 entering extended mode
 **artigo.tex
 (artigo.tex
@@ -999,9 +999,12 @@ LaTeX Warning: No positions in optional float specifier.
 
 LaTeX Warning: Citation `TAHA' on page 5 undefined on input line 305.
 
-(artigo.bbl [5]) [6] (artigo.aux)
+(artigo.bbl [5] [6]) [7] (artigo.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
@@ -1011,7 +1014,7 @@ Here is how much of TeX's memory you used:
  19394 multiletter control sequences out of 15000+200000
  20770 words of font info for 41 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 55i,10n,54p,831b,303s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,10n,54p,831b,311s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/font
@@ -1021,9 +1024,9 @@ fonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artigo.pdf (6 pages, 185036 bytes).
+Output written on artigo.pdf (7 pages, 186096 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
+ 69 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
