@@ -148,6 +148,25 @@ Tabela = function() {
 
     //Adiciona restricoes ao modelo
     t.addRow = function() {
+        if (t.nVar === 10) {
+            showAlert('warning', 'Limite máximo de restrições atingido: 20');
+            return;
+        }
+
+        t.nRestri++;
+        var table = document.getElementById("myTableData");
+        var row = table.insertRow(t.nRestri + 1);
+        row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + t.nRestri + '</b>';
+        for (i = 1; i <= t.nVar; i++)
+            row.insertCell(i).innerHTML = '<input id="x' + t.nRestri + '' + (i - 1) + '" type="text"  \
+                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+        row.insertCell().innerHTML = '<select id="relacao' + t.nRestri + '" class="relacao form-control" \
+                style="min-width: 70px;"><option><=</option><option>=</option><option>>=</option></select>';
+        row.insertCell().innerHTML = '<input id="ladoDir' + t.nRestri + '" type="text" style="min-width: 90px;"\
+                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+    };
+	
+	t.addVar = function() {
         if (t.nRestri === 20) {
             showAlert('warning', 'Limite máximo de restrições atingido: 20');
             return;
