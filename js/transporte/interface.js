@@ -396,8 +396,11 @@ $(document).ready(function() {
         }
 
     });
-	$("#addVar").click(function (evt){
-		t.addVar();
+	$("#addCol").click(function (evt){
+		t.addCol();
+	});
+	$("#delCol").click(function (evt){
+		t.deleteCol();
 	});
 });
 
