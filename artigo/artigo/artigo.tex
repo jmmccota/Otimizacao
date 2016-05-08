@@ -84,7 +84,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%											 ATUALIZAR												%%
-\newcommand{\sigla}[0] {SIMPL}
+\newcommand{\sigla}[0] {SIMPL }
 \newcommand{\nome}[0] {Sistema Interativo para Métodos de Programação Linear}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -147,11 +147,11 @@ $\beta$  \\
 \section{Introdução}\label{sec:introducao}
 Após a Revolução Industrial, houve um contínuo crescimento de organizações pelo mundo, fazendo com que as pequenas oficinas de artesãos dessem lugar a grandes organizações com variados setores, o que agregou complexidade de produção de produtos. Devido a essa complexidade surgiu a Pesquisa Operacional (PO), que segundo \cite{hillier} é aplicada a problemas envolvendo como conduzir e coordenar as operações (isto é, as atividades) em uma organização. A PO abrange diversas áreas como manufatura, transportes, construção, telecomunicações, planejamento financeiro, entre outros. Para se encontrar a melhor solução, também chamada solução ótima, de um problema de otimização, um modelo matemático deve ser gerado mantendo as características e restrições do problema.
 
-Para a otimização de um problema em PO, são utilizadas algumas métricas de cálculos para a sua solução. Tais métricas podem ser trabalhosas se executadas manualmente em problemas com muitas variáveis e restrições. Para tal problema, existem algumas ferramentas que resolvem tais problemas de PO, conhecidos como solvers. Alguns desses solvers são o Gurobi da Gurobi Optimization, Inc. (GUROBI, 2014), o Lingo e Lindo da Lindo System, Inc. (LINDO Systems, Inc., 2013, 2014), o GNU Linear Programming Kit GLPK (GNU Project, 2010) e o lpsolve (LPSOLVE, 2015). Outro problema enfrentado em geral por estudantes, é a dificuldade de entender como funcionam os algoritmos usados em PO em um problema. Para isso, existem solvers de fins didáticos acompanhadas de livros de PO como o TORA (TAHA, 2008). 
+Para a otimização de um problema em PO, são utilizadas algumas métricas de cálculos para a sua solução. Tais métricas podem ser trabalhosas se executadas manualmente em problemas com muitas variáveis e restrições. Para tal problema, existem algumas ferramentas que resolvem tais problemas de PO, conhecidos como solvers. Alguns desses solvers são o Gurobi da Gurobi Optimization, Inc. \cite{gurobi}, o Lingo e Lindo da Lindo System, Inc. \cite{lindo}, o GLPK: GNU Linear Programming Kit  \cite{glpk} e o lp\_solve \cite{lpsolve}. Outro problema enfrentado em geral por estudantes, é a dificuldade de entender como funcionam os algoritmos usados em PO em um problema. Para isso, existem solvers de fins didáticos acompanhadas de livros de PO como o TORA \cite{taha}. 
 
 Existem poucos solvers didáticos gratuitos disponíveis na web que apresentem a resolução detalhada de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Grande parte desses solvers não possuem uma interface intuitiva para o usuário ou demandam muito tempo do usuário na inserção de valores de um determinado problema a cada vez que se tem acesso ao sistema.
 
-Este trabalho apresenta o \sigla (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Simplex, Branch-and-Bounch e de alguns métodos de alocação de recurso, como o Canto Noroeste, Menor Custo e Aproximação de Vogel. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla foi desenvolvido utilizando as linguagens Javascript, CSS3 e HTML5 e o framework Bootstrap para desenvolvimento da interface. A biblioteca glpk.js foi utilizada para a resolução de alguns problemas inseridos.
+Este trabalho apresenta o \sigla (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Simplex, \textit{Branch and Bounch} e de alguns métodos de alocação de recurso, como o Canto Noroeste, Menor Custo e Aproximação de Vogel. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla foi desenvolvido utilizando as linguagens \textit{Javascript, CSS3 e HTML5} e o \textit{framework Bootstrap} para desenvolvimento da interface. A biblioteca \textit{glpk.js} foi utilizada para a resolução de alguns problemas inseridos.
 
 O trabalho está organizado da seguinte forma: a seção \ref{sec:fundamentacao} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL; a seção \ref{sec:desenvolvimento} explica de forma mais técnica como o sistema foi desenvolvido. Já na seção \ref{sec:resultados} é mostrado o funcionamento do sistema final. Por fim, na seção \ref{sec:conclusao} há as considerações finais e sugestões de trabalhos futuros.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,7 +159,7 @@ O trabalho está organizado da seguinte forma: a seção \ref{sec:fundamentacao}
 \section{Fundamentação Teórica}\label{sec:fundamentacao}
 
 
-\subsection{Simplex}\label{subsec:simplex}
+\subsection{Simplex}\label{subsec:Simplex}
 
 O método Simplex proposto por George Dantzig, é um método matricial para resolver problemas de Programação Linear. Ele executa iterativamente em busca da solução ótima entre as soluções básicas viáveis. 
 
@@ -177,7 +177,7 @@ Abaixo são apresentados os passos iterativos do método em busca da solução �
 
 \subsubsection{Método do Grade M}\label{subsubsec:grandem}
 
-Em um problema de PL, se houverem restrições que demandem variáveis artificiais, elas são inseridas para formar uma solução inicial semelhante a um problema em que todas as variáveis são de folga. O Simplex Grande M consiste em aplicar grandes punições as variáveis artificiais na função objetivo, fazendo com que essas variáveis tenham valor 0 na solução ótima.
+Em um problema de PL, se houverem restrições que demandem variáveis artificiais, elas são inseridas para formar uma solução inicial semelhante a um problema em que todas as variáveis são de folga. O Simplex Grande M consiste em aplicar grandes punições as variáveis artificiais na função objetivo, fazendo com que tenham valor 0 na solução ótima.
 Porém, esses altos valores de M podem gerar grandes erros de arredondamento. 
 
 \subsubsection{Método das Duas Fases}\label{subsubsec:duasfases}
@@ -191,11 +191,11 @@ O método Duas Fases elimina essa constante M e resolve o método através de du
 
 \subsubsection{Método do Simplex Generalizado}\label{subsubsec:generalizado}
 
-O Simplex generalizado é usado quando a solução básica inicial é não factível e não ótima. Portanto, quando a solução é infactível, usa-se as regras do simplex dual até reestabelecer a viabilidade ou certificar que não existe solução factível. Quando a solução é factível, basta aplicar as regras do simplex primal.
+O Simplex generalizado é usado quando a solução básica inicial é não factível e não ótima. Portanto, quando a solução é infactível, usa-se as regras do Simplex dual até restabelecer a viabilidade ou certificar que não existe solução factível. Quando a solução é factível, basta aplicar as regras do Simplex primal.
 
 \subsection{Branch and Bound}\label{subsec:bnb}
 
-O Branch and Bound é uma técnica desenvolvida para resolver problemas de PLI utilizando o método simplex. Cada iteração da técnica é composta por um problema de PL solucionado através do algoritmo Simplex. Essa iteração é um nó na árvore de soluções, e a partir do resultado obtido esse nó pode ou não se tornar raiz de uma subárvore de possíveis soluções.
+O Branch and Bound é uma técnica desenvolvida para resolver problemas de PLI utilizando o método Simplex. Cada iteração da técnica é composta por um problema de PL solucionado através do algoritmo Simplex. Essa iteração é um nó na árvore de soluções, e a partir do resultado obtido esse nó pode ou não se tornar raiz de uma subárvore de possíveis soluções.
 
 O algoritmo é descrito a seguir:
 
@@ -215,7 +215,7 @@ O algoritmo é descrito a seguir:
 
 O problema de transporte é uma sub-classe de Programação Linear que trata do envio de mercadorias de uma origem a um destino, sendo executada através de uma rota ótima, ou seja, com menor custo, tempo e que satisfaça as restrições de fornecimento e demanda. Tal analogia pode ser abrangida para outras áreas que lidam com alocação de recursos, como controle de estoque, programação de empregos, entre outros.
 
-Segundo \cite{TAHA}, O problema geral consiste em $m$ origens e $n$ destinos, cada um representado por um nó, conforme mostra a Figura \ref{fig:grafotransporte}. As arestas representam o trajeto entre origem e destino. Em cada um, são determinadas duas características:
+Segundo \cite{taha}, O problema geral consiste em $m$ origens e $n$ destinos, cada um representado por um nó, conforme mostra a Figura \ref{fig:grafotransporte}. As arestas representam o trajeto entre origem e destino. Em cada um, são determinadas duas características:
 
 \begin{itemize}
 	\item O custo de transporte por unidade em um trajeto;
@@ -249,7 +249,7 @@ Sendo $a_{i}$ a origem de um trajeto, $b_{j}$ o destino, $c_{ij}$ o custo do tra
 
 O objetivo do problema é determinar essa quantidade enviada ótima, de forma a satisfazer as restrições de demanda e suprimento.
 
-Podemos determinar a quantidade enviada através de cada trajeto utilizando o método simplex. Porém há outras técnicas mais rápidas e que garantem resultados próximos ao ótimo. Essas técnicas, apresentadas nos próximos tópicos, são preferidas para modelos muito grandes justamente pela sua simplicidade.
+Podemos determinar a quantidade enviada através de cada trajeto utilizando o método Simplex. Porém há outras técnicas mais rápidas e que garantem resultados próximos ao ótimo. Essas técnicas, apresentadas nos próximos tópicos, são preferidas para modelos muito grandes justamente pela sua simplicidade.
 
 %\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm, thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
 %
@@ -302,7 +302,7 @@ Segue o algoritmo abaixo:
 
 \subsubsection{Método da Aproximação de Vogel}\label{subsubsec:mav}
 
-Segundo \cite{TAHA}, o MAV é uma versão melhorada do método de menor custo e costuma produzir soluções melhores já que usa uma heurística mais complexa para determinar as melhores rotas.
+Segundo \cite{taha}, o MAV é uma versão melhorada do método de menor custo e costuma produzir soluções melhores já que usa uma heurística mais complexa para determinar as melhores rotas.
 
 Os passos seguidos pelo método são:
 
@@ -319,20 +319,15 @@ Os passos seguidos pelo método são:
 
 O SIMPL é uma ferramenta desenvolvida com o intuito de fornecer o entendimento sistêmico do comportamento dos métodos de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Para tal, a ferramenta possui uma didática de ensino, não focando em massivos dados de entrada. Portanto, é apropriada a todos os que desejarem ter maior conhecimento das técnicas e métodos utilizados para resolver variados problemas de Pesquisa Operacional e interagir com o sistema gerindo decisões a serem tomadas sobre os passos dos algoritmos.
 
-Para mais fácil acesso, o trabalho desenvolvido em plataforma web e codificado utilizando-se a linguagem de programação \textit{JavaScript}, delegando os cálculos para a máquina cliente e reduzindo a carga na rede e nos servidores \cite{livrojavascript}. Sendo então cada máquina responsável pelos próprios cálculos obtemos um melhor desempenho, processando os dados assim que o usuário necessita, sem perdas por latência de rede e sobrecargas no servidor. O \textit{CSS3 (Cascading Style Sheets versão 3)} é o elemento de definição de estilos para páginas Web, e foi utilizado no trabalho devido ao seu padrão ser adotado pela maioria dos navegadores disponíveis \cite{livroweb}. O \textit{HTML (Hypertext Markup Language)} é uma linguagem para estruturação e apresentação de conteúdo em páginas WEB. A versão 5 do HTML foi utilizada, devido as suas novas funcionalidades como semântica, multimídia, interação e portabilidade, que são nativas da linguagem, sem a necessidade de uso de outras tecnologias \cite{livroweb}.
+Para mais fácil acesso, o trabalho desenvolvido em plataforma web e codificado utilizando-se a linguagem de programação \textit{JavaScript}, delegando os cálculos para a máquina cliente e reduzindo a carga na rede e nos servidores \cite{livrojavascript1}. Sendo então cada máquina responsável pelos próprios cálculos obtemos um melhor desempenho, processando os dados assim que o usuário necessita, sem perdas por latência de rede e sobrecargas no servidor. O \textit{CSS3 (Cascading Style Sheets versão 3)} é o elemento de definição de estilos para páginas Web, e foi utilizado no trabalho devido ao seu padrão ser adotado pela maioria dos navegadores disponíveis \cite{livroweb2}. O \textit{HTML (Hypertext Markup Language)} é uma linguagem para estruturação e apresentação de conteúdo em páginas WEB. A versão 5 do HTML foi utilizada, devido as suas novas funcionalidades como semântica, multimídia, interação e portabilidade, que são nativas da linguagem, sem a necessidade de uso de outras tecnologias \cite{livroweb1}.
 
-Para a construção visual do trabalho realizado, utilizou-se do \textit{Bootstrap}, uma ferramenta de desenvolvimento Web utilizando \textit{HTML, CSS} e \textit{JavaScript} para sistemas responsivos \cite{bootstrap}. A ferramenta utiliza-se dos pré-processadores \textit{LESS} e \textit{Sass} que utiliza de enquadramento de conteúdo em malha, gerindo um padrão de utilização para exibição de elementos em tela que se adapta ao tamanho da tela de visualização. Para melhorar a interação do usuário com a interface fez-se uso da biblioteca \textit{jQuery}, que facilita a manipulação e acesso aos dados dos elementos \textit{HTML} e \textit{CSS} dinamicamente \cite{jquery}. Por fim, para a exibição de símbolos matemáticos nos modelos e resultados fez-se uso da biblioteca \textit{MathJax.js}, que permite a exibição de textos utilizando a linguagem \textit{TeX} em navegadores web \cite{mathjax}. Com o uso da linguagem \textit{TeX} é possível a descrição de símbolos em forma textual que são convertidos para sua respectiva representação gráfica, de forma que, quando necessário, possa ser feita a descrição através de notação matemática, trazendo mais clareza à comunicação entre programa e usuário \cite{tex}.
+Para a construção visual do trabalho realizado, utilizou-se do \textit{Bootstrap}, um \textit{framework} de desenvolvimento Web utilizando \textit{HTML, CSS} e \textit{JavaScript} para sistemas responsivos \cite{bootstrap}. Optou-se por sua utilização para exibição de elementos em tela que se adapta ao tamanho da tela de visualização. Para melhorar a interação do usuário com a interface fez-se uso da biblioteca \textit{jQuery}, que facilita a manipulação e acesso aos dados dos elementos \textit{HTML} e \textit{CSS} dinamicamente \cite{jquery}. Por fim, para a exibição de símbolos matemáticos nos modelos e resultados fez-se uso da biblioteca \textit{MathJax.js}, que permite a exibição de textos utilizando a linguagem \textit{TeX} em navegadores web \cite{mathjax}. Com o uso da linguagem \textit{TeX} é possível a descrição de símbolos em forma textual que são convertidos para sua respectiva representação gráfica, de forma que, quando necessário, possa ser feita a descrição através de notação matemática, trazendo mais clareza à comunicação entre programa e usuário \cite{tex}.
 
-O \sigla até o momento da escrita desse artigo se divide em três partes: simplex, \textit{branch and bound} e transporte. Cada uma dessas seções contém um formulário para entrada do modelo matemático e parametrização do método, opções para salvar e carregar modelos e páginas de ajuda informando mais sobre as técnicas e sobre como utilizar a ferramenta.
+O \sigla até o momento da escrita desse artigo se divide em três partes: Simplex, \textit{Branch and Bound} e transporte. Cada uma dessas seções contém um formulário para entrada do modelo matemático e parametrização do método, opções para salvar e carregar modelos e páginas de ajuda informando mais sobre as técnicas e sobre como utilizar a ferramenta.
 
-Os modelos criados podem ser utilizados para ver os resultados da execução completa do algoritmo ou cada iteração individualmente. Em ambos os casos são exibidas todas as etapas da execução dos algoritmos destacando as informações mais importantes que determinaram o curso tomado pelo algoritmo. É possível também fazer com que o algoritmo siga um caminho diferente caso o usuário deseje avaliar o que aconteceria de diferente. Essa alteração no caminho se dá de forma particular a cada método: no simplex escolhe-se qual o elemento pivô, a partir do qual é definido qual variável sai e qual entra; no \textit{branch and bound} escolhe-se em qual variável não inteira será feito o processo de \textit{branching}, ou seja, adição de restrições ao valor daquela variável que cria dois modelos distintos; nos problemas de alocação de recursos, também chamados de problemas de transporte, o usuário pode escolher uma rota para ter recursos alocados.
+Os modelos criados podem ser utilizados para ver os resultados da execução completa do algoritmo ou cada iteração individualmente. Em ambos os casos são exibidas todas as etapas da execução dos algoritmos destacando as informações mais importantes que determinaram o curso tomado pelo algoritmo. É possível também fazer com que o algoritmo siga um caminho diferente caso o usuário deseje avaliar o que aconteceria de diferente. Essa alteração no caminho se dá de forma particular a cada método: no Simplex escolhe-se qual o elemento pivô, a partir do qual é definido qual variável sai e qual entra; no \textit{Branch and Bound} escolhe-se em qual variável não inteira será feito o processo de \textit{branching}, ou seja, adição de restrições ao valor daquela variável que cria dois modelos distintos; nos problemas de alocação de recursos, também chamados de problemas de transporte, o usuário pode escolher uma rota para ter recursos alocados.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%											 ESCREVER												%%
-
-Para a construção de todos os métodos contidos no trabalho, utilizou-se do pacote \textit{GLPK (GNU Linear Programming Kit)} implementada em \textit{JavaScript} na biblioteca \textit{glpk.js}, que é uma ferramenta disponível gratuitamente para resolver problemas de Programação linear (PL), Programação Linear Inteira Mista(PLIM), entre outros \cite{glpk}. Tal ferramenta pode ser usada com grande volume de dados de entrada, ou seja, com modelos matemáticos que tenham muitas variáveis e/ou restrições. A biblioteca contém os métodos de simplex primal e dual, método primal-dual de pontos interiores, método \textit{branch-and-cut}, tradutor para \textit{GNU MathProg} e a interface de programação de modelos. O pacote contém documentação com manual de referência e a descrição da linguagem de modelagem do \textit{GNU MathProg}.
-
-Para que o método \textit{Branch-and-Bound} se mantivesse didaticamente intuitivo, foi construído uma árvore de representação de seus ramos. Para a construção de árvores do \textit{Branch-and-Bound}, utilizou-se da plataforma \textit{VIS} em \textit{JavaScript} pela biblioteca \textit{vis.js}, que é uma ferramenta capaz de exibir grande volume de dados, que mantém fácil interação com usuário para a inserção de dados de entrada e possui dinamismo compatível com variados navegadores.
+Para que o método \textit{Branch and Bound} se mantivesse didaticamente intuitivo, foi construído uma árvore de representação de seus ramos. Para a construção dessa utilizou-se biblioteca \textit{vis.js}, permitindo a construção e manipulação de elementos gráficos em forma de árvore \cite{vis}. Além disso, como vários modelos Simplex devem ser executado nesse método, optou-se por utilizar uma biblioteca mais otimizada e que portanto possui melhor desempenho em vez do mesmo código criado para mostrar todas as iterações do Simplex. Para isso escolhemos o pacote \textit{GLPK (GNU Linear Programming Kit)} implementado na biblioteca \textit{glpk.js}. Apesar de a linguagem \textit{GNU MathProg} interpretada pelo \textit{GLPK} possuir diversos recursos, inclusive para PLI \cite{mathprog}, optou-se por realizar apenas o método Simplex de forma básica para que pudesse ser melhor exibido o processo de solução de diversos modelos de PL a fim de encontrar uma solução inteira.
 
 \section{Resultados}\label{sec:resultados}
 
@@ -342,8 +337,8 @@ Para que o método \textit{Branch-and-Bound} se mantivesse didaticamente intuiti
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%											 ATUALIZAR												%%
-\bibliography{referencias}
 \bibliographystyle{abnt-alf}
+\bibliography{referencias}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

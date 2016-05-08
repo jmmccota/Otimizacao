@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.15)  7 MAY 2016 14:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.15)  8 MAY 2016 17:10
 entering extended mode
 **./artigo.tex
 (artigo.tex
@@ -1074,21 +1074,15 @@ Package babel Warning: You haven't loaded the language english yet
 [1
 
 {C:/Users/elias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Warning: Citation `hillier' on page 2 undefined on input line 148.
-
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 172.
+
 
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 172.
-[2]
-
-LaTeX Warning: Citation `TAHA' on page 3 undefined on input line 218.
-
-[3] <img/grafotransporte.png, id=22, 410.2828pt x 194.97844pt>
+[2] [3] <img/grafotransporte.png, id=22, 410.2828pt x 194.97844pt>
 File: img/grafotransporte.png Graphic file (type png)
 
 <use img/grafotransporte.png>
@@ -1100,67 +1094,33 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 232.
 
 [4 <./img/grafotransporte.png>]
-
-LaTeX Warning: Citation `TAHA' on page 5 undefined on input line 305.
-
-
-LaTeX Warning: Citation `livrojavascript' on page 5 undefined on input line 322
-.
-
-
-LaTeX Warning: Citation `livroweb' on page 5 undefined on input line 322.
-
-
-LaTeX Warning: Citation `livroweb' on page 5 undefined on input line 322.
-
-
 Overfull \hbox (2.12575pt too wide) in paragraph at lines 322--323
 []\T1/ptm/m/n/10.95 Para mais fá-cil acesso, o tra-ba-lho de-sen-vol-vido em pl
 a-ta-forma web e co-di-fi-cado utilizando-
  []
 
-
-LaTeX Warning: Citation `bootstrap' on page 5 undefined on input line 324.
-
-
-LaTeX Warning: Citation `jquery' on page 5 undefined on input line 324.
-
-
-LaTeX Warning: Citation `mathjax' on page 5 undefined on input line 324.
-
-
-LaTeX Warning: Citation `tex' on page 5 undefined on input line 324.
-
-[5]
-
-LaTeX Warning: Citation `glpk' on page 6 undefined on input line 330.
-
-(artigo.bbl [6]) [7] (artigo.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[5] (artigo.bbl [6]) [7] (artigo.aux) ) 
 Here is how much of TeX's memory you used:
- 16455 strings out of 493634
- 316299 string characters out of 3135239
- 357162 words of memory out of 3000000
- 19470 multiletter control sequences out of 15000+200000
+ 16442 strings out of 493634
+ 315506 string characters out of 3135239
+ 357200 words of memory out of 3000000
+ 19457 multiletter control sequences out of 15000+200000
  20770 words of font info for 41 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 55i,10n,54p,1288b,302s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/fontname/8r
-.enc}<C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi8.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/elias/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/elias/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/eli
-as/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10
-.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/ut
-mb8a.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/time
-s/utmr8a.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on artigo.pdf (7 pages, 190155 bytes).
+ 55i,10n,54p,1161b,369s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/elias/AppData/Local/Programs/M
+iKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Users/elias/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/elias/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/el
+ias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/elias/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/elias/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/elias/AppData/Local
+/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on artigo.pdf (7 pages, 184798 bytes).
 PDF statistics:
  69 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
