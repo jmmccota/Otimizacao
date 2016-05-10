@@ -5,109 +5,95 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{1.45.2.1 }
 
-\bibitem[Coleman e Li 1996]{coleman1996reflective}
-\abntrefinfo{Coleman e Li}{COLEMAN; LI}{1996}
-{COLEMAN, T.~F.; LI, Y. A reflective newton method for minimizing a quadratic
-  function subject to bounds on some of the variables.
-\emph{SIAM Journal on Optimization}, SIAM, v.~6, n.~4, p. 1040--1058, 1996.}
+\bibitem[Cervone, Perfect e Krautzberger 2015]{mathjax}
+\abntrefinfo{Cervone, Perfect e Krautzberger}{CERVONE; PERFECT;
+  KRAUTZBERGER}{2015a}
+{CERVONE, D.; PERFECT, C.; KRAUTZBERGER, P. \emph{MathJax Documentation}. 2015.
+Dispon{\'\i}vel em: <\url{http://docs.mathjax.org/en/latest/}>.}
 
-\bibitem[Cormen et al. 2001]{cormen2001introduction}
-\abntrefinfo{Cormen et al.}{CORMEN et al.}{2001}
-{CORMEN, T.~H. et al. \emph{Introduction to algorithms}. [S.l.]: MIT press,
-  2001.}
 
-\bibitem[Doucet, Freitas e Gordon 2001]{doucet2001introduction}
-\abntrefinfo{Doucet, Freitas e Gordon}{DOUCET; FREITAS; GORDON}{2001}
-{DOUCET, A.; FREITAS, N. D.; GORDON, N. \emph{An introduction to sequential
-  Monte Carlo methods}. 1. ed. [S.l.]: Springer, 2001.}
+\bibitem[Cervone, Perfect e Krautzberger 2015]{vis}
+\abntrefinfo{Cervone, Perfect e Krautzberger}{CERVONE; PERFECT;
+  KRAUTZBERGER}{2015b}
+{CERVONE, D.; PERFECT, C.; KRAUTZBERGER, P. \emph{vis.js Network
+  Documentation}. 2015.
+Dispon{\'\i}vel em: <\url{http://docs.mathjax.org/en/latest/}>.}
 
-\bibitem[Faoro 2009]{faoro2009}
-\abntrefinfo{Faoro}{FAORO}{2009}
-{FAORO, D.
-\emph{Modelo de programa{\c{c}}{\~a}o multiobjetivo de um sistema de
-  produ{\c{c}}{\~a}o leiteira -- Considerando objetivos de sustentabilidade}.
-Disserta{\c{c}}{\~a}o de mestrado --- Programa de P{\'o}s-Gradua{\c{c}}{\~a}o
-  em Modelagem Matem{\'a}tica. Universidade Regional do Noroeste do Estado do
-  Rio Grande do Sul, 2009.
-Dispon{\'\i}vel em:
-  $<$http://bibliodigital.unijui.edu.br:8080/xmlui/handle/123456789/215$>$.}
 
-\bibitem[Gameiro, Rocco e Caixeita-Filho 2011]{gameiro2011}
-\abntrefinfo{Gameiro, Rocco e Caixeita-Filho}{GAMEIRO; ROCCO;
-  CAIXEITA-FILHO}{2011}
-{GAMEIRO, A.~H.; ROCCO, C.~D.; CAIXEITA-FILHO, J.~V. Modelo
-  matem{\'a}t{\'a}tico para otimiza{\c{c}}{\~a}o e avalia{\c{c}}{\~a}o de
-  unidade produtora de leite caracterizada pela integra{\c{c}}{\~a}o
-  lavoura-pecu{\'a}ria: considera{\c{c}}{\~a}o de par{\^a}metros
-  econ{\^o}micos, log{\'\i}sticos e ambientais.
-\emph{Anais do XLIX Congresso da Sociedade Brasileira de Economia,
-  Administra{\c{c}}{\~a}o e Sociologia do Campo (SOBER)}, p. 1--16, 2011.}
+\bibitem[Flanagan 2011]{livrojavascript1}
+\abntrefinfo{Flanagan}{FLANAGAN}{2011}
+{FLANAGAN, D. \emph{JavaScript - The Definitive Guide}. 6. ed. Sebastopol:
+  O'Reilly, 2011.}
 
-\bibitem[{Gurobi, Optimization Inc.} 2012]{gurobi}
-\abntrefinfo{{Gurobi, Optimization Inc.}}{{Gurobi, Optimization Inc.}}{2012}
-{{Gurobi, Optimization Inc.} \emph{``Gurobi Optimizer Reference Manual''}.
-  2012.
-Dispon{\'\i}vel em: $<$http://www.gurobi.com$>$.}
 
-\bibitem[J{\'u}nior e Silva 2005]{junior2005}
-\abntrefinfo{J{\'u}nior e Silva}{J{\'U}NIOR; SILVA}{2005}
-{J{\'U}NIOR, J. F.~A.; SILVA, C. A.~B. Um sistema de apoio {\`a} decis{\~a}o
-  baseado em planilha eletr{\^o}nica para o planejamento da produ{\c{c}}{\~a}o
-  na ind{\'u}stria de laticínios.
-\emph{Revista Brasileira de Agroinform{\'a}tica}, v.~7, n.~2, p. 17--31, 2005.}
+\bibitem[Gasston 2011]{livroweb2}
+\abntrefinfo{Gasston}{GASSTON}{2011}
+{GASSTON, P. \emph{The book of CSS3}. [S.l.]: No Starch Press, 2011.}
 
-\bibitem[Kawano 2012]{kawano2012otimizaccao}
-\abntrefinfo{Kawano}{KAWANO}{2012}
-{KAWANO, B.~R.
-\emph{Otimiza{\c{c}}{\~a}o na ind{\'u}stria de laticínios: oportunidades de
-  eficiência energética e econ{\^o}mica}.
-Disserta{\c{c}}{\~a}o de mestrado --- Faculdade de Engenharia Mecânica.
-  Universidade Estadual de Campinas, 2012.
-Dispon{\'\i}vel em:
-  $<$http://www.bibliotecadigital.unicamp.br/document/?code=000905536$>$.}
 
-\bibitem[Meneghini 2013]{meneghini2013}
-\abntrefinfo{Meneghini}{MENEGHINI}{2013}
-{MENEGHINI, R. C.~M.
-\emph{Ferramenta para maximiza{\c{c}}{\~a}o do lucro de laticínios pelo
-  planejamento do mix {\'o}timo de produtos l{\'a}cteos e
-  precifica{\c{c}}{\~a}o dos componentes do leite cru}.
-Tese de doutorado --- Escola Superior de Agricultura ``Luiz de Queiroz''.
-  Universidade de S{\~a}o Paulo, 2013.
-Dispon{\'\i}vel em: $<$http://www.esalq.usp.br/pg/teses/3749797.pdf$>$.}
+\bibitem[{GNU PROJECT} 2010]{glpk}
+\abntrefinfo{{GNU PROJECT}}{{GNU PROJECT}}{2010a}
+{{GNU PROJECT}. \emph{GNU Linear Programming Kit Reference Manual}. [S.l.]:
+  {GNU Project }, 2010.}
 
-\bibitem[Miranda, Martins e Faria 2007]{miranda2007uso}
-\abntrefinfo{Miranda, Martins e Faria}{MIRANDA; MARTINS; FARIA}{2007}
-{MIRANDA, G.~J.; MARTINS, V.~F.; FARIA, A.~F. O uso da programa{\c{c}}{\~a}o
-  linear num contexto de latic{\'\i}nios com v{\'a}rias restri{\c{c}}{\~o}es na
-  capacidade produtiva.
-\emph{Custos e @groneg{\'o}cios online}, v.~3, p. 40--58, maio 2007.
-ISSN 1808--2882.}
 
-\bibitem[Oliszeski, Colmenero e Kovaleski 2009]{oliszeski2009}
-\abntrefinfo{Oliszeski, Colmenero e Kovaleski}{OLISZESKI; COLMENERO;
-  KOVALESKI}{2009}
-{OLISZESKI, C. A.~N.; COLMENERO, J.~C.; KOVALESKI, J.~L. Desafios da
-  inser{\c{c}}{\~a}o da pesquisa operacional em agroind{\'u}strias de pequeno
-  porte.
-\emph{Revista ADMpg Gest{\~a}o Estratégica}, v.~2, n.~2, p. 113--118, 2009.}
+\bibitem[{GNU PROJECT} 2010]{mathprog}
+\abntrefinfo{{GNU PROJECT}}{{GNU PROJECT}}{2010b}
+{{GNU PROJECT}. \emph{Modeling Language GNU MathProg Language Reference}.
+  [S.l.]: {GNU Project }, 2010.}
 
-\bibitem[Steuer 1986]{steuer1986multiple}
-\abntrefinfo{Steuer}{STEUER}{1986}
-{STEUER, R.~E. \emph{Multiple criteria optimization: Theory, computation, and
-  application}. [S.l.]: Wiley \& Sons, 1986.}
 
-\bibitem[Takahashi 2007]{takahashi2007otimizacao}
-\abntrefinfo{Takahashi}{TAKAHASHI}{2007}
-{TAKAHASHI, R. H.~C. Otimiza{\c{c}}{\~a}o escalar e vetorial.
-\emph{Notas de Aula}, 2007.
-Dispon{\'\i}vel em: $<$http://www.mat.ufmg.br/~taka/Download/OTEV-Vol3.pdf$>$.}
+\bibitem[{GUROBI OPTIMIZATION INC.} 2012]{gurobi}
+\abntrefinfo{{GUROBI OPTIMIZATION INC.}}{{GUROBI OPTIMIZATION INC.}}{2012}
+{{GUROBI OPTIMIZATION INC.} \emph{Gurobi Optimizer Reference Manual}. [S.l.]:
+  {Gurobi Optimization Inc.}, 2012.}
 
-\bibitem[Trindade e Silva 2008]{trindade2008}
-\abntrefinfo{Trindade e Silva}{TRINDADE; SILVA}{2008}
-{TRINDADE, A. M.~S.; SILVA, R. W. S.~M. Sistema de cria{\c{c}}{\~a}o de bovinos
-  de leite para a regi{\~a}o sudoeste do rio grande do sul.
-\emph{Sistemas de Produ{\c{c}}{\~a}o}, Embrapa Pecu{\'a}ria Sul, n.~3, 2008.
-ISSN 1679--3641.}
+
+\bibitem[Hillier e Lieberman 2006]{hillier}
+\abntrefinfo{Hillier e Lieberman}{HILLIER; LIEBERMAN}{2006}
+{HILLIER, F.~S.; LIEBERMAN, G.~J. \emph{Introdu\c{c}\~ao \`a Pesquisa
+  Operacional}. 8. ed. S\~ao Paulo: McGraw-Hill, 2006.}
+
+
+\bibitem[Knuth 1984]{tex}
+\abntrefinfo{Knuth}{KNUTH}{1984}
+{KNUTH, D.~E. \emph{The TeXbook}. 1. ed. Boston: Addison-Wesley Professional,
+  1984.}
+
+
+\bibitem[Lubbers et al. 2011]{livroweb1}
+\abntrefinfo{Lubbers et al.}{LUBBERS et al.}{2011}
+{LUBBERS, P. et al. \emph{Pro HTML5 programming}. [S.l.]: Springer, 2011.}
+
+
+\bibitem[Notebaert e Eikland 2004]{lpsolve}
+\abntrefinfo{Notebaert e Eikland}{NOTEBAERT; EIKLAND}{2004}
+{NOTEBAERT, P.; EIKLAND, K. \emph{lp\_solve Reference Guide}. 2004.
+Dispon{\'\i}vel em: <\url{http://web.mit.edu/lpsolve/doc/}>.}
+
+
+\bibitem[Schrage 2012]{lindo}
+\abntrefinfo{Schrage}{SCHRAGE}{2012}
+{SCHRAGE, L. \emph{Optimization Modeling with LINGO}. [S.l.]: {Lindo Systems
+  Inc.}, 2012.}
+
+
+\bibitem[Taha 2008]{taha}
+\abntrefinfo{Taha}{TAHA}{2008}
+{TAHA, H.~A. \emph{Pesquisa Operacional}. 8. ed. S\~ao Paulo: Prentice Hall,
+  2008.}
+
+
+\bibitem[{THE JQUERY FOUNDATION} 2012]{jquery}
+\abntrefinfo{{THE JQUERY FOUNDATION}}{{THE JQUERY FOUNDATION}}{2012}
+{{THE JQUERY FOUNDATION}. \emph{jQuery API Documentation}. 2012.
+Dispon{\'\i}vel em: <\url{http://api.jquery.com/}>.}
+
+
+\bibitem[{TWITTER INC.} 2015]{bootstrap}
+\abntrefinfo{{TWITTER INC.}}{{TWITTER INC.}}{2015}
+{{TWITTER INC.} \emph{Bootstrap 3.3.6 Documentation}. 2015.
+Dispon{\'\i}vel em: <\url{https://bootstrapdocs.com/v3.3.6/docs}>.}
+
 
 \end{thebibliography}
