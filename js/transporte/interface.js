@@ -365,6 +365,7 @@ $(document).ready(function() {
 
     //Analisar arquivo
     $('#analisarFile').click(function() {
+		throw "Not Implemented Yet!";
         try {
             if (reader.result != null) {
                 t.reseta();

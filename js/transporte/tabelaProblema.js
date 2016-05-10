@@ -11,6 +11,7 @@ Tabela = function() {
     };
 
     t.carrega = function(xx) {
+		throw "Not Implemented Yet!";
         t.reseta();
         $("#myTableData").empty();
         $("#myTableData2").empty();
@@ -136,7 +137,7 @@ Tabela = function() {
 
         t.nRestri++;
         var table = document.getElementById("myTableData");
-        var row = table.insertRow(t.nRestri + 1);
+        var row = table.insertRow(t.nRestri	);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + t.nRestri + '</b>';
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="x' + t.nRestri + '' + (i - 1) + '" type="text"  \
@@ -196,6 +197,7 @@ Tabela = function() {
 };
 
 leituraParametros = function(tipo) {
+	throw "Not Implemented Yet!";
     /*
      * Le os dados informados na tabela de entrada e deixa no formato utilizado.
      * Parametros: 
@@ -261,6 +263,7 @@ leituraParametros = function(tipo) {
 }
 
 verificaTabela = function() {
+	throw "Not Implemented Yet!";
     var bool = false;
     $(".fObj").each(function() {
         bool = ($(this).val() === '' || $(this).val() === null);
