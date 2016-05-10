@@ -30,8 +30,8 @@ Tabela = function() {
         var row = table.insertRow(0);
         row.insertCell(0).innerHTML = '&nbsp;';
         for (i = 1; i <= t.nVar; i++)
-            row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
-        row.insertCell().innerHTML = '<center><b>Rela&ccedil;&atilde;o&nbsp;&nbsp;</b></center>';
+            row.insertCell(i).innerHTML = '<center><b>Coluna' + (i) + '</b></center>';
+        row.insertCell().innerHTML = '<center><b>Linha</b></center>';
         row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
         //Funcao Objetivo
         row = table.insertRow(1);
@@ -76,6 +76,33 @@ Tabela = function() {
                 showAlert('warning', 'Limite máximo de restrições atingido: 20');
             }
         }
+<<<<<<< HEAD
+=======
+
+        //Limite superior e inferior
+        var table = document.getElementById("myTableData2");
+        var rowCount = table.rows.length;
+        row = table.insertRow(rowCount);
+        row.insertCell(0).innerHTML = '&nbsp;';
+        for (i = 1; i <= t.nVar; i++) {
+            row.insertCell(i).innerHTML = '<center><b>Coluna' + (i) + '</b></center>';
+        }
+        var rowCount = table.rows.length;
+        row = table.insertRow(rowCount);
+        row.insertCell(0).innerHTML = '<b>Limite Superior</b>';
+        for (i = 1; i <= t.nVar; i++) {
+
+            row.insertCell(i).innerHTML = '<input id="limiSupx' + (i) + '" type="text" \
+                    class="limSup form-control" onkeypress="return isInfinityKey(event)" required  step="any" value="' + t.upper[i - 1] + '">';
+        }
+        row = table.insertRow(rowCount + 1);
+        row.insertCell(0).innerHTML = '<b>Limite Inferior</b>';
+        for (i = 1; i <= t.nVar; i++) {
+
+            row.insertCell(i).innerHTML = '<input id="limiInfx' + (i) + '" type="text" \
+                    class="limInf form-control" onkeypress="return isInfinityKey(event)" required  step="any" value="' + t.lower[i - 1] + '">';
+        }
+>>>>>>> 73429cd1cfd82e7fe5f461579677c67c14f96a09
     };
 
     //Cria a tabela base de um novo modelo
@@ -87,7 +114,7 @@ Tabela = function() {
         var row = table.insertRow(0);
         row.insertCell(0).innerHTML = '&nbsp;';
         for (i = 1; i <= t.nVar; i++)
-            row.insertCell(i).innerHTML = '<center><b>x' + (i) + '</b></center>';
+            row.insertCell(i).innerHTML = '<center><b>Coluna' + (i) + '</b></center>';
 
 
         row.insertCell().innerHTML = '<center><b>Suprimento</b></center>';
@@ -99,9 +126,15 @@ Tabela = function() {
                     class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         row.insertCell().innerHTML = '&nbsp;';
         row.insertCell().innerHTML = '&nbsp;';
+		
         //Insere primeira restricao
+<<<<<<< HEAD
         //t.addRow();
 
+=======
+        t.addRow();
+        
+>>>>>>> 73429cd1cfd82e7fe5f461579677c67c14f96a09
     };
 
     //Adiciona restricoes ao modelo
@@ -113,8 +146,13 @@ Tabela = function() {
 
         t.nRestri++;
         var table = document.getElementById("myTableData");
+<<<<<<< HEAD
         var row = table.insertRow(t.nRestri);
         row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + t.nRestri + '</b>';
+=======
+        var row = table.insertRow(t.nRestri	);
+        row.insertCell(0).innerHTML = '<b>Linha' + t.nRestri + '</b>';
+>>>>>>> 73429cd1cfd82e7fe5f461579677c67c14f96a09
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="x' + t.nRestri + '' + (i - 1) + '" type="text"  \
                     class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
@@ -132,10 +170,17 @@ Tabela = function() {
 
         t.nVar++;
         var table = document.getElementById("myTableData");
+<<<<<<< HEAD
 
         table.rows[0].insertCell(t.nVar).innerHTML = '<center><b>x' + (t.nVar) + '</b></center>';
         for (i = 1; i < table.rows.length; i++) {
             table.rows[i].insertCell(table.rows[i].cells.length - 2).innerHTML = '<input id="x' + t.nRestri + '' + (t.nVar) + '" type="text"  \
+=======
+				
+		table.rows[0].insertCell(t.nVar).innerHTML = '<center><b>Coluna' + (t.nVar) + '</b></center>';
+		for (i = 1; i < table.rows.length; i++){
+				table.rows[i].insertCell(table.rows[i].cells.length - 2).innerHTML = '<input id="x' + t.nRestri + '' + (t.nVar) + '" type="text"  \
+>>>>>>> 73429cd1cfd82e7fe5f461579677c67c14f96a09
 						class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         }
     };
@@ -144,16 +189,16 @@ Tabela = function() {
         var obj = document.getElementById("myTableData").rows[t.nRestri];
         var index = obj.parentNode.parentNode.rowIndex;
         var table = document.getElementById("myTableData");
-        if (t.nRestri > 0) {
+        if (t.nRestri > 1) {
             t.nRestri--;
-            table.deleteRow(t.nRestri + 2);
+            table.deleteRow(t.nRestri + 1);
         }
     };
 
     //Remove restricoes do modelo
     t.deleteCol = function() {
-        var obj = document.getElementById("myTableData").rows[t.nRestri];
-        var index = obj.parentNode.parentNode.rowIndex;
+        //var obj = document.getElementById("myTableData").rows[t.nRestri];
+        //var index = obj.parentNode.parentNode.rowIndex;
         var table = document.getElementById("myTableData");
         if (t.nVar > 1) {
             t.nVar--;
