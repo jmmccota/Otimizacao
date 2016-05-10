@@ -134,10 +134,10 @@
                                         <label class="control-label">Tipo de Método:</label>
                                     </div>
                                     <div class="col-md-7">
-                                        <select class="form-control" id="tipo">
-											<option value="noroeste"> Canto Noroeste </option>
-											<option value="custo"> Menor Custo </option>
-											<option value="vogel"> Aproximação de Vogel </option>
+                                        <select class="form-control" id="metodo">
+                                            <option value="noroeste"> Canto Noroeste </option>
+                                            <option value="custo"> Menor Custo </option>
+                                            <option value="vogel"> Aproximação de Vogel </option>
                                         </select>
                                     </div>
                                     <div class="col-md-5" style="margin-top:20px;">
@@ -194,7 +194,7 @@
                                 </div>
                             </form>
                             <div class="col-md-12">
-							    <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
                                 <div class="col-md-10" style="display: none;" id="rowFileDisplayArea">
                                     <div id="fileDisplayArea"></div>
                                 </div>
@@ -210,21 +210,21 @@
                     <div id="mydata">
                         <table id="myTableData" class="table table-hover table-striped" style="border: 1px solid rgb(230,230,230); box-shadow: 3px 0px 3px 3px rgb(240,240,240);"></table>
                         <center>
-							<button type="button" class="btn btn-primary" id="addCol" value="">
+                            <button type="button" class="btn btn-primary" id="addCol" value="">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Coluna
                             </button>
                             <button type="button" class="btn btn-primary" id="addRow" value="">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Linha
                             </button>
-							<button type="button" class="btn btn-danger" id="delCol">
+                            <button type="button" class="btn btn-danger" id="delCol">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Excluir Coluna
                             </button>
                             <button type="button" class="btn btn-danger" id="delRow">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Excluir Linha
                             </button>
 
-                            <table id="myTableData2" class="table table-hover table-striped" style="border: 1px solid rgb(230,230,230); box-shadow: 3px 0px 3px 3px rgb(240,240,240);"></table>
-							
+                            <hr>
+
                             <button type="submit" class="btn btn-success" id="salvar">
                                 <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Salvar Problema
                             </button>
