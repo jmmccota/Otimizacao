@@ -1,7 +1,5 @@
 \documentclass [11pt]{articleSBPO}
 
-\usepackage{tikz}
-\usetikzlibrary{arrows}
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -24,6 +22,8 @@
 \usepackage[alf]{abntex2cite}
 \usepackage{epstopdf}
 \usepackage{rotating}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 \newcommand{\up}[1]{\raisebox{1.3ex}[0pt]{#1}}
 % \usepackage{latex8}
 \floatname{algorithm}{Algoritmo}
@@ -332,13 +332,73 @@ Para que o método \textit{Branch and Bound} se mantivesse didaticamente intuiti
 \section{Resultados}\label{sec:resultados}
 
 
+
+Para demonstrar o algoritmo Simplex foi utilizado o modelo abaixo, retirado de \cite{taha}, utilizando o Simplex Generalizado.
+
+\begin{equation*}
+	\begin{split}
+		Minimizar\ z =\ & 4x_{1} + x_{2} \\
+		sujeito\ a:\ \ \ \ &  3x_{1} + x_{2} = 3 \\
+		& 4x_{1} + 3x_{2} \geq 6 \\
+		& x_{1} + 2x_{2} \leq 4 \\
+		& x_{1}, x_{2} \geq 0
+	\end{split}
+\end{equation*}
+
+Na Figura \ref{fig:simplexit1} podemos observar o resultado exibido para a primeira iteração do algoritmo e como é mostrado para o usuário.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/simplexit1.png}
+	\caption[]{Primeira iteração do algoritmo Simplex Generalizado}
+	\label{fig:simplexit1}
+\end{figure}
+
+Observando a forma tabular do Simplex podemos notar que a iteração inicial está em uma solução inviável. Portanto o Simplex Generalizado usará técnicas do Simplex Dual para procurar uma nova solução, escolhendo nesse caso a variável de sobra $x_{5}$ para sair da base, inserindo a variável $x_{2}$ em seu lugar.
+
+Após outras duas iterações, exibidas em forma simultânea e sequencial pela página, vemos a última iteração como demonstrado na Figura \ref{fig:simplexit3}. Como o estado atual de execução cumpre tanto a condição de viabilidade quanto de otimalidade o algoritmo termina sua execução. Com isso então, temos a solução ótima $x_{1}=0,4$ e $x_{2}=1,8$ com valor de função objetivo $z = 3,4$.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/simplexit3.png}
+	\caption[]{Resultado final da execução do algoritmo Simplex}
+	\label{fig:simplexit3}
+\end{figure}
+
+Já para demonstrarmos a execução do algoritmo \textit{Branch and Bound} será utilizado o modelo baixo, retirado de \cite{hillier}.
+
+\begin{equation*}
+\begin{split}
+Maximizar\ z =\ & x_{1} + 5x_{2} \\
+sujeito\ a:\ \ \ \ &  x_{1} + 10x_{2} \leq 20 \\
+& x_{1} \leq 2 \\
+& x_{1}, x_{2} \geq 0
+\end{split}
+\end{equation*}
+
+Na Figura \ref{fig:bbno1} vemos o nó raiz da árvore de execução do algoritmo, que corresponde ao modelo inicial dado. Nesse caso a solução não é inteira, já que $x_{2}=1,8$ como destacado na parte inferior direita da imagem. Assim, o algoritmo cria dois novos nós: um adicionando uma restrição $x_{2} \leq 1$ e outro $x_{2} \geq 2$, sendo estes os nós 2 e 3 respectivamente.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/bbno1.png}
+	\caption[]{Nó raiz da árvore de execução}
+	\label{fig:bbno1}
+\end{figure}
+
+O nó 2 teve solução $x_{1}=2$ e $x_{2}=1$ com valor de função objetivo $z = 7$ enquanto o nó 3 teve solução $x_{1}=0$ e $x_{2}=2$ com valor de função objetivo $z = 10$. Assim, como o nó 2 possui valor de $z$ pior que o do nó 3, este é considerado a solução ótima. Mesmo que a solução do nó 2 não fosse inteira, não haveria necessidade de continuar a execução nessa subárvore já que a solução não poderia ser melhor que a do nó 2, ocorrendo então o \textit{pruning}. O nó ótimo é destacado de verde, enquanto os nós sem solução viável destacados de vermelho. Para ver informações básicas sobre um determinado nó basta passar o mouse sobre o nó, como pode ser visto no nó 2, enquanto se clica sobre o nó para mostrar as informações de forma mais detalhada no painel à direita.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/bbno3.png}
+	\caption[]{Nó ótimo da árvore de execução}
+	\label{fig:bbno3}
+\end{figure}
+
 \section{Conclusões}\label{sec:conclusao}
 
+\newpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%											 ATUALIZAR												%%
 \bibliographystyle{abnt-alf}
 \bibliography{referencias}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

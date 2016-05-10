@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.15)  8 MAY 2016 17:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.5)  10 MAY 2016 17:05
 entering extended mode
-**./artigo.tex
+**artigo.tex
 (artigo.tex
-LaTeX2e <2015/10/01> patch level 2
-Babel <3.9n> and hyphenation patterns for 69 languages loaded.
+LaTeX2e <2015/01/01> patch level 2
+Babel <3.9m> and hyphenation patterns for 69 languages loaded.
 (articleSBPO.cls
 Document Class: articleSBPO 2007/10/19 v1.4h Standard LaTeX document class
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size11.clo"
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\size11.clo"
 File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -21,410 +21,43 @@ File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\frontendlayer\
-tikz.sty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf
-.sty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgfr
-cs.sty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-futil-common.tex"
-\pgfutil@everybye=\toks14
-\pgfutil@tempdima=\dimen103
-\pgfutil@tempdimb=\dimen104
+("C:\Program Files\MiKTeX 2.9\tex/generic\babel\babel.sty"
+Package: babel 2015/08/03 3.9m The Babel package
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-futil-common-lists.tex"))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-futil-latex.def"
-\pgfutil@abb=\box26
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
-Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
-))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-frcs.code.tex"
-Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
-))
-Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf
-core.sty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx.
-sty"
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval.st
-y"
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks15
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphics.
-sty"
-Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.sty"
-Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\graphics.
-cfg"
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
-)
-Package graphics Info: Driver file: pdftex.def on input line 94.
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.
-def"
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\infware
-rr.sty"
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds
-.sty"
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count87
-))
-\Gin@req@height=\dimen105
-\Gin@req@width=\dimen106
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\systemlayer\pg
-fsys.sty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
-pgfsys.code.tex"
-Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-fkeys.code.tex"
-\pgfkeys@pathtoks=\toks16
-\pgfkeys@temptoks=\toks17
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-fkeysfiltered.code.tex"
-\pgfkeys@tmptoks=\toks18
-))
-\pgf@x=\dimen107
-\pgf@y=\dimen108
-\pgf@xa=\dimen109
-\pgf@ya=\dimen110
-\pgf@xb=\dimen111
-\pgf@yb=\dimen112
-\pgf@xc=\dimen113
-\pgf@yc=\dimen114
-\w@pgf@writea=\write3
-\r@pgf@reada=\read1
-\c@pgf@counta=\count88
-\c@pgf@countb=\count89
-\c@pgf@countc=\count90
-\c@pgf@countd=\count91
-\t@pgf@toka=\toks19
-\t@pgf@tokb=\toks20
-\t@pgf@tokc=\toks21
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
-pgf.cfg"
-File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
-)
-Driver file for pgf: pgfsys-pdftex.def
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
-pgfsys-pdftex.def"
-File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
-pgfsys-common-pdf.def"
-File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
-)))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
-pgfsyssoftpath.code.tex"
-File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count92
-\pgfsyssoftpath@bigbuffer@items=\count93
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
-pgfsysprotocol.code.tex"
-File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
-Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\color.cfg
-"
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package xcolor Info: Driver file: pdftex.def on input line 225.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
-Package xcolor Info: Model `RGB' extended on input line 1353.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcore.code.tex"
-Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-.code.tex"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-calc.code.tex"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-util.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-parser.code.tex"
-\pgfmath@dimen=\dimen115
-\pgfmath@count=\count94
-\pgfmath@box=\box27
-\pgfmath@toks=\toks22
-\pgfmath@stack@operand=\toks23
-\pgfmath@stack@operation=\toks24
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.code.tex"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.basic.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.trigonometric.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.random.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.comparison.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.base.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.round.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.misc.code.tex")
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-functions.integerarithmetics.code.tex")))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-float.code.tex"
-\c@pgfmathroundto@lastzeros=\count95
-))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorepoints.code.tex"
-File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen116
-\pgf@picmaxx=\dimen117
-\pgf@picminy=\dimen118
-\pgf@picmaxy=\dimen119
-\pgf@pathminx=\dimen120
-\pgf@pathmaxx=\dimen121
-\pgf@pathminy=\dimen122
-\pgf@pathmaxy=\dimen123
-\pgf@xx=\dimen124
-\pgf@xy=\dimen125
-\pgf@yx=\dimen126
-\pgf@yy=\dimen127
-\pgf@zx=\dimen128
-\pgf@zy=\dimen129
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorepathconstruct.code.tex"
-File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen130
-\pgf@path@lasty=\dimen131
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorepathusage.code.tex"
-File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen132
-\pgf@shorten@start@additional=\dimen133
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorescopes.code.tex"
-File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box28
-\pgf@hbox=\box29
-\pgf@layerbox@main=\box30
-\pgf@picture@serial@count=\count96
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcoregraphicstate.code.tex"
-File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen134
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcoretransformations.code.tex"
-File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen135
-\pgf@pt@y=\dimen136
-\pgf@pt@temp=\dimen137
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorequick.code.tex"
-File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcoreobjects.code.tex"
-File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorepathprocessing.code.tex"
-File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorearrows.code.tex"
-File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen138
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcoreshade.code.tex"
-File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen139
-\pgf@sys@shading@range@num=\count97
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcoreimage.code.tex"
-File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcoreexternal.code.tex"
-File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box31
-))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorelayers.code.tex"
-File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcoretransparency.code.tex"
-File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
-gfcorepatterns.code.tex"
-File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
-)))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfm
-oduleshapes.code.tex"
-File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box32
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfm
-oduleplot.code.tex"
-File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\compatibility\
-pgfcomp-version-0-65.sty"
-Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen140
-\pgf@nodesepend=\dimen141
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\compatibility\
-pgfcomp-version-1-18.sty"
-Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
-))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgff
-or.sty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgfk
-eys.sty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-fkeys.code.tex"))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\math\pgfmath.s
-ty"
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-.code.tex"))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
-ffor.code.tex"
-Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
-.code.tex")
-\pgffor@iter=\dimen142
-\pgffor@skip=\dimen143
-\pgffor@stack=\toks25
-\pgffor@toks=\toks26
-))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlaye
-r\tikz\tikz.code.tex"
-Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\libraries\pg
-flibraryplothandlers.code.tex"
-File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count98
-\pgfplotmarksize=\dimen144
-)
-\tikz@lastx=\dimen145
-\tikz@lasty=\dimen146
-\tikz@lastxsaved=\dimen147
-\tikz@lastysaved=\dimen148
-\tikzleveldistance=\dimen149
-\tikzsiblingdistance=\dimen150
-\tikz@figbox=\box33
-\tikz@figbox@bg=\box34
-\tikz@tempbox=\box35
-\tikz@tempbox@bg=\box36
-\tikztreelevel=\count99
-\tikznumberofchildren=\count100
-\tikznumberofcurrentchild=\count101
-\tikz@fig@count=\count102
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfm
-odulematrix.code.tex"
-File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count103
-\pgfmatrixcurrentcolumn=\count104
-\pgf@matrix@numberofcolumns=\count105
-)
-\tikz@expandcount=\count106
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlaye
-r\tikz\libraries\tikzlibrarytopaths.code.tex"
-File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
-)))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlaye
-r\tikz\libraries\tikzlibraryarrows.code.tex"
-File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\libraries\pg
-flibraryarrows.code.tex"
-File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen151
-))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.sty"
-Package: babel 2016/01/08 3.9n The Babel package
 *************************************
 * Local config file bblopts.cfg used
 *
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\bblopts.c
-fg"
+("C:\Program Files\MiKTeX 2.9\tex/latex\00miktex\bblopts.cfg"
 File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
 )
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\babel-portuges\por
 tuges.ldf"
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.def"
-File: babel.def 2016/01/08 3.9n Babel common definitions
-\babel@savecnt=\count107
-\U@D=\dimen152
+ ("C:\Program Files\MiKTeX 2.9\tex/generic\babel\babel.def"
+File: babel.def 2015/08/03 3.9m Babel common definitions
+\babel@savecnt=\count87
+\U@D=\dimen103
 )
 \l@brazil = a dialect from \language\l@portuges 
 Package babel Info: Making " an active character on input line 145.
 ))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\inputenc.sty"
 Package: inputenc 2015/03/17 v1.2c Input encoding file
-\inpenc@prehook=\toks27
-\inpenc@posthook=\toks28
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\utf8.def"
-File: utf8.def 2015/09/07 v1.1p UTF-8 support for inputenc
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\utf8.def"
+File: utf8.def 2015/06/27 v1.1n UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
-File: t1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
-   defining Unicode char U+00A0 (decimal 160)
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\t1enc.dfu"
+File: t1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00AB (decimal 171)
-   defining Unicode char U+00AD (decimal 173)
    defining Unicode char U+00BB (decimal 187)
    defining Unicode char U+00BF (decimal 191)
    defining Unicode char U+00C0 (decimal 192)
@@ -545,10 +178,6 @@ File: t1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
    defining Unicode char U+016F (decimal 367)
    defining Unicode char U+0170 (decimal 368)
    defining Unicode char U+0171 (decimal 369)
-   defining Unicode char U+0174 (decimal 372)
-   defining Unicode char U+0175 (decimal 373)
-   defining Unicode char U+0176 (decimal 374)
-   defining Unicode char U+0177 (decimal 375)
    defining Unicode char U+0178 (decimal 376)
    defining Unicode char U+0179 (decimal 377)
    defining Unicode char U+017A (decimal 378)
@@ -556,10 +185,6 @@ File: t1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
    defining Unicode char U+017C (decimal 380)
    defining Unicode char U+017D (decimal 381)
    defining Unicode char U+017E (decimal 382)
-   defining Unicode char U+0218 (decimal 536)
-   defining Unicode char U+0219 (decimal 537)
-   defining Unicode char U+021A (decimal 538)
-   defining Unicode char U+021B (decimal 539)
    defining Unicode char U+200C (decimal 8204)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
@@ -578,12 +203,10 @@ File: t1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
-File: ot1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
-   defining Unicode char U+00A0 (decimal 160)
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\ot1enc.dfu"
+File: ot1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
-   defining Unicode char U+00AD (decimal 173)
    defining Unicode char U+00B8 (decimal 184)
    defining Unicode char U+00BF (decimal 191)
    defining Unicode char U+00C5 (decimal 197)
@@ -601,14 +224,6 @@ File: ot1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
    defining Unicode char U+0142 (decimal 322)
    defining Unicode char U+0152 (decimal 338)
    defining Unicode char U+0153 (decimal 339)
-   defining Unicode char U+0174 (decimal 372)
-   defining Unicode char U+0175 (decimal 373)
-   defining Unicode char U+0176 (decimal 374)
-   defining Unicode char U+0177 (decimal 375)
-   defining Unicode char U+0218 (decimal 536)
-   defining Unicode char U+0219 (decimal 537)
-   defining Unicode char U+021A (decimal 538)
-   defining Unicode char U+021B (decimal 539)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
    defining Unicode char U+2018 (decimal 8216)
@@ -619,8 +234,8 @@ File: ot1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
-File: omsenc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\omsenc.dfu"
+File: omsenc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -642,148 +257,160 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-)) ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fontenc.st
-y"
+))
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
- ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.def"
+
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\graphics\graphics.sty"
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 94.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count88
+))
+("C:\Program Files\MiKTeX 2.9\tex/latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.s
-ty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\ifvtex.sty"
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count108
-\Gm@cntv=\count109
-\c@Gm@tempcnt=\count110
-\Gm@bindingoffset=\dimen153
-\Gm@wd@mp=\dimen154
-\Gm@odd@mp=\dimen155
-\Gm@even@mp=\dimen156
-\Gm@layoutwidth=\dimen157
-\Gm@layoutheight=\dimen158
-\Gm@layouthoffset=\dimen159
-\Gm@layoutvoffset=\dimen160
-\Gm@dimlist=\toks29
+\Gm@cnth=\count89
+\Gm@cntv=\count90
+\c@Gm@tempcnt=\count91
+\Gm@bindingoffset=\dimen104
+\Gm@wd@mp=\dimen105
+\Gm@odd@mp=\dimen106
+\Gm@even@mp=\dimen107
+\Gm@layoutwidth=\dimen108
+\Gm@layoutheight=\dimen109
+\Gm@layouthoffset=\dimen110
+\Gm@layoutvoffset=\dimen111
+\Gm@dimlist=\toks17
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
-cfg"))
+("C:\Program Files\MiKTeX 2.9\tex/latex\geometry\geometry.cfg"))
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\algorithms\algorit
 hm.sty"
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
+ ("C:\Program Files\MiKTeX 2.9\tex/latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count111
-\float@exts=\toks30
-\float@box=\box37
-\@float@everytoks=\toks31
-\@floatcapt=\box38
+\c@float@type=\count92
+\float@exts=\toks18
+\float@box=\box26
+\@float@everytoks=\toks19
+\@floatcapt=\box27
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks32
-\c@algorithm=\count112
+\@float@every@algorithm=\toks20
+\c@algorithm=\count93
 )
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\algorithms\algorit
 hmic.sty"
 Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-\c@ALC@unique=\count113
-\c@ALC@line=\count114
-\c@ALC@rem=\count115
-\c@ALC@depth=\count116
+\c@ALC@unique=\count94
+\c@ALC@line=\count95
+\c@ALC@rem=\count96
+\c@ALC@depth=\count97
 \ALC@tlm=\skip43
 \algorithmicindent=\skip44
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\times.sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex\psnfss\times.sty"
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsmath.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsmath\amsmath.sty"
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip45
 
 For additional information on amsmath, use the `?' option.
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amstext.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsmath\amstext.sty"
 Package: amstext 2000/06/29 v2.01
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks33
-\ex@=\dimen161
+\@emptytoks=\toks21
+\ex@=\dimen112
 ))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsmath\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen162
+\pmbraise@=\dimen113
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsmath\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count117
+\inf@bad=\count98
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count118
-\leftroot@=\count119
+\uproot@=\count99
+\leftroot@=\count100
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count120
-\DOTSCASE@=\count121
+\classnum@=\count101
+\DOTSCASE@=\count102
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
-\Mathstrutbox@=\box39
-\strutbox@=\box40
-\big@size=\dimen163
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen114
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count122
-\c@MaxMatrixCols=\count123
+\macc@depth=\count103
+\c@MaxMatrixCols=\count104
 \dotsspace@=\muskip10
-\c@parentequation=\count124
-\dspbrk@lvl=\count125
-\tag@help=\toks34
-\row@=\count126
-\column@=\count127
-\maxfields@=\count128
-\andhelp@=\toks35
-\eqnshift@=\dimen164
-\alignsep@=\dimen165
-\tagshift@=\dimen166
-\tagwidth@=\dimen167
-\totwidth@=\dimen168
-\lineht@=\dimen169
-\@envbody=\toks36
+\c@parentequation=\count105
+\dspbrk@lvl=\count106
+\tag@help=\toks22
+\row@=\count107
+\column@=\count108
+\maxfields@=\count109
+\andhelp@=\toks23
+\eqnshift@=\dimen115
+\alignsep@=\dimen116
+\tagshift@=\dimen117
+\tagwidth@=\dimen118
+\totwidth@=\dimen119
+\lineht@=\dimen120
+\@envbody=\toks24
 \multlinegap=\skip46
 \multlinetaggap=\skip47
-\mathdisplay@stack=\toks37
+\mathdisplay@stack=\toks25
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\amssymb.s
-ty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsfonts\amssymb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsfonts\amsfonts.sty"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
@@ -793,45 +420,47 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\setspace\setspace.
 sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
+) ("C:\Program Files\MiKTeX 2.9\tex/latex\graphics\graphicx.sty"
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+\Gin@req@height=\dimen121
+\Gin@req@width=\dimen122
 )
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\subfig\subfig.sty"
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption.st
 y"
-Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+Package: caption 2015/09/17 v3.3-111 Customizing captions (AR)
 
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption3.s
 ty"
-Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen170
-\captionmargin@=\dimen171
-\captionwidth=\dimen172
-\caption@tempdima=\dimen173
-\caption@indent=\dimen174
-\caption@parindent=\dimen175
-\caption@hangindent=\dimen176
+Package: caption3 2015/09/20 v1.7-115 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen123
+\captionmargin@=\dimen124
+\captionwidth=\dimen125
+\caption@tempdima=\dimen126
+\caption@indent=\dimen127
+\caption@parindent=\dimen128
+\caption@hangindent=\dimen129
 )
-\c@ContinuedFloat=\count129
+\c@ContinuedFloat=\count110
 Package caption Info: float package is loaded.
 )
-\c@KVtest=\count130
+\c@KVtest=\count111
 \sf@farskip=\skip48
-\sf@captopadj=\dimen177
+\sf@captopadj=\dimen130
 \sf@capskip=\skip49
 \sf@nearskip=\skip50
-\c@subfigure=\count131
-\c@subfigure@save=\count132
-\c@lofdepth=\count133
-\c@subtable=\count134
-\c@subtable@save=\count135
-\c@lotdepth=\count136
+\c@subfigure=\count112
+\c@subfigure@save=\count113
+\c@lofdepth=\count114
+\c@subtable=\count115
+\c@subtable@save=\count116
+\c@lotdepth=\count117
 \sf@top=\skip51
 \sf@bottom=\skip52
-)
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\indentfirst.
-sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex\tools\indentfirst.sty"
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\was\icomma.sty"
@@ -841,99 +470,87 @@ Package: icomma 2002/03/10 v2.0 (WaS)
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\longtable.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex\tools\longtable.sty"
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip53
 \LTright=\skip54
 \LTpre=\skip55
 \LTpost=\skip56
-\LTchunksize=\count137
-\LTcapwidth=\dimen178
-\LT@head=\box41
-\LT@firsthead=\box42
-\LT@foot=\box43
-\LT@lastfoot=\box44
-\LT@cols=\count138
-\LT@rows=\count139
-\c@LT@tables=\count140
-\c@LT@chunks=\count141
-\LT@p@ftn=\toks38
+\LTchunksize=\count118
+\LTcapwidth=\dimen131
+\LT@head=\box30
+\LT@firsthead=\box31
+\LT@foot=\box32
+\LT@lastfoot=\box33
+\LT@cols=\count119
+\LT@rows=\count120
+\c@LT@tables=\count121
+\c@LT@chunks=\count122
+\LT@p@ftn=\toks26
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\lscape.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex\graphics\lscape.sty"
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
-) ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\array.sty"
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex\tools\array.sty"
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen179
-\extrarowheight=\dimen180
-\NC@list=\toks39
+\col@sep=\dimen132
+\extrarowheight=\dimen133
+\NC@list=\toks27
 \extratabsurround=\skip57
 \backup@length=\skip58
 )
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\abntex2\abntex2cit
 e.sty"
 Package: abntex2cite 2016/02/26 v-1.9.6 abnTeX2
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\calc.sty"
+ ("C:\Program Files\MiKTeX 2.9\tex/latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count142
-\calc@Bcount=\count143
-\calc@Adimen=\dimen181
-\calc@Bdimen=\dimen182
+\calc@Acount=\count123
+\calc@Bcount=\count124
+\calc@Adimen=\dimen134
+\calc@Bdimen=\dimen135
 \calc@Askip=\skip59
 \calc@Bskip=\skip60
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count144
+\calc@Ccount=\count125
 \calc@Cskip=\skip61
 )
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\abntex2\abntex2abr
 ev.sty")
 \minimumbiblabelwidth=\skip62
 \ABCIauxlen=\skip63
-\c@ABCIaux=\count145
-\c@ABCImax=\count146
-
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ltxmisc\relsize.st
-y"
+\c@ABCIaux=\count126
+\c@ABCImax=\count127
+ ("C:\Program Files\MiKTeX 2.9\tex/latex\ltxmisc\relsize.sty"
 Package: relsize 2003/07/04 ver 3.1
 )
 \biblabelsep=\skip64
 LaTeX Info: Redefining \newblock on input line 591.
 LaTeX Info: Redefining \cite on input line 618.
-\ABCItoken=\toks40
+\ABCItoken=\toks28
 )
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf.
-sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\oberdiek\epstopdf.sty"
 Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-
-base.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\grfext.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex\oberdiek\grfext.sty"
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvdefin
-ekeys.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\kvdefinekeys.sty"
 Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
 ))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoptions
-.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex\oberdiek\kvoptions.sty"
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvsetke
-ys.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\kvsetkeys.sty"
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\etexcmd
-s.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\etexcmds.sty"
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifluate
-x.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\ifluatex.sty"
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -942,8 +559,7 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\pdftexc
-mds.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
@@ -959,18 +575,340 @@ G,.JBIG2,.JB2,.eps]
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\rotating\rotating.
 sty"
 Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
-\c@r@tfl@t=\count147
+\c@r@tfl@t=\count128
 \rotFPtop=\skip65
 \rotFPbot=\skip66
-\rot@float@box=\box45
-\rot@mess@toks=\toks41
+\rot@float@box=\box34
+\rot@mess@toks=\toks29
 )
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\frontendlayer\
+tikz.sty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf
+.sty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgfr
+cs.sty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+futil-common.tex"
+\pgfutil@everybye=\toks30
+\pgfutil@tempdima=\dimen136
+\pgfutil@tempdimb=\dimen137
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+futil-common-lists.tex"))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+futil-latex.def"
+\pgfutil@abb=\box35
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+frcs.code.tex"
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf
+core.sty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\systemlayer\pg
+fsys.sty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
+pgfsys.code.tex"
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+fkeys.code.tex"
+\pgfkeys@pathtoks=\toks31
+\pgfkeys@temptoks=\toks32
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+fkeysfiltered.code.tex"
+\pgfkeys@tmptoks=\toks33
+))
+\pgf@x=\dimen138
+\pgf@y=\dimen139
+\pgf@xa=\dimen140
+\pgf@ya=\dimen141
+\pgf@xb=\dimen142
+\pgf@yb=\dimen143
+\pgf@xc=\dimen144
+\pgf@yc=\dimen145
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count129
+\c@pgf@countb=\count130
+\c@pgf@countc=\count131
+\c@pgf@countd=\count132
+\t@pgf@toka=\toks34
+\t@pgf@tokb=\toks35
+\t@pgf@tokc=\toks36
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
+pgf.cfg"
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
+pgfsys-pdftex.def"
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
+pgfsys-common-pdf.def"
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
+pgfsyssoftpath.code.tex"
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count133
+\pgfsyssoftpath@bigbuffer@items=\count134
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\
+pgfsysprotocol.code.tex"
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+("C:\Program Files\MiKTeX 2.9\tex/latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcore.code.tex"
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+.code.tex"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+calc.code.tex"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+util.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+parser.code.tex"
+\pgfmath@dimen=\dimen146
+\pgfmath@count=\count135
+\pgfmath@box=\box36
+\pgfmath@toks=\toks37
+\pgfmath@stack@operand=\toks38
+\pgfmath@stack@operation=\toks39
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.code.tex"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.basic.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.trigonometric.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.random.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.comparison.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.base.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.round.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.misc.code.tex")
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+functions.integerarithmetics.code.tex")))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+float.code.tex"
+\c@pgfmathroundto@lastzeros=\count136
+))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorepoints.code.tex"
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen147
+\pgf@picmaxx=\dimen148
+\pgf@picminy=\dimen149
+\pgf@picmaxy=\dimen150
+\pgf@pathminx=\dimen151
+\pgf@pathmaxx=\dimen152
+\pgf@pathminy=\dimen153
+\pgf@pathmaxy=\dimen154
+\pgf@xx=\dimen155
+\pgf@xy=\dimen156
+\pgf@yx=\dimen157
+\pgf@yy=\dimen158
+\pgf@zx=\dimen159
+\pgf@zy=\dimen160
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorepathconstruct.code.tex"
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen161
+\pgf@path@lasty=\dimen162
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorepathusage.code.tex"
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen163
+\pgf@shorten@start@additional=\dimen164
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorescopes.code.tex"
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box37
+\pgf@hbox=\box38
+\pgf@layerbox@main=\box39
+\pgf@picture@serial@count=\count137
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcoregraphicstate.code.tex"
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen165
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcoretransformations.code.tex"
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen166
+\pgf@pt@y=\dimen167
+\pgf@pt@temp=\dimen168
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorequick.code.tex"
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcoreobjects.code.tex"
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorepathprocessing.code.tex"
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorearrows.code.tex"
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen169
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcoreshade.code.tex"
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen170
+\pgf@sys@shading@range@num=\count138
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcoreimage.code.tex"
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcoreexternal.code.tex"
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box40
+))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorelayers.code.tex"
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcoretransparency.code.tex"
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\p
+gfcorepatterns.code.tex"
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfm
+oduleshapes.code.tex"
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box41
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfm
+oduleplot.code.tex"
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\compatibility\
+pgfcomp-version-0-65.sty"
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen171
+\pgf@nodesepend=\dimen172
+)
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\compatibility\
+pgfcomp-version-1-18.sty"
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgff
+or.sty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgfk
+eys.sty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+fkeys.code.tex"))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\math\pgfmath.s
+ty"
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+.code.tex"))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pg
+ffor.code.tex"
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath
+.code.tex")
+\pgffor@iter=\dimen173
+\pgffor@skip=\dimen174
+\pgffor@stack=\toks40
+\pgffor@toks=\toks41
+))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlaye
+r\tikz\tikz.code.tex"
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\libraries\pg
+flibraryplothandlers.code.tex"
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count139
+\pgfplotmarksize=\dimen175
+)
+\tikz@lastx=\dimen176
+\tikz@lasty=\dimen177
+\tikz@lastxsaved=\dimen178
+\tikz@lastysaved=\dimen179
+\tikzleveldistance=\dimen180
+\tikzsiblingdistance=\dimen181
+\tikz@figbox=\box42
+\tikz@figbox@bg=\box43
+\tikz@tempbox=\box44
+\tikz@tempbox@bg=\box45
+\tikztreelevel=\count140
+\tikznumberofchildren=\count141
+\tikznumberofcurrentchild=\count142
+\tikz@fig@count=\count143
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfm
+odulematrix.code.tex"
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count144
+\pgfmatrixcurrentcolumn=\count145
+\pgf@matrix@numberofcolumns=\count146
+)
+\tikz@expandcount=\count147
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlaye
+r\tikz\libraries\tikzlibrarytopaths.code.tex"
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlaye
+r\tikz\libraries\tikzlibraryarrows.code.tex"
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\libraries\pg
+flibraryarrows.code.tex"
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen182
+))
 \c@Lemma=\count148
 \c@Theorem=\count149
 \c@Condition=\count150
  (artigo.aux)
-\openout1 = `artigo.aux'.
-
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 91.
 LaTeX Font Info:    ... okay on input line 91.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 91.
@@ -985,10 +923,9 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 91.
 LaTeX Font Info:    ... okay on input line 91.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 91.
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-ABD: EveryShipout initializing macros
 ("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
 ii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1048,17 +985,19 @@ Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
+ ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
 LaTeX Font Info:    Try loading font information for U+msa on input line 105.
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 105.
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex/latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
@@ -1077,12 +1016,13 @@ Package babel Warning: You haven't loaded the language english yet
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 172.
 
 
-("C:\Users\elias\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 172.
-[2] [3] <img/grafotransporte.png, id=22, 410.2828pt x 194.97844pt>
+ [2] [3]
+<img/grafotransporte.png, id=22, 410.2828pt x 194.97844pt>
 File: img/grafotransporte.png Graphic file (type png)
 
 <use img/grafotransporte.png>
@@ -1099,30 +1039,64 @@ Overfull \hbox (2.12575pt too wide) in paragraph at lines 322--323
 a-ta-forma web e co-di-fi-cado utilizando-
  []
 
-[5] (artigo.bbl [6]) [7] (artigo.aux) ) 
+[5] <img/simplexit1.png, id=32, 1114.1625pt x 300.12125pt>
+File: img/simplexit1.png Graphic file (type png)
+
+<use img/simplexit1.png>
+Package pdftex.def Info: img/simplexit1.png used on input line 352.
+(pdftex.def)             Requested size: 389.23137pt x 104.84709pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6] <img/simplexit3.png, id=37, 1114.1625pt x 300.12125pt>
+File: img/simplexit3.png Graphic file (type png)
+
+<use img/simplexit3.png>
+Package pdftex.def Info: img/simplexit3.png used on input line 363.
+(pdftex.def)             Requested size: 389.23137pt x 104.84709pt.
+ <img/bbno1.png, id=38, 1118.1775pt x 569.12625pt>
+File: img/bbno1.png Graphic file (type png)
+
+<use img/bbno1.png>
+Package pdftex.def Info: img/bbno1.png used on input line 383.
+(pdftex.def)             Requested size: 345.9871pt x 176.0973pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<img/bbno3.png, id=39, 1118.1775pt x 569.12625pt>
+File: img/bbno3.png Graphic file (type png)
+ <use img/bbno3.png>
+Package pdftex.def Info: img/bbno3.png used on input line 392.
+(pdftex.def)             Requested size: 345.9871pt x 176.0973pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7 <./img/simplexit1.png> <./img/simplexit3.png>] (artigo.bbl [8 <./img/bbno1.p
+ng> <./img/bbno3.png>]) [9] (artigo.aux) ) 
 Here is how much of TeX's memory you used:
- 16442 strings out of 493634
- 315506 string characters out of 3135239
- 357200 words of memory out of 3000000
- 19457 multiletter control sequences out of 15000+200000
+ 16443 strings out of 493673
+ 313157 string characters out of 3143961
+ 358241 words of memory out of 3000000
+ 19416 multiletter control sequences out of 15000+200000
  20770 words of font info for 41 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 55i,10n,54p,1161b,369s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/elias/AppData/Local/Programs/M
-iKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Users/elias/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/elias/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/el
-ias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><
-C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmsy8.pfb><C:/Users/elias/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/elias/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/elias/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/elias/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artigo.pdf (7 pages, 184798 bytes).
+ 55i,15n,54p,1159b,371s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/en
+c/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
+s/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on artigo.pdf (9 pages, 261367 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 83 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
 
