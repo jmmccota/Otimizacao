@@ -84,6 +84,7 @@
 
 \newcommand{\sigla}[0] {SIMPL}
 \newcommand{\nome}[0] {Sistema Interativo para Métodos de Programação Linear}
+\newcommand{\urldosistema}[0] {\url{https://jmmccota.github.io/Otimizacao}}
 
 \begin{document}
 \pagestyle{empty}%tira a numeração das páginas
@@ -114,10 +115,11 @@ $\beta$  \\
 \begin{center}
 {\bf RESUMO}
 \end{center}
-\nohyphen{ 
+\nohyphen{
 
+Este trabalho apresenta o \sigla: \nome, um conjunto de ferramentas criado com o objetivo de auxiliar o ensino dos algoritmos e técnicas utilizados em programação linear. Com uma interface simples e intuitiva, o \sigla\ apresenta de forma visual todos os passos da execução dos algoritmos, ressaltando as informações relevantes. Estando disponível gratuitamente na web, o sistema se mostra uma interessante opção de material de apoio para estudantes, já que não requer conhecimento avançado de programação linear nem aprendizado de uma linguagem própria, como ocorre em outras ferramentas. Cobrindo algoritmos como o Simplex para programação linear, \textit{Branch and Bound} para programação linear inteira e algoritmos de transporte para problemas de alocação de recursos, o projeto abrange parte significativa dos cursos de pesquisa operacional, servindo de grande auxílio em um amplo leque de situações, leque este que será expandido com a adição de novos recursos.
 
-\noindent \textbf{PALAVRAS CHAVE. } 
+\noindent \textbf{PALAVRAS CHAVE. Educação, Programação Linear, Sistemas Web.} 
 
 \vspace{11pt}
 
@@ -146,7 +148,7 @@ Para otimização de um problema em PO são utilizadas algumas métricas de cál
 
 Existem poucos solvers didáticos gratuitos disponíveis na web que apresentem a resolução detalhada de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Grande parte desses solvers não possuem uma interface intuitiva para o usuário ou demandam muito tempo do usuário na inserção de valores de um determinado problema a cada vez que se tem acesso ao sistema.
 
-Este trabalho apresenta o \sigla\ (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Simplex, \textit{Branch and Bounch} e de alguns métodos de alocação de recurso, como o Canto Noroeste, Menor Custo e Aproximação de Vogel. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla\ foi desenvolvido utilizando as linguagens \textit{Javascript, CSS3 e HTML5} e o \textit{framework Bootstrap} para desenvolvimento da interface. A biblioteca \textit{glpk.js} foi utilizada para a resolução de alguns problemas inseridos.
+Este trabalho apresenta o \sigla\ (\nome), que é um solver didático gratuito, disponível no endereço \urldosistema, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Simplex, \textit{Branch and Bounch} e de alguns métodos de alocação de recurso, como o Canto Noroeste, Menor Custo e Aproximação de Vogel. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla\ foi desenvolvido utilizando as linguagens \textit{Javascript, CSS3 e HTML5} e o \textit{framework Bootstrap} para desenvolvimento da interface. A biblioteca \textit{glpk.js} também foi utilizada para a resolução de alguns problemas inseridos. 
 
 O trabalho está organizado da seguinte forma: a seção \ref{sec:fundamentacao} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL; a seção \ref{sec:desenvolvimento} explica de forma mais técnica como o sistema foi desenvolvido. Já na seção \ref{sec:resultados} é mostrado o funcionamento do sistema final. Por fim, na seção \ref{sec:conclusao} há as considerações finais e sugestões de trabalhos futuros.
 
@@ -322,7 +324,7 @@ O \sigla\ até o momento da escrita desse artigo se divide em três partes: Simp
 
 Os modelos criados podem ser utilizados para ver os resultados da execução completa do algoritmo ou cada iteração individualmente. Em ambos os casos são exibidas todas as etapas da execução dos algoritmos destacando as informações mais importantes que determinaram o curso tomado pelo algoritmo. É possível também fazer com que o algoritmo siga um caminho diferente caso o usuário deseje avaliar o que aconteceria de diferente. Essa alteração no caminho se dá de forma particular a cada método: no Simplex escolhe-se qual o elemento pivô, a partir do qual é definido qual variável sai e qual entra; no \textit{Branch and Bound} escolhe-se em qual variável não inteira será feito o processo de \textit{branching}, ou seja, adição de restrições ao valor daquela variável que cria dois modelos distintos; nos problemas de alocação de recursos, também chamados de problemas de transporte, o usuário pode escolher uma rota para ter recursos alocados.
 
-Para que o método \textit{Branch and Bound} se mantivesse didaticamente intuitivo, foi construído uma árvore de representação de seus ramos. Para a construção dessa utilizou-se biblioteca \textit{vis.js}, permitindo a construção e manipulação de elementos gráficos em forma de árvore \cite{vis}. Além disso, como vários modelos Simplex devem ser executado nesse método, optou-se por utilizar uma biblioteca mais otimizada e que portanto possui melhor desempenho em vez do mesmo código criado para mostrar todas as iterações do Simplex. Para isso escolhemos o pacote \textit{GLPK (GNU Linear Programming Kit)} implementado na biblioteca \textit{glpk.js}. Apesar de a linguagem \textit{GNU MathProg} interpretada pelo \textit{GLPK} possuir diversos recursos, inclusive para PLI \cite{mathprog}, optou-se por realizar apenas o método Simplex de forma básica para que pudesse ser melhor exibido o processo de solução de diversos modelos de PL a fim de encontrar uma solução inteira.
+Para que o método \textit{Branch and Bound} se mantivesse didaticamente intuitivo, foi construído uma árvore de representação de seus ramos. Para a construção dessa utilizou-se biblioteca \textit{vis.js}, permitindo a construção e manipulação de elementos gráficos em forma de árvore \cite{vis}. Além disso, como vários modelos Simplex devem ser executado nesse método, optou-se por utilizar uma biblioteca mais otimizada, e que portanto possui melhor desempenho, em vez do mesmo código criado para mostrar todas as iterações do Simplex. Foi escolhido então o pacote \textit{GLPK (GNU Linear Programming Kit)} implementado na biblioteca \textit{glpk.js}. Apesar de a linguagem \textit{GNU MathProg} interpretada pelo \textit{GLPK} possuir diversos recursos, inclusive para PLI \cite{mathprog}, optou-se por realizar apenas o método Simplex de forma básica para que pudesse ser melhor exibido o processo de solução de diversos modelos de PL a fim de encontrar uma solução inteira.
 
 \section{Resultados}\label{sec:resultados}
 
