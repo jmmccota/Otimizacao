@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.5)  10 MAY 2016 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.5)  10 MAY 2016 23:03
 entering extended mode
 **artigo.tex
 (artigo.tex
@@ -909,19 +909,19 @@ File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
 \c@Theorem=\count149
 \c@Condition=\count150
  (artigo.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 91.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 88.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -987,15 +987,15 @@ Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
  ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 94.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
-LaTeX Font Info:    Try loading font information for U+msa on input line 105.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 94.
+LaTeX Font Info:    Try loading font information for U+msa on input line 102.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 105.
+LaTeX Font Info:    Try loading font information for U+msb on input line 102.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1003,98 +1003,88 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 Package babel Warning: You haven't loaded the language english yet
 (babel)                I'll proceed, but expect unexpected results.
-(babel)                Reported on input line 136.
+(babel)                Reported on input line 133.
 
 
 Package babel Warning: You haven't loaded the language english yet
 (babel)                I'll proceed, but expect unexpected results.
-(babel)                Reported on input line 140.
+(babel)                Reported on input line 137.
 
 [1
 
-{C:/Users/elias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 172.
+{C:/Users/elias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 167.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 172.
- [2] [3]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 167.
+ [3]
 <img/grafotransporte.png, id=22, 410.2828pt x 194.97844pt>
 File: img/grafotransporte.png Graphic file (type png)
 
 <use img/grafotransporte.png>
-Package pdftex.def Info: img/grafotransporte.png used on input line 227.
+Package pdftex.def Info: img/grafotransporte.png used on input line 222.
 (pdftex.def)             Requested size: 216.24112pt x 102.76387pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 232.
+               Default added (so using `tbp') on input line 227.
 
 [4 <./img/grafotransporte.png>]
-Overfull \hbox (2.12575pt too wide) in paragraph at lines 322--323
+Overfull \hbox (2.12575pt too wide) in paragraph at lines 317--318
 []\T1/ptm/m/n/10.95 Para mais fá-cil acesso, o tra-ba-lho de-sen-vol-vido em pl
 a-ta-forma web e co-di-fi-cado utilizando-
  []
 
-[5] <img/simplexit1.png, id=32, 1114.1625pt x 300.12125pt>
+[5] [6] <img/simplexit1.png, id=35, 1114.1625pt x 300.12125pt>
 File: img/simplexit1.png Graphic file (type png)
 
 <use img/simplexit1.png>
-Package pdftex.def Info: img/simplexit1.png used on input line 352.
-(pdftex.def)             Requested size: 389.23137pt x 104.84709pt.
+Package pdftex.def Info: img/simplexit1.png used on input line 347.
+(pdftex.def)             Requested size: 432.48224pt x 116.49727pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6] <img/simplexit3.png, id=37, 1114.1625pt x 300.12125pt>
+<img/simplexit3.png, id=36, 1114.1625pt x 300.12125pt>
 File: img/simplexit3.png Graphic file (type png)
 
 <use img/simplexit3.png>
-Package pdftex.def Info: img/simplexit3.png used on input line 363.
-(pdftex.def)             Requested size: 389.23137pt x 104.84709pt.
- <img/bbno1.png, id=38, 1118.1775pt x 569.12625pt>
+Package pdftex.def Info: img/simplexit3.png used on input line 358.
+(pdftex.def)             Requested size: 432.48224pt x 116.49727pt.
+ [7 <./img/simplexit1.png> <./img/simplexit3.png>]
+<img/bbno1.png, id=42, 1118.1775pt x 569.12625pt>
 File: img/bbno1.png Graphic file (type png)
+ <use img/bbno1.png>
+Package pdftex.def Info: img/bbno1.png used on input line 378.
+(pdftex.def)             Requested size: 410.8568pt x 209.11447pt.
 
-<use img/bbno1.png>
-Package pdftex.def Info: img/bbno1.png used on input line 383.
-(pdftex.def)             Requested size: 345.9871pt x 176.0973pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<img/bbno3.png, id=39, 1118.1775pt x 569.12625pt>
+<img/bbno3.png, id=43, 1118.1775pt x 569.12625pt>
 File: img/bbno3.png Graphic file (type png)
  <use img/bbno3.png>
-Package pdftex.def Info: img/bbno3.png used on input line 392.
-(pdftex.def)             Requested size: 345.9871pt x 176.0973pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7 <./img/simplexit1.png> <./img/simplexit3.png>] (artigo.bbl [8 <./img/bbno1.p
-ng> <./img/bbno3.png>]) [9] (artigo.aux) ) 
+Package pdftex.def Info: img/bbno3.png used on input line 387.
+(pdftex.def)             Requested size: 410.8568pt x 209.11447pt.
+ [8 <./img/bbno1.png> <./img/bbno3.png>] (artigo.bbl) [9] (artigo.aux) ) 
 Here is how much of TeX's memory you used:
  16443 strings out of 493673
  313157 string characters out of 3143961
- 358241 words of memory out of 3000000
+ 359240 words of memory out of 3000000
  19416 multiletter control sequences out of 15000+200000
  20770 words of font info for 41 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  55i,15n,54p,1159b,371s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/en
-c/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
-i8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
-s/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artigo.pdf (9 pages, 261385 bytes).
+{C:/Pro
+gram Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on artigo.pdf (9 pages, 261602 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

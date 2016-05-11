@@ -82,11 +82,8 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%											 ATUALIZAR												%%
-\newcommand{\sigla}[0] {SIMPL }
+\newcommand{\sigla}[0] {SIMPL}
 \newcommand{\nome}[0] {Sistema Interativo para Métodos de Programação Linear}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 \pagestyle{empty}%tira a numeração das páginas
@@ -149,18 +146,19 @@ Para otimização de um problema em PO são utilizadas algumas métricas de cál
 
 Existem poucos solvers didáticos gratuitos disponíveis na web que apresentem a resolução detalhada de problemas de Programação Linear (PL) e Programação Linear Inteira (PLI). Grande parte desses solvers não possuem uma interface intuitiva para o usuário ou demandam muito tempo do usuário na inserção de valores de um determinado problema a cada vez que se tem acesso ao sistema.
 
-Este trabalho apresenta o \sigla (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Simplex, \textit{Branch and Bounch} e de alguns métodos de alocação de recurso, como o Canto Noroeste, Menor Custo e Aproximação de Vogel. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla foi desenvolvido utilizando as linguagens \textit{Javascript, CSS3 e HTML5} e o \textit{framework Bootstrap} para desenvolvimento da interface. A biblioteca \textit{glpk.js} foi utilizada para a resolução de alguns problemas inseridos.
+Este trabalho apresenta o \sigla\ (\nome), que é um solver didático gratuito disponível na Internet, com o intuito de auxiliar estudantes na compreensão de problemas de PO, utilizando-se dos métodos Simplex, \textit{Branch and Bounch} e de alguns métodos de alocação de recurso, como o Canto Noroeste, Menor Custo e Aproximação de Vogel. Através dele, é possível inserir modelos matemáticos a serem solucionados e serem salvos em arquivo de texto. Também apresenta o detalhamento da resolução, visando facilitar o entendimento do usuário dos métodos aplicado ao modelo inserido. O \sigla\ foi desenvolvido utilizando as linguagens \textit{Javascript, CSS3 e HTML5} e o \textit{framework Bootstrap} para desenvolvimento da interface. A biblioteca \textit{glpk.js} foi utilizada para a resolução de alguns problemas inseridos.
 
 O trabalho está organizado da seguinte forma: a seção \ref{sec:fundamentacao} apresenta uma definição breve e formal dos métodos presentes no solver para resolução de problemas de PL; a seção \ref{sec:desenvolvimento} explica de forma mais técnica como o sistema foi desenvolvido. Já na seção \ref{sec:resultados} é mostrado o funcionamento do sistema final. Por fim, na seção \ref{sec:conclusao} há as considerações finais e sugestões de trabalhos futuros.
 
 \section{Fundamentação Teórica}\label{sec:fundamentacao}
 
+Nessa seção são apresentados os algoritmos de pesquisa operacional disponíveis até o momento no \sigla. Estão divididos em três subseções: Simplex, o algoritmo de programação linear; \textit{Branch and Bound}, utilizado em programação linear inteira e os algoritmos de transporte, usados em problemas de alocação de recursos.
 
 \subsection{Simplex}\label{subsec:Simplex}
 
 O método Simplex proposto por George Dantzig, é um método matricial para resolver problemas de Programação Linear. Ele executa iterativamente em busca da solução ótima entre as soluções básicas viáveis. 
 
-Abaixo são apresentados os passos iterativos do método em busca da solução ótima.
+Abaixo são apresentados os passos iterativos do método em busca da solução ótima:
 
 \begin{enumerate}
 	\item \textbf{Inicialização}: Configurar para iniciar iterações, inclusive encontrar uma solução ponto extremo viável.
@@ -320,7 +318,7 @@ Para mais fácil acesso, o trabalho desenvolvido em plataforma web e codificado 
 
 Para a construção visual do trabalho realizado, utilizou-se do \textit{Bootstrap}, um \textit{framework} de desenvolvimento Web utilizando \textit{HTML, CSS} e \textit{JavaScript} para sistemas responsivos \cite{bootstrap}. Optou-se por sua utilização para exibição de elementos em tela que se adapta ao tamanho da tela de visualização. Para melhorar a interação do usuário com a interface fez-se uso da biblioteca \textit{jQuery}, que facilita a manipulação e acesso aos dados dos elementos \textit{HTML} e \textit{CSS} dinamicamente \cite{jquery}. Por fim, para a exibição de símbolos matemáticos nos modelos e resultados fez-se uso da biblioteca \textit{MathJax.js}, que permite a exibição de textos utilizando a linguagem \textit{TeX} em navegadores web \cite{mathjax}. Com o uso da linguagem \textit{TeX} é possível a descrição de símbolos em forma textual que são convertidos para sua respectiva representação gráfica, de forma que, quando necessário, possa ser feita a descrição através de notação matemática, trazendo mais clareza à comunicação entre programa e usuário \cite{tex}.
 
-O \sigla até o momento da escrita desse artigo se divide em três partes: Simplex, \textit{Branch and Bound} e transporte. Cada uma dessas seções contém um formulário para entrada do modelo matemático e parametrização do método, opções para salvar e carregar modelos e páginas de ajuda informando mais sobre as técnicas e sobre como utilizar a ferramenta.
+O \sigla\ até o momento da escrita desse artigo se divide em três partes: Simplex, \textit{Branch and Bound} e transporte. Cada uma dessas seções contém um formulário para entrada do modelo matemático e parametrização do método, opções para salvar e carregar modelos e páginas de ajuda informando mais sobre as técnicas e sobre como utilizar a ferramenta.
 
 Os modelos criados podem ser utilizados para ver os resultados da execução completa do algoritmo ou cada iteração individualmente. Em ambos os casos são exibidas todas as etapas da execução dos algoritmos destacando as informações mais importantes que determinaram o curso tomado pelo algoritmo. É possível também fazer com que o algoritmo siga um caminho diferente caso o usuário deseje avaliar o que aconteceria de diferente. Essa alteração no caminho se dá de forma particular a cada método: no Simplex escolhe-se qual o elemento pivô, a partir do qual é definido qual variável sai e qual entra; no \textit{Branch and Bound} escolhe-se em qual variável não inteira será feito o processo de \textit{branching}, ou seja, adição de restrições ao valor daquela variável que cria dois modelos distintos; nos problemas de alocação de recursos, também chamados de problemas de transporte, o usuário pode escolher uma rota para ter recursos alocados.
 
@@ -328,9 +326,9 @@ Para que o método \textit{Branch and Bound} se mantivesse didaticamente intuiti
 
 \section{Resultados}\label{sec:resultados}
 
+Nessa seção é demonstrado o funcionamento do produto final e como os resultados são exibidos para o usuário. Pelas semelhanças entre a exibição de resultados do Simplex e dos métodos de Transporte, somente aquele será mostrado. Serão apresentados então o Simplex com sua forma tabular e o \textit{Branch and Bound} com sua forma em árvore.
 
-
-Para demonstrar o algoritmo Simplex foi utilizado o modelo abaixo, retirado de \cite{taha}, utilizando o Simplex Generalizado.
+Para demonstrar o algoritmo Simplex foi utilizado o modelo a seguir, retirado de \cite{taha}, utilizando o Simplex Generalizado.
 
 \begin{equation*}
 	\begin{split}
@@ -346,7 +344,7 @@ Na Figura \ref{fig:simplexit1} podemos observar o resultado exibido para a prime
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/simplexit1.png}
+	\includegraphics[width=1\textwidth]{img/simplexit1.png}
 	\caption[]{Primeira iteração do algoritmo Simplex Generalizado}
 	\label{fig:simplexit1}
 \end{figure}
@@ -357,7 +355,7 @@ Após outras duas iterações, exibidas em forma simultânea e sequencial pela p
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/simplexit3.png}
+	\includegraphics[width=1\textwidth]{img/simplexit3.png}
 	\caption[]{Resultado final da execução do algoritmo Simplex}
 	\label{fig:simplexit3}
 \end{figure}
@@ -377,23 +375,21 @@ Na Figura \ref{fig:bbno1} vemos o nó raiz da árvore de execução do algoritmo
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{img/bbno1.png}
+	\includegraphics[width=0.95\textwidth]{img/bbno1.png}
 	\caption[]{Nó raiz da árvore de execução}
 	\label{fig:bbno1}
 \end{figure}
 
-O nó 2 teve solução $x_{1}=2$ e $x_{2}=1$ com valor de função objetivo $z = 7$ enquanto o nó 3 teve solução $x_{1}=0$ e $x_{2}=2$ com valor de função objetivo $z = 10$. Assim, como o nó 2 possui valor de $z$ pior que o do nó 3, este é considerado a solução ótima. Mesmo que a solução do nó 2 não fosse inteira, não haveria necessidade de continuar a execução nessa subárvore já que a solução não poderia ser melhor que a do nó 2, ocorrendo então o \textit{pruning}. O nó ótimo é destacado de verde, enquanto os nós sem solução viável destacados de vermelho. Para ver informações básicas sobre um determinado nó basta passar o mouse sobre o nó, como pode ser visto no nó 2, enquanto se clica sobre o nó para mostrar as informações de forma mais detalhada no painel à direita.
+O nó 2 teve solução $x_{1}=2$ e $x_{2}=1$ com valor de função objetivo $z = 7$ enquanto o nó 3 teve solução $x_{1}=0$ e $x_{2}=2$ com valor de função objetivo $z = 10$. Assim, como o nó 2 possui valor de $z$ pior que o do nó 3, este é considerado a solução ótima. Mesmo que a solução do nó 2 não fosse inteira, não haveria necessidade de continuar a execução nessa subárvore já que a solução não poderia ser melhor que a do nó 2, ocorrendo então o \textit{pruning}. O nó ótimo é destacado de verde, enquanto os nós sem solução viável destacados de vermelho. Para ver informações básicas sobre um determinado nó basta passar o mouse sobre o nó, como pode ser visto no nó 2, enquanto se clica sobre o nó para mostrar as informações de forma mais detalhada no painel à direita. Ambos os casos são apresentados na Figura \ref{fig:bbno3}.
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{img/bbno3.png}
+	\includegraphics[width=0.95\textwidth]{img/bbno3.png}
 	\caption[]{Nó ótimo da árvore de execução}
 	\label{fig:bbno3}
 \end{figure}
 
 \section{Conclusões}\label{sec:conclusao}
-
-\newpage
 
 \bibliographystyle{abnt-alf}
 \bibliography{referencias}
