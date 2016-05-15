@@ -705,9 +705,12 @@ Simplex = function(){
         //Valor da funcao objetivo
         var res = {};
         res["FuncaoObjetivo"] = tabela[0][col-1];
-
+        //Indice das variaveis basicas e nao basicas
+        res["VariaveisBasicas"] = [];
+        res["VariaveisNaoBasicas"] = [];
         //Vetor contendo o valor das variaveis
         res["Variaveis"] = [];
+
         for(var j = 0; j < this.tabela[0].length-1; j++){
             var linhaBase = -1;
             var basica = true;
@@ -720,7 +723,14 @@ Simplex = function(){
                 else if(tabela[i][j] !== 0)
                     basica = false;
             }
-            res["Variaveis"][j] = (basica && linhaBase !== -1) ? tabela[linhaBase][col-1] : 0;
+            if(basica && linhaBase !== -1){
+                res["VariaveisBasicas"].push(j);
+                res["Variaveis"][j] = tabela[linhaBase][col-1];
+            }
+            else{
+                res["VariaveisNaoBasicas"].push(j);
+                res["Variaveis"][j] = 0;
+            }
         }
 
         res["TipoResultado"] = this.solver.tipoRes;
