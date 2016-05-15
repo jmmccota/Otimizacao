@@ -1,265 +1,274 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <head>
-        <!-- Meta -->
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Algoritmos de Pesquisa Operacional">
-        <!-- End of meta -->
+<head>
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Algoritmos de Pesquisa Operacional">
+    <!-- End of meta -->
 
-        <!-- Title -->
-        <title>Solver - Simplex</title>
-        <!-- End of title -->
+    <!-- Title -->
+    <title>Solver - Simplex</title>
+    <!-- End of title -->
 
-        <!-- Stylesheets -->
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/light.css" id="scheme" />
-        <link rel="stylesheet" type="text/css" href="css/responsive-nav.css" />
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/opensans.css">
-        <link rel="stylesheet" type="text/css" href="css/colors/orange.css" id="colors" />
-        <!-- End of stylesheets -->
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/light.css" id="scheme" />
+    <link rel="stylesheet" type="text/css" href="css/responsive-nav.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/opensans.css">
+    <link rel="stylesheet" type="text/css" href="css/colors/orange.css" id="colors" />
+    <!-- End of stylesheets -->
 
-        <link href="img/simplex/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="img/transporte/favicon.ico" rel="icon" type="image/x-icon" />
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <!-- Header -->
-        <header>
-            <div class="top container">
+    <!-- Header -->
+    <header>
+        <div class="top container">
+            <!-- Logo area -->
+            <div class="logo-left-bg"></div>
+            <div class="logo-left one-fourth">
+                <!-- Logo -->
+                <a class="logo">Transporte<span>Programação Linear</span></a>
+                <!-- End of logo -->
+            </div>
+            <!-- End of logo area -->
+            <!-- Top right -->
+            <div class="top-right three-fourth last-in-row">
+                <!-- Top bar -->
+                <div class="top-bar">
+                    <!-- Social icons -->
+                    <div class="top-social-icons">
+                        <ul class="footer-social social-icons">
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="https://github.com/jmmccota/Otimizacao"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- End of social icons-->
+                </div>
+                <!-- End of top bar -->
+                <!-- Main navigation -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li class="parent"><a href="simplex.html">Simplex</a>
+                            <ul>
+                                <li>Simplex
+                                    <ul>
+                                        <li><a href="simplex.html">Começar</a></li>
+                                        <li><a href="simplex_about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="branchbound.html">Branch-and-Bound</a>
+                            <ul>
+                                <li>Branch-and-Bound
+                                    <ul>
+                                        <li><a href="branchbound.html">Começar</a></li>
+                                        <li><a href="branchbound_about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="transporte.html">Transporte</a>
+                            <ul>
+                                <li>Transporte
+                                    <ul>
+                                        <li><a href="transporte.html">Começar</a></li>
+                                        <li><a href="transporte_about.html">Mais sobre o Modelo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--<li><a href="contato.html">Contato</a></li>-->
+                    </ul>
+                </nav>
+                <!-- End of main navigation -->
+            </div>
+            <!-- End of top right -->
+        </div>
+    </header>
+    <!-- End of header -->
+
+    <!-- Page Title -->
+    <div id="page-title">
+        <!--<h1 class="container">Simplex<span class="sub-title">Programação Linear</span>-->
+    </div>
+    <!-- End of page title -->
+
+    <!-- Content -->
+    <div id="content" class="clearfix">
+        <!-- Breadcumbs -->
+        <div class="breadcumbs">
+            <div class="container">
+                <a href="transporte_about.html">Mais sobre o Modelo</a>
+                <!--<a class="current" href="#">Como usar o sistema</a>-->
+                <a href="#">Como usar o sistema</a>
+            </div>
+        </div>
+        <!-- End of breadcumbs -->
+
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+
+                <!--right-->
+                <div class="col-md-12" id="pagModelo">
+                    <h2 id="sec0">Introdução </h2>
+                    <p>O problema de Transporte é uma categoria de Programação Linear que trata do envio de mercadorias de uma
+                        origem até um determinado destino. O objetivo é determinar a expedição da mercadoria com custo e
+                        tempo ótimos e que atenda os limites de fornecimento e demanda. A analogia feita sobre mercadorias
+                        pode ser estendida a controle de estoque, programação de empregos, entre outros. As etapas do algoritmo
+                        de Transporte são as mesmas do Simplex.</p>
+                    <p>O problema geral descrito na imagem abaixo, consiste em m origens e n destinos, cada um representado
+                        por um nó. Os arcos representam o trajeto entre origem e destino. Em um trajeto, são determinadas
+                        duas características:
+                        <p>
+                            <ul>
+                                <li>1) O custo de transporte por unidade em um trajeto;</li>
+                                <li>2) A quantidade enviada.</li>
+                            </ul>
+                            <p>O objetivo do problema é determinar essa quantidade enviada ótima, de forma a satisfazer as restrições
+                                de demanda e suprimento.</p>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-lg-offset-2">
+                                    <div class="panel panel-primary secondary ">
+                                        <div class="panel-heading">
+                                            <h4>Esquematização do Problema de Transporte</h4></div>
+                                        <div class="panel-body">
+                                            <img src="img/exemplo11.png" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <h2 id="sec1">O algoritmo para o problema de Transporte</h2>
+                            <p>O algoritmo para o problema de Transporte seguem as mesmas etapas do Simplex. Abaixo vemos essas
+                                etapas em paralelo com as etapas do Simplex.</p>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-lg-offset-2">
+                                    <div class="panel panel-primary secondary ">
+                                        <div class="panel-heading">
+                                            <h4>Etapas do Algoritmo para o problema de Transporte</h4></div>
+                                        <div class="panel-body">
+                                            <img src="img/exemplo12.png" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Podemos escolher três métodos para garantir uma solução básica inicial não artificial: </p>
+                            <ul>
+                                <li>1) Método do canto noroeste;</li>
+                                <li>2) Método do menor custo;</li>
+                                <li>3) Método de aproximação de Vogel (MAV).</li>
+                            </ul>
+                            <br>
+                            <h2 id="sec2">Método do canto noroeste</h2>
+                            <p>O método começa na célula do canto noroeste da tabela Simplex. Abaixo veremos as etapas do método.</p>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-lg-offset-2">
+                                    <div class="panel panel-primary secondary ">
+                                        <div class="panel-heading">
+                                            <h4>Etapas do método do canto noroeste</h4></div>
+                                        <div class="panel-body">
+                                            <img src="img/exemplo13.png" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <h2 id="sec3">Método do menor custo</h2>
+                            <p>O método acha uma solução inicial melhor baseando-se nas rotas mais baratas. A rota designa o
+                                máximo a célula que tiver o menor custo unitário (empates são resolvidos arbritariamente).
+                                Logo após, a linha ou coluna que foi satisfeita é cancelada e as quantidades de fornecimento
+                                ou demanda são ajustadas.</p>
+                            <p>Se tanto linha como coluna forem satisfeitas, apenas uma delas será cancelada. Logo após, procure
+                                a célula não cancelada de menor custo e repita todo o processo até que reste apenas uma linha
+                                ou coluna não cancelada.</p>
+                            <br>
+                            <h2 id="sec4">Método de aproximação de Vogel (MAV)</h2>
+                            <p>O MAV é uma versão melhorada do método de menor custo, que em geral, produz soluções iniciais
+                                melhores. As etapas do método são descritas abaixo.
+                            </p>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-lg-offset-2">
+                                    <div class="panel panel-primary secondary ">
+                                        <div class="panel-heading">
+                                            <h4>Etapas do método de aproximação de Vogel (MAV)</h4></div>
+                                        <div class="panel-body">
+                                            <img src="img/exemplo14.png" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <!--/right-->
+        </div>
+        <!--/row-->
+    </div>
+    <!-- End of content -->
+
+    <div class="scroll-top-wrapper ">
+        <span class="scroll-top-inner">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+            </span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Footer second row -->
+        <div class="footer-second-row">
+            <div class="container">
                 <!-- Logo area -->
                 <div class="logo-left-bg"></div>
                 <div class="logo-left one-fourth">
                     <!-- Logo -->
-                    <a class="logo">Transporte<span>Programação Linear</span></a>
+                    <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
                     <!-- End of logo -->
                 </div>
                 <!-- End of logo area -->
-                <!-- Top right -->
-                <div class="top-right three-fourth last-in-row">
-                    <!-- Top bar -->
-                    <div class="top-bar">
-                        <!-- Social icons -->
-                        <div class="top-social-icons">
-                            <ul class="footer-social social-icons">
-                                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-google-plus"></i></a></li>
-                                <li><a href="https://github.com/jmmccota/Otimizacao"><i class="icon-github"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- End of social icons-->
-                    </div>
-                    <!-- End of top bar -->
-                    <!-- Main navigation -->
-                    <nav id="nav">
-                        <ul>
-                            <li><a href="index.html">Início</a></li>
-                            <li class="parent"><a href="simplex.html">Simplex</a>
-                                <ul>
-                                    <li>Simplex
-                                        <ul>
-                                            <li><a href="simplex.html">Começar</a></li>
-                                            <li><a href="simplex_about.html">Mais sobre o Modelo</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="parent"><a href="branchbound.html">Branch and Bound</a>
-                                <ul>
-                                    <li>Branch and Bound
-                                        <ul>
-                                            <li><a href="branchbound.html">Começar</a></li>
-                                            <li><a href="branchbound_about.html">Mais sobre o Modelo</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="parent"><a href="#">Transporte</a>
-                                <ul>
-                                    <li>Canto Noroeste
-                                        <ul>
-                                            <li><a href="#">Começar</a></li>
-                                            <li><a href="transporte_about.html">Mais sobre o Modelo</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!--<li><a href="contato.html">Contato</a></li>-->
-                        </ul>
-                    </nav>
-                    <!-- End of main navigation -->
+                <!-- Copyright and small menu -->
+                <div class="copyright-area three-fourth last-in-row">
+                    <span class="copyright">© Copyright 2016 by CEFET-MG. Todos os direitos reservados.</span>
+                    <ul class="small-menu">
+                        <li><a href="faq.html">Dúvidas</a></li>
+                        <li><a href="http://timoteo.cefetmg.br">CEFET-MG Campus Timóteo</a></li>
+                        <!--<li><a href="contato.html">Contato</a></li>-->
+                    </ul>
                 </div>
-                <!-- End of top right -->
+                <!-- End of copyright and small menu -->
             </div>
-        </header>
-        <!-- End of header -->
-
-        <!-- Page Title -->
-        <div id="page-title">
-            <!--<h1 class="container">Simplex<span class="sub-title">Programação Linear</span>-->
         </div>
-        <!-- End of page title -->
+        <!-- End of footer second row -->
+    </footer>
+    <!-- End of footer -->
 
-        <!-- Content -->
-        <div id="content" class="clearfix">
-            <!-- Breadcumbs -->
-            <div class="breadcumbs">
-                <div class="container">
-                    <a href="transporte_about.html">Mais sobre o Modelo</a>
-                    <!--<a class="current" href="#">Como usar o sistema</a>-->
-                    <a href="#">Como usar o sistema</a>
-                </div>
-            </div>
-            <!-- End of breadcumbs -->
+    <!-- Scripts -->
+    <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="js/responsive-nav.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.touchSwipe.min.js"></script>
 
-            <!-- Container -->
-            <div class="container">
-                <div class="row">
+    <!-- Scripts Configuration -->
+    <script type="text/javascript" src="js/custom.js"></script>
+    <!-- End of scripts configuration -->
 
-                    <!--right-->
-                    <div class="col-md-12" id="pagModelo">
-                        <h2 id="sec0">Introdução </h2>
-                        <p>O problema de Transporte é uma categoria de Programação Linear que trata do envio de mercadorias
-                            de uma origem até um determinado destino. O objetivo é determinar a expedição da mercadoria com custo
-                            e tempo ótimos e que atenda os limites de fornecimento e demanda. A analogia feita sobre mercadorias pode ser
-                            estendida a controle de estoque, programação de empregos, entre outros. As etapas do algoritmo de Transporte
-                            são as mesmas do Simplex.</p>
-                        <p>O problema geral descrito na imagem abaixo, consiste em m origens e n destinos, cada um representado por um nó. Os arcos representam
-                            o trajeto entre origem e destino. Em um trajeto, são determinadas duas características:<p>
-                        <ul>
-                            <li>1) O custo de transporte por unidade em um trajeto;</li>
-                            <li>2) A quantidade enviada.</li>
-                        </ul>
-                        <p>O objetivo do problema é determinar essa quantidade enviada ótima, de forma a satisfazer as restrições de demanda e suprimento.</p>
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 col-lg-offset-2">
-                                <div class="panel panel-primary secondary ">
-                                    <div class="panel-heading"><h4>Esquematização do Problema de Transporte</h4></div>
-                                    <div class="panel-body">
-                                        <img src="img/exemplo11.png" class="img-responsive">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <h2 id="sec1">O algoritmo para o problema de Transporte</h2>
-                        <p>O algoritmo para o problema de Transporte seguem as mesmas etapas do Simplex. Abaixo
-                        vemos essas etapas em paralelo com as etapas do Simplex.</p>
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 col-lg-offset-2">
-                                <div class="panel panel-primary secondary ">
-                                    <div class="panel-heading"><h4>Etapas do Algoritmo para o problema de Transporte</h4></div>
-                                    <div class="panel-body">
-                                        <img src="img/exemplo12.png" class="img-responsive">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p>Podemos escolher três métodos para garantir uma solução básica inicial não artificial: </p>
-                        <ul>
-                            <li>1) Método do canto noroeste;</li>
-                            <li>2) Método do menor custo;</li>
-                            <li>3) Método de aproximação de Vogel (MAV).</li>
-                        </ul>
-                        <br>
-                        <h2 id="sec2">Método do canto noroeste</h2>
-                        <p>O método começa na célula do canto noroeste da tabela Simplex. Abaixo veremos as etapas do método.</p>
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 col-lg-offset-2">
-                                <div class="panel panel-primary secondary ">
-                                    <div class="panel-heading"><h4>Etapas do método do canto noroeste</h4></div>
-                                    <div class="panel-body">
-                                        <img src="img/exemplo13.png" class="img-responsive">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <h2 id="sec3">Método do menor custo</h2>
-                        <p>O método acha uma solução inicial melhor baseando-se nas rotas mais baratas. A rota designa o máximo a célula que tiver o
-                        menor custo unitário (empates são resolvidos arbritariamente). Logo após, a linha ou coluna que foi satisfeita é cancelada
-                        e as quantidades de fornecimento ou demanda são ajustadas.</p>
-                        <p>Se tanto linha como coluna forem satisfeitas, apenas uma delas será cancelada. Logo após, procure a célula não cancelada
-                        de menor custo e repita todo o processo até que reste apenas uma linha ou coluna não cancelada.</p>
-                        <br>
-                        <h2 id="sec4">Método de aproximação de Vogel (MAV)</h2>
-                        <p>O MAV é uma versão melhorada do método de menor custo, que em geral, produz soluções iniciais melhores. As etapas do método são descritas
-                        abaixo.</p>
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 col-lg-offset-2">
-                                <div class="panel panel-primary secondary ">
-                                    <div class="panel-heading"><h4>Etapas do método de aproximação de Vogel (MAV)</h4></div>
-                                    <div class="panel-body">
-                                        <img src="img/exemplo14.png" class="img-responsive">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/right-->
-            </div>
-            <!--/row-->
-        </div>
-        <!-- End of content -->
-
-        <div class="scroll-top-wrapper ">
-            <span class="scroll-top-inner">
-                <i class="glyphicon glyphicon-arrow-up"></i>
-            </span>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <!-- Footer second row -->
-            <div class="footer-second-row">
-                <div class="container">
-                    <!-- Logo area -->
-                    <div class="logo-left-bg"></div>
-                    <div class="logo-left one-fourth">
-                        <!-- Logo -->
-                        <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
-                        <!-- End of logo -->
-                    </div>
-                    <!-- End of logo area -->
-                    <!-- Copyright and small menu -->
-                    <div class="copyright-area three-fourth last-in-row">
-                        <span class="copyright">© Copyright 2016 by CEFET-MG. Todos os direitos reservados.</span>
-                        <ul class="small-menu">
-                            <li><a href="faq.html">Dúvidas</a></li>
-                            <li><a href="http://timoteo.cefetmg.br">CEFET-MG Campus Timóteo</a></li>
-                            <!--<li><a href="contato.html">Contato</a></li>-->
-                        </ul>
-                    </div>
-                    <!-- End of copyright and small menu -->
-                </div>
-            </div>
-            <!-- End of footer second row -->
-        </footer>
-        <!-- End of footer -->
-
-        <!-- Scripts -->
-        <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
-        <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
-        <script type="text/javascript" src="js/responsive-nav.js"></script>
-        <script type="text/javascript" src="js/jquery/jquery.touchSwipe.min.js"></script>
-
-        <!-- Scripts Configuration -->
-        <script type="text/javascript" src="js/custom.js"></script>
-        <!-- End of scripts configuration -->
-
-        <script type="text/javascript" src="js/ASCIIMathML.js"></script>
-        <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
-        <script>
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        </script>
-        <!-- End of scripts -->
-    </body>
+    <script type="text/javascript" src="js/ASCIIMathML.js"></script>
+    <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
+    <script>
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    </script>
+    <!-- End of scripts -->
+</body>
 
 </html>

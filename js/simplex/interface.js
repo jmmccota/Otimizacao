@@ -7,7 +7,7 @@ var simplexTable = null;
 SimplexTable = function () {
 
     $("#result").empty();
-    $("#resultInfo").empty();
+    $("#detalhes").hide();
 
     this.reseta = function (cont) {
         $("#myTableResult" + cont).empty();

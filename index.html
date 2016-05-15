@@ -10,22 +10,23 @@
     <!-- End of meta -->
 
     <!-- Title -->
-    <title>Solver - Pesquisa Operacional</title>
+    <title>SIMO - Pesquisa Operacional</title>
     <!-- End of title -->
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/light.css" id="scheme" />
-    <link rel="stylesheet" type="text/css" href="css/colors/blue.css" id="colors" />
     <link rel="stylesheet" type="text/css" href="css/responsive-nav.css" />
     <link rel="stylesheet" type="text/css" href="css/flexslider.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/opensans.css" />
+    <link rel="stylesheet" type="text/css" href="css/colors/blue.css" id="colors" />
     <!-- End of stylesheets -->
+    <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+
 </head>
 
 <body>
-
     <!-- Header -->
     <header>
         <div class="top container">
@@ -33,7 +34,7 @@
             <div class="logo-left-bg"></div>
             <div class="logo-left one-fourth">
                 <!-- Logo -->
-                <a class="logo">Solver<span>Pesquisa Operacional</span></a>
+                <a class="logo">SIMO<span>Pesquisa Operacional</span></a>
                 <!-- End of logo -->
             </div>
             <!-- End of logo area -->
@@ -45,7 +46,6 @@
                     <div class="top-social-icons">
                         <ul class="footer-social social-icons">
                             <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
                             <li><a href="https://github.com/jmmccota/Otimizacao"><i class="icon-github"></i></a></li>
                         </ul>
                     </div>
@@ -66,21 +66,21 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="parent"><a href="branchbound.html">Branch and Bound</a>
+                        <li class="parent"><a href="branchbound.html">Branch-and-Bound</a>
                             <ul>
-                                <li>Branch and Bound
+                                <li>Branch-and-Bound
                                     <ul>
                                         <li><a href="branchbound.html">Começar</a></li>
-                                        <li><a href="branchbound-about.html">Mais sobre o Modelo</a></li>
+                                        <li><a href="branchbound_about.html">Mais sobre o Modelo</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <li class="parent"><a href="#">Transporte</a>
                             <ul>
-                                <li>Canto Noroeste
+                                <li>Transporte
                                     <ul>
-                                        <li><a href="#">Começar</a></li>
+                                        <li><a href="transporte.html">Começar</a></li>
                                         <li><a href="transporte_about.html">Mais sobre o Modelo</a></li>
                                     </ul>
                                 </li>
@@ -96,72 +96,77 @@
     </header>
     <!-- End of header -->
 
-    <!-- Slider -->
-    <div id="slider">
-        <div class="slider-content container">
-            <div class="main-flexslider">
-                <ul class="slides">
-                    <li>
-                        <h1>Algoritmos de Pesquisa Operacional</h1>
-                        <div class="metro-boxes">
-                            <a class="metro-box green-gradient wide first-in-row" href="simplex.html">
-                                <div class="metro-box-icon"><i class="icon-play"></i></div>
-                                <div class="metro-box-title">
-                                    <h5>Simplex</h5></div>
-                            </a>
-                            <a class="metro-box blue-gradient wide first-in-row" href="branchbound.html">
-                                <div class="metro-box-icon"><i class="icon-play"></i></div>
-                                <div class="metro-box-title">
-                                    <h5>Branch and Bound</h5></div>
-                            </a>
-
-                            <a class="metro-box orange-gradient wide last-in-row" href="transporte.html">
-                                <div class="metro-box-icon"><i class="icon-play"></i></div>
-                                <div class="metro-box-title">
-                                    <h5>Transporte</h5></div>
-                            </a>
-                        </div>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- End of slider -->
-
     <!-- Content -->
     <div id="content" class="clearfix">
         <div class="container">
+            <hr class="sep40" />
+            <hr class="sep40" />
+            <hr class="sep40" />
+            <hr class="sep40" />
+            <!-- Projects carousel -->
+            <div class="project-slides">
+                <h1>Algoritmos de Pesquisa Operacional<span>Sistema Interatico para Métodos de Otimização(SIMO)</span></h1>
+
+                <div class="project-carousel">
+                    <ul>
+                        <li class="project-item green-gradient">
+                            <div class="project-image"><img src="img/projects/simplex.jpg" alt="" /></div>
+                            <div class="project-mask">
+                                <a class="project-zoom" href="simplex.html"><i class="icon-plus"></i></a>
+                                <h5 class="project-title"><a href="simplex.html">Simplex</a></h5>
+                            </div>
+                        </li>
+                        <li class="project-item blue-gradient">
+                            <div class="project-image"><img src="img/projects/branchbound.jpg" alt="" /></div>
+                            <div class="project-mask">
+                                <a class="project-zoom" href="branchbound.html"><i class="icon-plus"></i></a>
+                                <h5 class="project-title"><a href="branchbound.html">Branch-and-Bound</a></h5>
+                            </div>
+                        </li>
+                        <li class="project-item orange-gradient">
+                            <div class="project-image"><img src="img/projects/transporte.jpg" alt="" /></div>
+                            <div class="project-mask">
+                                <a class="project-zoom" href="transporte.html"><i class="icon-plus"></i></a>
+                                <h5 class="project-title"><a href="transporte.html">Transporte</a></h5>
+                            </div>
+                        </li>
+                </div>
+            </div>
             <hr class="sep40" />
             <!-- Text slider -->
             <div class="text-slides flexslider">
                 <ul class="slides">
                     <li>
                         <h1 class="intro-header"><strong>Simplex</strong> </h1>
-                        <p class="intro">Simplex é um algoritmo criado por George Dantzig que viabiliza a solução de problemas de programação linear. </p>
+                        <p class="intro">Simplex é um algoritmo criado por George Dantzig que viabiliza a solução de problemas de programação
+                            linear. </p>
                         <a class="button-outline green" href="simplex.html">Começar</a>
                         <a class="button-outline grey" href="simplex_about.html">Mais sobre o Modelo</a>
                     </li>
                     <li>
-                        <h1 class="intro-header"><strong>Branch and Bound</strong> </h1>
-                        <p class="intro">O método foi proposto por A. H. Land e A. G. Doig em 1960. Branch and bound é um algoritmo para encontrar soluções ótimas de problemas de programação inteira.</p>
+                        <h1 class="intro-header"><strong>Branch-and-Bound</strong> </h1>
+                        <p class="intro">O método foi proposto por A. H. Land e A. G. Doig em 1960. Branch-and-bound é um algoritmo para encontrar
+                            soluções ótimas de problemas de programação inteira.</p>
                         <a class="button-outline defalut" href="branchbound.html">Começar</a>
                         <a class="button-outline grey" href="branchbound_about.html">Mais sobre o Modelo</a>
                     </li>
                     <li>
                         <h1 class="intro-header"><strong>Transporte</strong></h1>
-                        <p class="intro">O Problema de Transporte consiste em determinar o menor 
-custo em transportar produtos de várias origens para vários destinos. Aplicação direta em Logística.</p>
-                        <a class="button-outline orange" href="#">Começar</a>
-                        <a class="button-outline grey" href="#">Mais sobre o Modelo</a>
+                        <p class="intro">O Problema de Transporte consiste em determinar o menor custo em transportar produtos de várias origens
+                            para vários destinos. Aplicação direta em Logística.</p>
+                        <a class="button-outline orange" href="transporte.html">Começar</a>
+                        <a class="button-outline grey" href="transporte_about.html">Mais sobre o Modelo</a>
                     </li>
                 </ul>
             </div>
+            <!-- End of text slider -->
+
+            <!-- End of projects carousel -->
+            <hr class="sep40" />
         </div>
-        <hr class="sep40" />
 
     </div>
-    <!-- End of content -->
+    <!-- End of content 
 
     <!-- Footer -->
     <footer>
@@ -172,7 +177,7 @@ custo em transportar produtos de várias origens para vários destinos. Aplicaç
                 <div class="logo-left-bg"></div>
                 <div class="logo-left one-fourth">
                     <!-- Logo -->
-                    <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
+                    <a class="logo" href="index.html">SIMO<span>Pesquisa Operacional</span></a>
                     <!-- End of logo -->
                 </div>
                 <!-- End of logo area -->
@@ -195,6 +200,7 @@ custo em transportar produtos de várias origens para vários destinos. Aplicaç
     <!-- Scripts -->
     <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.jcarousel.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
     <script type="text/javascript" src="js/responsive-nav.js"></script>
