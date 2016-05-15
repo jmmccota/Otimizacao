@@ -171,12 +171,13 @@ SimplexTable = function () {
             var indiceNaoBasica = z["VariaveisNaoBasicas"][i];
             bodyNaoBasicas += "`x_" + (indiceNaoBasica + 1) + "=" + valorVariaveis[indiceNaoBasica].toFixed(4).replace('.', ',') + "`; ";
         }
-
+		addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
+		addHead("js/ASCIIMathML.js");
         basicas.innerHTML = bodyBasicas + "</p>";
         naoBasicas.innerHTML = bodyNaoBasicas + "</p>";
         qtdIteracoes.innerHTML = "Quantidade de Iterações: " + nIteracao;
     };
-
+	
     return this;
 }
 

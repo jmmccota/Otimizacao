@@ -323,12 +323,12 @@ function hideFormProblema() {
 }
 
 
-function mpl(modelos) {
+function mpl(modelos, local) {
 
     addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
     addHead("js/ASCIIMathML.js");
     //$('#div_mpl').show();
-    var mp = document.getElementById('fileDisplayArea');
+    var mp = document.getElementById(local);
     //mp.innerHTML = "";
     var x;
     if(__global__executando__ === "simplex"){
@@ -443,7 +443,7 @@ $(document).ready(function () {
             reader.readAsText(file);
 
             reader.onload = function (evt) {
-				mpl(analisarFile());
+				mpl(analisarFile(),"fileDisplayArea");
             };
 
         } else {
