@@ -1801,18 +1801,17 @@
 	
 	.numeral-info-number {
 		font-weight: 100;
-		font-size: 45px;
+		font-size: 50px;
 		display: block;
 		line-height: 65px;
 	}
 	
 	.numeral-info-description {
 		font-weight: 700;
-		font-size: 18px;
-		line-height: 8px;
+		font-size: 20px;
 		border-bottom: 2px solid;
-		padding-bottom: 20px;
 		margin-bottom: -2px;
+		padding-top: 5px;
 		display: inline-block;
 	}
 	
@@ -2229,6 +2228,23 @@
   		-webkit-box-sizing:border-box;
 		overflow: auto;
 		clear: both;
+	}
+	
+	/*Box
+	-----------------------------------------------------*/
+	
+	
+	.boxVar h5 {
+		font-size: inherit !important;
+		padding: 12px;
+		border: 2px solid rgb(125,188,29);
+	    box-shadow: 1px 1px 1px 0px rgb(240,240,240);
+		margin-bottom: 5px;
+		font-weight: 700;
+	}
+	
+		.boxVar div {
+		padding: 15px 0px;
 	}
 	
 		

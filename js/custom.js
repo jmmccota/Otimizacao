@@ -126,7 +126,7 @@ $(document).ready(function() {
     // ******************************************************* ACORDION ******************************************************
     $(".accordion").accordion({
         collapsible: true,
-        active: false
+        active: false,
     });
 
     // ******************************************************** VIDEOS *********************************************************
@@ -135,7 +135,7 @@ $(document).ready(function() {
     // **************************************************** RESPONSIVE NAVS ****************************************************
     var navigation = responsiveNav("#nav", { // Selector: The ID of the wrapper
         animate: true, // Boolean: Use CSS3 transitions, true or false
-        transition: 400, // Integer: Speed of the transition, in milliseconds
+        transition: 200, // Integer: Speed of the transition, in milliseconds
         label: "", // String: Label for the navigation toggle
         insert: "after", // String: Insert the toggle before or after the navigation
         customToggle: "", // Selector: Specify the ID of a custom toggle

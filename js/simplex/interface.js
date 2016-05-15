@@ -142,12 +142,13 @@ SimplexTable = function () {
         }
     };
 
-    this.drawDetalhes = function (z, basicas) {
+    this.drawDetalhes = function (z, nIteracao) {
         $("#detalhes").show();
         var tipoResultado = document.getElementById("tipoResultado");
         var valorZ = document.getElementById("valorZ");
-        var basicas = document.getElementById("basicas");
-        var naoBasicas = document.getElementById("naoBasicas");
+        var basicas = document.getElementById("variaveisBasicas");
+        var naoBasicas = document.getElementById("variaveisNaoBasicas");
+        var qtdIteracoes = document.getElementById("qtdIteracoes");
 
         tipoResultado.innerHTML = z["TipoResultado"];
         if (z["FuncaoObjetivo"] != null) {
@@ -157,10 +158,23 @@ SimplexTable = function () {
             showAlert("danger", z["TipoResultado"]);
         }
 
+        var valorVariaveis = z["Variaveis"];
+        var bodyBasicas = "<p>";
+        var bodyNaoBasicas = "<p>";
 
-        basicas.innerHTML = "<p>" + +"</p>";
+        for (var i = 0; i < z["VariaveisBasicas"].length; i++) {
+            var indiceBasica = z["VariaveisBasicas"][i];
+            bodyBasicas += "`x_" + (indiceBasica + 1) + "=" + valorVariaveis[indiceBasica].toFixed(4).replace('.', ',') + "`; ";
+        }
 
+        for (var i = 0; i < z["VariaveisNaoBasicas"].length; i++) {
+            var indiceNaoBasica = z["VariaveisNaoBasicas"][i];
+            bodyNaoBasicas += "`x_" + (indiceNaoBasica + 1) + "=" + valorVariaveis[indiceNaoBasica].toFixed(4).replace('.', ',') + "`; ";
+        }
 
+        basicas.innerHTML = bodyBasicas + "</p>";
+        naoBasicas.innerHTML = bodyNaoBasicas + "</p>";
+        qtdIteracoes.innerHTML = "Quantidade de Iterações: " + nIteracao;
     };
 
     return this;
@@ -271,7 +285,7 @@ $(document).ready(function () {
                 simplex.init(modelo);
                 var temp = simplex.executa();
                 simplexTable.drawTable(temp);
-                simplexTable.drawDetalhes(simplex.resultado(temp.length - 1));
+                simplexTable.drawDetalhes(simplex.resultado(temp.length - 1), temp.length - 1);
 
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
