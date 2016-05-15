@@ -152,7 +152,7 @@ SimplexTable = function () {
 
         tipoResultado.innerHTML = z["TipoResultado"];
         if (z["FuncaoObjetivo"] != null) {
-            valorZ.innerHTML = "Z=" + z["FuncaoObjetivo"].toFixed(4).replace('.', ',');
+            valorZ.innerHTML = "Z = " + ("" + (+ (z["FuncaoObjetivo"]).toFixed(4))).replace('.', ',');
             showAlert("success", "Solução Ótima encontrada. Z=" + z["FuncaoObjetivo"].toFixed(4).replace('.', ','));
         } else {
             showAlert("danger", z["TipoResultado"]);
@@ -164,12 +164,12 @@ SimplexTable = function () {
 
         for (var i = 0; i < z["VariaveisBasicas"].length; i++) {
             var indiceBasica = z["VariaveisBasicas"][i];
-            bodyBasicas += "`x_" + (indiceBasica + 1) + "=" + valorVariaveis[indiceBasica].toFixed(4).replace('.', ',') + "`; ";
+            bodyBasicas += "`x_" + (indiceBasica + 1) + " = " + ("" + (+ (valorVariaveis[indiceBasica]).toFixed(4))).replace('.', ',') + "`<br>";
         }
 
         for (var i = 0; i < z["VariaveisNaoBasicas"].length; i++) {
             var indiceNaoBasica = z["VariaveisNaoBasicas"][i];
-            bodyNaoBasicas += "`x_" + (indiceNaoBasica + 1) + "=" + valorVariaveis[indiceNaoBasica].toFixed(4).replace('.', ',') + "`; ";
+            bodyNaoBasicas += "`x_" + (indiceNaoBasica + 1) + " = " + ("" + (+ (valorVariaveis[indiceNaoBasica]).toFixed(4))).replace('.', ',') + "`<br>";
         }
 
         basicas.innerHTML = bodyBasicas + "</p>";
