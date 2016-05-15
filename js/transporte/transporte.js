@@ -156,7 +156,11 @@ function MenorCusto (tabela){
 					 ||
 					   isNaN(minimo))
 				   &&
-				     !this.tabela[i][j].visitado){
+				     !this.tabela[i][j].visitado
+				   &&
+				   	 this.tabela[i][this.tabela[i].length-1] !== 0
+				   &&
+				   	 this.tabela[this.tabela.length-1][j] !== 0){
 
 					minimo = this.tabela[i][j].custo;
 					this.atual = { "i": i, "j": j };
