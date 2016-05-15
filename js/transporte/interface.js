@@ -43,6 +43,9 @@ TransporteTable = function () {
             //Valores de cada Iteração
             for (var i = 0; i < result[nIteracao].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
+                //if (nIteracao > 0) {
+                    row.className = (pivo.i == i) ? 'pivoT' : '';
+                //}
                 if (i < result[nIteracao].length-1) {
                     row.insertCell(0).innerHTML = '<p class="simplex"><b>Linha ' + (i+1) + '</b></p>';
                 }
@@ -59,7 +62,7 @@ TransporteTable = function () {
                         cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
                     }
                     if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
-                        cell.className = (pivo[0] == j) ? 'pivo' : '';
+                        cell.className = (pivo.j == j) ? 'pivoT' : '';
                     }
                 }
             }

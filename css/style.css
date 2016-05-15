@@ -3064,6 +3064,16 @@
     -webkit-box-sizing:border-box;
 }
 
+.pivoT{
+    background-color:rgba(255, 205, 85, 0.24);
+    font-weight: bold;
+    box-shadow: inset 1px 1px 0px 0px rgb(230,230,230), inset -1px -1px 0px 0px rgb(230,230,230);
+    overflow: visible !important;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
 /*Scroll bar vertical */
 
 #styleScroll::-webkit-scrollbar-track
