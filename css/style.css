@@ -1801,15 +1801,15 @@
 	
 	.numeral-info-number {
 		font-weight: 100;
-		font-size: 70px;
+		font-size: 45px;
 		display: block;
 		line-height: 65px;
 	}
 	
 	.numeral-info-description {
 		font-weight: 700;
-		font-size: 20px;
-		line-height: 22px;
+		font-size: 18px;
+		line-height: 8px;
 		border-bottom: 2px solid;
 		padding-bottom: 20px;
 		margin-bottom: -2px;
