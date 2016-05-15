@@ -327,9 +327,9 @@ $(document).ready(function () {
     $('#proximoPasso').click(function () {
         try {
             if (simplex.terminou()) {
+                var temp = simplex.proximoPasso();
                 $("#proximoPasso").prop('disabled', true);
-                simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
-                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                simplexTable.drawDetalhes(simplex.resultado(nIteracao), nIteracao);
             }
             simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);
