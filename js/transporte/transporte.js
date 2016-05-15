@@ -248,8 +248,18 @@ function copiaTabela(tabela){
 	var copia = [];
 	for(var i = 0; i < tabela.length; i++){
 		copia.push([]);
-		for(var j = 0; j < tabela[i].length; j++)
-			copia[i].push(tabela[i][j]);
+		for(var j = 0; j < tabela[i].length; j++){
+			if(i < tabela.length - 1 && j < tabela[i].length - 1){
+				var x = {};
+				x.custo = tabela[i][j].custo;
+				x.qtd = tabela[i][j].qtd;
+				x.visitado = tabela[i][j].visitado;
+				copia[i].push(x);
+			}
+			else{
+				copia[i].push(tabela[i][j]);
+			}
+		}
 	}
 	return copia;
 };

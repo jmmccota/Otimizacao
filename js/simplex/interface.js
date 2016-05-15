@@ -286,7 +286,7 @@ $(document).ready(function () {
                 simplex.init(modelo);
                 var temp = simplex.executa();
                 simplexTable.drawTable(temp);
-                simplexTable.drawDetalhes(simplex.resultado(temp.length - 1), temp.length - 1);
+                //simplexTable.drawDetalhes(simplex.resultado(temp.length - 1), temp.length - 1);
 
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }

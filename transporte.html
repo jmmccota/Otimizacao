@@ -9,7 +9,7 @@
     <!-- End of meta -->
 
     <!-- Title -->
-    <title>SIMPL - Transporte</title>
+    <title>SIMO - Transporte</title>
     <!-- End of title -->
 
     <!-- Stylesheets -->
@@ -252,50 +252,12 @@
             <!-- end container-->
         </div>
         <section class="container-big">
-            <div class=" row panel panel-default" id="panelResultado" tabindex="-1" style="display:none; ">
-                <div class="panel-heading">
-                    <h3 class="panel-title" id="panel-title"><label>Resultado</label></h3>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div id="resultTree"></div>
-                            <div class="row" style="margin-left: 20px;">
-                                <button class="btn btn-info" id="proximoPasso">
-                                    <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Pr&oacute;ximo
-                                    Passo
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label>Solução:</label>
-                        <div class="list-group" style="margin-bottom: 0; padding-bottom: 0;">
-                            <div class="list-group-item active" style="background-color:rgb(60,159,255);">
-                                <h4 class="list-group-item-heading">Informações:</h4>
-                                <p class="list-group-item-text" style="color: #fff;">Clique no nó desejado para obter as informações.</p>
-                            </div>
-                            <div class="list-group-item">
-                                <h4 class="list-group-item-heading">Modelo Simplex</h4>
-                                <p class="list-group-item-text" id="modelo"></p>
-                            </div>
-                            <div class="list-group-item">
-                                <h4 class="list-group-item-heading">Tipo de Solução</h4>
-                                <p class="list-group-item-text" id="tipoSol"></p>
-                            </div>
-                            <div class="list-group-item">
-                                <h4 class="list-group-item-heading">Valor de Z</h4>
-                                <p class="list-group-item-text" id="valorZ"></p>
-                            </div>
-                            <div class="list-group-item">
-                                <h4 class="list-group-item-heading">Valores de X</h4>
-                                <p class="list-group-item-text" id="novosX"></p>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-left: 18px; display:none;" id="rowObsProximoPasso">
-                            <small><b>Obs:</b> Clique no <b>nó</b> e então no <b>x</b> desejado, ou clique em <b>proximo passo</b> para prosseguir.</small>
-                        </div>
-                    </div>
+            <div id="panelResultado" style="display: none;">
+                <div id="result"></div>
+                <div class="row" style="margin-bottom:20px;">
+                    <button class="btn btn-info" id="proximoPasso">
+                        <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Pr&oacute;ximo Passo
+                    </button>
                 </div>
             </div>
         </section>
@@ -356,6 +318,7 @@
     <script type="text/javascript" src="js/FileSaver.min.js"></script>
     <script type="text/javascript" src="js/transporte/tabelaProblema.js"></script>
     <script type="text/javascript" src="js/transporte/interface.js"></script>
+    <script type="text/javascript" src="js/transporte/transporte.js"></script>
 
     <script type="text/javascript" src="js/ASCIIMathML.js"></script>
     <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
