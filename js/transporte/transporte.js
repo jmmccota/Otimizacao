@@ -16,14 +16,14 @@ Transporte = function(){
 	
 	this.init = function(modelo){
 
-		this.tabela = modelo.tabela;
+		this.tabela = modelo.problema;
 		this.metodo = modelo.metodo;
 
 		this.iteracoes = [];
 
 		//Convertendo tabela entrada para modelo
-		for(var i = 0; i < this.tabela.lenght-1; i++){
-			for(var j = 0; j < this.tabela[0].lenght-1; j++)
+		for(var i = 0; i < this.tabela.length-1; i++)
+			for(var j = 0; j < this.tabela[0].length-1; j++)
 				this.tabela[i][j] = { qtd: 0, custo: this.tabela[i][j], visitado: false };
 
 		if(this.metodo === "Canto Noroeste")
@@ -43,13 +43,34 @@ Transporte = function(){
 	};
 
 	this.executa = function(){
-		while(!this.terminou)
+		while(!this.terminou())
 			this.proximoPasso();
 		return this.iteracoes;
 	};
 
 	this.terminou = function(){
 		return this.solver.terminou();
+	};
+
+	this.pivo = function(nIteracao){
+		var aux = copiaTabela(this.solver.tabela);
+		this.solver.tabela = this.iteracoes[nIteracao];
+		var res = this.solver.escolheCelula();
+		this.solver.tabela = aux;
+
+		return res;
+	};
+
+	this.custo = function(nIteracao){
+		var t = this.iteracoes[nIteracao];
+		var res = 0;
+		for(var i = 0; i < t.length-1; i++){
+			for(var j = 0; j < t[i].length-1; j++){
+				res += t[i][j].custo * t[i][j].qtd;
+			}
+		}
+
+		return res;
 	};
 };
 
@@ -65,14 +86,14 @@ SolverTransporte = function(tabela, funcaoEscolha){
 SolverTransporte.prototype.terminou = function() {
 	var supZerou = true, demZerou = true;
 	
-	for(var i = 0; i < this.tabela.lenght-1; i++){
-		if(this.tabela[i][this.tabela[i].lenght-1] != 0){
+	for(var i = 0; i < this.tabela.length-1; i++){
+		if(this.tabela[i][this.tabela[i].length-1] != 0){
 			supZerou = false;
 			break;
 		}
 	}
-	for(var j = 0; j < this.tabela[this.tabela.lenght-1].lenght; j++){
-		if(this.tabela[this.tabela.lenght-1][j] != 0){
+	for(var j = 0; j < this.tabela[this.tabela.length-1].length; j++){
+		if(this.tabela[this.tabela.length-1][j] != 0){
 			demZerou = false;
 			break;
 		}
@@ -85,8 +106,8 @@ SolverTransporte.prototype.proximoPasso = function() {
 
 	this.tabela[i][j].visitado = true;
 
-	var tamI = this.tabela.lenght-1;
-	var tamJ = this.tabela[0].lenght-1;
+	var tamI = this.tabela.length-1;
+	var tamJ = this.tabela[0].length-1;
 	var sup = this.tabela[i][tamJ];
 	var dem = this.tabela[tamI][j];
 	
@@ -96,22 +117,24 @@ SolverTransporte.prototype.proximoPasso = function() {
 	//Calcula quantidades restantes
 	this.tabela[i][tamJ] = sup > dem ? sup-dem : 0;
 	this.tabela[tamI][j] = sup > dem ? 0 : dem-sup;
+
+	return this.tabela;
 };
 
 CantoNoroeste.prototype = new SolverTransporte();
 CantoNoroeste.prototype.constructor = CantoNoroeste;
-CantoNoroeste = function(tabela){
-	SolverTransporte.prototype.constructor.call(this, function(){
+function CantoNoroeste (tabela){
+	SolverTransporte.prototype.constructor.call(this, tabela, function(){
 		if(!this.atual){
 			this.atual = {i: 0, j: 0};
 		}
 		else{
 			//Se fornecimento esgotou vai para proxima linha
-			if(this.tabela[this.atual.i][this.tabela[0].lenght-1] === 0){
+			if(this.tabela[this.atual.i][this.tabela[0].length-1] === 0){
 				this.atual.i++;
 			}
 			//Se demanda esgotou vai para proxima coluna
-			else if(this.tabela[this.tabela.lenght-1][this.atual.j] === 0){
+			else if(this.tabela[this.tabela.length-1][this.atual.j] === 0){
 				this.atual.j++;
 			}
 		}
@@ -122,20 +145,24 @@ CantoNoroeste = function(tabela){
 
 MenorCusto.prototype = new SolverTransporte();
 MenorCusto.prototype.constructor = MenorCusto;
-MenorCusto = function(tabela){
-	SolverTransporte.prototype.constructor.call(this, function(){
+function MenorCusto (tabela){
+	SolverTransporte.prototype.constructor.call(this, tabela, function(){
 		//Calcula celula com menor custo
 		var minimo = 0 / 0;
 		this.atual = undefined;
-		for(var i = 0; i < this.tabela.lenght; i++){
-			for(var j = 0; j < this.tabela[0].lenght){
+		for(var i = 0; i < this.tabela.length - 1; i++){
+			for(var j = 0; j < this.tabela[0].length - 1; j++){
 				if(    (this.tabela[i][j].custo < minimo
 					 ||
 					   isNaN(minimo))
 				   &&
-				     !this.tabela[i][j].visitado){
+				     !this.tabela[i][j].visitado
+				   &&
+				   	 this.tabela[i][this.tabela[i].length-1] !== 0
+				   &&
+				   	 this.tabela[this.tabela.length-1][j] !== 0){
 
-					minimo = this.tabela.custo;
+					minimo = this.tabela[i][j].custo;
 					this.atual = { "i": i, "j": j };
 				}
 			}
@@ -147,90 +174,96 @@ MenorCusto = function(tabela){
 
 MAV.prototype = new SolverTransporte();
 MAV.prototype.constructor = MAV;
-MAV = function(tabela){
-	SolverTransporte.prototype.constructor.call(this, function(){
+function MAV (tabela){
+	SolverTransporte.prototype.constructor.call(this, tabela, function(){
 		var multaLinha = [], multaColuna = [];
 		var t = this.tabela;
 
 		//Calculando multa por linhas
-		for(var i = 0; i < t.lenght-1; i++){
+		for(var i = 0; i < t.length-1; i++){
 			//Caso linha ja tenha sido feita - multa "infinita"
-			if(t[i][t[i].lenght] === 0){
-				multaLinha.push({"multa": 99999999999999999999999999999999999999999999999999999999999999999, "idx": 0})
+			if(t[i][t[i].length-1] === 0){
+				multaLinha.push({"multa": -1, "idx": 0})
 				continue;
 			}
-			var menor, sMenor, idx;
-			menor = t[i][0] < t[i][1] ? t[i][0] : t[i][1];
-			sMenor = t[i][0] > t[i][1] ? t[i][0] : t[i][1];
-			idx = t[i][0] < t[i][1] ? 0 : 1;
-			for(var j = 2; j < t[i].lenght-1; j++){
-				if(t[i][j] < sMenor){
-					if(t[i][j] < menor){
+			var menor = undefined, sMenor = undefined, idx = undefined;
+			for(var j = 0; j < t[i].length-1; j++){
+				if(t[i][j].qtd === 0 && t[t.length-1][j] > 0 && (sMenor === undefined || t[i][j].custo < sMenor)) {
+					if(menor === undefined || t[i][j].custo < menor){
 						sMenor = menor;
-						menor = t[i][j];
+						menor = t[i][j].custo;
+						idx = j;
 					}
 					else{
-						sMenor = t[i][j];
+						sMenor = t[i][j].custo;
 					}
 				}
 			}
-			multaLinha.push({"multa": sMenor - menor, "idx": idx});
+			multaLinha.push({"multa": sMenor === undefined ? menor : sMenor - menor, "idx": idx});
 		}
 
 		//Calculando multa por colunas
-		for(var j = 0; j < t[0].lenght-1; j++){
+		for(var j = 0; j < t[0].length-1; j++){
 			//Caso coluna ja tenha sido feita - multa "infinita"
-			if(t[t.lenght][j] === 0){
-				multaLinha.push({"multa": 99999999999999999999999999999999999999999999999999999999999999999, "idx": 0})
+			if(t[t.length-1][j] === 0){
+				multaColuna.push({"multa": -1, "idx": 0})
 				continue;
 			}
-			var menor, sMenor, idx;
-			menor = t[0][j] < t[1][j] ? t[0][i] : t[1][i];
-			sMenor = t[0][j] > t[1][j] ? t[0][j] : t[1][j];
-			idx = t[i][0] < t[i][1] ? 0 : 1;
-			for(var i = 2; i < t.lenght-1; i++){
-				if(t[i][j] < sMenor){
-					if(t[i][j] < menor){
+			var menor = undefined, sMenor = undefined, idx = undefined;
+			for(var i = 0; i < t.length-1; i++){
+				if(t[i][j].qtd === 0 && t[i][t[i].length-1] > 0 && (sMenor === undefined || t[i][j].custo < sMenor)) {
+					if(menor === undefined || t[i][j].custo < menor){
 						sMenor = menor;
-						menor = t[i][j];
+						menor = t[i][j].custo;
+						idx = i;
 					}
 					else{
-						sMenor = t[i][j];
+						sMenor = t[i][j].custo;
 					}
 				}
 			}
-			multaColuna.push({"multa": sMenor - menor, "idx": idx});
+			multaColuna.push({"multa": sMenor === undefined ? menor : sMenor - menor, "idx": idx});
 		}
 
 		//Encontra maior multa
-		var maiorLinha = multaLinha[0], multaColuna = multaColuna[0];
+		var maiorLinha = multaLinha[0], maiorColuna = multaColuna[0];
 		var idxL = 0, idxC = 0;
 
-		for(var i = 1; i < multaLinha.lenght; i++){
-			if(maiorLinha.custo < multaLinha[i].custo){
+		for(var i = 1; i < multaLinha.length; i++){
+			if(maiorLinha.multa < multaLinha[i].multa){
 				idxL = i;
 				maiorLinha = multaLinha[i];
 			}	
 		}
 
-		for(var i = 1; i < multaColuna.lenght; i++){
-			if(maiorColuna.custo < multaColuna[i].custo){
+		for(var i = 1; i < multaColuna.length; i++){
+			if(maiorColuna.multa < multaColuna[i].multa){
 				idxC = i;
 				maiorColuna = multaColuna[i];
 			}	
 		}
 
-		var res = maiorLinha.custo > maiorColuna.custo ? {i: idxL, j: maiorLinha.idx} : {i: maiorColuna.idx, j: idxC};
+		var res = maiorLinha.multa > maiorColuna.multa ? {i: idxL, j: maiorLinha.idx} : {i: maiorColuna.idx, j: idxC};
 		return res;
 	});
 };
 
 function copiaTabela(tabela){
 	var copia = [];
-	for(var i = 0; i < tabela.lenght; i++){
+	for(var i = 0; i < tabela.length; i++){
 		copia.push([]);
-		for(var j = 0; j < tabela[i].lenght; j++)
-			copia[i].push(tabela[i][j]);
+		for(var j = 0; j < tabela[i].length; j++){
+			if(i < tabela.length - 1 && j < tabela[i].length - 1){
+				var x = {};
+				x.custo = tabela[i][j].custo;
+				x.qtd = tabela[i][j].qtd;
+				x.visitado = tabela[i][j].visitado;
+				copia[i].push(x);
+			}
+			else{
+				copia[i].push(tabela[i][j]);
+			}
+		}
 	}
 	return copia;
 };

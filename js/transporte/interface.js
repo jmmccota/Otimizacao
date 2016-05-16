@@ -2,6 +2,75 @@
 ////////////////////////////////////////////////////
 //           FUNCOES DA TABELA TRANSPORTE         //
 ////////////////////////////////////////////////////
+TransporteTable = function () {
+
+    $("#result").empty();
+    //$("#resultInfo").empty();
+
+    this.reseta = function (cont) {
+        $("#myTableResult" + cont).empty();
+    };
+
+    this.drawTable = function (result) {
+
+        for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
+            //Cria MytableResult
+            $('#result').append(
+                '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
+                '   <div class="panel-heading"> ' +
+                '      <h3 class="panel-title" id="panel-title"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
+                '   </div>' +
+                '   <div class="panel-body" style="padding: 0;">' +
+                '      <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
+                '   </div>' +
+                '</div>');
+
+            this.tableObj = document.getElementById("myTableResult" + nIteracao);
+            this.reseta(nIteracao);
+
+            var row = this.tableObj.insertRow(0);
+
+            //Cabeçalho
+            row.insertCell(0).innerHTML = '<center><b></b></center>';
+            for (var i = 1; i < result[nIteracao][0].length; i++) {
+                row.insertCell(i).innerHTML = '<center><b>Coluna ' + i + '</b></center>';
+            }
+            row.insertCell().innerHTML = '<center><b>Suprimento</b></center>';
+
+            //Elemento pivo
+            var pivo = ((nIteracao != result.length - 1) ? solver.pivo(nIteracao) : '');
+
+            //Valores de cada Iteração
+            for (var i = 0; i < result[nIteracao].length; i++) {
+                row = this.tableObj.insertRow(i + 1);
+                //if (nIteracao > 0) {
+                    row.className = (pivo.i == i) ? 'pivoT' : '';
+                //}
+                if (i < result[nIteracao].length-1) {
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>Linha ' + (i+1) + '</b></p>';
+                }
+                else{
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>Demanda</b></p>';
+                }
+                for (var j = 0; j < result[nIteracao][0].length; j++) {
+                    var cell = row.insertCell(j + 1);
+                    if(j < result[nIteracao][0].length - 1 && i < result[nIteracao].length - 1){
+                        cell.innerHTML = '<p class="simplex"> Custo: ' + ("" + (+result[nIteracao][i][j].custo.toFixed(4))).replace('.', ',') +
+                        " x Quantidade: " + ("" + (+result[nIteracao][i][j].qtd.toFixed(4))).replace('.', ',') + '</p>';
+                    }
+                    else if (!(j === result[nIteracao][0].length - 1 && i === result[nIteracao].length - 1)){
+                        cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                    }
+                    if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
+                        cell.className = (pivo.j == j) ? 'pivoT' : '';
+                    }
+                }
+            }
+        }
+    };
+    
+    return this;
+}
 
 ////////////////////////////////////////////////////
 //               FUNCOES DE INTERFACE             //
@@ -78,7 +147,13 @@ $(document).ready(function () {
         $('#proximoPasso').hide('fast');
         if (!verificaTabela()) {
             try {
-
+                solver = new Transporte();
+                table = TransporteTable();
+                var x = leituraParametros();
+                solver.init(x);
+                var res = solver.executa();
+                table.drawTable(res);
+                $("#panelResultado").show();
             }
             catch (err) {
                 showAlert("danger", "" + err);
