@@ -11,37 +11,23 @@ Tabela = function() {
     };
 
     t.carrega = function(xx) {
-        throw "Not Implemented Yet!";
         t.reseta();
         $("#myTableData").empty();
-        $("#myTableData2").empty();
         t.existe = true;
+		
         t.nRestri = xx["iRest"];
         t.nVar = xx["nVariaveis"];
-        t.problema = xx["problema"];
-        t.objetivo = xx["objetivo"];
         t.restricoes = xx["restricoes"];
-        t.relacoes = xx["relacoes"];
-        t.rhs = xx["rhs"];
-        t.upper = xx["upper"];
-        t.lower = xx["lower"];
+        
+		
         //Cabecalho
         var table = document.getElementById("myTableData");
         var row = table.insertRow(0);
         row.insertCell(0).innerHTML = '&nbsp;';
-        for (i = 1; i <= t.nVar; i++)
+        for (i = 1; i < t.nVar; i++)
             row.insertCell(i).innerHTML = '<center><b>Coluna' + (i) + '</b></center>';
-        row.insertCell().innerHTML = '<center><b>Linha</b></center>';
-        row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
-        //Funcao Objetivo
-        row = table.insertRow(1);
-        row.insertCell(0).innerHTML = '<b>Objetivo</b>';
-        for (i = 1; i <= t.nVar; i++)
-
-            row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="text" \
-                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.objetivo[i - 1] + '">';
-        row.insertCell().innerHTML = '&nbsp;';
-        row.insertCell().innerHTML = '&nbsp;';
+        row.insertCell().innerHTML = '<center><b>Suprimento</b></center>';
+        
         //add restricoes
         if (t.restricoes[0] === "n") {
             showAlert("danger", "Erro: O sistema não possui restrições");
@@ -49,32 +35,26 @@ Tabela = function() {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 21) {
 
-                for (j = 2; j < (t.nRestri + 2); j++) {
-
+                for (j = 1; j < (t.nRestri-1); j++) {
+					
                     var row = table.insertRow(j);
-                    row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
+                    row.insertCell(0).innerHTML = '<b>Linha' + (j) + '</b>';
                     for (i = 1; i <= t.nVar; i++) {
                         row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="text"  \
-                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 2][i - 1] + '">';
+                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 1][i - 1] + '">';
                     }
-
-                    if (t.relacoes[j - 2] === "<=") {
-                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
-                <option value="<=" selected="selected"><=</option><option>=</option><option>>=</option></select>';
-                    } else if (t.relacoes[j - 2] === "=") {
-                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
-                <option><=</option><option value="=" selected="selected">=</option><option>>=</option></select>';
-                    } else if (t.relacoes[j - 2] === ">=") {
-                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
-                <option><=</option><option>=</option><option value=">=" selected="selected">>=</option></select>';
-                    }
-
-                    row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="text" \
-                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
+					
                 }
             } else {
                 showAlert('warning', 'Limite máximo de restrições atingido: 20');
             }
+			
+			 var row = table.insertRow(t.restricoes.length);
+                    row.insertCell(0).innerHTML = '<b>Demanda</b>';
+                    for (i = 1; i < t.nVar; i++) {
+                        row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="text"  \
+                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[t.restricoes.length - 1][i - 1] + '">';
+                    }
         }
     };
 

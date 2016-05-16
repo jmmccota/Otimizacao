@@ -331,13 +331,15 @@ function mpl(modelos, local) {
     var mp = document.getElementById(local);
     //mp.innerHTML = "";
     var x;
-    if(__global__executando__ === "simplex"){
-        x = new Simplex();
-        x.init(modelos);
-    }
-    else if(__global__executando__ === "branchbound"){
-        x = new Nodo(0, 0, 0, modelos, 0, 0);
-    }
+	if(__global__executando__){
+		if(__global__executando__ === "simplex"){
+			x = new Simplex();
+			x.init(modelos);
+		}
+		else if(__global__executando__ === "branchbound"){
+			x = new Nodo(0, 0, 0, modelos, 0, 0);
+		}
+	}
     var bodyContent = x.modelo();
     mp.innerHTML = bodyContent;
 

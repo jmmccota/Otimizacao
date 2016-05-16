@@ -105,21 +105,52 @@ $(document).ready(function () {
         }
     });
 
+	
+	function analisarFile() {
+		try {
+			var source = "";
+			var restricoes = [];
+			var nVariaveis = 0;
+			source = reader.result;
+			var linha = 1;
+			var cont = 0;
+			var p = 0; //qual parte
+			while (cont < source.length) {
+				linha = "";
+				while(cont < source.length && source[cont] != "\n"){
+					linha += source[cont];
+					cont++;
+				}
+				nVariaveis = 0;
+				for (i = 0; i < linha.length; i++) { //o numero de | Ã© o numero de variaveis
+                    if (linha[i] === "|") {
+                        nVariaveis++;
+                    }
+                }
+				restricoes[p] = linha.split("|",nVariaveis);
+				p++;
+				cont++;
+			}
+			//console.log(restricoes);
+		} catch (err) {
+			throw "Erro: Modelo no formato incorreto. " + err;
+		}
+		return {
+			restricoes: restricoes,
+			nVariaveis: (nVariaveis+1),
+			iRest : (p+1)
+		};
+	}
+	
+	
     //Analisar arquivo
     $('#analisarFile').click(function () {
-        throw "Not Implemented Yet!";
         try {
             if (reader.result != null) {
                 t.reseta();
                 showFormProblema();
                 var problema = analisarFile();
-                var c = document.getElementById("problema");
-                for (var i = 0; i < c.options.length; i++) {
-                    if (c.options[i].value === problema["problema"]) {
-                        c.options[i].selected = true;
-                        break;
-                    }
-                }
+                
                 var d = document.getElementById("variaveis");
                 for (var k = 1; k <= d.options.length; k++) {
                     if (k === problema["nVariaveis"]) {
