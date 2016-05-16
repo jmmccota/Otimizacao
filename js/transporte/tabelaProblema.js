@@ -17,7 +17,7 @@ Tabela = function() {
 		
         t.nRestri = xx["iRest"];
         t.nVar = xx["nVariaveis"];
-        t.restricoes = xx["restricoes"];
+        t.restricoes = xx["problema"];
         
 		
         //Cabecalho

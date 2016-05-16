@@ -11,7 +11,7 @@
 //Tabela[n][n]
 //	Recebe 0
 //	Retorna custo total das alocacoes
-
+__global__executando__ = "transporte";
 Transporte = function(){
 	
 	this.init = function(modelo){
@@ -36,7 +36,7 @@ Transporte = function(){
 		//Inserindo tabela original em iteracoes
 		this.iteracoes.push(copiaTabela(this.tabela));
 	};
-
+	
 	this.proximoPasso = function(){
 		this.iteracoes.push(copiaTabela(this.solver.proximoPasso()));
 		return this.iteracoes;
@@ -72,6 +72,16 @@ Transporte = function(){
 
 		return res;
 	};
+	
+	this.modelo = function () {
+        var source = "";
+        
+        console.log(this.tabela);
+		
+		
+
+        return source.replace(/\n/g, '<br>');
+    };
 };
 
 

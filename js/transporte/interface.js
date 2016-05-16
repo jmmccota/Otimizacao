@@ -178,45 +178,7 @@ $(document).ready(function () {
         catch (err) {
             showAlert("danger", "" + err);
         }
-    });
-
-	
-	function analisarFile() {
-		try {
-			var source = "";
-			var restricoes = [];
-			var nVariaveis = 0;
-			source = reader.result;
-			var linha = 1;
-			var cont = 0;
-			var p = 0; //qual parte
-			while (cont < source.length) {
-				linha = "";
-				while(cont < source.length && source[cont] != "\n"){
-					linha += source[cont];
-					cont++;
-				}
-				nVariaveis = 0;
-				for (i = 0; i < linha.length; i++) { //o numero de | Ã© o numero de variaveis
-                    if (linha[i] === "|") {
-                        nVariaveis++;
-                    }
-                }
-				restricoes[p] = linha.split("|",nVariaveis);
-				p++;
-				cont++;
-			}
-			//console.log(restricoes);
-		} catch (err) {
-			throw "Erro: Modelo no formato incorreto. " + err;
-		}
-		return {
-			restricoes: restricoes,
-			nVariaveis: (nVariaveis+1),
-			iRest : (p+1)
-		};
-	}
-	
+    });	
 	
     //Analisar arquivo
     $('#analisarFile').click(function () {
