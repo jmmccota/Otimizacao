@@ -190,12 +190,7 @@ $(document).ready(function () {
                 var problema = analisarFile();
 
                 var d = document.getElementById("variaveis");
-                for (var k = 1; k <= d.options.length; k++) {
-                    if (k === problema["nVariaveis"]) {
-                        d.options[k - 1].selected = true;
-                        break;
-                    }
-                }
+                d.value = problema["nVariaveis"] - 1;
 
                 t.carrega(problema);
                 $('#ui-id-1').click();

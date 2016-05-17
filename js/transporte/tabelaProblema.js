@@ -25,6 +25,7 @@ Tabela = function () {
         row.insertCell(0).innerHTML = '&nbsp;';
         for (i = 1; i < t.nVar; i++)
             row.insertCell(i).innerHTML = '<center><b>Coluna' + (i) + '</b></center>';
+
         row.insertCell().innerHTML = '<center><b>Suprimento</b></center>';
 
         //add restricoes
@@ -60,6 +61,10 @@ Tabela = function () {
                     class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[t.restricoes.length - 1][i - 1] + '">';
             }
         }
+        //Tira o suprimento de variavel
+        t.nVar--;
+        //Tira a demanda de restrição
+        t.nRestri -= 2;
     };
 
     //Cria a tabela base de um novo modelo
@@ -162,7 +167,6 @@ Tabela = function () {
     t.existe = false;
     return t;
 };
-
 
 leituraParametros = function () {
     var metodo = document.getElementById("metodo").value;
