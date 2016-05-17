@@ -53,12 +53,7 @@ Transporte = function(){
 	};
 
 	this.pivo = function(nIteracao){
-		var aux = copiaTabela(this.solver.tabela);
-		this.solver.tabela = this.iteracoes[nIteracao];
-		var res = this.solver.escolheCelula();
-		this.solver.tabela = aux;
-
-		return res;
+		return this.solver.escolhidos[nIteracao];
 	};
 
 	this.custo = function(nIteracao){
@@ -89,6 +84,7 @@ Transporte = function(){
 SolverTransporte = function(tabela, funcaoEscolha){
 	this.atual = undefined;
 	this.tabela = tabela;
+	this.escolhidos = [];
 	//Funcao de escolha de celula para iteracao
 	//Varia de acordo com o metodos
 	SolverTransporte.prototype.escolheCelula = funcaoEscolha;
@@ -112,6 +108,10 @@ SolverTransporte.prototype.terminou = function() {
 };
 SolverTransporte.prototype.proximoPasso = function() {
 	var celula = this.escolheCelula();
+	copia = {};
+	copia.i = celula.i;
+	copia.j = celula.j;
+	this.escolhidos.push(copia);
 	var i = celula.i, j = celula.j;
 
 	this.tabela[i][j].visitado = true;
