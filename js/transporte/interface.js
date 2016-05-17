@@ -18,7 +18,8 @@ TransporteTable = function () {
             $('#result').append(
                 '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
                 '   <div class="panel-heading"> ' +
-                '      <h3 class="panel-title" id="panel-title"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
+                '      <h3 class="panel-title" id="panel-title" style="display: inline;"><label>Iteração ' + ((nIteracao === 0) ? 'Inicial' : nIteracao) + '</label></h3>' +
+                '                                              <div style="float:right;"> <i style="text-align: right; font-weight:700;"> Custo Total: ' + solver.custo(nIteracao) + ' </i></div>' +
                 '   </div>' +
                 '   <div class="panel-body" style="padding: 0;">' +
                 '      <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
@@ -44,21 +45,21 @@ TransporteTable = function () {
             for (var i = 0; i < result[nIteracao].length; i++) {
                 row = this.tableObj.insertRow(i + 1);
                 //if (nIteracao > 0) {
-                    row.className = (pivo.i == i) ? 'pivoT' : '';
+                row.className = (pivo.i == i) ? 'pivoT' : '';
                 //}
-                if (i < result[nIteracao].length-1) {
-                    row.insertCell(0).innerHTML = '<p class="simplex"><b>Linha ' + (i+1) + '</b></p>';
+                if (i < result[nIteracao].length - 1) {
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>Linha ' + (i + 1) + '</b></p>';
                 }
-                else{
+                else {
                     row.insertCell(0).innerHTML = '<p class="simplex"><b>Demanda</b></p>';
                 }
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
                     var cell = row.insertCell(j + 1);
-                    if(j < result[nIteracao][0].length - 1 && i < result[nIteracao].length - 1){
+                    if (j < result[nIteracao][0].length - 1 && i < result[nIteracao].length - 1) {
                         cell.innerHTML = '<p class="simplex"> Custo: ' + ("" + (+result[nIteracao][i][j].custo.toFixed(4))).replace('.', ',') +
-                        " x Quantidade: " + ("" + (+result[nIteracao][i][j].qtd.toFixed(4))).replace('.', ',') + '</p>';
+                            " x Quantidade: " + ("" + (+result[nIteracao][i][j].qtd.toFixed(4))).replace('.', ',') + '</p>';
                     }
-                    else if (!(j === result[nIteracao][0].length - 1 && i === result[nIteracao].length - 1)){
+                    else if (!(j === result[nIteracao][0].length - 1 && i === result[nIteracao].length - 1)) {
                         cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
                     }
                     if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
@@ -68,7 +69,7 @@ TransporteTable = function () {
             }
         }
     };
-    
+
     return this;
 }
 
@@ -142,7 +143,7 @@ $(document).ready(function () {
         }
     });
 
-    //Executar Branch and Bound
+    //Executar Transporte
     $('#executar').click(function () {
         $('#proximoPasso').hide('fast');
         if (!verificaTabela()) {
@@ -161,7 +162,7 @@ $(document).ready(function () {
         }
     });
 
-    //Executar Branch and Bound Passo a Passo
+    //Executar Transporte Passo a Passo
     $('#passoAPasso').click(function () {
         try {
         }
@@ -178,8 +179,8 @@ $(document).ready(function () {
         catch (err) {
             showAlert("danger", "" + err);
         }
-    });	
-	
+    });
+
     //Analisar arquivo
     $('#analisarFile').click(function () {
         try {
@@ -187,7 +188,7 @@ $(document).ready(function () {
                 t.reseta();
                 showFormProblema();
                 var problema = analisarFile();
-                
+
                 var d = document.getElementById("variaveis");
                 for (var k = 1; k <= d.options.length; k++) {
                     if (k === problema["nVariaveis"]) {
