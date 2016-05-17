@@ -29,30 +29,35 @@ Tabela = function () {
 
         //add restricoes
         if (t.restricoes[0] === "n") {
-            showAlert("danger", "Erro: O sistema não possui restrições");
+            showAlert("danger", "Erro: O sistema não possui linhas");
         } else {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 21) {
 
-                for (j = 1; j < (t.nRestri - 1); j++) {
+                for (var j = 1; j < (t.nRestri - 1); j++) {
 
                     var row = table.insertRow(j);
                     row.insertCell(0).innerHTML = '<b>Linha' + (j) + '</b>';
                     for (i = 1; i <= t.nVar; i++) {
-                        row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="text"  \
+                        if (i == t.nVar) {
+                            row.insertCell(i).innerHTML = '<input id="ladoDir' + (j) + '" type="text"  \
+                    class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 1][i - 1] + '">';
+                        } else {
+                            row.insertCell(i).innerHTML = '<input id="x' + (j) + '' + (i - 1) + '" type="text"  \
                     class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 1][i - 1] + '">';
+                        }
                     }
 
                 }
             } else {
-                showAlert('warning', 'Limite máximo de restrições atingido: 20');
+                showAlert('warning', 'Limite máximo de linhas atingido: 20');
             }
 
             var row = table.insertRow(t.restricoes.length);
             row.insertCell(0).innerHTML = '<b>Demanda</b>';
             for (i = 1; i < t.nVar; i++) {
-                row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="text"  \
-                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[t.restricoes.length - 1][i - 1] + '">';
+                row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="text"  \
+                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[t.restricoes.length - 1][i - 1] + '">';
             }
         }
     };
