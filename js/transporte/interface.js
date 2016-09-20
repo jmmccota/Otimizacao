@@ -161,12 +161,28 @@ $(document).ready(function () {
             }
         }
     });
-
-    //Executar Transporte Passo a Passo
+ //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         try {
-        }
-        catch (err) {
+			if (!verificaTabela()) {
+                $("#proximoPasso").prop('disabled', false);
+				solver = new Transporte();
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                $("#panelResultado").show();
+               
+			   
+				table = TransporteTable();
+                var x = leituraParametros();
+                solver.init(x);
+				
+				res = solver.proximoPasso();
+				table.drawTable(res);
+                $("#panelResultado").show();
+     
+                $('#proximoPasso').show('fast');
+                $('#rowObsProximoPasso').show('fast');
+            }
+        } catch (err) {
             showAlert("danger", "" + err);
         }
     });
@@ -174,12 +190,21 @@ $(document).ready(function () {
     //Define botao para proximo passo
     $('#proximoPasso').click(function () {
         try {
+			delete table;
+            table = new TransporteTable();
+            res = solver.proximoPasso();
 
-        }
-        catch (err) {
+            table.drawTable(res);
+            
+			if (solver.terminou()) {
+                //$("#proximoPasso").prop('disabled', true);
+				$("#proximoPasso").hide();
+            }
+        } catch (err) {
             showAlert("danger", "" + err);
         }
-    });
+    });	
+	
 
     //Analisar arquivo
     $('#analisarFile').click(function () {
