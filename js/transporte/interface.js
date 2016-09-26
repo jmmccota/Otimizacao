@@ -155,32 +155,33 @@ $(document).ready(function () {
                 var res = solver.executa();
                 table.drawTable(res);
                 $("#panelResultado").show();
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
             catch (err) {
                 showAlert("danger", "" + err);
             }
         }
     });
- //Executar Branch and Bound Passo a Passo
+    //Executar Branch and Bound Passo a Passo
     $('#passoAPasso').click(function () {
         try {
-			if (!verificaTabela()) {
+            if (!verificaTabela()) {
                 $("#proximoPasso").prop('disabled', false);
-				solver = new Transporte();
+                solver = new Transporte();
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
                 $("#panelResultado").show();
-               
-			   
-				table = TransporteTable();
+
+                table = TransporteTable();
                 var x = leituraParametros();
                 solver.init(x);
-				
-				res = solver.proximoPasso();
-				table.drawTable(res);
+
+                res = solver.proximoPasso();
+                table.drawTable(res);
                 $("#panelResultado").show();
-     
+
                 $('#proximoPasso').show('fast');
                 $('#rowObsProximoPasso').show('fast');
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
         } catch (err) {
             showAlert("danger", "" + err);
@@ -190,21 +191,23 @@ $(document).ready(function () {
     //Define botao para proximo passo
     $('#proximoPasso').click(function () {
         try {
-			delete table;
+            delete table;
             table = new TransporteTable();
             res = solver.proximoPasso();
 
             table.drawTable(res);
-            
-			if (solver.terminou()) {
+
+            if (solver.terminou()) {
                 //$("#proximoPasso").prop('disabled', true);
-				$("#proximoPasso").hide();
+                $("#proximoPasso").hide();
+            }else{
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
         } catch (err) {
             showAlert("danger", "" + err);
         }
-    });	
-	
+    });
+
 
     //Analisar arquivo
     $('#analisarFile').click(function () {
