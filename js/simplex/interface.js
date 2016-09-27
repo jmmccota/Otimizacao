@@ -77,7 +77,7 @@ SimplexTable = function () {
     };
 
     this.drawTable = function (result) {
-
+        $("#result").empty();
         for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
             //Cria MytableResult
             $('#result').append(
@@ -349,7 +349,7 @@ $(document).ready(function () {
                 simplex.init(modelo);
                 nIteracao = 0;
 
-                simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
+                simplexTable.drawTableStep(simplex.iteracoes, 0);
 
                 $("#proximoPasso").prop('disabled', false);
                 $('#proximoPasso').show('fast');
@@ -367,10 +367,14 @@ $(document).ready(function () {
         try {
             if (simplex.terminou()) {
                 var temp = simplex.proximoPasso();
-                $("#proximoPasso").prop('disabled', true);
+                //$("#proximoPasso").prop('disabled', true);
+                $("#proximoPasso").hide();
+                nIteracao = simplex.iteracoes.length - 1;
                 simplexTable.drawDetalhes(simplex.resultado(nIteracao), nIteracao);
             }
-            simplexTable.drawTableStep(simplex.proximoPasso(), nIteracao++);
+            else{
+                simplexTable.drawTable(simplex.proximoPasso());
+            }
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         }
         catch (err) {

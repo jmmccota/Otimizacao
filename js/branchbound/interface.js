@@ -355,7 +355,8 @@ $(document).ready(function() {
             a.setContainer(document.getElementById("resultTree"));
             a.criarConexao(b);
             if (b.terminou()) {
-                $("#proximoPasso").prop('disabled', true);
+                //$("#proximoPasso").prop('disabled', true);
+                $("#proximoPasso").hide();
             }
         }
         catch (err) {

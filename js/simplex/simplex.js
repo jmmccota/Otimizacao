@@ -39,6 +39,8 @@ Simplex = function(){
         this.tabela = [[]];
         //Armazena todas as iteracoes do simplex
         this.iteracoes = [[]];
+        //Armazena os pivos de cada iteracao
+        this.pivos = [];
         //Instanciar solver
         this.solver = new Solver();
         
@@ -492,6 +494,9 @@ Simplex = function(){
                 this.iteracoes[pos][i].push(this.tabela[i][j]);
             }
         }
+
+        //Insere um pivo vazio para a ultima iteracao da fase 1
+        this.pivos.push([undefined, undefined]);
         
         this.solver = new Solver();
         this.solver.init({tabela : this.tabela, generalizado: false});
@@ -611,8 +616,10 @@ Simplex = function(){
         var res;
         if(this.terminou() && this.execucaoFinal)
             res = this.solver.tabela;
-        else
+        else{
             res = this.solver.iteracao(entra, sai);
+            this.pivos.push([entra, sai]);
+        }
 
         //Copia tabela
         var copia = [];
@@ -626,7 +633,7 @@ Simplex = function(){
             }
         }
         
-        return copia;
+        this.iteracoes.push(copia);
     };
     
     this.proximoPasso = function(){
@@ -639,7 +646,7 @@ Simplex = function(){
          *      Executa uma iteracao do algoritmo
          */
         var res = this.solver.escolheVariavel();
-        this.iteracoes.push(this.iteracao(res[0], res[1]))
+        this.iteracao(res[0], res[1]);
         return this.iteracoes;
     };
     
@@ -739,7 +746,7 @@ Simplex = function(){
     };
 
     this.pivo = function(nIteracao){
-
+/*
         //Copia tabela
         var copia = [];
         for(var i = 0; i < this.solver.tabela.length; i++){
@@ -757,8 +764,11 @@ Simplex = function(){
 
         var res = this.solver.escolheVariavel();
         this.solver.tabela = copia;
-
-        return res;
+*/
+        if(this.pivos[nIteracao])
+            return this.pivos[nIteracao];
+        else
+            return [NaN, NaN];
     };
 
     this.base = function(nIteracao){
