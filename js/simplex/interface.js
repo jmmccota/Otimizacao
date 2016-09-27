@@ -123,18 +123,18 @@ SimplexTable = function () {
                     row.className = (pivo[1] == i) ? 'pivo' : '';
                 }
                 if (i == 0) {
-                    row.insertCell(0).innerHTML = '<p class="simplexcell-z"><b>z</b></p>';
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>z</b></p>';
                 }
                 else {
-                    row.insertCell(0).innerHTML = '<p class="simplexcell-basicas"><b>x' + ((+base[i]) + 1) + '</b></p>';
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>x' + ((+base[i]) + 1) + '</b></p>';
                 }
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
                     var cell = row.insertCell(j + 1);
 
                     if (j < result[nIteracao][0].length - 1 && i > 0) {
-                        cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplexcell">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                        cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
                     } else {
-                        cell.innerHTML = '<p class="simplexcell-result">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                        cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
                     }
 
                     if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
@@ -142,13 +142,13 @@ SimplexTable = function () {
                     }
                 }
                 if (nIteracao < result.length - 1 && i > 0) {
-                    row.insertCell().innerHTML = '<p class="simplexcell-razao">' +
+                    row.insertCell().innerHTML = '<p class="simplex">' +
                         ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length - 1] /
                             result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado')
                         + '</p>';
                 }
                 else {
-                    row.insertCell().innerHTML = '<p class="simplexcell"></p>';
+                    row.insertCell().innerHTML = '<p class="simplex"></p>';
                 }
             }
         }
