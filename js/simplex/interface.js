@@ -143,6 +143,44 @@ SimplexTable = function () {
     };
 
     this.drawDetalhes = function (z, nIteracao) {
+
+        if (z["TipoResultado"].indexOf("Solução Ótima") != "-1") {
+            $("#detalhes").show();
+            var tipoResultado = document.getElementById("tipoResultado");
+            var valorZ = document.getElementById("valorZ");
+            var basicas = document.getElementById("variaveisBasicas");
+            var naoBasicas = document.getElementById("variaveisNaoBasicas");
+            var qtdIteracoes = document.getElementById("qtdIteracoes");
+
+            tipoResultado.innerHTML = z["TipoResultado"];
+            valorZ.innerHTML = "Z = " + ("" + (+ (z["FuncaoObjetivo"]).toFixed(4))).replace('.', ',');
+            showAlert("success", "Solução Ótima encontrada. Z=" + z["FuncaoObjetivo"].toFixed(4).replace('.', ','));
+
+            var valorVariaveis = z["Variaveis"];
+            var bodyBasicas = "<p>";
+            var bodyNaoBasicas = "<p>";
+
+            for (var i = 0; i < z["VariaveisBasicas"].length; i++) {
+                var indiceBasica = z["VariaveisBasicas"][i];
+                bodyBasicas += "`x_" + (indiceBasica + 1) + " = " + ("" + (+ (valorVariaveis[indiceBasica]).toFixed(4))).replace('.', ',') + "`<br>";
+            }
+
+            for (var i = 0; i < z["VariaveisNaoBasicas"].length; i++) {
+                var indiceNaoBasica = z["VariaveisNaoBasicas"][i];
+                bodyNaoBasicas += "`x_" + (indiceNaoBasica + 1) + " = " + ("" + (+ (valorVariaveis[indiceNaoBasica]).toFixed(4))).replace('.', ',') + "`<br>";
+            }
+            addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
+            addHead("js/ASCIIMathML.js");
+            basicas.innerHTML = bodyBasicas + "</p>";
+            naoBasicas.innerHTML = bodyNaoBasicas + "</p>";
+            qtdIteracoes.innerHTML = "Quantidade de Iterações: " + nIteracao;
+        } else {
+            $("#detalhes").hide();
+            showAlert("danger", z["TipoResultado"]);
+        }
+    };
+
+    this.drawDetalhes = function (z, nIteracao) {
         $("#detalhes").show();
         var tipoResultado = document.getElementById("tipoResultado");
         var valorZ = document.getElementById("valorZ");
@@ -286,7 +324,7 @@ $(document).ready(function () {
                 simplex.init(modelo);
                 var temp = simplex.executa();
                 simplexTable.drawTable(temp);
-                //simplexTable.drawDetalhes(simplex.resultado(temp.length - 1), temp.length - 1);
+                simplexTable.drawDetalhes(simplex.resultado(temp.length - 1), temp.length - 1);
 
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
