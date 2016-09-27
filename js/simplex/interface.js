@@ -398,6 +398,17 @@ $(document).ready(function () {
             var id = $(this).attr('id').split('_');
             var i = id[0];
             var j = id[1];
+            if (simplex.terminou()) {
+                var temp = simplex.iteracao(j, i);
+                //$("#proximoPasso").prop('disabled', true);
+                $("#proximoPasso").hide();
+                nIteracao = simplex.iteracoes.length - 1;
+                simplexTable.drawDetalhes(simplex.resultado(nIteracao), nIteracao);
+            }
+            else{
+                simplexTable.drawTable(simplex.proximoPasso());
+            }
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 
         } catch (err) {
             showAlert("danger", "" + err);
