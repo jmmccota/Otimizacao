@@ -12,7 +12,7 @@ $(document).ready(function() {
         smoothHeight: false,            //{NEW} Boolean: Allow height of the slider to animate smoothly in horizontal mode 
         startAt: 0,                     //Integer: The slide that the slider should start on. Array notation (0 = first slide)
         slideshow: true,                //Boolean: Animate slider automatically
-        slideshowSpeed: 4000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
+        slideshowSpeed: 7000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
         animationSpeed: 600,            //Integer: Set the speed of animations, in milliseconds
         initDelay: 0,                   //{NEW} Integer: Set an initialization delay, in milliseconds
         randomize: false,               //Boolean: Randomize slide order
@@ -126,7 +126,7 @@ $(document).ready(function() {
     // ******************************************************* ACORDION ******************************************************
     $(".accordion").accordion({
         collapsible: true,
-        active: false
+        active: false,
     });
 
     // ******************************************************** VIDEOS *********************************************************
@@ -135,7 +135,7 @@ $(document).ready(function() {
     // **************************************************** RESPONSIVE NAVS ****************************************************
     var navigation = responsiveNav("#nav", { // Selector: The ID of the wrapper
         animate: true, // Boolean: Use CSS3 transitions, true or false
-        transition: 400, // Integer: Speed of the transition, in milliseconds
+        transition: 200, // Integer: Speed of the transition, in milliseconds
         label: "", // String: Label for the navigation toggle
         insert: "after", // String: Insert the toggle before or after the navigation
         customToggle: "", // Selector: Specify the ID of a custom toggle

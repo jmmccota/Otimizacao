@@ -1,0 +1,12 @@
+\footnotesize
+\frametitle{Estrutura Básica de arquivo .tex para Beamer} {\
+\vskip-0.3cm
+\begin{itemize}
+\item  E o segundo seria assim:
+\end{itemize}
+\vskip-0.1cm
+\begin{figure}
+\centering
+  \includegraphics[width=10cm]{images/lego-costela.jpg}\\
+\end{figure}
+}

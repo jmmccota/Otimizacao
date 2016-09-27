@@ -1,0 +1,17 @@
+\frametitle{Trajetória de um programa básico (\texttt{hello.c})}
+\begin{lstlisting}[language=C, caption={},label={}]
+#include <stdio.h>
+
+int i=10;
+
+int main(void) {
+	i++;
+	printf("%d\n", i);
+	return 0;
+}
+\end{lstlisting}
+  \begin{block}{}
+  O programa \texttt{hello.c} é armazenado em um arquivo texto
+(representação em \texttt{ASCII}) como uma sequência de \textit{bytes} (8 \textit{bits}),
+cada \textit{byte} sendo um valor inteiro que representa um caracter.
+  \end{block}

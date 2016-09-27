@@ -49,7 +49,6 @@
                     <div class="top-social-icons">
                         <ul class="footer-social social-icons">
                             <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
                             <li><a href="https://github.com/jmmccota/Otimizacao"><i class="icon-github"></i></a></li>
                         </ul>
                     </div>
@@ -72,7 +71,7 @@
                         </li>
                         <li class="parent"><a href="branchbound.html">Branch and Bound</a>
                             <ul>
-                                <li>Branch and Bound
+                                <li>Branch-and-Bound
                                     <ul>
                                         <li><a href="branchbound.html">Começar</a></li>
                                         <li><a href="branchbound-about.html">Mais sobre o Modelo</a></li>
@@ -80,11 +79,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="parent"><a href="#">Transporte</a>
+                        <li class="parent"><a href="transporte.html">Transporte</a>
                             <ul>
-                                <li>Canto Noroeste
+                                <li>Transporte
                                     <ul>
-                                        <li><a href="#">Começar</a></li>
+                                        <li><a href="transporte.html">Começar</a></li>
                                         <li><a href="transporte_about.html">Mais sobre o Modelo</a></li>
                                     </ul>
                                 </li>
@@ -257,75 +256,94 @@
                         <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Pr&oacute;ximo Passo
                     </button>
                 </div>
-                <div id="resultInfo"></div>
             </div>
         </section>
 
-    </div>
-    <!-- End of content -->
+        <section class="container-big" style="padding-top: 10px; padding-bottom:40px; display:none;" id="detalhes">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Numeral info -->
+                    <div class="numeral-info-box">
+                        <span class="numeral-info-number" id="valorZ"></span>
+                        <span class="numeral-info-description" id="tipoResultado"></span>
+                    </div>
+                    <div class="numeral-info-box">
+                        <span class="numeral-info-description" id="qtdIteracoes"></span>
+                    </div>
+                </div>
+                <div class="col-md-8" id="variaveisDetalhes">
+                    <div class="boxVar">
+                        <h5>Variáveis Básivas</h5>
+                        <div id="variaveisBasicas"></div>
+                        <h5>Variáveis Não Básicas</h5>
+                        <div id="variaveisNaoBasicas"></div>
+                    </div>
+                </div>
+        </section>
+        </div>
 
-    <div class="scroll-top-wrapper ">
-        <span class="scroll-top-inner">
+        <div class="scroll-top-wrapper ">
+            <span class="scroll-top-inner">
                 <i class="glyphicon glyphicon-arrow-up"></i>
         </span>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <!-- Footer second row -->
-        <div class="footer-second-row">
-            <div class="container">
-                <!-- Logo area -->
-                <div class="logo-left-bg"></div>
-                <div class="logo-left one-fourth">
-                    <!-- Logo -->
-                    <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
-                    <!-- End of logo -->
-                </div>
-                <!-- End of logo area -->
-                <!-- Copyright and small menu -->
-                <div class="copyright-area three-fourth last-in-row">
-                    <span class="copyright">© Copyright 2016 by CEFET-MG. Todos os direitos reservados.</span>
-                    <ul class="small-menu">
-                        <li><a href="faq.html">Dúvidas</a></li>
-                        <li><a href="http://timoteo.cefetmg.br">CEFET-MG Campus Timóteo</a></li>
-                        <!--<li><a href="contato.html">Contato</a></li>-->
-                    </ul>
-                </div>
-                <!-- End of copyright and small menu -->
-            </div>
         </div>
-        <!-- End of footer second row -->
-    </footer>
-    <!-- End of footer -->
 
-    <!-- Scripts -->
+        <!-- Footer -->
+        <footer>
+            <!-- Footer second row -->
+            <div class="footer-second-row">
+                <div class="container">
+                    <!-- Logo area -->
+                    <div class="logo-left-bg"></div>
+                    <div class="logo-left one-fourth">
+                        <!-- Logo -->
+                        <a class="logo" href="index.html">Solver<span>Pesquisa Operacional</span></a>
+                        <!-- End of logo -->
+                    </div>
+                    <!-- End of logo area -->
+                    <!-- Copyright and small menu -->
+                    <div class="copyright-area three-fourth last-in-row">
+                        <!--<span class="copyright">© Copyright 2016 by CEFET-MG. Todos os direitos reservados.</span>-->
+                        <ul class="small-menu">
+                            <!--<li><a href="faq.html">Dúvidas</a></li>-->
+                            <li><a href="http://timoteo.cefetmg.br">CEFET-MG Campus Timóteo</a></li>
+                            <!--<li><a href="contato.html">Contato</a></li>-->
+                        </ul>
+                    </div>
+                    <!-- End of copyright and small menu -->
+                </div>
+            </div>
+            <!-- End of footer second row -->
+        </footer>
+        <!-- End of footer -->
 
-    <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="js/responsive-nav.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.touchSwipe.min.js"></script>
+        <!-- Scripts -->
 
-    <!-- Scripts Configuration -->
-    <script type="text/javascript" src="js/custom.js"></script>
-    <script type="text/javascript" src="js/features.js"></script>
-    <!-- End of scripts configuration -->
+        <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery.flexslider.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery.fitvids.js"></script>
+        <script type="text/javascript" src="js/responsive-nav.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery.touchSwipe.min.js"></script>
 
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootbox.min.js"></script>
-    <script type="text/javascript" src="js/glpk.min.js"></script>
-    <script type="text/javascript" src="js/simplex/simplex.js"></script>
-    <script type="text/javascript" src="js/FileSaver.min.js"></script>
-    <script type="text/javascript" src="js/tabelaProblema.js"></script>
-    <script type="text/javascript" src="js/simplex/interface.js"></script>
+        <!-- Scripts Configuration -->
+        <script type="text/javascript" src="js/custom.js"></script>
+        <script type="text/javascript" src="js/features.js"></script>
+        <!-- End of scripts configuration -->
 
-    <!-- Resource jQuery -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootbox.min.js"></script>
+        <script type="text/javascript" src="js/glpk.min.js"></script>
+        <script type="text/javascript" src="js/simplex/simplex.js"></script>
+        <script type="text/javascript" src="js/FileSaver.min.js"></script>
+        <script type="text/javascript" src="js/tabelaProblema.js"></script>
+        <script type="text/javascript" src="js/simplex/interface.js"></script>
 
-    <script type="text/javascript" src="js/ASCIIMathML.js"></script>
-    <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
-    <!-- End of scripts -->
+        <!-- Resource jQuery -->
+
+        <script type="text/javascript" src="js/ASCIIMathML.js"></script>
+        <script type="text/javascript" src="js/MathJax/MathJax.js?config=AM_HTMLorMML"></script>
+        <!-- End of scripts -->
 </body>
 
 </html>

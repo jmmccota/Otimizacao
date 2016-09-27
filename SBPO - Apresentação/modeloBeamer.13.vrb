@@ -1,0 +1,25 @@
+\footnotesize
+\frametitle{Especificação} {\
+Se digitar:
+\begin{verbatim}
+\begin{itemize}
+\item<1-3> Item A
+\item<2-4> Item B
+\item<3-5> Item C
+\item<4-> Item D
+\item<-4> Item E
+\end{itemize}
+\end{verbatim}
+Terá:
+\begin{itemize}
+\item<1-3> Item A
+\item<2-4> Item B
+\item<3-5> Item C
+\item<4-> Item D
+\item<-4> Item E
+\end{itemize}
+\vskip-2cm
+\begin{flushright}
+\hyperlink{overlays}{\beamerreturnbutton{Voltar para Apresentação}}
+\end{flushright}
+}

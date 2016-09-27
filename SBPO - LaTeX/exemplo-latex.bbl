@@ -1,0 +1,84 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.6 }
+
+\bibitem[Cervone, Perfect e Krautzberger 2015]{mathjax}
+\abntrefinfo{Cervone, Perfect e Krautzberger}{CERVONE; PERFECT;
+  KRAUTZBERGER}{2015a}
+{CERVONE, D.; PERFECT, C.; KRAUTZBERGER, P. \emph{MathJax Documentation}. 2015.
+Dispon{\'\i}vel em: \url{http://docs.mathjax.org/en/latest/}.}
+
+\bibitem[Cervone, Perfect e Krautzberger 2015]{vis}
+\abntrefinfo{Cervone, Perfect e Krautzberger}{CERVONE; PERFECT;
+  KRAUTZBERGER}{2015b}
+{CERVONE, D.; PERFECT, C.; KRAUTZBERGER, P. \emph{vis.js Network
+  Documentation}. 2015.
+Dispon{\'\i}vel em: \url{http://docs.mathjax.org/en/latest/}.}
+
+\bibitem[Flanagan 2011]{livrojavascript1}
+\abntrefinfo{Flanagan}{FLANAGAN}{2011}
+{FLANAGAN, D. \emph{JavaScript - The Definitive Guide}. 6. ed. Sebastopol:
+  O'Reilly, 2011.}
+
+\bibitem[Gasston 2011]{livroweb2}
+\abntrefinfo{Gasston}{GASSTON}{2011}
+{GASSTON, P. \emph{The book of CSS3}. [S.l.]: No Starch Press, 2011.}
+
+\bibitem[{GNU PROJECT} 2010]{glpk}
+\abntrefinfo{{GNU PROJECT}}{{GNU PROJECT}}{2010a}
+{{GNU PROJECT}. \emph{GNU Linear Programming Kit Reference Manual}. [S.l.]:
+  {GNU Project }, 2010.}
+
+\bibitem[{GNU PROJECT} 2010]{mathprog}
+\abntrefinfo{{GNU PROJECT}}{{GNU PROJECT}}{2010b}
+{{GNU PROJECT}. \emph{Modeling Language GNU MathProg Language Reference}.
+  [S.l.]: {GNU Project }, 2010.}
+
+\bibitem[{GUROBI OPTIMIZATION INC.} 2012]{gurobi}
+\abntrefinfo{{GUROBI OPTIMIZATION INC.}}{{GUROBI OPTIMIZATION INC.}}{2012}
+{{GUROBI OPTIMIZATION INC.} \emph{Gurobi Optimizer Reference Manual}. [S.l.]:
+  {Gurobi Optimization Inc.}, 2012.}
+
+\bibitem[Hillier e Lieberman 2006]{hillier}
+\abntrefinfo{Hillier e Lieberman}{HILLIER; LIEBERMAN}{2006}
+{HILLIER, F.~S.; LIEBERMAN, G.~J. \emph{Introdu\c{c}\~ao \`a Pesquisa
+  Operacional}. 8. ed. S\~ao Paulo: McGraw-Hill, 2006.}
+
+\bibitem[Knuth 1984]{tex}
+\abntrefinfo{Knuth}{KNUTH}{1984}
+{KNUTH, D.~E. \emph{The TeXbook}. 1. ed. Boston: Addison-Wesley Professional,
+  1984.}
+
+\bibitem[Lubbers et al. 2011]{livroweb1}
+\abntrefinfo{Lubbers et al.}{LUBBERS et al.}{2011}
+{LUBBERS, P. et al. \emph{Pro HTML5 programming}. [S.l.]: Springer, 2011.}
+
+\bibitem[Notebaert e Eikland 2004]{lpsolve}
+\abntrefinfo{Notebaert e Eikland}{NOTEBAERT; EIKLAND}{2004}
+{NOTEBAERT, P.; EIKLAND, K. \emph{lp\_solve Reference Guide}. 2004.
+Dispon{\'\i}vel em: \url{http://web.mit.edu/lpsolve/doc/}.}
+
+\bibitem[Schrage 2012]{lindo}
+\abntrefinfo{Schrage}{SCHRAGE}{2012}
+{SCHRAGE, L. \emph{Optimization Modeling with LINGO}. [S.l.]: {Lindo Systems
+  Inc.}, 2012.}
+
+\bibitem[Taha 2008]{taha}
+\abntrefinfo{Taha}{TAHA}{2008}
+{TAHA, H.~A. \emph{Pesquisa Operacional}. 8. ed. S\~ao Paulo: Prentice Hall,
+  2008.}
+
+\bibitem[{THE JQUERY FOUNDATION} 2012]{jquery}
+\abntrefinfo{{THE JQUERY FOUNDATION}}{{THE JQUERY FOUNDATION}}{2012}
+{{THE JQUERY FOUNDATION}. \emph{jQuery API Documentation}. 2012.
+Dispon{\'\i}vel em: \url{http://api.jquery.com/}.}
+
+\bibitem[{TWITTER INC.} 2015]{bootstrap}
+\abntrefinfo{{TWITTER INC.}}{{TWITTER INC.}}{2015}
+{{TWITTER INC.} \emph{Bootstrap 3.3.6 Documentation}. 2015.
+Dispon{\'\i}vel em: \url{https://bootstrapdocs.com/v3.3.6/docs}.}
+
+\end{thebibliography}

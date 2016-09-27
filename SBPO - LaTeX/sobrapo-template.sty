@@ -1,0 +1,131 @@
+% LaTeX definitions for Sobrapo 2007 style
+%
+% Created by Eduardo Zambon, March 2007
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sobrapo-template}[2007/03/27]
+
+% margem superior 33 mm
+% margem inferior 25 mm
+% margem esquerda 29 mm
+% margem direita  29 mm
+\RequirePackage[a4paper,top=33mm,left=29mm,right=29mm,bottom=25mm]{geometry}
+
+\parindent 1.5cm
+
+
+\flushbottom
+
+% font
+\RequirePackage{times}
+\newcommand{\IXPT}{\@setfontsize\ixpt{9}{13}}
+\newcommand{\XIPT}{\@setfontsize\xipt{11}{15}}
+\newcommand{\XIIPT}{\@setfontsize\xiipt{12}{16}}
+\newcommand{\XIIIPT}{\@setfontsize\xiiipt{13}{17}}
+
+% captions
+\RequirePackage{caption2}
+\setlength{\captionmargin}{0.8cm}
+\renewcommand{\captionfont}{\centering\IXPT}
+\renewcommand{\captionlabeldelim}{:}
+
+% new commands
+\newcommand{\name}[1]{\vspace{11pt}\centering\textbf{#1}\\}
+\newcommand{\institute}[1]{\centering#1\\}
+\newcommand{\iaddress}[1]{\centering#1\\}
+\newcommand{\email}[1]{\texttt{#1}\\}
+\newcommand{\titlesep}{\newpage}
+
+% sections
+
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+                       {-3\p@ \@plus -4\p@ \@minus -4\p@}%
+                       {0\p@ \@plus 4\p@ \@minus 4\p@}%
+                       {\normalfont\XIPT\bfseries\boldmath
+                        \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
+
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                       {-3\p@ \@plus -4\p@ \@minus -4\p@}%
+                       {0\p@ \@plus 4\p@ \@minus 4\p@}%
+                       {\normalfont\XIPT\bfseries\boldmath
+                        \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
+
+\renewcommand\subsubsection{\@startsection{subsubsection}{2}{\z@}%
+                       {-3\p@ \@plus -4\p@ \@minus -4\p@}%
+                       {0\p@ \@plus 4\p@ \@minus 4\p@}%
+                       {\normalfont\XIPT\bfseries\boldmath
+                        \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
+
+\RequirePackage{titlesec}
+\titlelabel{\thetitle.\hspace{1ex}}
+
+% first page
+
+\pagestyle{empty}
+
+\newcommand{\authortag}[1]{$^{#1}$}
+
+\def\address#1{\gdef\@address{#1}}
+
+\def\@maketitle{\newpage
+ \begin{center}
+  {\XIIIPT\bf\@title\par}
+   \end{center}\par
+}
+\let\maketitleOLD\maketitle
+\renewcommand{\maketitle}{\maketitleOLD\thispagestyle{empty}}
+
+\renewenvironment{abstract}{
+  \begin{center}
+  \noindent {\XIPT \bfseries  ABSTRACT}
+  \end{center}
+    \vspace*{-12pt}
+    \hspace*{\parindent}
+}
+
+\newenvironment{keywords}{
+    \noindent  \bfseries KEYWORDS.
+}
+
+%\XIIPT
+\newenvironment{resumo}{
+    \begin{center}
+    \XIPT\bfseries RESUMO
+    \end{center}
+    \vspace*{-12pt}
+    \hspace*{\parindent}
+}
+
+\newenvironment{palchaves}{
+    \noindent\bfseries PALAVRAS CHAVE.
+}
+
+% to avoid [...] in the bibliography
+% \item[] instead of \item[\@biblabel{#1}\hfill]
+\def\@lbibitem[#1]#2{\item[]\if@filesw
+      {\let\protect\noexpand
+       \immediate
+       \write\@auxout{\string\bibcite{#2}{#1}}}\fi\ignorespaces}
+\renewenvironment{thebibliography}[1]
+     {\section*{\refname
+        \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            %% changed!
+               \itemindent -\leftmargin
+               \itemsep 6pt
+            %%%%%%%%%%%
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+\endlist} 

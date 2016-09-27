@@ -1,0 +1,5 @@
+fim duas fases 1 - verificar artificial na base
+	se artificial da base solucao positivo - problema original sem solucao viavel, para e da erro
+	se artificial da base solucao zero - seleciona uma não basica com coeficiente 0 e seleciona a artificial pra sair
+
+fix grande m e duas fases

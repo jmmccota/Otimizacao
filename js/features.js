@@ -23,6 +23,41 @@ function analisarStyle(type) {
 }
 
 function analisarFile() {
+	if(__global__executando__ == "transporte"){
+		try {
+			var source = "";
+			var restricoes = [];
+			var nVariaveis = 0;
+			source = reader.result;
+			var linha = 1;
+			var cont = 0;
+			var p = 0; //qual parte
+			while (cont < source.length) {
+				linha = "";
+				while(cont < source.length && source[cont] != "\n"){
+					linha += source[cont];
+					cont++;
+				}
+				nVariaveis = 0;
+				for (i = 0; i < linha.length; i++) { //o numero de | Ã© o numero de variaveis
+                    if (linha[i] === "|") {
+                        nVariaveis++;
+                    }
+                }
+				restricoes[p] = linha.split("|",nVariaveis);
+				p++;
+				cont++;
+			}
+			//console.log(restricoes);
+		} catch (err) {
+			throw "Erro: Modelo no formato incorreto. " + err;
+		}
+		return {
+			problema: restricoes,
+			nVariaveis: (nVariaveis+1),
+			iRest : (p+1),
+		};
+	}
     try {
         var source = "";
         var restricoes = [];
@@ -323,21 +358,25 @@ function hideFormProblema() {
 }
 
 
-function mpl(modelos) {
+function mpl(modelos, local) {
 
     addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
     addHead("js/ASCIIMathML.js");
     //$('#div_mpl').show();
-    var mp = document.getElementById('fileDisplayArea');
+    var mp = document.getElementById(local);
     //mp.innerHTML = "";
     var x;
-    if(__global__executando__ === "simplex"){
-        x = new Simplex();
-        x.init(modelos);
-    }
-    else if(__global__executando__ === "branchbound"){
-        x = new Nodo(0, 0, 0, modelos, 0, 0);
-    }
+	if(__global__executando__){
+		if(__global__executando__ === "simplex"){
+			x = new Simplex();
+			x.init(modelos);
+		} else if(__global__executando__ === "branchbound"){
+			x = new Nodo(0, 0, 0, modelos, 0, 0);
+		} else if(__global__executando__ === "transporte"){
+			x = new Transporte();
+			x.init(modelos);
+		}
+	}
     var bodyContent = x.modelo();
     mp.innerHTML = bodyContent;
 
@@ -443,7 +482,7 @@ $(document).ready(function () {
             reader.readAsText(file);
 
             reader.onload = function (evt) {
-				mpl(analisarFile());
+				mpl(analisarFile(),"fileDisplayArea");
             };
 
         } else {

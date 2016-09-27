@@ -1,0 +1,16 @@
+\footnotesize
+\frametitle{Gráficos} {\
+\vskip-0.48cm
+Código correspondente:
+\begin{verbatim}
+\begin{figure}
+  \includegraphics[width=4cm]{lego-costela.jpg}\\
+  \caption{Oferta X Demanda}
+\end{figure}
+\end{verbatim}
+\begin{itemize}
+    \item Sua figura/gráfico (neste caso: market.jpg) deve estar na mesma pasta. (Também é possível difitar o caminho para outra pasta)
+    \item Tipo de arquivos compatíveis : pdf, png, jpg etc
+    \item Mais uma vez, a maioria dos editores de \LaTeX{} possui botões de atalho para isto também. Clique no botão de atalho para que o software digite o código para você.
+\end{itemize}
+}

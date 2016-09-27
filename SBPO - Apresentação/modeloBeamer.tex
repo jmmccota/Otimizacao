@@ -1,0 +1,248 @@
+% \documentclass{beamer}
+\documentclass[handout]{beamer}
+
+\usepackage{beamerthemesplit}
+\usepackage[latin1]{inputenc}
+\usepackage[brazilian]{babel}
+\PassOptionsToPackage{pdftex}{graphicx}
+\usepackage{epstopdf}
+
+%cores
+%http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme_and_color.html
+
+
+\usepackage{beamerthemeshadow}
+%\usepackage{graphicx} % Enable the use of graphs
+\usepackage{amsfonts} % Enable special mathemtical characters.
+\usepackage{amsmath}  % Enable the use  Multi-line equations, compound symbols, etc
+%\usepackage{extsizes} % Enable the use of different font sizes. DANDO PAU
+\usepackage{booktabs} % More complex tables
+\usepackage{hyperref} % Links
+\usepackage{subfig}   % Subfigures
+\usepackage{helvet}   % Different fonts
+% Need also to download pgf, ms and xcolor packages.
+%\usepackage[ansinew]{inputenc} % Permite digitar os acentos diretamente.
+%\usepackage[portuguese]{babel} % Habilita a língua portuguesa
+
+\usetheme{Berlin} % Options: default, Antibes, Berkeley, Berlin, Copenhagen, Madrid, Pittsburgh, Singapore, etc.
+%\useinnertheme{default} % Options: default, circles, rectangles, rounded, inmargin,
+%\useoutertheme{default} % Options: default, infolines, miniframes, etc. Options []: footline=empty, footline=authorinstitute, footline=authortitle, footline=institutetitle, footline=authorinstitutetitle, subsection=.true or false.
+
+%\usecolortheme{default} % Options: default, beetle, albatross, crane, fly, wolverine, beaver, whale, etc.
+%\useinnertheme{orchid} % Inner Color Themes: lily, orchid, rose
+%\useoutertheme{dolphin} % Outer Color Themes: whale, seahorse, dolphin
+
+\setbeamersize{text margin left=0.6cm, text margin right=0.6cm}
+
+\setbeameroption{hide notes} % Use this option instead in presentations with projectors: show notes on second screen
+% to add notes, type: \note[item]<1>{Text}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\lstset{ 
+  language=Octave,                % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  %backgroundcolor=\color{bg},     % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=4,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue}, %blue     % keyword style
+  commentstyle=\color{dkgreen}, %dkgreen   % comment style
+  stringstyle=\color{mauve}, %mauve      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+}
+
+\usepackage{hyperref}
+\usepackage{ulem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\title{SIMO: Uma Ferramenta Online para Auxiliar o Ensino de Otimização}
+\author{Elias Luiz da Silva Júnior}
+% \date{Novembro de 2011}
+\date{}
+%\date{\today} 
+\institute{CEFET-MG}
+\logo{\includegraphics[scale=0.12]{images/_logoBRL}}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{section}{Introdução}
+
+\begin{frame}\frametitle{O que é o SIMO}
+	\begin{itemize}
+		\item SIMO: Sistema Interativo para Métodos de Otimização
+		\bigskip
+		\item Plataforma online para a execução interativa de algoritmos de otimização
+		\bigskip
+		\item Explicações sobre os algoritmos disponíveis
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Motivação}
+	\begin{itemize}
+		\item Algoritmos complexos e com casos especiais
+		\bigskip
+		\item \textit{Solvers} apresentam apenas o resultado final
+		\bigskip
+		\item Interface simples e intuitiva
+	\end{itemize}
+\end{frame}
+
+\end{section}
+\begin{section}{Conteúdo}
+
+\begin{frame}\frametitle{Conteúdo abordado}
+	\begin{itemize}
+		\item Simplex
+		\bigskip
+		\item \textit{Branch and Bound}
+		\bigskip
+		\item Algoritmos de transporte
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Simplex}
+	\begin{itemize}
+		\item Algoritmo para programação linear
+		\bigskip
+		\item Variantes abordadas:
+		\begin{itemize}
+			\item Grande M
+			\medskip
+			\item Duas Fases
+			\medskip
+			\item Generalizado
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{\textit{Branch-and-Bound}}
+	\begin{itemize}
+		\item Algoritmo para programação linear
+		\bigskip
+		\item Gera uma árvore de possíveis modelos, resolvidos pelo simplex
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Algoritmos de Transporte}
+	\begin{itemize}
+		\item Alocação de recursos
+		\bigskip
+		\item Mais simples que a resolução do modelo via simplex
+		\bigskip
+		\item Algoritmos abordados:
+		\begin{itemize}
+			\item Canto noroeste
+			\medskip
+			\item Menor custo
+			\medskip
+			\item Método da aproximação de Vogel
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\end{section}
+\begin{section}{Tecnologias}
+
+\begin{frame}\frametitle{Web}
+	\begin{itemize}
+		\item Desenvolvido para web
+		\bigskip
+		\item Disponível para qualquer plataforma com acesso à internet
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Tecnologias}
+	\begin{itemize}
+		\item Desenvolvido completamente em Javascript
+		\bigskip
+		\item Executando na máquina do usuário
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Tecnologias}
+	Foram utilizadas algumas bibliotecas:
+	\bigskip
+	\begin{itemize}
+		\item Bootstrap
+		\medskip
+		\item Vis
+		\medskip
+		\item Mathjax
+		\medskip
+		\item GLPK
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Github}
+  \begin{itemize}
+  	\item Pode ser utilizado no site http://jmmccota.github.io/Otimizacao
+  	\item Código aberto https://github.com/jmmccota/Otimizacao
+  \end{itemize}
+\end{frame}
+
+\end{section}
+\begin{section}{}
+
+\begin{frame}\frametitle{Contatos}
+	\begin{tabular}{ll}
+		André R. da Cruz & \url{andrecruz@timoteo.cefetmg.br}\\ \\
+		André F. R. Malta & \url{andrmalta@gmail.com}\\ \\
+		Daniel G. Oliveira & \url{daniel.gdo@hotmail.com}\\ \\
+		Elias L. S. Júnior & \url{eliasluizjr@gmail.com}\\ \\
+		João M. M. C. Cota & \url{joao\_marcos\_cota@hotmail.com}\\ \\
+	\end{tabular}
+\end{frame}
+
+
+\end{section}
+\end{document}

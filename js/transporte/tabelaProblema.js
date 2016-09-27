@@ -2,84 +2,73 @@
 ////////////////////////////////////////////////////
 //                FUNCOES DA TABELA               //
 ////////////////////////////////////////////////////
-Tabela = function() {
+Tabela = function () {
     var t = {};
 
-    t.reseta = function() {
+    t.reseta = function () {
         t.nRestri = 0;
         t.nVar = document.getElementById("variaveis").value;
     };
 
-    t.carrega = function(xx) {
-        throw "Not Implemented Yet!";
+    t.carrega = function (xx) {
         t.reseta();
         $("#myTableData").empty();
-        $("#myTableData2").empty();
         t.existe = true;
+
         t.nRestri = xx["iRest"];
         t.nVar = xx["nVariaveis"];
-        t.problema = xx["problema"];
-        t.objetivo = xx["objetivo"];
-        t.restricoes = xx["restricoes"];
-        t.relacoes = xx["relacoes"];
-        t.rhs = xx["rhs"];
-        t.upper = xx["upper"];
-        t.lower = xx["lower"];
+        t.restricoes = xx["problema"];
+
         //Cabecalho
         var table = document.getElementById("myTableData");
         var row = table.insertRow(0);
         row.insertCell(0).innerHTML = '&nbsp;';
-        for (i = 1; i <= t.nVar; i++)
+        for (i = 1; i < t.nVar; i++)
             row.insertCell(i).innerHTML = '<center><b>Coluna' + (i) + '</b></center>';
-        row.insertCell().innerHTML = '<center><b>Linha</b></center>';
-        row.insertCell().innerHTML = '<center><b>Lado Direito</b></center>';
-        //Funcao Objetivo
-        row = table.insertRow(1);
-        row.insertCell(0).innerHTML = '<b>Objetivo</b>';
-        for (i = 1; i <= t.nVar; i++)
 
-            row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="text" \
-                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.objetivo[i - 1] + '">';
-        row.insertCell().innerHTML = '&nbsp;';
-        row.insertCell().innerHTML = '&nbsp;';
+        row.insertCell().innerHTML = '<center><b>Suprimento</b></center>';
+
         //add restricoes
         if (t.restricoes[0] === "n") {
-            showAlert("danger", "Erro: O sistema não possui restrições");
+            showAlert("danger", "Erro: O sistema não possui linhas");
         } else {
             var table = document.getElementById("myTableData");
             if (t.nRestri < 21) {
 
-                for (j = 2; j < (t.nRestri + 2); j++) {
+                for (var j = 1; j < (t.nRestri - 1); j++) {
 
                     var row = table.insertRow(j);
-                    row.insertCell(0).innerHTML = '<b>Restri&ccedil;&atilde;o' + (j - 1) + '</b>';
+                    row.insertCell(0).innerHTML = '<b>Linha' + (j) + '</b>';
                     for (i = 1; i <= t.nVar; i++) {
-                        row.insertCell(i).innerHTML = '<input id="x' + (j - 1) + '' + (i - 1) + '" type="text"  \
-                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 2][i - 1] + '">';
+                        if (i == t.nVar) {
+                            row.insertCell(i).innerHTML = '<input id="ladoDir' + (j) + '" type="text"  \
+                    class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 1][i - 1] + '">';
+                        } else {
+                            row.insertCell(i).innerHTML = '<input id="x' + (j) + '' + (i - 1) + '" type="text"  \
+                    class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[j - 1][i - 1] + '">';
+                        }
                     }
 
-                    if (t.relacoes[j - 2] === "<=") {
-                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
-                <option value="<=" selected="selected"><=</option><option>=</option><option>>=</option></select>';
-                    } else if (t.relacoes[j - 2] === "=") {
-                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
-                <option><=</option><option value="=" selected="selected">=</option><option>>=</option></select>';
-                    } else if (t.relacoes[j - 2] === ">=") {
-                        row.insertCell().innerHTML = '<select id="relacao' + (j - 1) + '" class="relacao form-control">\
-                <option><=</option><option>=</option><option value=">=" selected="selected">>=</option></select>';
-                    }
-
-                    row.insertCell().innerHTML = '<input id="ladoDir' + (j - 1) + '" type="text" \
-                class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.rhs[j - 2] + '">';
                 }
             } else {
-                showAlert('warning', 'Limite máximo de restrições atingido: 20');
+                showAlert('warning', 'Limite máximo de linhas atingido: 20');
+            }
+
+            var row = table.insertRow(t.restricoes.length);
+            row.insertCell(0).innerHTML = '<b>Demanda</b>';
+            for (i = 1; i < t.nVar; i++) {
+                row.insertCell(i).innerHTML = '<input id="x0' + (i - 1) + '" type="text"  \
+                    class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any" value="' + t.restricoes[t.restricoes.length - 1][i - 1] + '">';
             }
         }
+        //Tira o suprimento de variavel
+        t.nVar--;
+        //Tira a demanda de restrição
+        t.nRestri -= 2;
     };
 
     //Cria a tabela base de um novo modelo
-    t.novo = function() {
+    t.novo = function () {
         t.reseta();
         t.existe = true;
         //Cabecalho
@@ -99,14 +88,14 @@ Tabela = function() {
                     class="fObj form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         row.insertCell().innerHTML = '&nbsp;';
         row.insertCell().innerHTML = '&nbsp;';
-		
+
         //Insere primeira restricao
         t.addRow();
-        
+
     };
 
     //Adiciona restricoes ao modelo
-    t.addRow = function() {
+    t.addRow = function () {
         if (t.nRestri === 20) {
             showAlert('warning', 'Limite máximo de restrições atingido: 20');
             return;
@@ -114,7 +103,7 @@ Tabela = function() {
 
         t.nRestri++;
         var table = document.getElementById("myTableData");
-        var row = table.insertRow(t.nRestri	);
+        var row = table.insertRow(t.nRestri);
         row.insertCell(0).innerHTML = '<b>Linha' + t.nRestri + '</b>';
         for (i = 1; i <= t.nVar; i++)
             row.insertCell(i).innerHTML = '<input id="x' + t.nRestri + '' + (i - 1) + '" type="text"  \
@@ -125,22 +114,28 @@ Tabela = function() {
                 class="ladoDir form-control" onkeypress="return isNumberKey(event)" required  step="any">';
     };
 
-    t.addCol = function() {
+    t.addCol = function () {
         if (t.nVar === 10) {
             showAlert('warning', 'Limite máximo de colunas atingido: 10');
             return;
         }
 
-        t.nVar++;
         var table = document.getElementById("myTableData");
-		table.rows[0].insertCell(t.nVar).innerHTML = '<center><b>Coluna' + (t.nVar) + '</b></center>';
-		for (i = 1; i < table.rows.length; i++){
-				table.rows[i].insertCell(table.rows[i].cells.length - 2).innerHTML = '<input id="x' + t.nRestri + '' + (t.nVar) + '" type="text"  \
-						class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+        t.nVar++;
+        table.rows[0].insertCell(t.nVar).innerHTML = '<center><b>Coluna' + (t.nVar) + '</b></center>';
+
+        for (i = 1; i < table.rows.length - 1; i++) {
+            table.rows[i].insertCell(t.nVar).innerHTML = '<input id="x' + i + '' + (t.nVar - 1) + '" type="text"  \
+        				class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
         }
+
+        table.rows[table.rows.length - 1].insertCell(t.nVar).innerHTML = '<input id="x0' + (t.nVar - 1) + '" type="text"  \
+        				class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
+
+        document.getElementById("variaveis").value = t.nVar;
     };
 
-    t.deleteRow = function() {
+    t.deleteRow = function () {
         var obj = document.getElementById("myTableData").rows[t.nRestri];
         var index = obj.parentNode.parentNode.rowIndex;
         var table = document.getElementById("myTableData");
@@ -150,21 +145,22 @@ Tabela = function() {
         }
     };
 
-    //Remove restricoes do modelo
-    t.deleteCol = function() {
-        //var obj = document.getElementById("myTableData").rows[t.nRestri];
-        //var index = obj.parentNode.parentNode.rowIndex;
+    //Remove colunas do modelo
+    t.deleteCol = function () {
         var table = document.getElementById("myTableData");
         if (t.nVar > 1) {
             t.nVar--;
 
-
+            document.getElementById("variaveis").value = t.nVar;
             table.rows[0].deleteCell(t.nVar + 1);
 
             for (i = 1; i < table.rows.length; i++) {
                 table.rows[i].deleteCell(t.nVar);//.innerHTML = '<input id="x' + t.nRestri + '' + (t.nVar) + '" type="text"  \class="xRest form-control" onkeypress="return isNumberKey(event)" required  step="any">';
             }
 
+        } else {
+            showAlert('warning', 'Limite mínimo de colunas atingido: 1');
+            return;
         }
     };
 
@@ -172,8 +168,7 @@ Tabela = function() {
     return t;
 };
 
-
-leituraParametros = function() {
+leituraParametros = function () {
     var metodo = document.getElementById("metodo").value;
     var demanda = [];
     var restricoes = [];
@@ -181,7 +176,7 @@ leituraParametros = function() {
     var tabelaTransporte = [[]];
 
     //Pegando dados da Tabela
-    $(".fObj").each(function() {
+    $(".fObj").each(function () {
         demanda.push(parseFloat($(this).val()));
     });
 
@@ -189,7 +184,7 @@ leituraParametros = function() {
     var nRest = 0;
     var nVar = demanda.length;
     restricoes[0] = [];
-    $(".xRest").each(function() {
+    $(".xRest").each(function () {
         restricoes[nRest].push(parseFloat($(this).val()));
         i++;
         if (i === nVar) {
@@ -200,7 +195,7 @@ leituraParametros = function() {
     });
     restricoes.pop();
 
-    $(".ladoDir").each(function() {
+    $(".ladoDir").each(function () {
         rhs.push(parseFloat($(this).val()));
     });
 
@@ -217,17 +212,17 @@ leituraParametros = function() {
 
 }
 
-verificaTabela = function() {
+verificaTabela = function () {
     var bool = false;
-    $(".fObj").each(function() {
+    $(".fObj").each(function () {
         bool = ($(this).val() === '' || $(this).val() === null);
     });
     if (!bool) {
-        $(".xRest").each(function() {
+        $(".xRest").each(function () {
             bool = ($(this).val() === '' || $(this).val() === null);
         });
         if (!bool) {
-            $(".ladoDir").each(function() {
+            $(".ladoDir").each(function () {
                 bool = ($(this).val() === '' || $(this).val() === null);
             });
         }
@@ -235,4 +230,4 @@ verificaTabela = function() {
 
     return bool;
 }
-//# sourceURL=tabelaProblema.js
+//# sourceURL=tabelaProblemaTransporte.js
