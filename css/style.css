@@ -3047,6 +3047,49 @@
     font-weight: 650;
 }
 
+.simplexcell{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.simplexcell:hover{
+	font-size: 16px;
+    background-color:rgba(137, 179, 19, 0.14);
+    font-weight: bold;
+    box-shadow: inset 1px 1px 0px 0px rgb(230,230,230), inset -1px -1px 0px 0px rgb(230,230,230);
+    overflow: visible !important;
+    box-sizing:border-box;
+	border-radius: 15px 50px;
+	cursor: pointer;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+.simplexcell-result{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.simplexcell-basicas{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.simplexcell-z{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.simplexcell-razao{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
 .container-big{
     position: relative;
     margin: 0 auto;

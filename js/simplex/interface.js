@@ -52,26 +52,32 @@ SimplexTable = function () {
                 row.className = (pivo[1] == i || (Array.isArray(pivo[1]) && pivo[1].indexOf(i) !== -1)) ? 'pivo' : '';
             }
             if (i == 0) {
-                row.insertCell(0).innerHTML = '<p class="simplex"><b>z</b></p>';
+                row.insertCell(0).innerHTML = '<p class="simplexcell-z"><b>z</b></p>';
             }
             else {
-                row.insertCell(0).innerHTML = '<p class="simplex"><b>x' + ((+base[i]) + 1) + '</b></p>';
+                row.insertCell(0).innerHTML = '<p class="simplexcell-basicas"><b>x' + ((+base[i]) + 1) + '</b></p>';
             }
             for (var j = 0; j < result[nIteracao][0].length; j++) {
                 var cell = row.insertCell(j + 1);
-                cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+
+                if (j < result[nIteracao][0].length - 1 && i > 0) {
+                    cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplexcell">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                } else {
+                    cell.innerHTML = '<p class="simplexcell-result">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                }
+
                 if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
                     cell.className = (pivo[0] == j) ? 'pivo' : '';
                 }
             }
             if (nIteracao < result.length - 1 && i > 0 && !isNaN(pivo[1])) {
-                row.insertCell().innerHTML = '<p class="simplex">' +
+                row.insertCell().innerHTML = '<p class="simplexcell-razao">' +
                     ("" + (+ ((result[nIteracao][i][result[nIteracao][i].length - 1] /
                         result[nIteracao][i][pivo[0]])).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado')
                     + '</p>';
             }
             else {
-                row.insertCell().innerHTML = '<p class="simplex"></p>';
+                row.insertCell().innerHTML = '<p class="simplexcell"></p>';
             }
         }
     };
@@ -124,7 +130,13 @@ SimplexTable = function () {
                 }
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
                     var cell = row.insertCell(j + 1);
-                    cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+
+                    if (j < result[nIteracao][0].length - 1 && i > 0) {
+                        cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                    } else {
+                        cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                    }
+
                     if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
                         cell.className = (pivo[0] == j) ? 'pivo' : '';
                     }
@@ -143,7 +155,6 @@ SimplexTable = function () {
     };
 
     this.drawDetalhes = function (z, nIteracao) {
-
         if (z["TipoResultado"].indexOf("Solução Ótima") != "-1") {
             $("#detalhes").show();
             var tipoResultado = document.getElementById("tipoResultado");
@@ -209,13 +220,13 @@ SimplexTable = function () {
             var indiceNaoBasica = z["VariaveisNaoBasicas"][i];
             bodyNaoBasicas += "`x_" + (indiceNaoBasica + 1) + " = " + ("" + (+ (valorVariaveis[indiceNaoBasica]).toFixed(4))).replace('.', ',') + "`<br>";
         }
-		addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
-		addHead("js/ASCIIMathML.js");
+        addHead("js/MathJax/MathJax.js?config=AM_HTMLorMML");
+        addHead("js/ASCIIMathML.js");
         basicas.innerHTML = bodyBasicas + "</p>";
         naoBasicas.innerHTML = bodyNaoBasicas + "</p>";
         qtdIteracoes.innerHTML = "Quantidade de Iterações: " + nIteracao;
     };
-	
+
     return this;
 }
 
@@ -378,6 +389,17 @@ $(document).ready(function () {
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         }
         catch (err) {
+            showAlert("danger", "" + err);
+        }
+    });
+
+    $('.simplexcell').live('click', function () {
+        try {
+            var id = $(this).attr('id').split('_');
+            var i = id[0];
+            var j = id[1];
+
+        } catch (err) {
             showAlert("danger", "" + err);
         }
     });
