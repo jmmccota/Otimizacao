@@ -42,6 +42,11 @@ Transporte = function(){
 		return this.iteracoes;
 	};
 
+	this.iteracao = function(linha, coluna){
+		this.iteracoes.push(copiaTabela(this.solver.iteracao(linha, coluna)));
+		return this.iteracoes;
+	};
+
 	this.executa = function(){
 		while(!this.terminou())
 			this.proximoPasso();
@@ -108,11 +113,14 @@ SolverTransporte.prototype.terminou = function() {
 };
 SolverTransporte.prototype.proximoPasso = function() {
 	var celula = this.escolheCelula();
+	return this.iteracao(celula.i, celula.j);
+};
+SolverTransporte.prototype.iteracao = function(linha, coluna) {
 	copia = {};
-	copia.i = celula.i;
-	copia.j = celula.j;
+	copia.i = linha;
+	copia.j = coluna;
 	this.escolhidos.push(copia);
-	var i = celula.i, j = celula.j;
+	var i = linha, j = coluna;
 
 	this.tabela[i][j].visitado = true;
 
