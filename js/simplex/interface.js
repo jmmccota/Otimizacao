@@ -82,9 +82,10 @@ SimplexTable = function () {
         }
     };
 
-    this.drawTable = function (result) {
+    this.drawTable = function (result, drawLastIteration = true) {
         $("#result").empty();
-        for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
+
+        for (var nIteracao = 0; nIteracao < ((drawLastIteration) ? result.length : result.length - 1); nIteracao++) {
             //Cria MytableResult
             $('#result').append(
                 '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
@@ -383,7 +384,7 @@ $(document).ready(function () {
                 nIteracao = simplex.iteracoes.length - 1;
                 simplexTable.drawDetalhes(simplex.resultado(nIteracao), nIteracao);
             }
-            else{
+            else {
                 simplexTable.drawTable(simplex.proximoPasso());
             }
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);
@@ -405,8 +406,10 @@ $(document).ready(function () {
                 nIteracao = simplex.iteracoes.length - 1;
                 simplexTable.drawDetalhes(simplex.resultado(nIteracao), nIteracao);
             }
-            else{
-                simplexTable.drawTable(simplex.proximoPasso());
+            else {
+                // true  :: desenha todas iterações
+                // false :: desenha iterações-1
+                simplexTable.drawTable(simplex.proximoPasso(), true);
             }
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 
