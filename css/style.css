@@ -3041,7 +3041,49 @@
     width: 100%;
 }
 
-.simplex{
+.transporte{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.transpcell{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.transpcell:hover{	
+  	background-color:rgba(255, 205, 85, 0.14);
+    font-weight: bold;
+    box-shadow: inset 1px 1px 0px 0px rgb(230,230,230), inset -1px -1px 0px 0px rgb(230,230,230);
+    overflow: visible !important;
+    box-sizing:border-box;
+	border-radius: 15px 50px;
+    cursor: pointer;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+.transpcell-suprimento{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.transpcell-demanda{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.transpcell-origem{
+    font-size: 12px;
+    text-align: center;
+    font-weight: 650;
+}
+
+.transpcell-destino{
     font-size: 12px;
     text-align: center;
     font-weight: 650;
@@ -3054,7 +3096,6 @@
 }
 
 .simplexcell:hover{
-	font-size: 16px;
     background-color:rgba(137, 179, 19, 0.14);
     font-weight: bold;
     box-shadow: inset 1px 1px 0px 0px rgb(230,230,230), inset -1px -1px 0px 0px rgb(230,230,230);

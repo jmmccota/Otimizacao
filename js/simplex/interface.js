@@ -366,8 +366,6 @@ $(document).ready(function () {
                 $("#proximoPasso").prop('disabled', false);
                 $('#proximoPasso').show('fast');
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-
-
             } catch (err) {
                 showAlert("danger", "" + err);
             }

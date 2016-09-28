@@ -11,6 +11,70 @@ TransporteTable = function () {
         $("#myTableResult" + cont).empty();
     };
 
+    this.drawTableStep = function (result, nIteracao) {
+
+        $('#result').append(
+            '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
+            '   <div class="panel-heading"> ' +
+            '      <h3 class="panel-title" id="panel-title" style="display: inline;"><label>' + ((nIteracao === 0) ? 'Iteração Inicial' : ((nIteracao === result.length - 1) ? 'Resultado' : 'Iteração ' + nIteracao)) + '</label></h3>' +
+            '                                              <div style="float:right;"> <i style="text-align: right; font-weight:700;"> Custo Total: ' + solver.custo(nIteracao) + ' </i></div>' +
+            '   </div>' +
+            '   <div class="panel-body" style="padding: 0;">' +
+            '      <table id="myTableResult' + nIteracao + '" class="table table-condensed"></table>' +
+            '   </div>' +
+            '</div>');
+
+        this.tableObj = document.getElementById("myTableResult" + nIteracao);
+        this.reseta(nIteracao);
+
+        var row = this.tableObj.insertRow(0);
+
+        //Cabeçalho
+        row.insertCell(0).innerHTML = '<center><b></b></center>';
+        for (var i = 1; i < result[nIteracao][0].length; i++) {
+            var cell = row.insertCell(i);
+            cell.innerHTML = '<center><b>Destino ' + i + '</b></center>';
+            cell.className = "transpcell-destino"
+        }
+        var cell = row.insertCell(i);
+        cell.innerHTML = '<center><b>Suprimento</b></center>';
+        cell.className = "transpcell-suprimento"
+
+        //Elemento pivo
+        var pivo = ((nIteracao != result.length - 1) ? solver.pivo(nIteracao) : '');
+
+        //Valores de cada Iteração
+        for (var i = 0; i < result[nIteracao].length; i++) {
+            row = this.tableObj.insertRow(i + 1);
+            //if (nIteracao > 0) {
+            row.className = (pivo.i == i) ? 'pivoT' : '';
+            //}
+            if (i < result[nIteracao].length - 1) {
+                row.insertCell(0).innerHTML = '<p class="transpcell-origem"><b>Origem ' + (i + 1) + '</b></p>';
+            }
+            else {
+                row.insertCell(0).innerHTML = '<p class="transpcell-demanda"><b>Demanda</b></p>';
+            }
+            for (var j = 0; j < result[nIteracao][0].length; j++) {
+                var cell = row.insertCell(j + 1);
+                if (j < result[nIteracao][0].length - 1 && i < result[nIteracao].length - 1) {
+                    cell.innerHTML = '<p id="' + (i) + (j) + '"class="transpcell"> Custo: ' + ("" + (+result[nIteracao][i][j].custo.toFixed(4))).replace('.', ',') +
+                        " x Quantidade: " + ("" + (+result[nIteracao][i][j].qtd.toFixed(4))).replace('.', ',') + '</p>';
+                }
+                else if (!(j === result[nIteracao][0].length - 1 && i === result[nIteracao].length - 1)) {
+                    cell.innerHTML = '<p class="transpcell-suprimento">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                }
+                if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
+                    cell.className = (pivo.j == j) ? 'pivoT' : '';
+                }
+                if (result[nIteracao][i][j] && result.length - 1 == nIteracao && result[nIteracao][i][j].qtd !== 0 && i < result[nIteracao].length - 1 && j < result[nIteracao][i].length - 1) {
+                    cell.className = 'selecionado';
+                }
+            }
+
+        }
+    };
+
     this.drawTable = function (result) {
 
         for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
@@ -36,11 +100,11 @@ TransporteTable = function () {
             for (var i = 1; i < result[nIteracao][0].length; i++) {
                 var cell = row.insertCell(i);
                 cell.innerHTML = '<center><b>Destino ' + i + '</b></center>';
-                cell.className = "simplex"
+                cell.className = "transporte"
             }
             var cell = row.insertCell(i);
             cell.innerHTML = '<center><b>Suprimento</b></center>';
-            cell.className = "simplex"
+            cell.className = "transporte"
 
             //Elemento pivo
             var pivo = ((nIteracao != result.length - 1) ? solver.pivo(nIteracao) : '');
@@ -52,24 +116,24 @@ TransporteTable = function () {
                 row.className = (pivo.i == i) ? 'pivoT' : '';
                 //}
                 if (i < result[nIteracao].length - 1) {
-                    row.insertCell(0).innerHTML = '<p class="simplex"><b>Origem ' + (i + 1) + '</b></p>';
+                    row.insertCell(0).innerHTML = '<p class="transporte"><b>Origem ' + (i + 1) + '</b></p>';
                 }
                 else {
-                    row.insertCell(0).innerHTML = '<p class="simplex"><b>Demanda</b></p>';
+                    row.insertCell(0).innerHTML = '<p class="transporte"><b>Demanda</b></p>';
                 }
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
                     var cell = row.insertCell(j + 1);
                     if (j < result[nIteracao][0].length - 1 && i < result[nIteracao].length - 1) {
-                        cell.innerHTML = '<p class="simplex"> Custo: ' + ("" + (+result[nIteracao][i][j].custo.toFixed(4))).replace('.', ',') +
+                        cell.innerHTML = '<p class="transporte"> Custo: ' + ("" + (+result[nIteracao][i][j].custo.toFixed(4))).replace('.', ',') +
                             " x Quantidade: " + ("" + (+result[nIteracao][i][j].qtd.toFixed(4))).replace('.', ',') + '</p>';
                     }
                     else if (!(j === result[nIteracao][0].length - 1 && i === result[nIteracao].length - 1)) {
-                        cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                        cell.innerHTML = '<p class="transporte">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
                     }
                     if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
                         cell.className = (pivo.j == j) ? 'pivoT' : '';
                     }
-                    if(result[nIteracao][i][j] && result.length - 1 == nIteracao && result[nIteracao][i][j].qtd !== 0 && i < result[nIteracao].length - 1 && j < result[nIteracao][i].length - 1){
+                    if (result[nIteracao][i][j] && result.length - 1 == nIteracao && result[nIteracao][i][j].qtd !== 0 && i < result[nIteracao].length - 1 && j < result[nIteracao][i].length - 1) {
                         cell.className = 'selecionado';
                     }
                 }
@@ -162,6 +226,7 @@ $(document).ready(function () {
                 var res = solver.executa();
                 table.drawTable(res);
                 $("#panelResultado").show();
+
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
             catch (err) {
@@ -169,23 +234,23 @@ $(document).ready(function () {
             }
         }
     });
+
     //Executar Transporte Passo a Passo
     $('#passoAPasso').click(function () {
         try {
             if (!verificaTabela()) {
-                $("#proximoPasso").prop('disabled', false);
+                table = TransporteTable();
                 solver = new Transporte();
-                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                var modelo = leituraParametros();
+
                 $("#panelResultado").show();
 
-                table = TransporteTable();
-                var x = leituraParametros();
-                solver.init(x);
+                solver.init(modelo);
 
                 res = solver.proximoPasso();
-                table.drawTable(res);
-                $("#panelResultado").show();
+                table.drawTableStep(res, 0);
 
+                $("#proximoPasso").prop('disabled', false);
                 $('#proximoPasso').show('fast');
                 $('#rowObsProximoPasso').show('fast');
                 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
@@ -198,24 +263,43 @@ $(document).ready(function () {
     //Define botao para proximo passo
     $('#proximoPasso').click(function () {
         try {
-			delete table;
+            delete table;
             table = new TransporteTable();
             res = solver.proximoPasso();
 
             table.drawTable(res);
-            
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+
             if (solver.terminou()) {
                 //$("#proximoPasso").prop('disabled', true);
                 $("#proximoPasso").hide();
-            }else{
-                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             }
         } catch (err) {
             showAlert("danger", "" + err);
         }
-    });	
-	
+    });
 
+    $('.transpcell').live('click', function () {
+        try {
+            var id = $(this).attr('id').split('_');
+            var i = id[0];
+            var j = id[1];
+
+            if (solver.terminou()) {
+                var temp = solver.iteracao(j, i);
+                $("#proximoPasso").hide();
+            } else {
+                // true  :: desenha todas iterações
+                // false :: desenha iterações-1
+                table.drawTable(simplex.proximoPasso(), false);
+            }
+
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+
+        } catch (err) {
+            showAlert("danger", "" + err);
+        }
+    });
 
     //Analisar arquivo
     $('#analisarFile').click(function () {
