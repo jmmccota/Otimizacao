@@ -182,8 +182,8 @@ $(document).ready(function () {
                 var x = leituraParametros();
                 solver.init(x);
 
-                res = solver.proximoPasso();
-                table.drawTable(res);
+                //res = solver.proximoPasso();
+                table.drawTable(solver.iteracoes);
                 $("#panelResultado").show();
 
                 $('#proximoPasso').show('fast');
