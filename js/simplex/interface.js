@@ -54,16 +54,19 @@ SimplexTable = function () {
             if (i == 0) {
                 row.insertCell(0).innerHTML = '<p class="simplexcell-z"><b>z</b></p>';
             }
-            else {
+            else if(!isNaN(+base[i])){
                 row.insertCell(0).innerHTML = '<p class="simplexcell-basicas"><b>x' + ((+base[i]) + 1) + '</b></p>';
+            }
+            else{
+                row.insertCell(0).innerHTML = '<p class="simplexcell-basicas"><b>Indeterminado</b></p>';   
             }
             for (var j = 0; j < result[nIteracao][0].length; j++) {
                 var cell = row.insertCell(j + 1);
 
                 if (j < result[nIteracao][0].length - 1 && i > 0) {
-                    cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplexcell">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                    cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplexcell">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado') + '</p>';
                 } else {
-                    cell.innerHTML = '<p class="simplexcell-result">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                    cell.innerHTML = '<p class="simplexcell-result">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado') + '</p>';
                 }
 
                 if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
@@ -126,20 +129,22 @@ SimplexTable = function () {
                 if (i == 0) {
                     row.insertCell(0).innerHTML = '<p class="simplex"><b>z</b></p>';
                 }
-                else {
+                else if(!isNaN(+base[i])){
                     row.insertCell(0).innerHTML = '<p class="simplex"><b>x' + ((+base[i]) + 1) + '</b></p>';
+                }
+                else{
+                    row.insertCell(0).innerHTML = '<p class="simplex"><b>Indeterminado</b></p>';   
                 }
                 for (var j = 0; j < result[nIteracao][0].length; j++) {
                     var cell = row.insertCell(j + 1);
 
                     if (j < result[nIteracao][0].length - 1 && i > 0) {
-                        cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
-                    } else {
-                        cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',') + '</p>';
+                        cell.innerHTML = '<p id="' + (i - 1) + "_" + (j) + '" class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado') + '</p>';                    
                     }
-
                     if (nIteracao < result.length - 1 && result[nIteracao][0].length <= result[nIteracao + 1][0].length) {
-                        cell.className = (pivo[0] == j) ? 'pivo' : '';
+                        cell.className = (pivo[0] == j) ? 'pivo' : ''; + '</p>';
+                    } else {
+                        cell.innerHTML = '<p class="simplex">' + ("" + (+result[nIteracao][i][j].toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado') + '</p>';                    
                     }
                 }
                 if (nIteracao < result.length - 1 && i > 0) {
@@ -154,7 +159,7 @@ SimplexTable = function () {
             }
         }
     };
-
+/*
     this.drawDetalhes = function (z, nIteracao) {
         if (z["TipoResultado"].indexOf("Solução Ótima") != "-1") {
             $("#detalhes").show();
@@ -165,7 +170,7 @@ SimplexTable = function () {
             var qtdIteracoes = document.getElementById("qtdIteracoes");
 
             tipoResultado.innerHTML = z["TipoResultado"];
-            valorZ.innerHTML = "Z = " + ("" + (+ (z["FuncaoObjetivo"]).toFixed(4))).replace('.', ',');
+            valorZ.innerHTML = "Z = " + ("" + (+ (z["FuncaoObjetivo"]).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado');
             showAlert("success", "Solução Ótima encontrada. Z=" + z["FuncaoObjetivo"].toFixed(4).replace('.', ','));
 
             var valorVariaveis = z["Variaveis"];
@@ -190,7 +195,7 @@ SimplexTable = function () {
             $("#detalhes").hide();
             showAlert("danger", z["TipoResultado"]);
         }
-    };
+    };*/
 
     this.drawDetalhes = function (z, nIteracao) {
         $("#detalhes").show();
@@ -202,10 +207,13 @@ SimplexTable = function () {
 
         tipoResultado.innerHTML = z["TipoResultado"];
         if (z["FuncaoObjetivo"] != null) {
-            valorZ.innerHTML = "Z = " + ("" + (+ (z["FuncaoObjetivo"]).toFixed(4))).replace('.', ',');
+            valorZ.innerHTML = "Z = " + ("" + (+ (z["FuncaoObjetivo"]).toFixed(4))).replace('.', ',').replace('Infinity', 'Infinito').replace('NaN', 'Indeterminado');
             showAlert("success", "Solução Ótima encontrada. Z=" + z["FuncaoObjetivo"].toFixed(4).replace('.', ','));
         } else {
             showAlert("danger", z["TipoResultado"]);
+        }
+        if(isNaN(z["FuncaoObjetivo"].toFixed(4))){
+            tipoResultado.innerHTML = "Solução Inviável."
         }
 
         var valorVariaveis = z["Variaveis"];
@@ -395,19 +403,22 @@ $(document).ready(function () {
     $('.simplexcell').live('click', function () {
         try {
             var id = $(this).attr('id').split('_');
-            var i = id[0];
-            var j = id[1];
+            var i = +id[0];
+            var j = +id[1];
             if (simplex.terminou()) {
-                var temp = simplex.iteracao(j, i);
+                var temp = simplex.iteracao(j, i+1);
                 //$("#proximoPasso").prop('disabled', true);
                 $("#proximoPasso").hide();
+                simplexTable.drawTable(temp, true);
                 nIteracao = simplex.iteracoes.length - 1;
                 simplexTable.drawDetalhes(simplex.resultado(nIteracao), nIteracao);
             }
             else {
                 // true  :: desenha todas iterações
                 // false :: desenha iterações-1
-                simplexTable.drawTable(simplex.proximoPasso(), true);
+                var temp = simplex.iteracao(j, i+1);
+                simplexTable.drawTable(temp, false);
+                simplexTable.drawTableStep(temp, temp.length-1);
             }
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 

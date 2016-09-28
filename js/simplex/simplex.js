@@ -634,6 +634,7 @@ Simplex = function(){
         }
         
         this.iteracoes.push(copia);
+        return this.iteracoes;
     };
     
     this.proximoPasso = function(){
@@ -784,7 +785,7 @@ Simplex = function(){
                     um = true;
                     pos = i;
                 }
-                else if(tabela[i][j] !== 0){
+                else if(tabela[i][j] !== 0 && !isNaN(tabela[i][j])){
                     basica = false;
                     break;
                 }

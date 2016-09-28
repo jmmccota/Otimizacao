@@ -58,7 +58,7 @@ TransporteTable = function () {
             for (var j = 0; j < result[nIteracao][0].length; j++) {
                 var cell = row.insertCell(j + 1);
                 if (j < result[nIteracao][0].length - 1 && i < result[nIteracao].length - 1) {
-                    cell.innerHTML = '<p id="' + (i) + (j) + '"class="transpcell"> Custo: ' + ("" + (+result[nIteracao][i][j].custo.toFixed(4))).replace('.', ',') +
+                    cell.innerHTML = '<p id="' + (i) + "_" + (j) + '"class="transpcell"> Custo: ' + ("" + (+result[nIteracao][i][j].custo.toFixed(4))).replace('.', ',') +
                         " x Quantidade: " + ("" + (+result[nIteracao][i][j].qtd.toFixed(4))).replace('.', ',') + '</p>';
                 }
                 else if (!(j === result[nIteracao][0].length - 1 && i === result[nIteracao].length - 1)) {
@@ -75,9 +75,10 @@ TransporteTable = function () {
         }
     };
 
-    this.drawTable = function (result) {
+    this.drawTable = function (result, drawLastIteration = true) {
+        $("#result").empty();
 
-        for (var nIteracao = 0; nIteracao < result.length; nIteracao++) {
+        for (var nIteracao = 0; nIteracao < ((drawLastIteration) ? result.length : result.length - 1); nIteracao++) {
             //Cria MytableResult
             $('#result').append(
                 '<div class="row panel panel-default" tabindex="-1" style="overflow:auto;" id="styleScroll">' +
@@ -243,13 +244,10 @@ $(document).ready(function () {
                 solver = new Transporte();
                 var modelo = leituraParametros();
 
-                $("#panelResultado").show();
-
                 solver.init(modelo);
+                table.drawTableStep(solver.iteracoes, 0);
 
-                res = solver.proximoPasso();
-                table.drawTableStep(res, 0);
-
+                $("#panelResultado").show();
                 $("#proximoPasso").prop('disabled', false);
                 $('#proximoPasso').show('fast');
                 $('#rowObsProximoPasso').show('fast');
@@ -286,12 +284,15 @@ $(document).ready(function () {
             var j = id[1];
 
             if (solver.terminou()) {
-                var temp = solver.iteracao(j, i);
+                var temp = solver.iteracao(i, j);
                 $("#proximoPasso").hide();
+                table.drawTable(temp, true);
             } else {
                 // true  :: desenha todas iterações
                 // false :: desenha iterações-1
-                table.drawTable(simplex.proximoPasso(), false);
+                var temp = solver.iteracao(i, j);
+                table.drawTable(temp, false);
+                table.drawTableStep(temp, temp.length - 1)
             }
 
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);

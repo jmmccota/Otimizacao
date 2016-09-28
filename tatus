@@ -1,0 +1,278 @@
+[33mcommit 61654d56e4b925b49df864a487be835bdcf9c456[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Tue Sep 27 22:36:27 2016 -0300
+
+    Live click transporte cell
+
+[33mcommit 4bf65690a9ba88786534c20bb37dd7a23cf48367[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Tue Sep 27 21:36:06 2016 -0300
+
+    DrawAllIterations mode
+
+[33mcommit 3817c404adfdf88e8de888f25c8f4233d1a50269[m
+Author: Elias Luiz <eliasluizjr@gmail.com>
+Date:   Tue Sep 27 11:41:05 2016 -0300
+
+    Alteracao parcial simplex passo a passo
+
+[33mcommit ce03456bc1bb5b83148e8febfa1500a151854c32[m
+Merge: 04c87bd 1b5e71d
+Author: Elias Luiz <eliasluizjr@gmail.com>
+Date:   Tue Sep 27 11:28:53 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit 04c87bde83728384d4eea9c4afe1358e06d5e7d0[m
+Author: Elias Luiz <eliasluizjr@gmail.com>
+Date:   Tue Sep 27 11:28:23 2016 -0300
+
+    Alteracao solver transporte
+
+[33mcommit 1b5e71d3125b4c821a56abee4c80fd29119e1a64[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Tue Sep 27 11:22:49 2016 -0300
+
+    Remoção do cell click simplex para executar completo
+
+[33mcommit 9600384a59c9e0bb99d7a9c3a5ace747421084b0[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Tue Sep 27 11:18:55 2016 -0300
+
+    Cell click simplex
+
+[33mcommit 2f217fbdb080da0565d7f02c79fd29aa3e1dfa8f[m
+Author: Elias Luiz <eliasluizjr@gmail.com>
+Date:   Tue Sep 27 11:18:43 2016 -0300
+
+    Alterada exibicao passo a passo simplex
+
+[33mcommit 754215f3c5f4aa9f5784039a33c7f72936957e56[m
+Merge: 40d668e 50d3694
+Author: Elias Luiz <eliasluizjr@gmail.com>
+Date:   Tue Sep 27 10:07:30 2016 -0300
+
+    Merge
+
+[33mcommit 40d668e455283bbcffb8f815337a1d8570dbe7dd[m
+Author: Elias Luiz <eliasluizjr@gmail.com>
+Date:   Mon Sep 26 23:03:56 2016 -0300
+
+    Formatacao Transporte
+
+[33mcommit 50d36948a31b11ad3fab7fc59190b44ac2e0a9cf[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon Sep 26 19:14:29 2016 -0300
+
+    Correções bugs finais
+
+[33mcommit 7d761cb038a52946c30d094d03964d74d7cad931[m
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Tue Sep 20 15:55:07 2016 -0300
+
+    Arrumando o transporte
+
+[33mcommit 7bcac61fb61bbffebb9088b37be567e37d9074a8[m
+Merge: 347c69a 7c5e5d0
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon May 16 23:26:37 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit 347c69afe5aa84ac2166b7fff414e5e21f5e7a67[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon May 16 23:26:22 2016 -0300
+
+    new favicon.ico index
+
+[33mcommit 7c5e5d09e3788151d4c7ee4e0be3a3756eb543ac[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Mon May 16 23:13:39 2016 -0300
+
+    Adicionado script para atualizar o ghpages
+
+[33mcommit 0b3f182b1b46a565e821399ccce68f1821683f78[m
+Merge: a835675 19e8a34
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon May 16 23:02:47 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit a8356751bce0a8d427681c2ff2cfa9c407a2c55d[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon May 16 23:02:21 2016 -0300
+
+    Icon Transporte e correção ids
+
+[33mcommit 19e8a34c0a86eec93e818f73cf667055f4c940d5[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Mon May 16 22:52:40 2016 -0300
+
+    Correcao pivo
+
+[33mcommit d7b95ea1aa93046a45c4d5639d8cc3f5ed75f328[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon May 16 22:39:51 2016 -0300
+
+    Custo Total add
+
+[33mcommit 75b5b10b47772110d6f93b8053be3fd5e472c146[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon May 16 22:17:23 2016 -0300
+
+    Ids tabelaTransporte carregamento corrigidos
+
+[33mcommit b0af27899c628db819cc4a372dcd295a69641a21[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Mon May 16 22:01:15 2016 -0300
+
+    Corrigidos ids tabelaTransporte
+
+[33mcommit 0608f9449e32f7f5aad1d96d8c0f81cf7a8c124d[m
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Sun May 15 23:05:36 2016 -0300
+
+    Carregamento
+
+[33mcommit 946c5f2a83be67c6c6a735504d2b5b14b835bdc8[m
+Merge: 9cf3503 9592f12
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Sun May 15 22:27:07 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+    carregamento de arquivo
+
+[33mcommit 9cf35036ba6d8bb3be555c80dd7c28a4ae1223dc[m
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Sun May 15 22:26:42 2016 -0300
+
+    Carregamento
+
+[33mcommit 9592f128b57d4d4f317ddc7f3894a3a343086d2f[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Sun May 15 21:12:48 2016 -0300
+
+    Numero de Destino
+
+[33mcommit 75bd65f440365778434939bbdf48147bf736e160[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 20:42:25 2016 -0300
+
+    Adicionado destaque pivo
+
+[33mcommit 5c1126e02f3bfe813def6dc09193701bff9b4ae3[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 20:32:14 2016 -0300
+
+    Bugfix Menor Custo
+
+[33mcommit 072c27d547187e58348f85741126ad9a99fd66e5[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 20:23:35 2016 -0300
+
+    Exibicao Transporte
+
+[33mcommit 13f460096040a2ea3edb10430a1f9a3cd8717399[m
+Merge: 49a7554 0a12517
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 18:09:26 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit 49a7554a7957603152dcbd9821c3109aa6ead9b0[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 18:08:47 2016 -0300
+
+    Bugfix metodos transporte
+
+[33mcommit 0a1251799735d7a195e3f1474f531dabbbade671[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Sun May 15 16:33:37 2016 -0300
+
+    Mudanças index e links
+
+[33mcommit 42e3b3969c573210b84228deca9d3ccaa5d0274d[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 13:56:38 2016 -0300
+
+    Bugfix Grande M
+
+[33mcommit b11031dbc78f8a6dd729e23b466a28d36898b37e[m
+Merge: 1e2a19a 331c7c0
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Sun May 15 13:09:16 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+    adição do math jax nas paginas solicitadas.
+
+[33mcommit 1e2a19a76bfb578b3d0bb4c16830886e2ce1159b[m
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Sun May 15 13:08:35 2016 -0300
+
+    Mathjax
+
+[33mcommit 331c7c0a081e01ab58eaec4085fd447bf9baf9b9[m
+Merge: eae9e72 80661eb
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 13:04:58 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit eae9e724ebe3b8f33fe37a01107f2f17df5556d4[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 13:04:46 2016 -0300
+
+    Alterado exibicao resultado simplex
+
+[33mcommit 80661ebeed3603f06234d88f9d93a12ef2c28c4c[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Sun May 15 13:00:28 2016 -0300
+
+    ProximoPasso detalhes solução
+
+[33mcommit a0bc6c02c56c3ff0007d5bd6d0cb9f167926957b[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Sun May 15 12:38:03 2016 -0300
+
+    Detalhes solução simplex
+
+[33mcommit 86b1c3f88af273c4995d5954a1d30dfd73ce028b[m
+Merge: 0433443 bb60403
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Sun May 15 10:38:47 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit 0433443ba8e7580e618a53408bad694104bd9dc1[m
+Author: Andre Malta <andrmalta@gmail.com>
+Date:   Sun May 15 10:38:37 2016 -0300
+
+    Resultado Detalhado Simplex
+
+[33mcommit bb60403fd2498257a637df9a1a91516de50f4e5c[m
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sun May 15 10:37:52 2016 -0300
+
+    Movido base para resultado
+
+[33mcommit b2dcdf279a94c3fb811aa7f60bc5c0bd5e53ad39[m
+Merge: 8e7ce24 ea060d6
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Sat May 14 21:17:52 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit 8e7ce24253a71b2d84e9d6348b6a9570ffdb9448[m
+Author: João <joao_marcos_cota@hotmail.com>
+Date:   Sat May 14 21:17:32 2016 -0300
+
+    Ajustes em Textos
+
+[33mcommit ea060d66812c69217d66b9012ff800a4ca2e9f56[m
+Merge: bec31cf 4df7fae
+Author: EliasLuiz <eliasluizjr@gmail.com>
+Date:   Sat May 14 20:06:53 2016 -0300
+
+    Merge branch 'master' of https://github.com/jmmccota/Otimizacao
+
+[33mcommit bec31cf0e16f9b77fc08a27db
