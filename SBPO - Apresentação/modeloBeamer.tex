@@ -93,7 +93,16 @@
 
 
 
-
+\setbeamertemplate{headline}
+{%
+	\begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+	\end{beamercolorbox}
+	\begin{beamercolorbox}{section in head/foot}
+		\vskip2pt\insertnavigation{\paperwidth}\vskip2pt
+	\end{beamercolorbox}%
+	\begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+	\end{beamercolorbox}
+}
 
 
 
@@ -108,11 +117,21 @@
 % \date{Novembro de 2011}
 \date{}
 %\date{\today} 
-\institute{CEFET-MG}
-\logo{\includegraphics[scale=0.12]{images/_logoBRL}}
+\institute{SBPO 2016}
+%\logo{\includegraphics[scale=0.12]{images/_logoBRL}}
 
 \begin{frame}
 \titlepage
+\end{frame}
+
+\begin{frame}\frametitle{Autores}
+	\begin{tabular}{ll}
+		André R. da Cruz & \url{andrecruz@timoteo.cefetmg.br}\\ \\
+		André F. R. Malta & \url{andrmalta@gmail.com}\\ \\
+		Daniel G. Oliveira & \url{daniel.gdo@hotmail.com}\\ \\
+		Elias L. S. Júnior & \url{eliasluizjr@gmail.com}\\ \\
+		João M. M. C. Cota & \url{joao\_marcos\_cota@hotmail.com}\\ \\
+	\end{tabular}
 \end{frame}
 
 \begin{section}{Introdução}
@@ -132,8 +151,16 @@
 		\item Algoritmos complexos e com casos especiais
 		\bigskip
 		\item \textit{Solvers} apresentam apenas o resultado final
-		\bigskip
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Objetivos}
+	\begin{itemize}
 		\item Interface simples e intuitiva
+		\bigskip
+		\item Visualizar a execução dos algoritmos
+		\bigskip
+		\item Interagir com os mesmos
 	\end{itemize}
 \end{frame}
 
@@ -156,6 +183,7 @@
 		\bigskip
 		\item Variantes abordadas:
 		\begin{itemize}
+			\medskip
 			\item Grande M
 			\medskip
 			\item Duas Fases
@@ -167,7 +195,7 @@
 
 \begin{frame}\frametitle{\textit{Branch-and-Bound}}
 	\begin{itemize}
-		\item Algoritmo para programação linear
+		\item Algoritmo para programação linear inteira
 		\bigskip
 		\item Gera uma árvore de possíveis modelos, resolvidos pelo simplex
 	\end{itemize}
@@ -181,6 +209,7 @@
 		\bigskip
 		\item Algoritmos abordados:
 		\begin{itemize}
+			\medskip
 			\item Canto noroeste
 			\medskip
 			\item Menor custo
@@ -213,6 +242,7 @@
 	Foram utilizadas algumas bibliotecas:
 	\bigskip
 	\begin{itemize}
+		\medskip
 		\item Bootstrap
 		\medskip
 		\item Vis
@@ -226,23 +256,11 @@
 \begin{frame}\frametitle{Github}
   \begin{itemize}
   	\item Pode ser utilizado no site http://jmmccota.github.io/Otimizacao
+  	\bigskip
   	\item Código aberto https://github.com/jmmccota/Otimizacao
   \end{itemize}
 \end{frame}
 
 \end{section}
-\begin{section}{}
 
-\begin{frame}\frametitle{Contatos}
-	\begin{tabular}{ll}
-		André R. da Cruz & \url{andrecruz@timoteo.cefetmg.br}\\ \\
-		André F. R. Malta & \url{andrmalta@gmail.com}\\ \\
-		Daniel G. Oliveira & \url{daniel.gdo@hotmail.com}\\ \\
-		Elias L. S. Júnior & \url{eliasluizjr@gmail.com}\\ \\
-		João M. M. C. Cota & \url{joao\_marcos\_cota@hotmail.com}\\ \\
-	\end{tabular}
-\end{frame}
-
-
-\end{section}
 \end{document}
