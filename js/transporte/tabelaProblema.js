@@ -24,7 +24,7 @@ Tabela = function () {
         var row = table.insertRow(0);
         row.insertCell(0).innerHTML = '&nbsp;';
         for (i = 1; i < t.nVar; i++)
-            row.insertCell(i).innerHTML = '<center><b>Coluna' + (i) + '</b></center>';
+            row.insertCell(i).innerHTML = '<center><b>Destino ' + (i) + '</b></center>';
 
         row.insertCell().innerHTML = '<center><b>Suprimento</b></center>';
 
@@ -38,7 +38,7 @@ Tabela = function () {
                 for (var j = 1; j < (t.nRestri - 1); j++) {
 
                     var row = table.insertRow(j);
-                    row.insertCell(0).innerHTML = '<b>Linha' + (j) + '</b>';
+                    row.insertCell(0).innerHTML = '<b>Origem ' + (j) + '</b>';
                     for (i = 1; i <= t.nVar; i++) {
                         if (i == t.nVar) {
                             row.insertCell(i).innerHTML = '<input id="ladoDir' + (j) + '" type="text"  \
