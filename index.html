@@ -248,8 +248,10 @@
         acceptCookiesButton.addEventListener('click', function() {
             localStorage.setItem('cookiesAccepted', 'true');
             consentBanner.style.display = 'none';
-            gtag('consent', 'update', {
+            gtag('consent', 'default', {
                 'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
                 'analytics_storage': 'granted'
             });
         });
