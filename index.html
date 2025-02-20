@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="css/flexslider.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/opensans.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/colors/blue.css" id="colors" />
     <!-- End of stylesheets -->
     <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
@@ -99,7 +100,6 @@
     <!-- Content -->
     <div id="content" class="clearfix">
         <div class="container">
-            <hr class="sep40" />
             <hr class="sep40" />
             <hr class="sep40" />
             <hr class="sep40" />
@@ -221,5 +221,36 @@
   gtag('js', new Date());
 
   gtag('config', 'G-GKCC8YF8CM');
+</script>
+<div id="consent-banner" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; padding: 10px; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); display: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <p>Utilizamos cookies para melhorar sua experiência no nosso site. Ao continuar navegando, você concorda com a nossa <a href="privacy-policy.html">Política de Privacidade</a>.</p>
+            </div>
+            <div class="col-md-3 text-right">
+                <button id="accept-cookies" class="btn btn-primary">Aceitar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var consentBanner = document.getElementById('consent-banner');
+        var acceptCookiesButton = document.getElementById('accept-cookies');
+
+        if (!localStorage.getItem('cookiesAccepted')) {
+            consentBanner.style.display = 'block';
+        }
+
+        acceptCookiesButton.addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            consentBanner.style.display = 'none';
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted'
+            });
+        });
+    });
 </script>
 </html>
