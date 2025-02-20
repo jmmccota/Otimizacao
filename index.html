@@ -242,12 +242,14 @@
 
         if (!localStorage.getItem('cookiesAccepted')) {
             consentBanner.style.display = 'block';
+            dataLayer.push({ event: "gtm.init_consent" })
         }
 
         acceptCookiesButton.addEventListener('click', function() {
             localStorage.setItem('cookiesAccepted', 'true');
             consentBanner.style.display = 'none';
             gtag('consent', 'update', {
+                'ad_storage': 'granted',
                 'analytics_storage': 'granted'
             });
         });
