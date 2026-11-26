@@ -1,0 +1,27 @@
+{
+  "title": "About the project",
+  "project": "SIMO: An Online Tool to Support the Teaching of Optimization",
+  "intro": "Research in the field of optimization that resulted in a paper presented at the Brazilian Symposium on Operations Research (SBPO) in 2016. This modern version runs entirely in the browser, with no server, and can be installed as an app (PWA) and used offline.",
+  "advisor": {
+    "title": "Advisor",
+    "text": "Professor André Oliveira da Cruz, M.Sc."
+  },
+  "authors": {
+    "title": "Authors",
+    "thanks": "Thanks to the collaborators: without them this work would not have been possible."
+  },
+  "links": {
+    "title": "Links",
+    "repo": "Original project source code",
+    "license": "License: GNU GPL v3"
+  },
+  "refs": {
+    "title": "References",
+    "books": "Books",
+    "tools": "Tools and libraries",
+    "hillier": "HILLIER, F. S.; LIEBERMAN, G. J. Introdução à Pesquisa Operacional (Introduction to Operations Research). 8th ed. São Paulo: McGraw-Hill, 2006.",
+    "taha": "TAHA, H. A. Pesquisa Operacional (Operations Research). 8th ed. São Paulo: Prentice Hall, 2008.",
+    "glpk": "GNU Project. GNU Linear Programming Kit (GLPK) — used through glpk.js (WebAssembly) to solve the Branch and Bound relaxations.",
+    "libs": "React, Material UI, TanStack Router, D3 (tree layout), KaTeX (formulas), i18next and Vite."
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "app": {
+    "name": "Optimización"
+  },
+  "nav": {
+    "home": "Inicio",
+    "branchBound": "Branch and Bound",
+    "simplex": "Simplex",
+    "transporte": "Transporte",
+    "credits": "Sobre el proyecto"
+  },
+  "tabs": {
+    "solver": "Comenzar",
+    "about": "Más sobre el modelo"
+  },
+  "language": {
+    "label": "Idioma",
+    "pt": "Português",
+    "en": "English",
+    "es": "Español"
+  },
+  "home": {
+    "title": "Optimización",
+    "subtitle": "Herramienta en línea para apoyar la enseñanza de Optimización.",
+    "choose": "Elige un método en el menú para comenzar."
+  },
+  "figure": {
+    "label": "Figura"
+  },
+  "footer": {
+    "project": "Proyecto SIMO · Simposio Brasileño de Investigación Operativa, 2016",
+    "source": "Código fuente",
+    "about": "Sobre el proyecto",
+    "analytics": "Preferencias de análisis",
+    "privacy": "Privacidad",
+    "contact": "Contacto"
+  },
+  "consent": {
+    "label": "Aviso de analítica de uso",
+    "text": "Recopilamos datos de uso anónimos para mejorar esta herramienta. ¿Aceptas?",
+    "accept": "Aceptar",
+    "reject": "Rechazar"
+  },
+  "meta": {
+    "home": "Herramienta en línea gratuita para aprender Optimización: Simplex, Transporte y Branch and Bound paso a paso, directamente en el navegador.",
+    "simplex": "Resuelve problemas de programación lineal con el Simplex (Gran M, Dos Fases y Generalizado) viendo cada tabla y cada operación.",
+    "transporte": "Resuelve problemas de transporte con los métodos de la Esquina Noroeste, Menor Costo y Aproximación de Vogel, con todos los pasos explicados.",
+    "branchBound": "Resuelve programación lineal entera con Branch and Bound y sigue el árbol de búsqueda, cada nodo y cada corte.",
+    "simplexAbout": "Comprende el método Simplex: región factible, Gran M, Dos Fases y Simplex Generalizado, con ejemplos.",
+    "transporteAbout": "Comprende el problema de transporte y los métodos de la Esquina Noroeste, Menor Costo y de Vogel.",
+    "branchBoundAbout": "Comprende Branch and Bound para programación lineal entera: relajación, ramificación y corte.",
+    "credits": "Sobre el proyecto SIMO: autores, orientación, licencia y referencias de esta herramienta para enseñar Optimización.",
+    "privacy": "Política de privacidad: qué guarda el sitio en tu navegador, cómo usamos Google Analytics y anuncios, y tus opciones.",
+    "contact": "Ponte en contacto: dudas, sugerencias y reportes de problemas."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "La dirección que intentaste abrir no existe.",
+    "home": "Volver al inicio"
+  }
+}

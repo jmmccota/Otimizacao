@@ -1,0 +1,73 @@
+{
+  "title": "Branch and Bound",
+  "subtitle": "Escreva seu problema de programação linear inteira abaixo ou carregue-o de um arquivo.",
+  "integerNote": "Todas as variáveis são inteiras: $x_i \\in \\mathbb{Z}$.",
+  "actions": {
+    "nextNode": "Próximo nó"
+  },
+  "tree": {
+    "title": "Árvore de busca",
+    "empty": "Execute o problema para ver a árvore.",
+    "hint": "Clique em um nó para ver os detalhes. Arraste para mover e role para ampliar.",
+    "legend": {
+      "title": "Legenda",
+      "pending": "Aguardando",
+      "branched": "Ramificado",
+      "integer": "Solução inteira",
+      "pruned": "Cortado por limite",
+      "infeasible": "Infactível",
+      "optimal": "Solução ótima"
+    }
+  },
+  "node": {
+    "title": "Nó {{id}}",
+    "none": "Clique no nó desejado para obter as informações.",
+    "depth": "Nível {{n}}",
+    "z": "Valor de $z$",
+    "x": "Valores de $x$",
+    "added": "Restrição adicionada",
+    "model": "Modelo deste nó",
+    "relaxation": "Relaxação linear",
+    "status": {
+      "pending": "Aguardando",
+      "branched": "Solução fracionária (ramificado)",
+      "integer": "Solução inteira",
+      "pruned": "Cortado por limite",
+      "infeasible": "Infactível"
+    }
+  },
+  "explain": {
+    "title": "Análise do nó",
+    "root": "Resolve-se a relaxação linear: o mesmo problema ignorando a exigência de valores inteiros. Seu valor é um limite para qualquer solução inteira.",
+    "child": "Resolve-se a relaxação linear com a restrição adicionada: {{bound}}.",
+    "infeasible": "A relaxação é infactível: nenhum ponto satisfaz todas as restrições. O nó é cortado por inviabilidade.",
+    "integer": "Todas as variáveis ficaram inteiras: este nó é uma solução candidata.",
+    "newBest": "Ela melhora a melhor solução conhecida (incumbente): $z = {{z}}$.",
+    "notBest": "Mas não melhora a incumbente atual.",
+    "pruned": "A relaxação ($z = {{z}}$) não é melhor que a incumbente ($z = {{inc}}$): nenhum filho poderá superá-la. O nó é cortado por limite (bound).",
+    "branched": "A solução é fracionária. Candidatas e distância até 0,5: {{list}}. Ramifica-se na variável $x_{ {{i}} } = {{value}}$ (a mais fracionária), criando dois filhos: $x_{ {{i}} } \\le {{floor}}$ e $x_{ {{i}} } \\ge {{ceil}}$.",
+    "branchedManual": "A solução é fracionária. Candidatas e distância até 0,5: {{list}}. Você escolheu ramificar em $x_{ {{i}} } = {{value}}$, criando dois filhos: $x_{ {{i}} } \\le {{floor}}$ e $x_{ {{i}} } \\ge {{ceil}}$.",
+    "chooseVar": "Ramificar em outra variável (ainda não expandido):",
+    "boundUpper": "$x_{ {{i}} } \\le {{v}}$",
+    "boundLower": "$x_{ {{i}} } \\ge {{v}}$"
+  },
+  "simplex": {
+    "title": "Passos do Simplex neste nó",
+    "show": "Mostrar os passos do Simplex",
+    "hide": "Ocultar os passos do Simplex",
+    "method": "Método usado"
+  },
+  "summary": {
+    "title": "Resultado",
+    "optimal": "Solução inteira ótima encontrada no nó {{node}}.",
+    "infeasible": "O problema inteiro é infactível: nenhum ponto inteiro satisfaz as restrições.",
+    "unbounded": "O problema é ilimitado: a relaxação linear cresce sem limite.",
+    "limit": "A busca foi interrompida no limite de {{max}} nós; a melhor solução encontrada pode não ser ótima.",
+    "running": "Busca em andamento… melhor solução até agora: {{z}}.",
+    "nodes": "Nós criados",
+    "best": "Melhor solução (incumbente)"
+  },
+  "example": {
+    "label": "Exemplo clássico"
+  }
+}

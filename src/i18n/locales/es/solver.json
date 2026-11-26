@@ -1,0 +1,90 @@
+{
+  "editor": {
+    "goal": {
+      "label": "Tipo de problema",
+      "max": "Maximización",
+      "min": "Minimización"
+    },
+    "variables": "Número de variables",
+    "constraints": "Restricciones",
+    "objective": "Función objetivo",
+    "constraint": "Restricción {{n}}",
+    "relation": "Relación",
+    "rhs": "Lado derecho",
+    "boundsTitle": "Límites de las variables",
+    "lower": "Límite inferior",
+    "upper": "Límite superior",
+    "addConstraint": "Agregar restricción",
+    "removeConstraint": "Eliminar restricción",
+    "cellError": {
+      "empty": "Completa este campo",
+      "number": "Escribe un número (ej.: 3, -2,5 o 1/2)",
+      "bounds": "El límite inferior no puede ser mayor que el superior",
+      "noVariables": "Indica al menos una variable",
+      "negative": "No puede ser negativo"
+    },
+    "fixErrors": "Corrige los campos resaltados para continuar.",
+    "hint": "Se aceptan coma decimal y fracciones (1/2). En el límite superior usa inf para infinito."
+  },
+  "actions": {
+    "runAll": "Ejecutar completo",
+    "stepByStep": "Paso a paso",
+    "nextStep": "Siguiente paso",
+    "reset": "Reiniciar",
+    "clear": "Borrar todo",
+    "save": "Guardar problema",
+    "load": "Cargar problema",
+    "example": "Cargar ejemplo",
+    "confirmClear": {
+      "title": "¿Borrar todo?",
+      "text": "Se perderá toda la información.",
+      "cancel": "Cancelar",
+      "confirm": "Borrar"
+    }
+  },
+  "file": {
+    "loaded": "Archivo cargado con éxito.",
+    "saved": "Archivo guardado.",
+    "error": {
+      "empty": "El archivo está vacío.",
+      "goal": "La primera línea debe ser Maximize o Minimize (línea {{line}}).",
+      "objective": "Función objetivo inválida (línea {{line}}).",
+      "constraint": "Restricción con número incorrecto de campos (línea {{line}}).",
+      "relation": "Relación inválida: usa <=, = o >= (línea {{line}}).",
+      "bounds": "Faltan los límites inferior/superior o tienen un tamaño incorrecto.",
+      "number": "Valor numérico inválido (línea {{line}}).",
+      "generic": "No se pudo leer el archivo."
+    }
+  },
+  "warnings": {
+    "large": "Los problemas con más de {{limit}} variables o restricciones pueden volver lento el navegador o incluso bloquearlo, porque se muestran todos los pasos. Puedes continuar, pero guarda tu trabajo antes."
+  },
+  "result": {
+    "title": "Resultado",
+    "z": "Valor de $z$",
+    "iterations": "Iteraciones",
+    "variables": "Valores de las variables",
+    "basic": "Variables básicas",
+    "nonBasic": "Variables no básicas",
+    "degenerate": "Solución degenerada: hubo un empate en la razón mínima.",
+    "status": {
+      "optimal": "Solución óptima encontrada",
+      "unbounded": "Solución no acotada: la función objetivo crece sin límite",
+      "infeasible": "Problema infactible: ninguna solución satisface todas las restricciones",
+      "iterationLimit": "Se alcanzó el límite de iteraciones (posible ciclaje)"
+    }
+  },
+  "tableau": {
+    "iteration": "Iteración {{n}}",
+    "initial": "Tabla inicial",
+    "base": "Base",
+    "rhs": "Resultado",
+    "ratio": "Razón",
+    "z": "z",
+    "phase1": "Fase I",
+    "phase2": "Fase II"
+  },
+  "model": {
+    "title": "Modelo"
+  }
+}

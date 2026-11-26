@@ -1,0 +1,48 @@
+{
+  "privacy": {
+    "title": "Privacy Policy",
+    "updated": "Last updated: {{date}}",
+    "intro": "This policy explains, in plain terms, what this site stores and collects when you use it.",
+    "local": {
+      "title": "Your problems stay in your browser",
+      "text": "The problems you type or load (Simplex, Transportation and Branch and Bound models) are processed entirely in your browser. They are not sent to any server and we do not store them. Files you load are also read locally only."
+    },
+    "storage": {
+      "title": "Browser storage",
+      "text": "We keep in your browser (localStorage) only the language you chose and your choice about usage analytics. The app also uses a service worker and a local cache so it can work offline. You can delete all of this in your browser settings."
+    },
+    "analytics": {
+      "title": "Google Analytics",
+      "text": "Only if you accept, we use Google Analytics to measure how the site is used (pages visited, device type and approximate location). IP addresses are anonymized and Google may set cookies. If you reject, nothing from Google Analytics is loaded. You can change your choice at any time with “Analytics preferences” in the footer."
+    },
+    "ads": {
+      "title": "Advertising",
+      "text": "This site may show ads from Google AdSense. Google and its partners may use cookies to show ads based on your visits to this and other sites. You can manage ad personalization and learn more through the links below.",
+      "adsSettings": "Google Ads Settings",
+      "partnerSites": "How Google uses data from partner sites"
+    },
+    "choices": {
+      "title": "Your choices",
+      "text": "You can reject or withdraw usage analytics at any time, delete the site's data in your browser, and contact us with privacy questions."
+    },
+    "changes": {
+      "title": "Changes",
+      "text": "We may update this policy. The date of the last update is shown at the top of the page."
+    },
+    "contactLink": "Contact us"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Have a question or suggestion, or found a problem? Get in touch with the team.",
+    "github": {
+      "title": "GitHub",
+      "text": "The quickest way is to open an issue in the project repository.",
+      "link": "Open an issue"
+    },
+    "email": {
+      "title": "Email",
+      "text": "You can also write to:"
+    },
+    "privacy": "For questions about personal data, see the Privacy Policy."
+  }
+}

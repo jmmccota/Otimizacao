@@ -1,0 +1,62 @@
+{
+  "title": "Transportation",
+  "subtitle": "Write your transportation problem below or load it from a file.",
+  "method": {
+    "label": "Method",
+    "northwest": "Northwest Corner",
+    "minCost": "Least Cost",
+    "vogel": "Vogel's Approximation",
+    "hint": {
+      "northwest": "Starts at the top-left cell and moves on as supply and demand run out.",
+      "minCost": "Assigns as much as possible to the cheapest cell that is still available.",
+      "vogel": "Uses penalties (difference between the two lowest costs) to decide where to allocate first."
+    }
+  },
+  "editor": {
+    "sources": "Sources",
+    "destinations": "Destinations",
+    "source": "Source {{n}}",
+    "destination": "Destination {{n}}",
+    "supply": "Supply",
+    "demand": "Demand",
+    "cost": "Unit cost",
+    "addSource": "Add source",
+    "removeSource": "Remove source",
+    "addDestination": "Add destination",
+    "removeDestination": "Remove destination",
+    "hint": "Fill in the unit costs (center), the supply of each source (right column) and the demand of each destination (bottom row)."
+  },
+  "balance": {
+    "balanced": "Balanced problem: total supply = total demand = {{total}}.",
+    "moreSupply": "Total supply ({{supply}}) is greater than total demand ({{demand}}): {{diff}} units of supply will be left over. To balance it, add a dummy destination with demand {{diff}} and cost 0.",
+    "moreDemand": "Total demand ({{demand}}) is greater than total supply ({{supply}}): {{diff}} units will be missing. To balance it, add a dummy source with supply {{diff}} and cost 0."
+  },
+  "step": {
+    "title": "Step {{n}}",
+    "initial": "Initial table: unit costs, supply (right) and demand (bottom).",
+    "northwest": "Northwest corner: start at cell (1, 1); then, if the row's supply ran out, move down a row; if the column's demand ran out, move one column to the right. Chosen cell: source {{i}} → destination {{j}}.",
+    "minCost": "Least cost: among the cells still available (row and column not exhausted), the one with the lowest unit cost is {{cost}}: source {{i}} → destination {{j}}.",
+    "vogel": "Vogel's approximation: for every open row and column the penalty (second-lowest cost − lowest cost) is computed. The largest penalty is {{penalty}}, in {{type}} {{index}}. In it we pick the cell with the lowest cost: source {{i}} → destination {{j}}.",
+    "typeRow": "row",
+    "typeColumn": "column",
+    "penaltyRow": "Row penalty",
+    "penaltyColumn": "Column penalty",
+    "manual": "Cell chosen manually: source {{i}} → destination {{j}}.",
+    "allocate": "We allocate as much as possible: $\\min(\\text{supply}, \\text{demand}) = \\min({{supply}}, {{demand}}) = {{amount}}$ units.",
+    "exhaustedRow": "The supply of source {{i}} is exhausted: the row is crossed out.",
+    "exhaustedColumn": "The demand of destination {{j}} is satisfied: the column is crossed out.",
+    "exhaustedBoth": "The supply of source {{i}} and the demand of destination {{j}} ran out at the same time (degenerate solution): both the row and the column are crossed out.",
+    "cost": "Accumulated cost: $\\sum c_{ij}\\,x_{ij} = {{terms}} = {{total}}$",
+    "done": "Done: all the supply or all the demand has been met.",
+    "unmetSupply": "Unused supply left over: {{amount}}.",
+    "unmetDemand": "Unmet demand left over: {{amount}}.",
+    "clickHint": "Tip: in step-by-step mode, click a free cell to choose it yourself."
+  },
+  "result": {
+    "title": "Initial basic solution",
+    "totalCost": "Total cost"
+  },
+  "example": {
+    "label": "Classic example"
+  }
+}

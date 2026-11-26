@@ -1,0 +1,61 @@
+{
+  "app": {
+    "name": "Otimização"
+  },
+  "nav": {
+    "home": "Início",
+    "branchBound": "Branch and Bound",
+    "simplex": "Simplex",
+    "transporte": "Transporte",
+    "credits": "Sobre o projeto"
+  },
+  "tabs": {
+    "solver": "Começar",
+    "about": "Mais sobre o modelo"
+  },
+  "language": {
+    "label": "Idioma",
+    "pt": "Português",
+    "en": "English",
+    "es": "Español"
+  },
+  "home": {
+    "title": "Otimização",
+    "subtitle": "Ferramenta online para auxiliar o ensino de Otimização.",
+    "choose": "Escolha um método no menu para começar."
+  },
+  "figure": {
+    "label": "Figura"
+  },
+  "footer": {
+    "project": "Projeto SIMO · Simpósio Brasileiro de Pesquisa Operacional, 2016",
+    "source": "Código-fonte",
+    "about": "Sobre o projeto",
+    "analytics": "Preferências de análise",
+    "privacy": "Privacidade",
+    "contact": "Contato"
+  },
+  "consent": {
+    "label": "Aviso de análise de uso",
+    "text": "Coletamos dados de uso anônimos para melhorar esta ferramenta. Você aceita?",
+    "accept": "Aceitar",
+    "reject": "Recusar"
+  },
+  "meta": {
+    "home": "Ferramenta online gratuita para aprender Otimização: Simplex, Transporte e Branch and Bound passo a passo, direto no navegador.",
+    "simplex": "Resolva problemas de programação linear com o Simplex (Grande M, Duas Fases e Generalizado) vendo cada tabela e cada operação.",
+    "transporte": "Resolva problemas de transporte pelos métodos do Canto Noroeste, Menor Custo e Aproximação de Vogel, com todos os passos explicados.",
+    "branchBound": "Resolva programação linear inteira com Branch and Bound e acompanhe a árvore de busca, cada nó e cada corte.",
+    "simplexAbout": "Entenda o método Simplex: região viável, Grande M, Duas Fases e Simplex Generalizado, com exemplos.",
+    "transporteAbout": "Entenda o problema de transporte e os métodos do Canto Noroeste, Menor Custo e de Vogel.",
+    "branchBoundAbout": "Entenda o Branch and Bound para programação linear inteira: relaxação, ramificação e corte.",
+    "credits": "Sobre o projeto SIMO: autores, orientação, licença e referências desta ferramenta de ensino de Otimização.",
+    "privacy": "Política de privacidade: o que o site guarda no navegador, como usamos o Google Analytics e anúncios, e as suas escolhas.",
+    "contact": "Fale com a equipe: dúvidas, sugestões e relatos de problemas."
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "text": "O endereço que você tentou abrir não existe.",
+    "home": "Voltar ao início"
+  }
+}

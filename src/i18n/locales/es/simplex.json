@@ -1,0 +1,67 @@
+{
+  "title": "Simplex",
+  "subtitle": "Escribe tu problema de programación lineal abajo o cárgalo desde un archivo.",
+  "method": {
+    "label": "Tipo de Simplex",
+    "bigM": "Gran M",
+    "twoPhase": "Dos Fases",
+    "generalized": "Generalizado",
+    "hint": {
+      "bigM": "Variables artificiales con una penalización $M$ muy alta en la función objetivo.",
+      "twoPhase": "La Fase I encuentra una solución factible; la Fase II resuelve el problema original.",
+      "generalized": "Solo restricciones ≤, sin variables artificiales; usa reglas del simplex dual cuando el lado derecho es negativo."
+    }
+  },
+  "setup": {
+    "title": "Preparación del modelo",
+    "bigM": "Cada restricción se convierte en igualdad: las restricciones ≤ reciben una variable de holgura ($s$); las ≥ reciben una variable de exceso ($e$) y una artificial ($a$); las = reciben una artificial. Las artificiales entran en la función objetivo con la penalización $M = {{m}}$, lo que las obliga a valer 0 en el óptimo.",
+    "twoPhase": "Cada restricción se convierte en igualdad: ≤ recibe holgura ($s$); ≥ recibe exceso ($e$) y artificial ($a$); = recibe artificial. La Fase I minimiza $w = \\sum a_i$ (la suma de las artificiales). Si el mínimo es 0 el modelo es factible y la Fase II resuelve el problema real.",
+    "twoPhaseNoArtificial": "Todas las restricciones son ≤, por lo que no hay variables artificiales y la Fase I no es necesaria: el problema se resuelve directamente.",
+    "generalized": "Todas las restricciones pasan a ser ≤: una restricción ≥ se multiplica por −1 y una igualdad se convierte en dos desigualdades (≤ y ≥ multiplicada por −1). Luego cada fila recibe una variable de holgura. No hay variables artificiales; los lados derechos negativos se corrigen con reglas del simplex dual.",
+    "objective": "Fila $z$: {{tex}}",
+    "columns": {
+      "source": "Original",
+      "transform": "Transformación",
+      "added": "Variables agregadas",
+      "after": "Forma usada"
+    },
+    "constraint": "Restricción {{n}}",
+    "boundLower": "Límite de $x_{ {{i}} }$",
+    "boundUpper": "Límite de $x_{ {{i}} }$",
+    "transform": {
+      "none": "—",
+      "flipped": "multiplicada por −1 (lado derecho negativo)",
+      "negated": "multiplicada por −1 (≥ pasa a ≤)",
+      "split-first": "igualdad → parte ≤",
+      "split-second": "igualdad → parte ≥ multiplicada por −1"
+    }
+  },
+  "step": {
+    "title": "Qué ocurrió en esta iteración",
+    "canonical": "Antes de optimizar, las variables básicas deben tener coeficiente 0 en la fila $z$. {{col}} es básica pero tiene un coeficiente distinto de cero, así que se elimina de la fila $z$ usando la fila {{row}}.",
+    "entersMostNegative": "Variable que entra: el coeficiente más negativo de la fila $z$ es {{value}}, en la columna de {{col}}.",
+    "entersMostPositive": "Variable que entra: como la fila $z$ se muestra con el signo invertido (minimización), cuenta el coeficiente más positivo: {{value}}, en la columna de {{col}}.",
+    "dual": "La fila {{row}} tiene lado derecho negativo ({{rhs}}): la solución aún no es factible. Según las reglas del simplex dual esa es la fila que sale. Entra la variable de menor razón $|c_j / a_{ij}|$ entre los coeficientes negativos de la fila: {{col}}.",
+    "leaves": "Variable que sale: la menor razón $b_i / a_{ij}$ entre los coeficientes positivos de la columna de {{col}} es {{ratio}}, en la fila {{row}} — sale {{leaving}}.",
+    "pivot": "Elemento pivote: {{value}} (fila {{row}}, columna de {{col}}).",
+    "degenerate": "Hay empate en la razón mínima entre las filas {{rows}}: la solución es degenerada. La primera sale de la base y las demás quedan con lado derecho 0.",
+    "unbounded": "Todos los coeficientes de la columna de {{col}} son menores o iguales a 0: ninguna fila limita el crecimiento. La función objetivo crece sin límite (solución no acotada).",
+    "infeasible": "Ninguna variable puede entrar a la base y la solución sigue siendo infactible: el problema no tiene solución factible.",
+    "manual": "Pivote elegido manualmente (clic en la celda).",
+    "operations": "Operaciones entre filas",
+    "normalize": "Fila del pivote: $L_{ {{r}} } \\leftarrow L_{ {{r}} } \\,/\\, {{p}}$",
+    "eliminate": "$L_{ {{i}} } \\leftarrow L_{ {{i}} } - ({{m}}) \\cdot L_{ {{r}} }$",
+    "eliminateZ": "$L_{z} \\leftarrow L_{z} - ({{m}}) \\cdot L_{ {{r}} }$",
+    "noOperations": "Las demás filas ya tienen 0 en la columna del pivote.",
+    "phase2Start": "Fin de la Fase I: $w = 0$, así que el modelo original es factible. Se eliminaron las columnas artificiales y se restauró la función objetivo original.",
+    "phase1Infeasible": "Fin de la Fase I: el mínimo de $w$ es mayor que 0, por lo que el modelo original no tiene solución factible.",
+    "optimal": "Condición de parada: ningún coeficiente de la fila $z$ puede mejorar la función objetivo y todos los lados derechos son no negativos — esta tabla es óptima.",
+    "unboundedEnd": "Parada: solución no acotada.",
+    "infeasibleEnd": "Parada: problema infactible.",
+    "limitEnd": "Parada: se alcanzó el límite de iteraciones.",
+    "clickHint": "Consejo: haz clic en un número positivo de la tabla para elegir tú mismo el pivote."
+  },
+  "example": {
+    "label": "Ejemplo clásico"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "simplex": {
+    "title": "Sobre el Simplex",
+    "intro": {
+      "title": "Introducción",
+      "p1": "La Programación Lineal (PL) ha sido una importante herramienta de análisis para grandes empresas de todo el mundo. En resumen, busca optimizar recursos limitados entre actividades que compiten entre sí.",
+      "p2": "La Programación Lineal utiliza un modelo matemático para describir el problema. A partir de ese modelo se realiza un análisis gráfico que muestra la región de soluciones factibles. A continuación, un ejemplo de la región delimitada por las rectas de restricción de un problema:",
+      "exampleCaption": "Ejemplo",
+      "p3": "Determinar la solución óptima requiere identificar la dirección en la que la función objetivo $z$ aumenta (maximización) o disminuye (minimización). El punto de la región factible donde $z$ es mayor (maximización) o menor (minimización) es la solución óptima.",
+      "p4": "A continuación, un ejemplo:",
+      "solution": "Solución: la solución óptima se encuentra en el punto C."
+    },
+    "method": {
+      "title": "Resolviendo PL con el método Simplex",
+      "p1": "El método Simplex no enumera todas las soluciones básicas (puntos extremos); analiza solo algunas soluciones seleccionadas. A continuación se muestra un modelo de PL con su región factible.",
+      "modelCaption": "Modelo de PL",
+      "regionCaption": "Región de soluciones factibles",
+      "p2": "El método iterativo normalmente comienza en el origen, el punto A. Luego se analiza si un punto con $x_1$ o $x_2$ mayor que 0 podría mejorar la función objetivo $z$. Analizando la función objetivo, podemos afirmar que sí.",
+      "p3": "El Simplex exige mejorar solo una variable a la vez, eligiendo la que aporte la mayor tasa de mejora a la función objetivo. En el ejemplo, la función objetivo aumenta 2 por cada unidad de $x_1$ y 3 por cada unidad de $x_2$, por lo que la variable elegida es $x_2$. La figura muestra que $x_2$ se aumenta hasta alcanzar el punto extremo B.",
+      "p4": "Después, $x_1$ se aumenta hasta alcanzar el punto C, que es el óptimo. Así, el método recorre las aristas hasta llegar al valor óptimo.",
+      "p5": "A continuación, una estructura que representa el método:",
+      "structureCaption": "Estructura del Simplex"
+    },
+    "bigM": {
+      "title": "Método Simplex Gran-M",
+      "p1": "Según el problema de PL, si hay restricciones que requieren variables artificiales, estas se agregan para formar una solución inicial similar a la solución básica en la que todas las variables son de holgura. Sin embargo, como esas variables no forman parte del modelo original, reciben penalizaciones muy altas en la función objetivo, lo que las obliga a valer 0 en la solución óptima.",
+      "p2": "Así, para el problema siguiente se insertan variables artificiales en las 2 primeras ecuaciones, con sus penalizaciones en la función objetivo (se suman porque el problema es de minimización).",
+      "p3": "El valor de $M$ depende del problema: debe ser suficientemente grande en relación con los coeficientes de la función objetivo original.",
+      "modelCaption": "Modelo de PL",
+      "figureCaption": "Método Gran-M"
+    },
+    "twoPhase": {
+      "title": "Método Simplex de Dos Fases",
+      "p1": "En el Simplex Gran-M las penalizaciones $M$ deben ser grandes en relación con los coeficientes de la función objetivo, lo que provoca errores de redondeo significativos. El Simplex de Dos Fases elimina esa constante $M$.",
+      "p2": "Como indica su nombre, el método resuelve el problema en dos fases:",
+      "phase1": "Fase I: intenta encontrar una solución básica inicial; si la encuentra, pasa a la Fase II.",
+      "phase2": "Fase II: resuelve el problema original.",
+      "p3": "Como resumen del funcionamiento del método:",
+      "figureCaption": "Resumen del método de las Dos Fases"
+    },
+    "generalized": {
+      "title": "Método Simplex Generalizado",
+      "p1": "El Simplex Generalizado se utiliza cuando la solución básica inicial no es factible ni óptima. Las restricciones del modelo deben tener únicamente la relación menor o igual.",
+      "p2": "Este método combina el simplex primal con el simplex dual. Cuando la solución es infactible se usan las reglas del simplex dual hasta restablecer la factibilidad o certificar que no existe solución factible. Cuando la solución es factible se usan las reglas del simplex primal.",
+      "p3": "Una ventaja del Simplex Generalizado es que no se necesitan variables artificiales.",
+      "modelCaption": "Modelo de PL",
+      "leCaption": "Solo restricciones menor o igual",
+      "slackCaption": "Inserción de variables de holgura"
+    }
+  },
+  "transporte": {
+    "title": "Sobre el Transporte",
+    "intro": {
+      "title": "Introducción",
+      "p1": "El problema de Transporte es una categoría de Programación Lineal que trata del envío de mercancías desde un origen hasta un destino. El objetivo es determinar el envío con costo y tiempo óptimos, cumpliendo los límites de oferta y demanda. La analogía con mercancías puede extenderse al control de inventario, la programación de empleos, entre otros. Las etapas del algoritmo de Transporte son las mismas del Simplex.",
+      "p2": "El problema general, descrito en la figura siguiente, consta de $m$ orígenes y $n$ destinos, cada uno representado por un nodo. Los arcos representan la ruta entre origen y destino. En cada ruta se determinan dos características:",
+      "criterion1": "El costo de transporte por unidad en la ruta;",
+      "criterion2": "La cantidad enviada.",
+      "p3": "El objetivo es determinar la cantidad óptima a enviar, de modo que se satisfagan las restricciones de demanda y suministro.",
+      "schemaCaption": "Esquema del problema de Transporte"
+    },
+    "algorithm": {
+      "title": "El algoritmo para el problema de Transporte",
+      "p1": "El algoritmo sigue las mismas etapas del Simplex. A continuación vemos esas etapas en paralelo con las del Simplex.",
+      "stepsCaption": "Etapas del algoritmo para el problema de Transporte",
+      "p2": "Podemos elegir tres métodos para obtener una solución básica inicial no artificial:",
+      "method1": "Método de la esquina noroeste;",
+      "method2": "Método del menor costo;",
+      "method3": "Método de aproximación de Vogel (MAV)."
+    },
+    "northwest": {
+      "title": "Método de la esquina noroeste",
+      "p1": "El método comienza en la celda de la esquina noroeste de la tabla. A continuación se muestran sus etapas.",
+      "stepsCaption": "Etapas del método de la esquina noroeste"
+    },
+    "minCost": {
+      "title": "Método del menor costo",
+      "p1": "El método encuentra una mejor solución inicial basándose en las rutas más baratas. Asigna el máximo posible a la celda de menor costo unitario (los empates se resuelven arbitrariamente). Luego se cancela la fila o columna satisfecha y se ajustan las cantidades de oferta o demanda.",
+      "p2": "Si la fila y la columna se satisfacen a la vez, solo se cancela una de ellas. Después se busca la celda no cancelada de menor costo y se repite el proceso hasta que quede solo una fila o columna sin cancelar."
+    },
+    "vogel": {
+      "title": "Método de aproximación de Vogel (MAV)",
+      "p1": "El MAV es una versión mejorada del método del menor costo que, en general, produce mejores soluciones iniciales. Sus etapas se describen a continuación.",
+      "stepsCaption": "Etapas del método de aproximación de Vogel (MAV)"
+    }
+  },
+  "branchBound": {
+    "title": "Sobre Branch and Bound",
+    "intro": {
+      "title": "Introducción",
+      "p1": "La Programación Lineal Entera Mixta tiene una gran ventaja sobre la Programación Entera: permite incluir en el análisis costos fijos, así como distintos niveles de costos variables para las instalaciones. Estos problemas tienen soluciones más complejas que los que usan Programación Lineal. Sin embargo, en la Programación Lineal existen condiciones necesarias y suficientes de optimalidad demostradas teóricamente, que pueden usarse para comprobar eficientemente si una solución factible dada es óptima.",
+      "p2": "La Programación Lineal se ocupa de maximizar o minimizar una función sujeta a ciertos criterios o restricciones. A continuación, un ejemplo:",
+      "exampleCaption": "Ejemplo",
+      "p3": "Este problema puede resolverse con el método Simplex o con el Simplex de Dos Fases. La solución óptima es:",
+      "solution": "$x = (x_1, x_2, x_3) = (0{,}5;\\ 0;\\ 1{,}5)$",
+      "p4": "Problemas como este se usan en las empresas para minimizar el desperdicio, maximizar la ganancia u optimizar otros aspectos del negocio. Sin embargo, algunas partes de la solución pueden tener que limitarse a números enteros, $x \\in \\mathbb{Z}_+$.",
+      "p5": "La Programación Lineal Entera Mixta es una PL en la que algunas o todas las variables deben ser enteras. Por lo tanto, necesitamos encontrar una nueva solución óptima que evite valores fraccionarios. Simplemente redondear la solución con frecuencia la saca de la región factible, comprometiendo la optimalidad."
+    },
+    "method": {
+      "title": "Resolviendo PLEM con Branch and Bound",
+      "p1": "El problema de resolver PLEM usando solo el Simplex es que con frecuencia devuelve componentes de $x = (x_1, x_2, x_3)$ que no son enteros.",
+      "p2": "Para resolver con Branch and Bound, primero resolvemos el problema relajado, es decir, con el Simplex como si no hubiera restricciones de integralidad. Así obtenemos $z = cx$.",
+      "p3": "Como el ejemplo es un problema de maximización y la región relajada contiene todas las soluciones enteras, ese valor es una cota superior de la PLEM. A continuación se elige una variable no entera. Comúnmente se elige la variable más fraccionaria, es decir, la más cercana a 0,5 (la más alejada de un entero).",
+      "p4": "Por ejemplo, en $x = (1{,}25;\\ 3{,}45;\\ 2{,}75;\\ 5)$ se ramifica en $x_2$, porque $0{,}45$ está más cerca de $0{,}5$ que las demás fracciones. A partir de ahí creamos dos subproblemas, o dos nodos del árbol. En un nodo agregamos la restricción $x_2 \\le 3$ y en el otro $x_2 \\ge 4$. Sea $S$ el conjunto factible de la relajación, $S = \\{x : Ax \\le b,\\ x \\ge 0\\}$. Entonces:",
+      "formula1": "$S_1 = S \\cap \\{x : x_j \\le \\lfloor \\hat{x}_j \\rfloor\\}$",
+      "formula2": "$S_2 = S \\cap \\{x : x_j \\ge \\lceil \\hat{x}_j \\rceil\\}$",
+      "p5": "Cada nodo debe resolverse con sus nuevas restricciones (originalmente con el método Simplex Dual). Si el problema es infactible, el nodo se corta por infactibilidad. La solución óptima se encuentra cuando todos los nodos fraccionarios han sido cortados."
+    }
+  }
+}

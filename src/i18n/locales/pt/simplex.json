@@ -1,0 +1,67 @@
+{
+  "title": "Simplex",
+  "subtitle": "Escreva seu problema de programação linear abaixo ou carregue-o de um arquivo.",
+  "method": {
+    "label": "Tipo do Simplex",
+    "bigM": "Grande M",
+    "twoPhase": "Duas Fases",
+    "generalized": "Generalizado",
+    "hint": {
+      "bigM": "Variáveis artificiais com penalidade $M$ muito alta na função objetivo.",
+      "twoPhase": "Fase I acha uma solução factível; Fase II resolve o problema original.",
+      "generalized": "Só restrições ≤, sem variáveis artificiais; usa regras do simplex dual quando o lado direito é negativo."
+    }
+  },
+  "setup": {
+    "title": "Preparação do modelo",
+    "bigM": "Cada restrição vira uma igualdade: restrições ≤ recebem uma variável de folga ($s$); restrições ≥ recebem uma variável de excesso ($e$) e uma artificial ($a$); restrições = recebem uma artificial. As artificiais entram na função objetivo com a penalidade $M = {{m}}$, o que as força a valer 0 no ótimo.",
+    "twoPhase": "Cada restrição vira uma igualdade: ≤ recebe folga ($s$); ≥ recebe excesso ($e$) e artificial ($a$); = recebe artificial. A Fase I minimiza $w = \\sum a_i$ (a soma das artificiais). Se o mínimo for 0 o modelo é factível e a Fase II resolve o problema real.",
+    "twoPhaseNoArtificial": "Todas as restrições são ≤, então não há variáveis artificiais e a Fase I não é necessária: o problema é resolvido diretamente.",
+    "generalized": "Todas as restrições viram ≤: uma restrição ≥ é multiplicada por −1 e uma igualdade vira duas desigualdades (≤ e ≥ multiplicada por −1). Em seguida cada linha recebe uma variável de folga. Não há variáveis artificiais; lados direitos negativos são corrigidos com regras do simplex dual.",
+    "objective": "Linha $z$: {{tex}}",
+    "columns": {
+      "source": "Original",
+      "transform": "Transformação",
+      "added": "Variáveis adicionadas",
+      "after": "Forma usada"
+    },
+    "constraint": "Restrição {{n}}",
+    "boundLower": "Limite de $x_{ {{i}} }$",
+    "boundUpper": "Limite de $x_{ {{i}} }$",
+    "transform": {
+      "none": "—",
+      "flipped": "multiplicada por −1 (lado direito negativo)",
+      "negated": "multiplicada por −1 (≥ vira ≤)",
+      "split-first": "igualdade → parte ≤",
+      "split-second": "igualdade → parte ≥ multiplicada por −1"
+    }
+  },
+  "step": {
+    "title": "O que aconteceu nesta iteração",
+    "canonical": "Antes de otimizar, as variáveis básicas precisam ter coeficiente 0 na linha $z$. {{col}} é básica mas tem coeficiente diferente de zero, então ela é eliminada da linha $z$ usando a linha {{row}}.",
+    "entersMostNegative": "Variável que entra: o coeficiente mais negativo da linha $z$ é {{value}}, na coluna de {{col}}.",
+    "entersMostPositive": "Variável que entra: como a linha $z$ está com o sinal invertido (minimização), vale o coeficiente mais positivo: {{value}}, na coluna de {{col}}.",
+    "dual": "A linha {{row}} tem lado direito negativo ({{rhs}}) — a solução ainda não é factível. Pelas regras do simplex dual ela é a linha que sai. Entra a variável de menor razão $|c_j / a_{ij}|$ entre os coeficientes negativos da linha: {{col}}.",
+    "leaves": "Variável que sai: a menor razão $b_i / a_{ij}$ entre os coeficientes positivos da coluna de {{col}} é {{ratio}}, na linha {{row}} — sai {{leaving}}.",
+    "pivot": "Elemento pivô: {{value}} (linha {{row}}, coluna de {{col}}).",
+    "degenerate": "Há empate na razão mínima entre as linhas {{rows}}: a solução é degenerada. A primeira delas sai da base e as outras ficam com lado direito 0.",
+    "unbounded": "Todos os coeficientes da coluna de {{col}} são menores ou iguais a 0: não há linha que limite o crescimento. A função objetivo cresce sem limite (solução ilimitada).",
+    "infeasible": "Nenhuma variável pode entrar na base e ainda há infactibilidade: o problema não tem solução factível.",
+    "manual": "Pivô escolhido manualmente (clique na célula).",
+    "operations": "Operações nas linhas",
+    "normalize": "Linha do pivô: $L_{ {{r}} } \\leftarrow L_{ {{r}} } \\,/\\, {{p}}$",
+    "eliminate": "$L_{ {{i}} } \\leftarrow L_{ {{i}} } - ({{m}}) \\cdot L_{ {{r}} }$",
+    "eliminateZ": "$L_{z} \\leftarrow L_{z} - ({{m}}) \\cdot L_{ {{r}} }$",
+    "noOperations": "As demais linhas já têm 0 na coluna do pivô.",
+    "phase2Start": "Fim da Fase I: $w = 0$, então o modelo original é factível. As colunas artificiais foram removidas e a função objetivo original foi restaurada.",
+    "phase1Infeasible": "Fim da Fase I: o mínimo de $w$ é maior que 0, então não existe solução factível para o modelo original.",
+    "optimal": "Condição de parada: nenhum coeficiente da linha $z$ pode melhorar a função objetivo e todos os lados direitos são não negativos — esta tabela é ótima.",
+    "unboundedEnd": "Parada: solução ilimitada.",
+    "infeasibleEnd": "Parada: problema infactível.",
+    "limitEnd": "Parada: limite de iterações atingido.",
+    "clickHint": "Dica: clique em um número positivo da tabela para escolher você mesmo o pivô."
+  },
+  "example": {
+    "label": "Exemplo clássico"
+  }
+}
