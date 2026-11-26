@@ -1,0 +1,48 @@
+{
+  "privacy": {
+    "title": "Política de Privacidad",
+    "updated": "Última actualización: {{date}}",
+    "intro": "Esta política explica, de forma sencilla, qué guarda y recopila este sitio cuando lo usas.",
+    "local": {
+      "title": "Tus problemas se quedan en tu navegador",
+      "text": "Los problemas que escribes o cargas (modelos de Simplex, Transporte y Branch and Bound) se procesan por completo en tu navegador. No se envían a ningún servidor y nosotros no los almacenamos. Los archivos que cargas también se leen solo de forma local."
+    },
+    "storage": {
+      "title": "Almacenamiento en el navegador",
+      "text": "Guardamos en tu navegador (localStorage) solo el idioma elegido y tu elección sobre la analítica de uso. La aplicación también usa un service worker y una caché local para funcionar sin conexión. Puedes borrar todo esto en la configuración del navegador."
+    },
+    "analytics": {
+      "title": "Google Analytics",
+      "text": "Solo si aceptas, usamos Google Analytics para medir el uso del sitio (páginas visitadas, tipo de dispositivo y ubicación aproximada). Las direcciones IP se anonimizan y Google puede establecer cookies. Si rechazas, no se carga nada de Google Analytics. Puedes cambiar tu elección en cualquier momento en «Preferencias de análisis», en el pie de página."
+    },
+    "ads": {
+      "title": "Publicidad",
+      "text": "Este sitio puede mostrar anuncios de Google AdSense. Google y sus socios pueden usar cookies para mostrar anuncios según tus visitas a este y a otros sitios. Puedes gestionar la personalización de anuncios y saber más en los enlaces siguientes.",
+      "adsSettings": "Configuración de anuncios de Google",
+      "partnerSites": "Cómo usa Google los datos de sitios asociados"
+    },
+    "choices": {
+      "title": "Tus opciones",
+      "text": "Puedes rechazar o retirar la analítica de uso en cualquier momento, borrar los datos del sitio en tu navegador y contactarnos con dudas sobre privacidad."
+    },
+    "changes": {
+      "title": "Cambios",
+      "text": "Podemos actualizar esta política. La fecha de la última actualización aparece en la parte superior de la página."
+    },
+    "contactLink": "Contáctanos"
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "¿Tienes una duda o sugerencia, o encontraste un problema? Ponte en contacto con el equipo.",
+    "github": {
+      "title": "GitHub",
+      "text": "La forma más rápida es abrir una issue en el repositorio del proyecto.",
+      "link": "Abrir una issue"
+    },
+    "email": {
+      "title": "Correo electrónico",
+      "text": "También puedes escribir a:"
+    },
+    "privacy": "Para dudas sobre datos personales, consulta la Política de Privacidad."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "simplex": {
+    "title": "About the Simplex",
+    "intro": {
+      "title": "Introduction",
+      "p1": "Linear Programming (LP) has been an important analysis tool for large companies around the world. In short, it aims to optimize limited resources among activities that compete with each other.",
+      "p2": "Linear Programming uses a mathematical model to describe the problem. From that model a graphical analysis shows the region of feasible solutions. Below is an example of the region bounded by the constraint lines of a problem:",
+      "exampleCaption": "Example",
+      "p3": "Finding the optimal solution requires identifying the direction in which the objective function $z$ increases (maximization) or decreases (minimization). The point inside the feasible region where $z$ is largest (maximization) or smallest (minimization) is the optimal solution.",
+      "p4": "Here is an example:",
+      "solution": "Solution: the optimal solution is at point C."
+    },
+    "method": {
+      "title": "Solving LPs with the Simplex method",
+      "p1": "The Simplex method does not enumerate every basic solution (extreme point); it examines only some selected ones. Below is an LP model with its feasible region.",
+      "modelCaption": "LP model",
+      "regionCaption": "Feasible region",
+      "p2": "The iterative method usually starts at the origin, point A. Then it checks whether a point with $x_1$ or $x_2$ greater than 0 could improve the objective function $z$. Looking at the objective function, we can tell that it can.",
+      "p3": "The Simplex improves only one variable at a time, choosing the one that gives the greatest rate of improvement to the objective function. In the example, the objective grows by 2 for each unit of $x_1$ and by 3 for each unit of $x_2$, so the chosen variable is $x_2$. The figure shows that $x_2$ is increased until it reaches extreme point B.",
+      "p4": "Next, $x_1$ is increased until point C is reached, which is the optimum. The method therefore walks along the edges until it reaches the optimal value.",
+      "p5": "Below is a structure that represents the method:",
+      "structureCaption": "Simplex structure"
+    },
+    "bigM": {
+      "title": "The Big-M Simplex method",
+      "p1": "Depending on the LP, some constraints require artificial variables. They are added to build an initial solution similar to the basic solution in which all variables are slack. However, since these variables are not part of the original model, they receive very large penalties in the objective function, forcing them to be 0 in the optimal solution.",
+      "p2": "So, for the problem below, artificial variables are inserted for the first 2 equations, with their penalties in the objective function (they are added because the problem is a minimization).",
+      "p3": "The value of $M$ depends on the problem: it must be large enough compared with the coefficients of the original objective function.",
+      "modelCaption": "LP model",
+      "figureCaption": "Big-M method"
+    },
+    "twoPhase": {
+      "title": "The Two-Phase Simplex method",
+      "p1": "In the Big-M Simplex the penalties $M$ must be large compared with the objective coefficients, which causes significant rounding errors. The Two-Phase Simplex removes that constant $M$.",
+      "p2": "As the name says, the method solves the problem in two phases:",
+      "phase1": "Phase I: tries to find an initial basic solution; if one is found, go on to Phase II.",
+      "phase2": "Phase II: solves the original problem.",
+      "p3": "As a summary of how the method works:",
+      "figureCaption": "Summary of the Two-Phase method"
+    },
+    "generalized": {
+      "title": "The Generalized Simplex method",
+      "p1": "The Generalized Simplex is used when the initial basic solution is neither feasible nor optimal. The model's constraints must all use the less-than-or-equal relation.",
+      "p2": "This method combines the primal simplex with the dual simplex. When the solution is infeasible, the dual simplex rules are used until feasibility is restored or it is certified that no feasible solution exists. When the solution is feasible, the primal simplex rules are used.",
+      "p3": "An advantage of the Generalized Simplex is that no artificial variables are needed.",
+      "modelCaption": "LP model",
+      "leCaption": "Only less-than-or-equal constraints",
+      "slackCaption": "Adding slack variables"
+    }
+  },
+  "transporte": {
+    "title": "About Transportation",
+    "intro": {
+      "title": "Introduction",
+      "p1": "The Transportation problem is a category of Linear Programming that deals with shipping goods from an origin to a destination. The goal is to determine the shipment with optimal cost and time while meeting the supply and demand limits. The goods analogy extends to inventory control, job scheduling and more. The steps of the Transportation algorithm are the same as the Simplex's.",
+      "p2": "The general problem, shown in the figure below, has $m$ origins and $n$ destinations, each represented by a node. The arcs represent the route between an origin and a destination. Each route has two characteristics:",
+      "criterion1": "The transportation cost per unit on the route;",
+      "criterion2": "The quantity shipped.",
+      "p3": "The goal is to find the optimal quantity to ship so that the demand and supply constraints are satisfied.",
+      "schemaCaption": "Schematic of the Transportation problem"
+    },
+    "algorithm": {
+      "title": "The algorithm for the Transportation problem",
+      "p1": "The algorithm follows the same steps as the Simplex. Below, those steps are shown side by side with the Simplex's.",
+      "stepsCaption": "Steps of the Transportation algorithm",
+      "p2": "There are three methods to obtain an initial basic solution that is not artificial:",
+      "method1": "Northwest corner method;",
+      "method2": "Least-cost method;",
+      "method3": "Vogel's approximation method (VAM)."
+    },
+    "northwest": {
+      "title": "Northwest corner method",
+      "p1": "The method starts at the northwest corner cell of the table. The steps are shown below.",
+      "stepsCaption": "Steps of the northwest corner method"
+    },
+    "minCost": {
+      "title": "Least-cost method",
+      "p1": "The method finds a better initial solution by relying on the cheapest routes. It assigns as much as possible to the cell with the lowest unit cost (ties are broken arbitrarily). Then the satisfied row or column is crossed out and the supply or demand amounts are adjusted.",
+      "p2": "If both the row and the column are satisfied, only one of them is crossed out. Then look for the uncrossed cell with the lowest cost and repeat the process until only one uncrossed row or column remains."
+    },
+    "vogel": {
+      "title": "Vogel's approximation method (VAM)",
+      "p1": "VAM is an improved version of the least-cost method that generally produces better initial solutions. Its steps are described below.",
+      "stepsCaption": "Steps of Vogel's approximation method (VAM)"
+    }
+  },
+  "branchBound": {
+    "title": "About Branch and Bound",
+    "intro": {
+      "title": "Introduction",
+      "p1": "Mixed-Integer Linear Programming has a big advantage over Integer Programming: it allows fixed costs, as well as different levels of variable costs for the facilities, to be included in the analysis. These problems have more complex solutions than those that use Linear Programming. However, Linear Programming has theoretically proven necessary and sufficient optimality conditions that can be used to efficiently test whether a given feasible solution is optimal.",
+      "p2": "Linear Programming is concerned with maximizing or minimizing a function subject to certain criteria or constraints. Here is an example:",
+      "exampleCaption": "Example",
+      "p3": "This problem can be solved with the Simplex method or the Two-Phase Simplex. The optimal solution is:",
+      "solution": "$x = (x_1, x_2, x_3) = (0.5,\\ 0,\\ 1.5)$",
+      "p4": "Problems like this are used by companies to minimize waste, maximize profit or optimize other aspects of the business. However, some parts of the solution may have to be restricted to integers, $x \\in \\mathbb{Z}_+$.",
+      "p5": "Mixed-Integer Linear Programming is an LP in which some or all variables must be integers. So we need to find a new optimal solution that avoids fractional values. Simply rounding the solution often takes it out of the feasible region, compromising optimality."
+    },
+    "method": {
+      "title": "Solving MILPs with Branch and Bound",
+      "p1": "The problem with solving MILPs using only the Simplex is that it often returns components of $x = (x_1, x_2, x_3)$ that are not integers.",
+      "p2": "To solve with Branch and Bound, we first solve the relaxed problem, that is, with the Simplex as if there were no integrality constraints. This gives $z = cx$.",
+      "p3": "Since the example is a maximization problem and the relaxed region contains all integer solutions, this value is an upper bound for the MILP. Next a non-integer variable is chosen. Usually the most fractional variable is chosen, that is, the one closest to 0.5 (the farthest from an integer).",
+      "p4": "For example, in $x = (1.25,\\ 3.45,\\ 2.75,\\ 5)$ we branch on $x_2$, because $0.45$ is closer to $0.5$ than the other fractions. From it we create two subproblems, or two nodes of the tree. In one node we add the constraint $x_2 \\le 3$ and in the other $x_2 \\ge 4$. Let $S$ be the feasible set of the relaxation, $S = \\{x : Ax \\le b,\\ x \\ge 0\\}$. Then:",
+      "formula1": "$S_1 = S \\cap \\{x : x_j \\le \\lfloor \\hat{x}_j \\rfloor\\}$",
+      "formula2": "$S_2 = S \\cap \\{x : x_j \\ge \\lceil \\hat{x}_j \\rceil\\}$",
+      "p5": "Each node must then be solved with its new constraints (originally with the Dual Simplex method). If the problem is infeasible, the node is cut off by infeasibility. The optimal solution is found when all fractional nodes have been cut."
+    }
+  }
+}

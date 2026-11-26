@@ -1,0 +1,7 @@
+[
+  { "name": "classic-3x4", "costs": [[8, 6, 10, 9], [9, 12, 13, 7], [14, 9, 16, 5]],
+    "supply": [35, 50, 40], "demand": [45, 20, 30, 30] },
+  { "name": "balanced-2x2", "costs": [[4, 6], [5, 3]], "supply": [20, 30], "demand": [25, 25] },
+  { "name": "balanced-3x3", "costs": [[2, 3, 1], [5, 4, 8], [5, 6, 8]], "supply": [8, 5, 9], "demand": [7, 9, 6] },
+  { "name": "single-source", "costs": [[3, 1, 2]], "supply": [30], "demand": [10, 10, 10] }
+]

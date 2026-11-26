@@ -1,0 +1,62 @@
+{
+  "title": "Transporte",
+  "subtitle": "Escribe tu problema de transporte abajo o cárgalo desde un archivo.",
+  "method": {
+    "label": "Método",
+    "northwest": "Esquina Noroeste",
+    "minCost": "Menor Costo",
+    "vogel": "Aproximación de Vogel",
+    "hint": {
+      "northwest": "Comienza en la celda superior izquierda y avanza a medida que se agotan oferta y demanda.",
+      "minCost": "Asigna lo máximo posible a la celda de menor costo unitario aún disponible.",
+      "vogel": "Usa penalizaciones (diferencia entre los dos menores costos) para decidir dónde asignar primero."
+    }
+  },
+  "editor": {
+    "sources": "Orígenes",
+    "destinations": "Destinos",
+    "source": "Origen {{n}}",
+    "destination": "Destino {{n}}",
+    "supply": "Oferta",
+    "demand": "Demanda",
+    "cost": "Costo unitario",
+    "addSource": "Agregar origen",
+    "removeSource": "Eliminar origen",
+    "addDestination": "Agregar destino",
+    "removeDestination": "Eliminar destino",
+    "hint": "Completa los costos unitarios (centro), la oferta de cada origen (columna derecha) y la demanda de cada destino (fila inferior)."
+  },
+  "balance": {
+    "balanced": "Problema balanceado: oferta total = demanda total = {{total}}.",
+    "moreSupply": "La oferta total ({{supply}}) es mayor que la demanda total ({{demand}}): sobrarán {{diff}} unidades de oferta. Para balancear, agrega un destino ficticio con demanda {{diff}} y costo 0.",
+    "moreDemand": "La demanda total ({{demand}}) es mayor que la oferta total ({{supply}}): faltarán {{diff}} unidades. Para balancear, agrega un origen ficticio con oferta {{diff}} y costo 0."
+  },
+  "step": {
+    "title": "Paso {{n}}",
+    "initial": "Tabla inicial: costos unitarios, oferta (a la derecha) y demanda (abajo).",
+    "northwest": "Esquina noroeste: se empieza en la celda (1, 1); luego, si se agotó la oferta de la fila se baja una fila; si se agotó la demanda de la columna se avanza una columna a la derecha. Celda elegida: origen {{i}} → destino {{j}}.",
+    "minCost": "Menor costo: entre las celdas aún disponibles (fila y columna no agotadas), la de menor costo unitario cuesta {{cost}}: origen {{i}} → destino {{j}}.",
+    "vogel": "Aproximación de Vogel: para cada fila y columna abierta se calcula la penalización (segundo menor costo − menor costo). La mayor penalización es {{penalty}}, en la {{type}} {{index}}. En ella se elige la celda de menor costo: origen {{i}} → destino {{j}}.",
+    "typeRow": "fila",
+    "typeColumn": "columna",
+    "penaltyRow": "Penalización de la fila",
+    "penaltyColumn": "Penalización de la columna",
+    "manual": "Celda elegida manualmente: origen {{i}} → destino {{j}}.",
+    "allocate": "Se asigna lo máximo posible: $\\min(\\text{oferta}, \\text{demanda}) = \\min({{supply}}, {{demand}}) = {{amount}}$ unidades.",
+    "exhaustedRow": "Se agotó la oferta del origen {{i}}: se cancela la fila.",
+    "exhaustedColumn": "Se satisfizo la demanda del destino {{j}}: se cancela la columna.",
+    "exhaustedBoth": "La oferta del origen {{i}} y la demanda del destino {{j}} se agotaron al mismo tiempo (solución degenerada): se cancelan la fila y la columna.",
+    "cost": "Costo acumulado: $\\sum c_{ij}\\,x_{ij} = {{terms}} = {{total}}$",
+    "done": "Fin: se atendió toda la oferta o toda la demanda.",
+    "unmetSupply": "Sobró oferta sin utilizar: {{amount}}.",
+    "unmetDemand": "Quedó demanda sin atender: {{amount}}.",
+    "clickHint": "Consejo: en el modo paso a paso, haz clic en una celda libre para elegirla tú mismo."
+  },
+  "result": {
+    "title": "Solución básica inicial",
+    "totalCost": "Costo total"
+  },
+  "example": {
+    "label": "Ejemplo clásico"
+  }
+}

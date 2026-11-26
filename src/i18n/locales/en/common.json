@@ -1,0 +1,61 @@
+{
+  "app": {
+    "name": "Optimization"
+  },
+  "nav": {
+    "home": "Home",
+    "branchBound": "Branch and Bound",
+    "simplex": "Simplex",
+    "transporte": "Transportation",
+    "credits": "About the project"
+  },
+  "tabs": {
+    "solver": "Get started",
+    "about": "About the model"
+  },
+  "language": {
+    "label": "Language",
+    "pt": "Português",
+    "en": "English",
+    "es": "Español"
+  },
+  "home": {
+    "title": "Optimization",
+    "subtitle": "An online tool to help teach Optimization.",
+    "choose": "Pick a method from the menu to get started."
+  },
+  "figure": {
+    "label": "Figure"
+  },
+  "footer": {
+    "project": "SIMO project · Brazilian Symposium on Operations Research, 2016",
+    "source": "Source code",
+    "about": "About the project",
+    "analytics": "Analytics preferences",
+    "privacy": "Privacy",
+    "contact": "Contact"
+  },
+  "consent": {
+    "label": "Usage analytics notice",
+    "text": "We collect anonymous usage data to improve this tool. Do you accept?",
+    "accept": "Accept",
+    "reject": "Reject"
+  },
+  "meta": {
+    "home": "Free online tool to learn Optimization: Simplex, Transportation and Branch and Bound step by step, right in your browser.",
+    "simplex": "Solve linear programming problems with the Simplex (Big-M, Two-Phase and Generalized) and see every tableau and every operation.",
+    "transporte": "Solve transportation problems with the Northwest Corner, Least Cost and Vogel's Approximation methods, with every step explained.",
+    "branchBound": "Solve integer linear programs with Branch and Bound and follow the search tree, every node and every cut.",
+    "simplexAbout": "Understand the Simplex method: feasible region, Big-M, Two-Phase and Generalized Simplex, with examples.",
+    "transporteAbout": "Understand the transportation problem and the Northwest Corner, Least Cost and Vogel methods.",
+    "branchBoundAbout": "Understand Branch and Bound for integer linear programming: relaxation, branching and pruning.",
+    "credits": "About the SIMO project: authors, advisor, license and references of this Optimization teaching tool.",
+    "privacy": "Privacy policy: what the site stores in your browser, how we use Google Analytics and ads, and your choices.",
+    "contact": "Get in touch: questions, suggestions and problem reports."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The address you tried to open does not exist.",
+    "home": "Back to home"
+  }
+}

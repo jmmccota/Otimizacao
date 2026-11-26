@@ -1,0 +1,5 @@
+export * from './types'
+export { SimplexSolver, solveSimplex, type SimplexSnapshot } from './solver'
+export { parseBound } from './build'
+export { explainStep, labelTex, type StepExplanation } from './explain'
+export { needsArtificial } from './build'

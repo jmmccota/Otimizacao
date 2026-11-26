@@ -1,0 +1,73 @@
+{
+  "title": "Branch and Bound",
+  "subtitle": "Escribe tu problema de programación lineal entera abajo o cárgalo desde un archivo.",
+  "integerNote": "Todas las variables son enteras: $x_i \\in \\mathbb{Z}$.",
+  "actions": {
+    "nextNode": "Siguiente nodo"
+  },
+  "tree": {
+    "title": "Árbol de búsqueda",
+    "empty": "Ejecuta el problema para ver el árbol.",
+    "hint": "Haz clic en un nodo para ver los detalles. Arrastra para mover y usa la rueda para acercar.",
+    "legend": {
+      "title": "Leyenda",
+      "pending": "En espera",
+      "branched": "Ramificado",
+      "integer": "Solución entera",
+      "pruned": "Cortado por cota",
+      "infeasible": "Infactible",
+      "optimal": "Solución óptima"
+    }
+  },
+  "node": {
+    "title": "Nodo {{id}}",
+    "none": "Haz clic en el nodo deseado para obtener la información.",
+    "depth": "Nivel {{n}}",
+    "z": "Valor de $z$",
+    "x": "Valores de $x$",
+    "added": "Restricción agregada",
+    "model": "Modelo de este nodo",
+    "relaxation": "Relajación lineal",
+    "status": {
+      "pending": "En espera",
+      "branched": "Solución fraccionaria (ramificado)",
+      "integer": "Solución entera",
+      "pruned": "Cortado por cota",
+      "infeasible": "Infactible"
+    }
+  },
+  "explain": {
+    "title": "Análisis del nodo",
+    "root": "Se resuelve la relajación lineal: el mismo problema ignorando la exigencia de valores enteros. Su valor es una cota para cualquier solución entera.",
+    "child": "Se resuelve la relajación lineal con la restricción agregada: {{bound}}.",
+    "infeasible": "La relajación es infactible: ningún punto satisface todas las restricciones. El nodo se corta por infactibilidad.",
+    "integer": "Todas las variables resultaron enteras: este nodo es una solución candidata.",
+    "newBest": "Mejora la mejor solución conocida (incumbente): $z = {{z}}$.",
+    "notBest": "Pero no mejora la incumbente actual.",
+    "pruned": "La relajación ($z = {{z}}$) no es mejor que la incumbente ($z = {{inc}}$): ningún hijo podrá superarla. El nodo se corta por cota.",
+    "branched": "La solución es fraccionaria. Candidatas y distancia a 0,5: {{list}}. Se ramifica en la variable $x_{ {{i}} } = {{value}}$ (la más fraccionaria), creando dos hijos: $x_{ {{i}} } \\le {{floor}}$ y $x_{ {{i}} } \\ge {{ceil}}$.",
+    "branchedManual": "La solución es fraccionaria. Candidatas y distancia a 0,5: {{list}}. Elegiste ramificar en $x_{ {{i}} } = {{value}}$, creando dos hijos: $x_{ {{i}} } \\le {{floor}}$ y $x_{ {{i}} } \\ge {{ceil}}$.",
+    "chooseVar": "Ramificar en otra variable (aún no expandido):",
+    "boundUpper": "$x_{ {{i}} } \\le {{v}}$",
+    "boundLower": "$x_{ {{i}} } \\ge {{v}}$"
+  },
+  "simplex": {
+    "title": "Pasos del Simplex en este nodo",
+    "show": "Mostrar los pasos del Simplex",
+    "hide": "Ocultar los pasos del Simplex",
+    "method": "Método usado"
+  },
+  "summary": {
+    "title": "Resultado",
+    "optimal": "Solución entera óptima encontrada en el nodo {{node}}.",
+    "infeasible": "El problema entero es infactible: ningún punto entero satisface las restricciones.",
+    "unbounded": "El problema es no acotado: la relajación lineal crece sin límite.",
+    "limit": "La búsqueda se detuvo en el límite de {{max}} nodos; la mejor solución encontrada puede no ser óptima.",
+    "running": "Búsqueda en curso… mejor solución hasta ahora: {{z}}.",
+    "nodes": "Nodos creados",
+    "best": "Mejor solución (incumbente)"
+  },
+  "example": {
+    "label": "Ejemplo clásico"
+  }
+}

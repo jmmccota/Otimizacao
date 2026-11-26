@@ -1,0 +1,3800 @@
+[
+ {
+  "model": "classic-3x4",
+  "metodo": "Canto Noroeste",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      35
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      45,
+      20,
+      30,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 35,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      10,
+      20,
+      30,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 35,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      0,
+      20,
+      30,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 35,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      0,
+      0,
+      30,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 35,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 13,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      0,
+      0,
+      10,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 35,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 13,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      0,
+      0,
+      0,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 35,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 13,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 1
+    },
+    {
+     "i": 1,
+     "j": 2
+    },
+    {
+     "i": 2,
+     "j": 2
+    },
+    {
+     "i": 2,
+     "j": 3
+    }
+   ],
+   "cost": 1180
+  }
+ },
+ {
+  "model": "classic-3x4",
+  "metodo": "Menor Custo",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      35
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      45,
+      20,
+      30,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      35
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      45,
+      20,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      15
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      45,
+      0,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 15,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      30,
+      0,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 15,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 30,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      0,
+      0,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 15,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 30,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      0,
+      0,
+      10,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 15,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 30,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 2,
+     "j": 3
+    },
+    {
+     "i": 0,
+     "j": 1
+    },
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 2
+    },
+    {
+     "i": 2,
+     "j": 2
+    }
+   ],
+   "cost": 1080
+  }
+ },
+ {
+  "model": "classic-3x4",
+  "metodo": "MAV",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      35
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      40
+     ],
+     [
+      45,
+      20,
+      30,
+      30,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      35
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      45,
+      20,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      35
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      45,
+      10,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      25
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      50
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      45,
+      0,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      25
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 45,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      30,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      25
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 45,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      25,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 10,
+       "qtd": 25,
+       "visitado": true
+      },
+      {
+       "custo": 9,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 9,
+       "qtd": 45,
+       "visitado": true
+      },
+      {
+       "custo": 12,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 13,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 7,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 14,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 9,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 16,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 5,
+       "qtd": 30,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 2,
+     "j": 3
+    },
+    {
+     "i": 2,
+     "j": 1
+    },
+    {
+     "i": 0,
+     "j": 1
+    },
+    {
+     "i": 1,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 2
+    },
+    {
+     "i": 0,
+     "j": 2
+    }
+   ],
+   "cost": 1020
+  }
+ },
+ {
+  "model": "balanced-2x2",
+  "metodo": "Canto Noroeste",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      25,
+      25,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      5,
+      25,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      25
+     ],
+     [
+      0,
+      25,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 25,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 1
+    }
+   ],
+   "cost": 180
+  }
+ },
+ {
+  "model": "balanced-2x2",
+  "metodo": "Menor Custo",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      25,
+      25,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 25,
+       "visitado": true
+      },
+      5
+     ],
+     [
+      25,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 25,
+       "visitado": true
+      },
+      5
+     ],
+     [
+      5,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 25,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 1,
+     "j": 1
+    },
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 0
+    }
+   ],
+   "cost": 180
+  }
+ },
+ {
+  "model": "balanced-2x2",
+  "metodo": "MAV",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      25,
+      25,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 25,
+       "visitado": true
+      },
+      5
+     ],
+     [
+      25,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 25,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      20,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 4,
+       "qtd": 20,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 25,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 1,
+     "j": 1
+    },
+    {
+     "i": 1,
+     "j": 0
+    },
+    {
+     "i": 0,
+     "j": 0
+    }
+   ],
+   "cost": 180
+  }
+ },
+ {
+  "model": "balanced-3x3",
+  "metodo": "Canto Noroeste",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      8
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      7,
+      9,
+      6,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 7,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      1
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      0,
+      9,
+      6,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 7,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 1,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      0,
+      8,
+      6,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 7,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 1,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      0,
+      3,
+      6,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 7,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 1,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 3,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      6
+     ],
+     [
+      0,
+      0,
+      6,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 7,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 1,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 3,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 0,
+     "j": 1
+    },
+    {
+     "i": 1,
+     "j": 1
+    },
+    {
+     "i": 2,
+     "j": 1
+    },
+    {
+     "i": 2,
+     "j": 2
+    }
+   ],
+   "cost": 103
+  }
+ },
+ {
+  "model": "balanced-3x3",
+  "metodo": "Menor Custo",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      8
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      7,
+      9,
+      6,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      2
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      7,
+      9,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      5,
+      9,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      5,
+      4,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      4
+     ],
+     [
+      0,
+      4,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 4,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 2
+    },
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 1
+    },
+    {
+     "i": 2,
+     "j": 0
+    },
+    {
+     "i": 2,
+     "j": 1
+    }
+   ],
+   "cost": 79
+  }
+ },
+ {
+  "model": "balanced-3x3",
+  "metodo": "MAV",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      8
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      7,
+      9,
+      6,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      2
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      7,
+      9,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      5,
+      9,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      9
+     ],
+     [
+      5,
+      4,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 6,
+       "qtd": 4,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      5
+     ],
+     [
+      5,
+      0,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 2,
+       "qtd": 2,
+       "visitado": true
+      },
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 6,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 4,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      {
+       "custo": 5,
+       "qtd": 5,
+       "visitado": true
+      },
+      {
+       "custo": 6,
+       "qtd": 4,
+       "visitado": true
+      },
+      {
+       "custo": 8,
+       "qtd": 0,
+       "visitado": false
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 2
+    },
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 1,
+     "j": 1
+    },
+    {
+     "i": 2,
+     "j": 1
+    },
+    {
+     "i": 2,
+     "j": 0
+    }
+   ],
+   "cost": 79
+  }
+ },
+ {
+  "model": "single-source",
+  "metodo": "Canto Noroeste",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      10,
+      10,
+      10,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      0,
+      10,
+      10,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      10
+     ],
+     [
+      0,
+      0,
+      10,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 2,
+       "qtd": 10,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 0,
+     "j": 1
+    },
+    {
+     "i": 0,
+     "j": 2
+    }
+   ],
+   "cost": 60
+  }
+ },
+ {
+  "model": "single-source",
+  "metodo": "Menor Custo",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      10,
+      10,
+      10,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      10,
+      0,
+      10,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 2,
+       "qtd": 10,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      10,
+      0,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 2,
+       "qtd": 10,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 1
+    },
+    {
+     "i": 0,
+     "j": 2
+    },
+    {
+     "i": 0,
+     "j": 0
+    }
+   ],
+   "cost": 60
+  }
+ },
+ {
+  "model": "single-source",
+  "metodo": "MAV",
+  "output": {
+   "iterations": [
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      30
+     ],
+     [
+      10,
+      10,
+      10,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 2,
+       "qtd": 0,
+       "visitado": false
+      },
+      20
+     ],
+     [
+      0,
+      10,
+      10,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 0,
+       "visitado": false
+      },
+      {
+       "custo": 2,
+       "qtd": 10,
+       "visitado": true
+      },
+      10
+     ],
+     [
+      0,
+      10,
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      {
+       "custo": 3,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 1,
+       "qtd": 10,
+       "visitado": true
+      },
+      {
+       "custo": 2,
+       "qtd": 10,
+       "visitado": true
+      },
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "chosen": [
+    {
+     "i": 0,
+     "j": 0
+    },
+    {
+     "i": 0,
+     "j": 2
+    },
+    {
+     "i": 0,
+     "j": 1
+    }
+   ],
+   "cost": 60
+  }
+ }
+]

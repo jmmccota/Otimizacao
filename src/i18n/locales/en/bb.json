@@ -1,0 +1,73 @@
+{
+  "title": "Branch and Bound",
+  "subtitle": "Write your integer linear programming problem below or load it from a file.",
+  "integerNote": "All variables are integers: $x_i \\in \\mathbb{Z}$.",
+  "actions": {
+    "nextNode": "Next node"
+  },
+  "tree": {
+    "title": "Search tree",
+    "empty": "Run the problem to see the tree.",
+    "hint": "Click a node to see its details. Drag to pan and scroll to zoom.",
+    "legend": {
+      "title": "Legend",
+      "pending": "Waiting",
+      "branched": "Branched",
+      "integer": "Integer solution",
+      "pruned": "Pruned by bound",
+      "infeasible": "Infeasible",
+      "optimal": "Optimal solution"
+    }
+  },
+  "node": {
+    "title": "Node {{id}}",
+    "none": "Click a node to see its information.",
+    "depth": "Level {{n}}",
+    "z": "Value of $z$",
+    "x": "Values of $x$",
+    "added": "Added constraint",
+    "model": "Model of this node",
+    "relaxation": "Linear relaxation",
+    "status": {
+      "pending": "Waiting",
+      "branched": "Fractional solution (branched)",
+      "integer": "Integer solution",
+      "pruned": "Pruned by bound",
+      "infeasible": "Infeasible"
+    }
+  },
+  "explain": {
+    "title": "Node analysis",
+    "root": "We solve the linear relaxation: the same problem ignoring the requirement of integer values. Its value is a bound for any integer solution.",
+    "child": "We solve the linear relaxation with the added constraint: {{bound}}.",
+    "infeasible": "The relaxation is infeasible: no point satisfies all constraints. The node is pruned by infeasibility.",
+    "integer": "All variables came out integer: this node is a candidate solution.",
+    "newBest": "It improves the best known solution (incumbent): $z = {{z}}$.",
+    "notBest": "But it does not improve the current incumbent.",
+    "pruned": "The relaxation ($z = {{z}}$) is no better than the incumbent ($z = {{inc}}$): no child can beat it. The node is pruned by bound.",
+    "branched": "The solution is fractional. Candidates and distance to 0.5: {{list}}. We branch on the variable $x_{ {{i}} } = {{value}}$ (the most fractional), creating two children: $x_{ {{i}} } \\le {{floor}}$ and $x_{ {{i}} } \\ge {{ceil}}$.",
+    "branchedManual": "The solution is fractional. Candidates and distance to 0.5: {{list}}. You chose to branch on $x_{ {{i}} } = {{value}}$, creating two children: $x_{ {{i}} } \\le {{floor}}$ and $x_{ {{i}} } \\ge {{ceil}}$.",
+    "chooseVar": "Branch on another variable (not expanded yet):",
+    "boundUpper": "$x_{ {{i}} } \\le {{v}}$",
+    "boundLower": "$x_{ {{i}} } \\ge {{v}}$"
+  },
+  "simplex": {
+    "title": "Simplex steps at this node",
+    "show": "Show the Simplex steps",
+    "hide": "Hide the Simplex steps",
+    "method": "Method used"
+  },
+  "summary": {
+    "title": "Result",
+    "optimal": "Optimal integer solution found at node {{node}}.",
+    "infeasible": "The integer problem is infeasible: no integer point satisfies the constraints.",
+    "unbounded": "The problem is unbounded: the linear relaxation grows without limit.",
+    "limit": "The search stopped at the limit of {{max}} nodes; the best solution found may not be optimal.",
+    "running": "Search in progress… best solution so far: {{z}}.",
+    "nodes": "Nodes created",
+    "best": "Best solution (incumbent)"
+  },
+  "example": {
+    "label": "Classic example"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "title": "Simplex",
+  "subtitle": "Write your linear programming problem below or load it from a file.",
+  "method": {
+    "label": "Simplex type",
+    "bigM": "Big-M",
+    "twoPhase": "Two-Phase",
+    "generalized": "Generalized",
+    "hint": {
+      "bigM": "Artificial variables with a very large penalty $M$ in the objective function.",
+      "twoPhase": "Phase I finds a feasible solution; Phase II solves the original problem.",
+      "generalized": "Only ≤ constraints, no artificial variables; uses dual simplex rules when the right-hand side is negative."
+    }
+  },
+  "setup": {
+    "title": "Model setup",
+    "bigM": "Every constraint becomes an equality: ≤ constraints get a slack variable ($s$); ≥ constraints get a surplus variable ($e$) and an artificial one ($a$); = constraints get an artificial one. Artificials enter the objective with the penalty $M = {{m}}$, which forces them to 0 at the optimum.",
+    "twoPhase": "Every constraint becomes an equality: ≤ gets slack ($s$); ≥ gets surplus ($e$) and artificial ($a$); = gets artificial. Phase I minimizes $w = \\sum a_i$ (the sum of the artificials). If the minimum is 0 the model is feasible and Phase II solves the real problem.",
+    "twoPhaseNoArtificial": "All constraints are ≤, so there are no artificial variables and Phase I is not needed: the problem is solved directly.",
+    "generalized": "Every constraint becomes ≤: a ≥ constraint is multiplied by −1 and an equality becomes two inequalities (≤ and ≥ multiplied by −1). Then each row gets a slack variable. There are no artificial variables; negative right-hand sides are repaired with dual simplex rules.",
+    "objective": "Row $z$: {{tex}}",
+    "columns": {
+      "source": "Original",
+      "transform": "Transformation",
+      "added": "Added variables",
+      "after": "Form used"
+    },
+    "constraint": "Constraint {{n}}",
+    "boundLower": "Bound of $x_{ {{i}} }$",
+    "boundUpper": "Bound of $x_{ {{i}} }$",
+    "transform": {
+      "none": "—",
+      "flipped": "multiplied by −1 (negative right-hand side)",
+      "negated": "multiplied by −1 (≥ becomes ≤)",
+      "split-first": "equality → ≤ part",
+      "split-second": "equality → ≥ part multiplied by −1"
+    }
+  },
+  "step": {
+    "title": "What happened in this iteration",
+    "canonical": "Before optimizing, basic variables must have coefficient 0 in row $z$. {{col}} is basic but has a non-zero coefficient, so it is eliminated from row $z$ using row {{row}}.",
+    "entersMostNegative": "Entering variable: the most negative coefficient in row $z$ is {{value}}, in the column of {{col}}.",
+    "entersMostPositive": "Entering variable: since row $z$ is shown with the sign flipped (minimization), the most positive coefficient counts: {{value}}, in the column of {{col}}.",
+    "dual": "Row {{row}} has a negative right-hand side ({{rhs}}) — the solution is not feasible yet. By the dual simplex rules that is the leaving row. The entering variable is the one with the smallest ratio $|c_j / a_{ij}|$ among the negative coefficients of the row: {{col}}.",
+    "leaves": "Leaving variable: the smallest ratio $b_i / a_{ij}$ among the positive coefficients of the column of {{col}} is {{ratio}}, in row {{row}} — {{leaving}} leaves.",
+    "pivot": "Pivot element: {{value}} (row {{row}}, column of {{col}}).",
+    "degenerate": "There is a tie in the minimum ratio among rows {{rows}}: the solution is degenerate. The first one leaves the basis and the others get right-hand side 0.",
+    "unbounded": "All coefficients in the column of {{col}} are less than or equal to 0: no row limits the growth. The objective grows without bound (unbounded solution).",
+    "infeasible": "No variable can enter the basis and the solution is still infeasible: the problem has no feasible solution.",
+    "manual": "Pivot chosen manually (cell click).",
+    "operations": "Row operations",
+    "normalize": "Pivot row: $L_{ {{r}} } \\leftarrow L_{ {{r}} } \\,/\\, {{p}}$",
+    "eliminate": "$L_{ {{i}} } \\leftarrow L_{ {{i}} } - ({{m}}) \\cdot L_{ {{r}} }$",
+    "eliminateZ": "$L_{z} \\leftarrow L_{z} - ({{m}}) \\cdot L_{ {{r}} }$",
+    "noOperations": "The other rows already have 0 in the pivot column.",
+    "phase2Start": "End of Phase I: $w = 0$, so the original model is feasible. The artificial columns were removed and the original objective function was restored.",
+    "phase1Infeasible": "End of Phase I: the minimum of $w$ is greater than 0, so the original model has no feasible solution.",
+    "optimal": "Stopping condition: no coefficient in row $z$ can improve the objective and all right-hand sides are non-negative — this tableau is optimal.",
+    "unboundedEnd": "Stop: unbounded solution.",
+    "infeasibleEnd": "Stop: infeasible problem.",
+    "limitEnd": "Stop: iteration limit reached.",
+    "clickHint": "Tip: click a positive number in the table to choose the pivot yourself."
+  },
+  "example": {
+    "label": "Classic example"
+  }
+}

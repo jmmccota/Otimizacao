@@ -1,0 +1,90 @@
+{
+  "editor": {
+    "goal": {
+      "label": "Problem type",
+      "max": "Maximization",
+      "min": "Minimization"
+    },
+    "variables": "Number of variables",
+    "constraints": "Constraints",
+    "objective": "Objective function",
+    "constraint": "Constraint {{n}}",
+    "relation": "Relation",
+    "rhs": "Right-hand side",
+    "boundsTitle": "Variable bounds",
+    "lower": "Lower bound",
+    "upper": "Upper bound",
+    "addConstraint": "Add constraint",
+    "removeConstraint": "Remove constraint",
+    "cellError": {
+      "empty": "Fill in this field",
+      "number": "Enter a number (e.g. 3, -2.5 or 1/2)",
+      "bounds": "The lower bound cannot be greater than the upper bound",
+      "noVariables": "Enter at least one variable",
+      "negative": "Cannot be negative"
+    },
+    "fixErrors": "Fix the highlighted fields to continue.",
+    "hint": "Decimal comma and fractions (1/2) are accepted. Use inf for an infinite upper bound."
+  },
+  "actions": {
+    "runAll": "Run all",
+    "stepByStep": "Step by step",
+    "nextStep": "Next step",
+    "reset": "Start over",
+    "clear": "Clear all",
+    "save": "Save problem",
+    "load": "Load problem",
+    "example": "Load example",
+    "confirmClear": {
+      "title": "Clear everything?",
+      "text": "All the information will be lost.",
+      "cancel": "Cancel",
+      "confirm": "Clear"
+    }
+  },
+  "file": {
+    "loaded": "File loaded successfully.",
+    "saved": "File saved.",
+    "error": {
+      "empty": "The file is empty.",
+      "goal": "The first line must be Maximize or Minimize (line {{line}}).",
+      "objective": "Invalid objective function (line {{line}}).",
+      "constraint": "Constraint with the wrong number of fields (line {{line}}).",
+      "relation": "Invalid relation: use <=, = or >= (line {{line}}).",
+      "bounds": "Lower/upper bounds are missing or have the wrong size.",
+      "number": "Invalid numeric value (line {{line}}).",
+      "generic": "The file could not be read."
+    }
+  },
+  "warnings": {
+    "large": "Problems with more than {{limit}} variables or constraints can make the browser slow or even freeze it, because every step is displayed. You can continue, but save your work first."
+  },
+  "result": {
+    "title": "Result",
+    "z": "Value of $z$",
+    "iterations": "Iterations",
+    "variables": "Variable values",
+    "basic": "Basic variables",
+    "nonBasic": "Non-basic variables",
+    "degenerate": "Degenerate solution: there was a tie in the minimum ratio.",
+    "status": {
+      "optimal": "Optimal solution found",
+      "unbounded": "Unbounded solution: the objective grows without limit",
+      "infeasible": "Infeasible problem: no solution satisfies all constraints",
+      "iterationLimit": "Iteration limit reached (possible cycling)"
+    }
+  },
+  "tableau": {
+    "iteration": "Iteration {{n}}",
+    "initial": "Initial tableau",
+    "base": "Basis",
+    "rhs": "Result",
+    "ratio": "Ratio",
+    "z": "z",
+    "phase1": "Phase I",
+    "phase2": "Phase II"
+  },
+  "model": {
+    "title": "Model"
+  }
+}
