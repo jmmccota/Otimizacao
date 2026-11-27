@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "title": "Investigación de Operaciones y Optimización",
+    "subtitle": "Aprende, paso a paso, cómo convertir un problema real en un modelo matemático y encontrar la mejor decisión."
+  },
+  "or": {
+    "title": "¿Qué es la Investigación de Operaciones?",
+    "p1": "La Investigación de Operaciones (IO) es un enfoque científico para la toma de decisiones. Representa sistemas reales — una fábrica, una red de distribución, un hospital, una red eléctrica — mediante modelos matemáticos y usa esos modelos para decidir cómo operar el sistema de la mejor forma posible, casi siempre con recursos limitados.",
+    "p2": "El origen de la disciplina está en la planificación militar de la Segunda Guerra Mundial, cuando se reunieron equipos científicos para estudiar cómo asignar recursos escasos a las operaciones. Después de la guerra, las mismas ideas se aplicaron en la industria, la logística, la salud, la energía y muchas otras áreas.",
+    "stepsIntro": "Según la descripción clásica de Taha, un estudio de IO pasa por las siguientes fases:",
+    "step1": "Definición del problema: qué se quiere decidir, cuál es el objetivo y cuáles son las limitaciones.",
+    "step2": "Construcción del modelo: traducción del problema en variables, una función objetivo y restricciones.",
+    "step3": "Solución del modelo: aplicación de un método, como el Simplex, para encontrar la mejor solución.",
+    "step4": "Validación del modelo: comprobar que el modelo y su solución representan bien la realidad.",
+    "step5": "Implementación de la solución: poner la decisión en práctica y seguir los resultados.",
+    "p3": "Esta herramienta se centra en la tercera fase — la solución del modelo — y muestra cada cálculo para que veas cómo el método llega a la respuesta."
+  },
+  "opt": {
+    "title": "¿Qué es la Optimización?",
+    "p1": "La optimización es la parte de la Investigación de Operaciones que busca la mejor opción entre muchas posibles. Un problema de optimización tiene tres ingredientes:",
+    "variables": "Variables de decisión: lo que podemos controlar, como cuántas unidades producir o cuánto enviar de cada origen a cada destino.",
+    "objective": "Función objetivo: lo que queremos maximizar o minimizar, como la ganancia, el costo o el tiempo.",
+    "constraints": "Restricciones: los límites del problema, como el presupuesto, la capacidad, la oferta y la demanda.",
+    "p2": "Una solución que respeta todas las restricciones se llama factible; la mejor solución factible, según la función objetivo, es la solución óptima.",
+    "p3": "Cuando la función objetivo y las restricciones son lineales tenemos un problema de Programación Lineal, que se resuelve con el método Simplex. Si algunas variables deben ser enteras (por ejemplo, el número de máquinas) tenemos Programación Lineal Entera, que se trata con Branch and Bound. El problema de Transporte es un caso particular de la Programación Lineal, con una estructura especial de oferta y demanda."
+  },
+  "tools": {
+    "title": "Los métodos de esta herramienta",
+    "open": "Abrir",
+    "simplex": "Resuelve problemas de Programación Lineal con Gran M, Dos Fases o Simplex Generalizado, viendo cada tabla y cada operación.",
+    "transporte": "Encuentra una solución inicial para problemas de transporte con los métodos de la Esquina Noroeste, Menor Costo y Aproximación de Vogel.",
+    "branchBound": "Resuelve Programación Lineal Entera y sigue el árbol de búsqueda, con el análisis de cada nodo."
+  },
+  "how": {
+    "title": "Cómo usarla",
+    "text": "Elige un método, escribe tu problema (o carga un ejemplo) y ejecútalo de una vez o paso a paso. Todo el cálculo ocurre en tu navegador — no se envía nada a ningún servidor — y la aplicación funciona sin conexión después de la primera visita."
+  },
+  "reference": {
+    "title": "Referencia",
+    "text": "TAHA, H. A. Pesquisa Operacional (Investigación de Operaciones). 8.ª ed. São Paulo: Prentice Hall, 2008 (original: Operations Research: An Introduction). Las fases de un estudio de IO mencionadas arriba siguen el enfoque presentado en ese libro."
+  }
+}

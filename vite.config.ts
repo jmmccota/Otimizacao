@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
       babel({ presets: [reactCompilerPreset()] }),
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['favicon.svg', 'icons.svg'],
+        includeAssets: ['favicon.png', 'icons.svg'],
         workbox: {
           // Everything the app needs offline: code (incl. the lazy GLPK chunk that embeds the
           // WASM + worker), About-page images and KaTeX fonts.

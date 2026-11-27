@@ -10,7 +10,7 @@ const flatten = (t: Tree, prefix = ''): Record<string, string> =>
   }, {})
 
 const langs = ['pt', 'en', 'es'] as const
-const namespaces = ['common', 'about', 'solver', 'simplex', 'transporte', 'bb', 'credits', 'legal'] as const
+const namespaces = ['common', 'about', 'solver', 'simplex', 'transporte', 'bb', 'credits', 'legal', 'home'] as const
 
 describe('translations', () => {
   for (const ns of namespaces) {

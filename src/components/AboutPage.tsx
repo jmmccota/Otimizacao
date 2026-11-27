@@ -46,9 +46,9 @@ export function Formulas({ items }: { items: string[] }) {
   )
 }
 
-export function List({ items }: { items: string[] }) {
+export function List({ items, ordered = true }: { items: string[]; ordered?: boolean }) {
   return (
-    <Box component="ol" sx={{ m: 0, pl: 3, '& li': { mb: 0.5, lineHeight: 1.75 } }}>
+    <Box component={ordered ? 'ol' : 'ul'} sx={{ m: 0, pl: 3, '& li': { mb: 0.5, lineHeight: 1.75 } }}>
       {items.map((item) => (
         <li key={item}>
           <RichText>{item}</RichText>

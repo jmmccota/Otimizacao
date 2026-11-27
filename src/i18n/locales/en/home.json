@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "title": "Operations Research and Optimization",
+    "subtitle": "Learn, step by step, how to turn a real problem into a mathematical model and find the best decision."
+  },
+  "or": {
+    "title": "What is Operations Research?",
+    "p1": "Operations Research (OR) is a scientific approach to decision making. It represents real systems — a factory, a distribution network, a hospital, a power grid — with mathematical models and uses those models to decide how to run the system as well as possible, almost always with limited resources.",
+    "p2": "The field has its roots in military planning during World War II, when teams of scientists were brought together to study how to allocate scarce resources to operations. After the war the same ideas were applied in industry, logistics, health care, energy and many other areas.",
+    "stepsIntro": "In Taha's classic description, an OR study goes through the following phases:",
+    "step1": "Problem definition: what must be decided, what the goal is and what the limitations are.",
+    "step2": "Model construction: translating the problem into variables, an objective function and constraints.",
+    "step3": "Model solution: applying a method, such as the Simplex, to find the best solution.",
+    "step4": "Model validation: checking that the model and its solution represent reality well.",
+    "step5": "Implementation: putting the decision into practice and following the results.",
+    "p3": "This tool focuses on the third phase — solving the model — and shows every calculation so you can see how the method reaches the answer."
+  },
+  "opt": {
+    "title": "What is Optimization?",
+    "p1": "Optimization is the part of Operations Research that looks for the best option among many possible ones. An optimization problem has three ingredients:",
+    "variables": "Decision variables: what we can control, such as how many units to produce or how much to ship from each source to each destination.",
+    "objective": "Objective function: what we want to maximize or minimize, such as profit, cost or time.",
+    "constraints": "Constraints: the limits of the problem, such as budget, capacity, supply and demand.",
+    "p2": "A solution that respects all the constraints is called feasible; the best feasible solution, according to the objective function, is the optimal solution.",
+    "p3": "When the objective function and the constraints are linear we have a Linear Programming problem, solved with the Simplex method. If some variables must be integers (for example, the number of machines) we have Integer Linear Programming, handled with Branch and Bound. The Transportation problem is a special case of Linear Programming, with a particular supply-and-demand structure."
+  },
+  "tools": {
+    "title": "The methods in this tool",
+    "open": "Open",
+    "simplex": "Solve Linear Programming problems with Big-M, Two-Phase or the Generalized Simplex, seeing every tableau and every operation.",
+    "transporte": "Find an initial solution to transportation problems with the Northwest Corner, Least Cost and Vogel's Approximation methods.",
+    "branchBound": "Solve Integer Linear Programming problems and follow the search tree, with an analysis of every node."
+  },
+  "how": {
+    "title": "How to use it",
+    "text": "Choose a method, type your problem (or load an example) and run it all at once or step by step. All the calculation happens in your browser — nothing is sent to a server — and the app works offline after the first visit."
+  },
+  "reference": {
+    "title": "Reference",
+    "text": "TAHA, H. A. Pesquisa Operacional. 8th ed. São Paulo: Prentice Hall, 2008 (original: Operations Research: An Introduction). The phases of an OR study mentioned above follow the approach presented in that book."
+  }
+}

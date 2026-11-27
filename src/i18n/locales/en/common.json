@@ -19,11 +19,6 @@
     "en": "English",
     "es": "Español"
   },
-  "home": {
-    "title": "Optimization",
-    "subtitle": "An online tool to help teach Optimization.",
-    "choose": "Pick a method from the menu to get started."
-  },
   "figure": {
     "label": "Figure"
   },

@@ -147,7 +147,7 @@ describe('static hosting', () => {
     const { user } = await open('/nope/nothing/')
     expect(await screen.findByRole('heading', { level: 1, name: 'Page not found' })).toBeTruthy()
     await user.click(screen.getByRole('link', { name: 'Back to home' }))
-    expect(await screen.findByText(/Pick a method from the menu/)).toBeTruthy()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Operations Research and Optimization' })).toBeTruthy()
   })
 
   it('links the app generates carry the trailing slash, matching the folders the host serves', async () => {

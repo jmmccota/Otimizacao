@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "title": "Pesquisa Operacional e Otimização",
+    "subtitle": "Aprenda, passo a passo, como transformar um problema real em um modelo matemático e encontrar a melhor decisão."
+  },
+  "or": {
+    "title": "O que é Pesquisa Operacional?",
+    "p1": "A Pesquisa Operacional (PO) é uma abordagem científica para a tomada de decisões. Ela representa sistemas reais — uma fábrica, uma rede de distribuição, um hospital, uma rede elétrica — por meio de modelos matemáticos e usa esses modelos para decidir como operar o sistema da melhor forma possível, quase sempre com recursos limitados.",
+    "p2": "As origens da área estão no planejamento militar da Segunda Guerra Mundial, quando equipes científicas foram reunidas para estudar como alocar recursos escassos às operações. Depois da guerra, as mesmas ideias passaram a ser aplicadas na indústria, na logística, na saúde, na energia e em muitas outras áreas.",
+    "stepsIntro": "Segundo a descrição clássica de Taha, um estudo de PO passa pelas seguintes fases:",
+    "step1": "Definição do problema: o que se deseja decidir, qual é o objetivo e quais são as limitações.",
+    "step2": "Construção do modelo: tradução do problema em variáveis, uma função objetivo e restrições.",
+    "step3": "Solução do modelo: aplicação de um método, como o Simplex, para encontrar a melhor solução.",
+    "step4": "Validação do modelo: verificar se o modelo e a solução representam bem a realidade.",
+    "step5": "Implementação da solução: colocar a decisão em prática e acompanhar os resultados.",
+    "p3": "Esta ferramenta se concentra na terceira fase — a solução do modelo — e mostra cada cálculo para que você veja como o método chega à resposta."
+  },
+  "opt": {
+    "title": "O que é Otimização?",
+    "p1": "Otimização é a parte da Pesquisa Operacional que busca a melhor opção entre muitas possíveis. Um problema de otimização tem três ingredientes:",
+    "variables": "Variáveis de decisão: o que podemos controlar, como quantas unidades produzir ou quanto enviar de cada origem a cada destino.",
+    "objective": "Função objetivo: o que queremos maximizar ou minimizar, como lucro, custo ou tempo.",
+    "constraints": "Restrições: os limites do problema, como orçamento, capacidade, oferta e demanda.",
+    "p2": "Uma solução que respeita todas as restrições é chamada de factível; a melhor solução factível, segundo a função objetivo, é a solução ótima.",
+    "p3": "Quando a função objetivo e as restrições são lineares, temos um problema de Programação Linear, resolvido pelo método Simplex. Se algumas variáveis precisam ser inteiras (por exemplo, o número de máquinas), temos Programação Linear Inteira, tratada com Branch and Bound. O problema de Transporte é um caso particular de Programação Linear, com uma estrutura especial de oferta e demanda."
+  },
+  "tools": {
+    "title": "Os métodos desta ferramenta",
+    "open": "Abrir",
+    "simplex": "Resolva problemas de Programação Linear com Grande M, Duas Fases ou Simplex Generalizado, vendo cada tabela e cada operação.",
+    "transporte": "Encontre uma solução inicial para problemas de transporte pelos métodos do Canto Noroeste, do Menor Custo e de Aproximação de Vogel.",
+    "branchBound": "Resolva Programação Linear Inteira e acompanhe a árvore de busca, com a análise de cada nó."
+  },
+  "how": {
+    "title": "Como usar",
+    "text": "Escolha um método, digite seu problema (ou carregue um exemplo) e execute-o de uma vez ou passo a passo. Todo o cálculo acontece no seu navegador — nada é enviado a servidores — e o aplicativo funciona sem conexão depois do primeiro acesso."
+  },
+  "reference": {
+    "title": "Referência",
+    "text": "TAHA, H. A. Pesquisa Operacional. 8. ed. São Paulo: Prentice Hall, 2008 (original: Operations Research: An Introduction). As fases de um estudo de PO citadas acima seguem a abordagem apresentada nesse livro."
+  }
+}
