@@ -7,6 +7,9 @@
  */
 export const GA_ID: string = (import.meta.env.VITE_GA_MEASUREMENT_ID ?? '').trim() || 'G-GKCC8YF8CM'
 
+/** Google AdSense publisher ID (public; same one as in /ads.txt). Loaded only after consent too. */
+export const ADSENSE_CLIENT = 'ca-pub-0522061344051122'
+
 export type Consent = 'granted' | 'denied'
 
 const STORAGE_KEY = 'analytics-consent'
@@ -72,6 +75,18 @@ export function loadAnalytics(): void {
   script.async = true
   script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_ID)}`
   document.head.appendChild(script)
+  loadAds()
+}
+
+/** Injects the AdSense script once. Only called from loadAnalytics, i.e. after consent. */
+function loadAds(): void {
+  if (document.querySelector('script[data-adsense]')) return
+  const ads = document.createElement('script')
+  ads.async = true
+  ads.crossOrigin = 'anonymous'
+  ads.dataset.adsense = ''
+  ads.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(ADSENSE_CLIENT)}`
+  document.head.appendChild(ads)
 }
 
 export function acceptAnalytics(): void {

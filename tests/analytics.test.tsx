@@ -8,6 +8,7 @@ import i18n from '../src/i18n'
 import { GA_ID, getState, loadAnalytics, resetAnalyticsForTests } from '../src/lib/analytics'
 
 const gaScripts = () => [...document.querySelectorAll('script')].filter((s) => s.src.includes('googletagmanager.com/gtag/js'))
+const adScripts = () => [...document.querySelectorAll('script')].filter((s) => s.src.includes('pagead2.googlesyndication.com'))
 const events = () => (window.dataLayer ?? []).map((e) => Array.from(e as ArrayLike<unknown>))
 const pageViews = () => events().filter((e) => e[0] === 'event' && e[1] === 'page_view').map((e) => (e[2] as { page_path: string }).page_path)
 
@@ -18,6 +19,7 @@ beforeAll(() => {
 beforeEach(async () => {
   await i18n.changeLanguage('en')
   gaScripts().forEach((s) => s.remove())
+  adScripts().forEach((s) => s.remove())
   window.dataLayer = []
   delete window[`ga-disable-${GA_ID}`]
   resetAnalyticsForTests()
@@ -36,10 +38,11 @@ describe('analytics consent', () => {
   it('asks first and loads nothing until the visitor answers', async () => {
     await open()
     expect(banner()).toBeTruthy()
-    expect(screen.getByText('We collect anonymous usage data to improve this tool. Do you accept?')).toBeTruthy()
+    expect(screen.getByText('We collect anonymous usage data to improve this tool and show ads (Google Analytics and AdSense). Do you accept?')).toBeTruthy()
     expect(screen.getByRole('button', { name: 'Accept' })).toBeTruthy()
     expect(screen.getByRole('button', { name: 'Reject' })).toBeTruthy()
     expect(gaScripts()).toHaveLength(0)
+    expect(adScripts()).toHaveLength(0)
     expect(window.dataLayer).toEqual([])
   })
 
@@ -53,6 +56,7 @@ describe('analytics consent', () => {
     expect(window.dataLayer).toEqual([])
     loadAnalytics() // e.g. next visit
     expect(gaScripts()).toHaveLength(0)
+    expect(adScripts()).toHaveLength(0)
   })
 
   it('Accept: loads gtag.js once with the GA4 ID and counts the current page', async () => {
@@ -67,8 +71,11 @@ describe('analytics consent', () => {
     expect(cfg[1]).toBe(GA_ID)
     expect(cfg[2]).toMatchObject({ send_page_view: false, anonymize_ip: true })
     expect(pageViews().length).toBe(1)
+    expect(adScripts()).toHaveLength(1)
+    expect(adScripts()[0].src).toContain('client=ca-pub-0522061344051122')
     loadAnalytics()
     expect(gaScripts()).toHaveLength(1) // idempotent
+    expect(adScripts()).toHaveLength(1)
   })
 
   it('after accepting, every route change (and tab) is a page view', async () => {

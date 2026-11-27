@@ -32,7 +32,7 @@
   },
   "consent": {
     "label": "Usage analytics notice",
-    "text": "We collect anonymous usage data to improve this tool. Do you accept?",
+    "text": "We collect anonymous usage data to improve this tool and show ads (Google Analytics and AdSense). Do you accept?",
     "accept": "Accept",
     "reject": "Reject"
   },
