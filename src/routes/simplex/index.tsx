@@ -11,6 +11,7 @@ import { SimplexResult } from '../../components/SimplexResult'
 import { SimplexSetup } from '../../components/SimplexSetup'
 import { SimplexStepCard } from '../../components/SimplexStepCard'
 import { StepControls } from '../../components/StepControls'
+import { StepNav } from '../../components/StepNav'
 import { useNotice } from '../../components/useNotice'
 import {
   ModelParseError, emptyEditor, fromModel, isLargeProblem, parseModelText, serializeModelText, toModel,
@@ -201,6 +202,7 @@ function SimplexPage() {
                   showPhases={showPhases}
                   endStatus={isLast && run.done ? run.result.status : undefined}
                   onPivot={isLast && !run.done && run.mode === 'step' ? pivotAt : undefined}
+                  actions={isLast && run.mode === 'step' ? <StepNav finished={run.done} onNext={next} onReset={() => start('step')} /> : undefined}
                 />
               </div>
             )

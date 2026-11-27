@@ -1,5 +1,6 @@
-import { Alert, Box, Card, CardContent, CardHeader, Chip, Stack, Typography } from '@mui/material'
+import { Alert, Box, Card, CardActions, CardContent, CardHeader, Chip, Stack, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import type { ReactNode } from 'react'
 import { explainStep, type SimplexSnapshot } from '../lib/simplex'
 import type { SimplexStatus } from '../lib/simplex'
 import { useLocale } from './hooks'
@@ -13,10 +14,12 @@ interface Props {
   endStatus?: SimplexStatus
   onPivot?: (col: number, row: number) => void
   showPhases: boolean
+  /** buttons rendered at the bottom of the card (next step / start over) */
+  actions?: ReactNode
 }
 
 /** One iteration: the tableau, what the algorithm decided on it, and the row operations. */
-export function SimplexStepCard({ snap, index, endStatus, onPivot, showPhases }: Props) {
+export function SimplexStepCard({ snap, index, endStatus, onPivot, showPhases, actions }: Props) {
   const { t } = useTranslation(['simplex', 'solver'])
   const locale = useLocale()
   const explanation = explainStep(snap, locale)
@@ -94,6 +97,7 @@ export function SimplexStepCard({ snap, index, endStatus, onPivot, showPhases }:
           )}
         </Stack>
       </CardContent>
+      {actions && <CardActions sx={{ px: 2, pb: 2, flexWrap: 'wrap', gap: 1 }}>{actions}</CardActions>}
     </Card>
   )
 }

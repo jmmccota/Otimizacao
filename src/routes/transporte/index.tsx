@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { FileTools } from '../../components/FileTools'
 import { LargeProblemWarning } from '../../components/LargeProblemWarning'
 import { StepControls } from '../../components/StepControls'
+import { StepNav } from '../../components/StepNav'
 import { TransporteEditor } from '../../components/TransporteEditor'
 import { TransporteStepCard } from '../../components/TransporteStepCard'
 import { useLocale } from '../../components/hooks'
@@ -195,6 +196,7 @@ function TransportePage() {
                   isLast={isLast}
                   done={run.done}
                   onPick={isLast && !run.done && run.mode === 'step' ? pick : undefined}
+                  actions={isLast && run.mode === 'step' ? <StepNav finished={run.done} onNext={next} onReset={() => start('step')} /> : undefined}
                 />
               </div>
             )

@@ -135,13 +135,18 @@ describe('simplex page', () => {
     await user.click(screen.getByRole('button', { name: 'Step by step' }))
     const cards = () => screen.getAllByRole('region').filter((r) => /tableau|Iteration/i.test(r.getAttribute('aria-label') ?? ''))
     expect(cards()).toHaveLength(1)
-    await user.click(screen.getByRole('button', { name: 'Next step' }))
+    // the toolbar button and the one inside the latest card both advance the run
+    expect(screen.getAllByRole('button', { name: 'Next step' })).toHaveLength(2)
+    expect(within(cards()[0]).getByRole('button', { name: 'Next step' })).toBeTruthy()
+    await user.click(within(cards()[0]).getByRole('button', { name: 'Next step' }))
     expect(cards()).toHaveLength(2)
-    await user.click(screen.getByRole('button', { name: 'Next step' }))
+    // buttons move to the end of the newest card
+    expect(within(cards()[0]).queryByRole('button', { name: 'Next step' })).toBeNull()
+    await user.click(within(cards()[1]).getByRole('button', { name: 'Next step' }))
     expect(cards()).toHaveLength(3)
     // the explanation of the first decision is now visible on the first card
     expect(within(cards()[0]).getByText('What happened in this iteration')).toBeTruthy()
-    await user.click(screen.getByRole('button', { name: 'Start over' }))
+    await user.click(within(cards()[2]).getByRole('button', { name: 'Start over' }))
     expect(cards()).toHaveLength(1)
   })
 

@@ -1,4 +1,5 @@
-import { Alert, Card, CardContent, CardHeader, Stack, Typography } from '@mui/material'
+import { Alert, Card, CardActions, CardContent, CardHeader, Stack, Typography } from '@mui/material'
+import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { formatNumber } from '../lib/model'
 import type { TransporteSnapshot } from '../lib/transporte'
@@ -13,10 +14,12 @@ interface Props {
   /** true when every unit of supply or demand was assigned */
   done: boolean
   onPick?: (i: number, j: number) => void
+  /** buttons rendered at the bottom of the card (next step / start over) */
+  actions?: ReactNode
 }
 
 /** One iteration: why the cell was chosen, how much was allocated, what ran out, and the running cost. */
-export function TransporteStepCard({ snap, index, isLast, done, onPick }: Props) {
+export function TransporteStepCard({ snap, index, isLast, done, onPick, actions }: Props) {
   const { t } = useTranslation('transporte')
   const locale = useLocale()
   const fmt = (v: number) => formatNumber(v, locale)
@@ -95,6 +98,7 @@ export function TransporteStepCard({ snap, index, isLast, done, onPick }: Props)
           )}
         </Stack>
       </CardContent>
+      {actions && <CardActions sx={{ px: 2, pb: 2, flexWrap: 'wrap', gap: 1 }}>{actions}</CardActions>}
     </Card>
   )
 }
